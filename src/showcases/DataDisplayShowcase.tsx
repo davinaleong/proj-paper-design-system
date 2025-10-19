@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import { Paper, Typography, Container } from "../components/core"
 import { StaticTable } from "../components/data-display/StaticTable"
 import { Table } from "../components/data-display/Table"
@@ -52,40 +52,6 @@ const staticTableColumns = [
 ]
 
 export function DataDisplayShowcase() {
-  const [sortConfig, setSortConfig] = useState<{
-    key: string
-    direction: "asc" | "desc"
-  } | null>(null)
-
-  const handleSort = (key: string) => {
-    let direction: "asc" | "desc" = "asc"
-    if (
-      sortConfig &&
-      sortConfig.key === key &&
-      sortConfig.direction === "asc"
-    ) {
-      direction = "desc"
-    }
-    setSortConfig({ key, direction })
-  }
-
-  const sortedData = React.useMemo(() => {
-    if (!sortConfig) return sampleData
-
-    return [...sampleData].sort((a, b) => {
-      const aValue = a[sortConfig.key as keyof typeof a]
-      const bValue = b[sortConfig.key as keyof typeof b]
-
-      if (aValue < bValue) {
-        return sortConfig.direction === "asc" ? -1 : 1
-      }
-      if (aValue > bValue) {
-        return sortConfig.direction === "asc" ? 1 : -1
-      }
-      return 0
-    })
-  }, [sampleData, sortConfig])
-
   return (
     <Container maxWidth="xl" className="space-y-12 py-12">
       {/* Static Table Component Showcase */}
@@ -127,7 +93,7 @@ export function DataDisplayShowcase() {
             </Typography>
             <StaticTable
               columns={staticTableColumns}
-              data={sampleData}
+              rows={sampleData}
               variant="default"
               size="md"
             />
@@ -145,7 +111,7 @@ export function DataDisplayShowcase() {
                 </Typography>
                 <StaticTable
                   columns={staticTableColumns}
-                  data={sampleData.slice(0, 3)}
+                  rows={sampleData.slice(0, 3)}
                   variant="striped"
                   size="sm"
                 />
@@ -156,7 +122,7 @@ export function DataDisplayShowcase() {
                 </Typography>
                 <StaticTable
                   columns={staticTableColumns}
-                  data={sampleData.slice(0, 3)}
+                  rows={sampleData.slice(0, 3)}
                   variant="bordered"
                   size="sm"
                 />
@@ -167,7 +133,7 @@ export function DataDisplayShowcase() {
                 </Typography>
                 <StaticTable
                   columns={staticTableColumns}
-                  data={sampleData.slice(0, 3)}
+                  rows={sampleData.slice(0, 3)}
                   variant="compact"
                   size="sm"
                 />
@@ -183,17 +149,17 @@ export function DataDisplayShowcase() {
             <div className="space-y-4">
               <StaticTable
                 columns={staticTableColumns}
-                data={sampleData.slice(0, 2)}
+                rows={sampleData.slice(0, 2)}
                 variant="striped"
                 size="sm"
-                rowColorVariant="primary"
+                colorVariant="primary"
               />
               <StaticTable
                 columns={staticTableColumns}
-                data={sampleData.slice(0, 2)}
+                rows={sampleData.slice(0, 2)}
                 variant="striped"
                 size="sm"
-                rowColorVariant="success"
+                colorVariant="success"
               />
             </div>
           </div>
@@ -225,30 +191,33 @@ export function DataDisplayShowcase() {
             <Table
               columns={[
                 {
-                  key: "name",
-                  label: "Name",
+                  id: "name",
+                  accessor: "name",
+                  header: "Name",
                   sortable: true,
-                  render: (value) => (
+                  cell: ({ value }) => (
                     <Typography variant="body" className="font-medium">
                       {String(value)}
                     </Typography>
                   ),
                 },
                 {
-                  key: "email",
-                  label: "Email",
+                  id: "email",
+                  accessor: "email",
+                  header: "Email",
                   sortable: true,
-                  render: (value) => (
+                  cell: ({ value }) => (
                     <Typography variant="body" className="text-stone-600">
                       {String(value)}
                     </Typography>
                   ),
                 },
                 {
-                  key: "role",
-                  label: "Role",
+                  id: "role",
+                  accessor: "role",
+                  header: "Role",
                   sortable: true,
-                  render: (value) => (
+                  cell: ({ value }) => (
                     <span
                       className={`px-2 py-1 rounded-full text-xs font-medium ${
                         value === "Admin"
@@ -263,10 +232,11 @@ export function DataDisplayShowcase() {
                   ),
                 },
                 {
-                  key: "status",
-                  label: "Status",
+                  id: "status",
+                  accessor: "status",
+                  header: "Status",
                   sortable: true,
-                  render: (value) => (
+                  cell: ({ value }) => (
                     <span
                       className={`px-2 py-1 rounded-full text-xs font-medium ${
                         value === "Active"
@@ -279,30 +249,29 @@ export function DataDisplayShowcase() {
                   ),
                 },
                 {
-                  key: "progress",
-                  label: "Progress",
+                  id: "progress",
+                  accessor: "progress",
+                  header: "Progress",
                   sortable: true,
-                  render: (value) => (
+                  cell: ({ value }) => (
                     <div className="flex items-center gap-2">
                       <div className="w-20 bg-gray-200 rounded-full h-2">
                         <div
                           className="bg-blue-600 h-2 rounded-full transition-all duration-300"
-                          style={{ width: `${value}%` }}
+                          style={{ width: `${String(value)}%` }}
                         />
                       </div>
                       <Typography
                         variant="caption"
                         className="text-stone-600 min-w-8"
                       >
-                        {value}%
+                        {String(value)}%
                       </Typography>
                     </div>
                   ),
                 },
               ]}
-              data={sortedData}
-              onSort={handleSort}
-              sortConfig={sortConfig}
+              data={sampleData}
             />
           </div>
         </Paper>

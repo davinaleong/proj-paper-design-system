@@ -42,7 +42,6 @@ export function FormControlsShowcase() {
   })
 
   const [sliderValue, setSliderValue] = useState(50)
-  const [rangeValue, setRangeValue] = useState([20, 80])
 
   return (
     <Container maxWidth="xl" className="space-y-12 py-12">
@@ -132,12 +131,18 @@ export function FormControlsShowcase() {
                     Buttons with Icons
                   </Typography>
                   <div className="flex flex-wrap gap-4">
-                    <Button startIcon={Download}>Download</Button>
-                    <Button endIcon={Settings} variant="outline">
+                    <Button icon={Download} iconPosition="left">
+                      Download
+                    </Button>
+                    <Button
+                      icon={Settings}
+                      iconPosition="right"
+                      variant="outline"
+                    >
                       Settings
                     </Button>
-                    <Button startIcon={Search} endIcon={Mail}>
-                      Search & Send
+                    <Button icon={Search} iconPosition="left">
+                      Search
                     </Button>
                   </div>
                 </div>
@@ -176,7 +181,10 @@ export function FormControlsShowcase() {
                     <Input placeholder="Normal input" />
                     <Input placeholder="Disabled input" disabled />
                     <Input placeholder="Error input" error />
-                    <Input placeholder="Success input" success />
+                    <Input
+                      placeholder="Valid input"
+                      helperText="This input is valid"
+                    />
                   </div>
                 </div>
 
@@ -186,14 +194,14 @@ export function FormControlsShowcase() {
                     Input with Icons
                   </Typography>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <Input placeholder="Search..." startIcon={Search} />
-                    <Input placeholder="Email" startIcon={Mail} />
+                    <Input placeholder="Search..." leftIcon={Search} />
+                    <Input placeholder="Email" leftIcon={Mail} />
                     <Input
                       placeholder="Password"
                       type="password"
-                      startIcon={Lock}
+                      leftIcon={Lock}
                     />
-                    <Input placeholder="Settings" endIcon={Settings} />
+                    <Input placeholder="Settings" rightIcon={Settings} />
                   </div>
                 </div>
               </div>
@@ -409,18 +417,9 @@ export function FormControlsShowcase() {
 
                 <div>
                   <Typography variant="h4" className="mb-4">
-                    Range Slider: {rangeValue[0]} - {rangeValue[1]}
+                    Disabled Slider
                   </Typography>
-                  <Slider
-                    value={rangeValue}
-                    onChange={(value) =>
-                      setRangeValue(value as [number, number])
-                    }
-                    min={0}
-                    max={100}
-                    step={5}
-                    range
-                  />
+                  <Slider value={75} min={0} max={100} step={1} disabled />
                 </div>
               </div>
             </div>
@@ -433,11 +432,13 @@ export function FormControlsShowcase() {
 
               <div className="space-y-4">
                 <FileUpload
-                  accept="image/*"
                   multiple
-                  maxFiles={3}
-                  maxSize={5 * 1024 * 1024} // 5MB
-                  onFilesChange={(files) =>
+                  validation={{
+                    allowedTypes: ["image/*"],
+                    maxFiles: 3,
+                    maxSize: 5 * 1024 * 1024, // 5MB
+                  }}
+                  onFilesSelected={(files) =>
                     console.log("Files selected:", files)
                   }
                 />
@@ -459,7 +460,7 @@ export function FormControlsShowcase() {
                   <Input
                     type="email"
                     placeholder="Enter your email"
-                    startIcon={Mail}
+                    leftIcon={Mail}
                   />
                 </FormField>
 
@@ -471,7 +472,7 @@ export function FormControlsShowcase() {
                   <Input
                     type="password"
                     placeholder="Enter your password"
-                    startIcon={Lock}
+                    leftIcon={Lock}
                     error
                   />
                 </FormField>
