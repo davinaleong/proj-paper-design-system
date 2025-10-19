@@ -41,6 +41,7 @@ import { Table } from "./components/data-display/Table"
 import { DescriptionListShowcase } from "./components/data-display/DescriptionList"
 import { TagShowcase } from "./components/data-display/Tag"
 import { TooltipShowcase } from "./components/data-display/Tooltip"
+import { DotIndicatorShowcase } from "./components/utilities/DotIndicator"
 import {
   CoreComponentsDemo,
   TypographyShowcase,
@@ -3356,6 +3357,44 @@ function AppContent() {
                   </div>
 
                   <TooltipShowcase />
+                </Paper>
+
+                {/* Dot Indicator Component Showcase */}
+                <Paper>
+                  <div className="mb-8">
+                    <Typography variant="h2" className="mb-4">
+                      Dot Indicator
+                    </Typography>
+                    <Typography variant="body" className="text-stone-600 mb-4">
+                      Versatile animated dot indicators for status
+                      visualization, notifications, and loading states. Perfect
+                      for minimal UI elements that need to convey state or
+                      activity.
+                    </Typography>
+                    <Typography variant="body" className="mb-4">
+                      ✅ 5 size variants: extra small, small, medium, large,
+                      extra large
+                      <br />
+                      ✅ 4 visual variants: solid, soft, outline, pulse
+                      <br />
+                      ✅ Full color system integration (42+ variants)
+                      <br />
+                      ✅ Togglable animation with custom duration and delay
+                      <br />
+                      ✅ Perfect for status indicators and loading states
+                      <br />
+                      ✅ Staggered animation sequences support
+                      <br />
+                      ✅ Notification badge compatibility
+                      <br />
+                      ✅ Paper theme styling integration
+                      <br />
+                      ✅ Full accessibility support
+                      <br />✅ TypeScript support with comprehensive interfaces
+                    </Typography>
+                  </div>
+
+                  <DotIndicatorShowcase />
                 </Paper>
 
                 {/* Table (Advanced Data Grid) Component Showcase */}

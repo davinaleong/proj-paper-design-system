@@ -364,6 +364,19 @@
 
 ## ⚙️ 8. Utilities / Special
 
+- [x] **DotIndicator** ✅ - Animated status indicators and loading dots
+
+  - [x] Size variants (xs, sm, md, lg, xl)
+  - [x] Visual variants (solid, soft, outline, pulse)
+  - [x] Color system integration (42+ variants)
+  - [x] Animation control (togglable with custom timing)
+  - [x] Staggered sequences support
+  - [x] Usage flexibility (status, notifications, loading)
+  - [x] Accessibility support
+  - [x] TypeScript definitions
+  - [x] Comprehensive testing
+  - [x] Complete documentation
+
 - [ ] **SearchBar/SearchInput** - Search field
 
   - [ ] Placeholder text
@@ -445,7 +458,6 @@
 - [ ] Subtle grain/texture background
 - [ ] Soft shadow system (`shadow-sm` to `shadow-md`)
 - [ ] Rounded corners (`rounded-2xl`)
-- [ ] Desaturated accent colors (`pp-teal-600`, `pp-gray-800`)
 - [ ] Consistent spacing scale (4/8/16px system)
 - [ ] Tactile interactive states (press effects, hover depth)
 

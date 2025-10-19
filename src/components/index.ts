@@ -13,8 +13,10 @@ export * from "./data-display"
 // Navigation Components
 export * from "./navigation"
 
+// Utility Components
+export * from "./utilities"
+
 // Other components will be added as they are implemented
 // export * from "./feedback"
 // export * from "./overlays"
-// export * from "./utilities"
 // export * from "./premium"

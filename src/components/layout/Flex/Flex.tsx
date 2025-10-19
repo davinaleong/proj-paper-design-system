@@ -41,6 +41,28 @@ const gapClasses: Record<FlexGap, string> = {
   "2xl": "gap-12",
 }
 
+const shrinkClasses: Record<string, string> = {
+  "0": "flex-shrink-0",
+  "1": "flex-shrink",
+  auto: "flex-shrink",
+}
+
+const growClasses: Record<string, string> = {
+  "0": "flex-grow-0",
+  "1": "flex-grow",
+  auto: "flex-grow",
+}
+
+const basisClasses: Record<string, string> = {
+  auto: "flex-auto",
+  full: "flex-1",
+  "1/2": "flex-1/2",
+  "1/3": "flex-1/3",
+  "2/3": "flex-2/3",
+  "1/4": "flex-1/4",
+  "3/4": "flex-3/4",
+}
+
 const paperClasses = [
   "bg-stone-50",
   "border",
@@ -78,6 +100,11 @@ export function Flex({
   justify = "start",
   align = "stretch",
   gap = "md",
+  shrink,
+  grow,
+  basis,
+  fullWidth = false,
+  noWrap = false,
   className,
   paper = false,
 }: FlexProps) {
@@ -86,6 +113,9 @@ export function Flex({
   const justifyClass = justifyClasses[justify]
   const alignClass = alignClasses[align]
   const gapClass = getResponsiveGapClasses(gap)
+  const shrinkClass = shrink ? shrinkClasses[shrink] : ""
+  const growClass = grow ? growClasses[grow] : ""
+  const basisClass = basis ? basisClasses[basis] : ""
 
   const flexClasses = cn(
     "flex",
@@ -94,6 +124,11 @@ export function Flex({
     justifyClass,
     alignClass,
     gapClass,
+    shrinkClass,
+    growClass,
+    basisClass,
+    fullWidth && "w-full",
+    noWrap && "whitespace-nowrap",
     paper && paperClasses,
     className
   )

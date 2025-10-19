@@ -6,5 +6,8 @@ export type {
   FlexJustify,
   FlexAlign,
   FlexGap,
+  FlexShrink,
+  FlexGrow,
+  FlexBasis,
   FlexResponsive,
 } from "./types"
