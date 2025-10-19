@@ -41,6 +41,7 @@ import { StaticTable } from "./components/data-display/StaticTable"
 import { Table } from "./components/data-display/Table"
 import { DescriptionListShowcase } from "./components/data-display/DescriptionList"
 import { TagShowcase } from "./components/data-display/Tag"
+import { TooltipShowcase } from "./components/data-display/Tooltip"
 import {
   CoreComponentsDemo,
   TypographyShowcase,
@@ -3292,10 +3293,13 @@ function AppContent() {
                     <Typography variant="h2" className="mb-4">
                       Tag Component
                     </Typography>
-                    <Typography variant="bodySmall" className="text-stone-600 mb-4">
+                    <Typography
+                      variant="bodySmall"
+                      className="text-stone-600 mb-4"
+                    >
                       Compact, versatile tags for labeling, categorizing, and
-                      organizing content. Perfect for status indicators, filters,
-                      and metadata display.
+                      organizing content. Perfect for status indicators,
+                      filters, and metadata display.
                     </Typography>
                     <Typography variant="bodySmall" className="text-stone-600">
                       ✅ Size variants: extra small, small, medium, large
@@ -3322,6 +3326,43 @@ function AppContent() {
                   </div>
 
                   <TagShowcase />
+                </Paper>
+
+                {/* Tooltip Component Showcase */}
+                <Paper>
+                  <div className="mb-8">
+                    <Typography variant="h2" className="mb-4">
+                      Tooltip
+                    </Typography>
+                    <Typography variant="body" className="text-stone-600 mb-4">
+                      Interactive tooltips for providing contextual information
+                      with advanced positioning, multiple trigger types, and
+                      comprehensive styling options.
+                    </Typography>
+                    <Typography variant="caption" className="text-green-600">
+                      ✅ 12 positioning options (top, right, bottom, left with
+                      start/end variants)
+                      <br />
+                      ✅ Multiple trigger types (hover, click, focus, manual)
+                      <br />
+                      ✅ Full color system integration (42 variants)
+                      <br />
+                      ✅ Size variants (sm, md, lg)
+                      <br />
+                      ✅ Configurable delays and offsets
+                      <br />
+                      ✅ Arrow indicator with smart positioning
+                      <br />
+                      ✅ Viewport boundary detection and auto-adjustment
+                      <br />
+                      ✅ Paper-like styling with backdrop blur
+                      <br />
+                      ✅ Full accessibility support
+                      <br />✅ TypeScript support with comprehensive interfaces
+                    </Typography>
+                  </div>
+
+                  <TooltipShowcase />
                 </Paper>
 
                 {/* Table (Advanced Data Grid) Component Showcase */}

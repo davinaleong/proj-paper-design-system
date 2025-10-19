@@ -38,8 +38,14 @@ export type {
 } from "./DescriptionList"
 export { Tag } from "./Tag"
 export type { TagProps, TagSize, TagVariant } from "./Tag"
+export { Tooltip } from "./Tooltip"
+export type {
+  TooltipProps,
+  TooltipPosition,
+  TooltipTrigger,
+  TooltipSize,
+} from "./Tooltip"
 // export { Chip } from "./Chip"
-// export { Tooltip } from "./Tooltip"
 // export { ProgressBar } from "./ProgressBar"
 // export { ProgressCircle } from "./ProgressCircle"
 // export { EmptyState } from "./EmptyState"
