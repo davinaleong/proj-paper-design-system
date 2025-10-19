@@ -1,5 +1,6 @@
 import { forwardRef } from "react"
 import { cn } from "../../../utils/cn.js"
+import { Tooltip } from "../Tooltip/Tooltip.jsx"
 import type { ColorVariant as UtilsColorVariant } from "../../../utils/colors.js"
 import type {
   StaticTableProps,
@@ -266,6 +267,68 @@ const getAlignClass = (align: TableAlign = "left") => {
   return ALIGN_CLASSES[align]
 }
 
+// Helper function to check if content should be truncated
+const shouldTruncate = (
+  content: React.ReactNode,
+  maxLength: number = 50
+): boolean => {
+  if (typeof content === "string") {
+    return content.length > maxLength
+  }
+  if (typeof content === "number") {
+    return String(content).length > maxLength
+  }
+  return false
+}
+
+// Helper function to get truncated text
+const getTruncatedText = (
+  content: React.ReactNode,
+  maxLength: number = 50
+): string => {
+  if (typeof content === "string") {
+    return content.length > maxLength
+      ? content.slice(0, maxLength) + "..."
+      : content
+  }
+  if (typeof content === "number") {
+    const str = String(content)
+    return str.length > maxLength ? str.slice(0, maxLength) + "..." : str
+  }
+  return String(content)
+}
+
+// Truncated cell component with tooltip
+interface TruncatedCellProps {
+  content: React.ReactNode
+  maxLength?: number
+  className?: string
+}
+
+const TruncatedCell: React.FC<TruncatedCellProps> = ({
+  content,
+  maxLength = 50,
+  className,
+}) => {
+  const shouldShowTooltip = shouldTruncate(content, maxLength)
+  const displayText = getTruncatedText(content, maxLength)
+
+  if (shouldShowTooltip) {
+    return (
+      <Tooltip
+        content={String(content)}
+        position="top"
+        showDelay={300}
+        maxWidth="300px"
+      >
+        <span className={cn("cursor-help", className)}>{displayText}</span>
+      </Tooltip>
+    )
+  }
+
+  return <span className={className}>{content}</span>
+}
+
 // Get cell content based on column definition
 const getCellContent = (
   column: StaticTableColumn,
@@ -444,7 +507,7 @@ export const StaticTable = forwardRef<HTMLTableElement, StaticTableProps>(
                         key={`${row.id}-${column.key}`}
                         className={cellClasses}
                       >
-                        {content}
+                        <TruncatedCell content={content} />
                       </td>
                     )
                   })}

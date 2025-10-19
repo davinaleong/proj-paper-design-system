@@ -6,12 +6,12 @@ const basicItems: DescriptionListItem[] = [
   {
     id: "name",
     term: "Full Name",
-    description: "Sarah Johnson",
+    description: "Sarah Smith",
   },
   {
     id: "email",
     term: "Email Address",
-    description: "sarah.johnson@example.com",
+    description: "sarah.smith@example.com",
   },
   {
     id: "phone",
@@ -22,6 +22,17 @@ const basicItems: DescriptionListItem[] = [
     id: "location",
     term: "Location",
     description: "San Francisco, CA",
+  },
+  {
+    id: "bio",
+    term: "Biography",
+    description:
+      "Sarah is a senior software engineer with over 10 years of experience in full-stack development. She specializes in React, TypeScript, and Node.js, and has led multiple successful projects in the fintech industry. She is passionate about clean code, user experience, and mentoring junior developers. In her free time, she enjoys hiking, photography, and contributing to open source projects.",
+  },
+  {
+    id: "very-long-term",
+    term: "This is an extremely long term that should be truncated to test the tooltip functionality",
+    description: "Short description",
   },
 ]
 
@@ -145,7 +156,7 @@ export function DescriptionListShowcase() {
       {/* Size Variants */}
       <section className="space-y-4">
         <h3 className="text-xl font-semibold text-stone-800">Size Variants</h3>
-        <div className="grid gap-6 lg:grid-cols-3">
+        <div className="grid gap-1">
           <div>
             <h4 className="text-lg font-medium text-stone-700 mb-3">Small</h4>
             <DescriptionList
@@ -274,7 +285,7 @@ export function DescriptionListShowcase() {
         <h3 className="text-xl font-semibold text-stone-800">
           All Color Variants
         </h3>
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-2">
           {(
             [
               "default",

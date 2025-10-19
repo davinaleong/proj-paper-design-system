@@ -8,6 +8,7 @@ const basicColumns: StaticTableColumn[] = [
   { key: "email", label: "Email", align: "left" },
   { key: "role", label: "Role", align: "center" },
   { key: "status", label: "Status", align: "center" },
+  { key: "notes", label: "Notes", align: "left" },
 ]
 
 const basicRows: StaticTableRow[] = [
@@ -17,6 +18,7 @@ const basicRows: StaticTableRow[] = [
     email: "john@example.com",
     role: "Admin",
     status: "Active",
+    notes: "System administrator with full access privileges",
   },
   {
     id: 2,
@@ -24,6 +26,7 @@ const basicRows: StaticTableRow[] = [
     email: "jane@example.com",
     role: "Editor",
     status: "Active",
+    notes: "Content editor responsible for blog posts and marketing materials",
   },
   {
     id: 3,
@@ -31,6 +34,7 @@ const basicRows: StaticTableRow[] = [
     email: "bob@example.com",
     role: "User",
     status: "Inactive",
+    notes: "Regular user account, currently on leave",
   },
   {
     id: 4,
@@ -38,6 +42,18 @@ const basicRows: StaticTableRow[] = [
     email: "alice@example.com",
     role: "Moderator",
     status: "Pending",
+    notes:
+      "Community moderator application pending approval from management team",
+  },
+  {
+    id: 5,
+    name: "Dr. Christopher Alexander Wellington III",
+    email:
+      "christopher.alexander.wellington.the.third@verylongdomainname.example.organization.com",
+    role: "Senior Principal Software Architecture Consultant",
+    status: "Active",
+    notes:
+      "Senior consultant specializing in enterprise software architecture, microservices design patterns, cloud migration strategies, and technical leadership. Has over 15 years of experience in the industry and holds multiple certifications in AWS, Azure, and Google Cloud Platform.",
   },
 ]
 

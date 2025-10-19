@@ -1,11 +1,74 @@
 import { forwardRef } from "react"
 import { cn } from "../../../utils/cn.js"
+import { Tooltip } from "../Tooltip/Tooltip.jsx"
 import {
   getColorClasses,
   getTextColorClasses,
   type ColorVariant as UtilsColorVariant,
 } from "../../../utils/colors.js"
 import type { DescriptionListProps, DescriptionListItem } from "./types"
+
+// Helper function to check if content should be truncated
+const shouldTruncate = (
+  content: React.ReactNode,
+  maxLength: number = 80
+): boolean => {
+  if (typeof content === "string") {
+    return content.length > maxLength
+  }
+  if (typeof content === "number") {
+    return String(content).length > maxLength
+  }
+  return false
+}
+
+// Helper function to get truncated text
+const getTruncatedText = (
+  content: React.ReactNode,
+  maxLength: number = 80
+): string => {
+  if (typeof content === "string") {
+    return content.length > maxLength
+      ? content.slice(0, maxLength) + "..."
+      : content
+  }
+  if (typeof content === "number") {
+    const str = String(content)
+    return str.length > maxLength ? str.slice(0, maxLength) + "..." : str
+  }
+  return String(content)
+}
+
+// Truncated text component with tooltip for description lists
+interface TruncatedTextProps {
+  content: React.ReactNode
+  maxLength?: number
+  className?: string
+}
+
+const TruncatedText: React.FC<TruncatedTextProps> = ({
+  content,
+  maxLength = 80,
+  className,
+}) => {
+  const shouldShowTooltip = shouldTruncate(content, maxLength)
+  const displayText = getTruncatedText(content, maxLength)
+
+  if (shouldShowTooltip) {
+    return (
+      <Tooltip
+        content={String(content)}
+        position="top"
+        showDelay={300}
+        maxWidth="350px"
+      >
+        <span className={cn("cursor-help", className)}>{displayText}</span>
+      </Tooltip>
+    )
+  }
+
+  return <span className={className}>{content}</span>
+}
 
 /**
  * DescriptionList component for displaying key-value pairs in a structured format
@@ -130,12 +193,23 @@ export const DescriptionList = forwardRef<
             style={termWidthStyle}
           >
             <dt className={getTermClasses(item)}>
-              {renderTerm ? renderTerm(item.term, item, index) : item.term}
+              {renderTerm ? (
+                <TruncatedText
+                  content={renderTerm(item.term, item, index)}
+                  maxLength={40}
+                />
+              ) : (
+                <TruncatedText content={item.term} maxLength={40} />
+              )}
             </dt>
             <dd className={getDescriptionClasses(item)}>
-              {renderDescription
-                ? renderDescription(item.description, item, index)
-                : item.description}
+              {renderDescription ? (
+                <TruncatedText
+                  content={renderDescription(item.description, item, index)}
+                />
+              ) : (
+                <TruncatedText content={item.description} />
+              )}
             </dd>
           </div>
         ))}

@@ -10,6 +10,7 @@ import {
   ArrowDown,
 } from "lucide-react"
 import { cn } from "../../../utils/cn.js"
+import { Tooltip } from "../Tooltip/Tooltip.jsx"
 import {
   getColorClasses,
   getTextColorClasses,
@@ -19,6 +20,68 @@ import {
 } from "../../../utils/colors.js"
 import { useTable } from "./useTable.js"
 import type { TableProps, TableColumn, TableRow } from "./types"
+
+// Helper function to check if content should be truncated
+const shouldTruncate = (
+  content: React.ReactNode,
+  maxLength: number = 50
+): boolean => {
+  if (typeof content === "string") {
+    return content.length > maxLength
+  }
+  if (typeof content === "number") {
+    return String(content).length > maxLength
+  }
+  return false
+}
+
+// Helper function to get truncated text
+const getTruncatedText = (
+  content: React.ReactNode,
+  maxLength: number = 50
+): string => {
+  if (typeof content === "string") {
+    return content.length > maxLength
+      ? content.slice(0, maxLength) + "..."
+      : content
+  }
+  if (typeof content === "number") {
+    const str = String(content)
+    return str.length > maxLength ? str.slice(0, maxLength) + "..." : str
+  }
+  return String(content)
+}
+
+// Truncated cell component with tooltip
+interface TruncatedCellProps {
+  content: React.ReactNode
+  maxLength?: number
+  className?: string
+}
+
+const TruncatedCell: React.FC<TruncatedCellProps> = ({
+  content,
+  maxLength = 50,
+  className,
+}) => {
+  const shouldShowTooltip = shouldTruncate(content, maxLength)
+  const displayText = getTruncatedText(content, maxLength)
+
+  if (shouldShowTooltip) {
+    return (
+      <Tooltip
+        content={String(content)}
+        position="top"
+        showDelay={300}
+        maxWidth="300px"
+      >
+        <span className={cn("cursor-help", className)}>{displayText}</span>
+      </Tooltip>
+    )
+  }
+
+  return <span className={className}>{content}</span>
+}
 
 // Table header component
 interface TableHeaderProps<T extends Record<string, unknown>> {
@@ -135,18 +198,23 @@ function EditableCell<T extends Record<string, unknown>>({
   const isEditing = editingValue !== undefined
   if (!column.editable || !isEditing) {
     if (column.cell) {
+      const cellContent = column.cell({
+        value,
+        row,
+        rowIndex: row.index,
+        column,
+      })
       return (
         <td className={cellClasses}>
-          {column.cell({
-            value,
-            row,
-            rowIndex: row.index,
-            column,
-          })}
+          <TruncatedCell content={cellContent} />
         </td>
       )
     }
-    return <td className={cellClasses}>{String(value ?? "")}</td>
+    return (
+      <td className={cellClasses}>
+        <TruncatedCell content={String(value ?? "")} />
+      </td>
+    )
   }
 
   // Render editable input based on editing type
