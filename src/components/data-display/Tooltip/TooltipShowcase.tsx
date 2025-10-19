@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { Tooltip } from "./Tooltip.jsx"
+import { Button } from "../../forms/Button/Button.jsx"
 import type { TooltipPosition, TooltipTrigger, TooltipSize } from "./types.js"
 import type { ColorVariant } from "../../../utils/colors.js"
 
@@ -55,9 +56,7 @@ export const TooltipShowcase: React.FC = () => {
         <h3 className="text-lg font-semibold text-slate-800">Basic Examples</h3>
         <div className="flex flex-wrap gap-4">
           <Tooltip content="This is a simple tooltip">
-            <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 cursor-pointer">
-              Hover me
-            </button>
+            <Button color="primary">Hover me</Button>
           </Tooltip>
 
           <Tooltip
@@ -65,9 +64,7 @@ export const TooltipShowcase: React.FC = () => {
             trigger="click"
             colorVariant="success"
           >
-            <button className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 cursor-pointer">
-              Click me
-            </button>
+            <Button color="success">Click me</Button>
           </Tooltip>
 
           <Tooltip
@@ -75,9 +72,7 @@ export const TooltipShowcase: React.FC = () => {
             trigger="focus"
             colorVariant="info"
           >
-            <button className="px-4 py-2 bg-sky-500 text-white rounded focus:bg-sky-600 cursor-pointer">
-              Tab to me
-            </button>
+            <Button color="info">Tab to me</Button>
           </Tooltip>
         </div>
       </section>
@@ -93,9 +88,9 @@ export const TooltipShowcase: React.FC = () => {
                 position={position}
                 showDelay={100}
               >
-                <button className="px-3 py-2 bg-slate-600 text-white text-sm rounded hover:bg-slate-700 cursor-pointer">
+                <Button size="sm" color="neutral">
                   {position}
-                </button>
+                </Button>
               </Tooltip>
             </div>
           ))}
@@ -123,16 +118,16 @@ export const TooltipShowcase: React.FC = () => {
                   : "info"
               }
             >
-              <button
-                className={`px-4 py-2 rounded text-white cursor-pointer ${
+              <Button
+                color={
                   trigger === "hover"
-                    ? "bg-blue-500 hover:bg-blue-600"
+                    ? "primary"
                     : trigger === "click"
-                    ? "bg-green-500 hover:bg-green-600"
+                    ? "success"
                     : trigger === "focus"
-                    ? "bg-yellow-500 hover:bg-yellow-600"
-                    : "bg-purple-500 hover:bg-purple-600"
-                }`}
+                    ? "warning"
+                    : "secondary"
+                }
                 onClick={
                   trigger === "manual"
                     ? () => setManualOpen(!manualOpen)
@@ -140,7 +135,7 @@ export const TooltipShowcase: React.FC = () => {
                 }
               >
                 {trigger === "manual" ? "Toggle Manual" : `${trigger} trigger`}
-              </button>
+              </Button>
             </Tooltip>
           ))}
         </div>
@@ -157,17 +152,12 @@ export const TooltipShowcase: React.FC = () => {
               size={size}
               colorVariant="neutral"
             >
-              <button
-                className={`rounded bg-slate-600 text-white hover:bg-slate-700 cursor-pointer ${
-                  size === "sm"
-                    ? "px-2 py-1 text-sm"
-                    : size === "md"
-                    ? "px-3 py-2 text-base"
-                    : "px-4 py-3 text-lg"
-                }`}
+              <Button
+                size={size === "sm" ? "sm" : size === "md" ? "md" : "lg"}
+                color="neutral"
               >
                 Size {size.toUpperCase()}
-              </button>
+              </Button>
             </Tooltip>
           ))}
         </div>
@@ -186,9 +176,9 @@ export const TooltipShowcase: React.FC = () => {
               colorVariant={color}
               position="top"
             >
-              <button className="px-4 py-2 bg-slate-200 text-slate-800 rounded hover:bg-slate-300 w-full cursor-pointer">
+              <Button color="neutral" className="w-full">
                 {color}
-              </button>
+              </Button>
             </Tooltip>
           ))}
         </div>
@@ -209,27 +199,27 @@ export const TooltipShowcase: React.FC = () => {
                 showDelay={0}
                 colorVariant="success"
               >
-                <button className="px-3 py-2 bg-green-100 text-green-800 rounded text-sm cursor-pointer">
+                <Button size="sm" color="success">
                   Fast
-                </button>
+                </Button>
               </Tooltip>
               <Tooltip
                 content="Slow show (800ms delay)"
                 showDelay={800}
                 colorVariant="warning"
               >
-                <button className="px-3 py-2 bg-yellow-100 text-yellow-800 rounded text-sm cursor-pointer">
+                <Button size="sm" color="warning">
                   Slow
-                </button>
+                </Button>
               </Tooltip>
               <Tooltip
                 content="Delayed hide (500ms)"
                 hideDelay={500}
                 colorVariant="info"
               >
-                <button className="px-3 py-2 bg-blue-100 text-blue-800 rounded text-sm cursor-pointer">
+                <Button size="sm" color="info">
                   Sticky
-                </button>
+                </Button>
               </Tooltip>
             </div>
           </div>
@@ -239,14 +229,14 @@ export const TooltipShowcase: React.FC = () => {
             <h4 className="font-medium text-slate-700">Arrow Options</h4>
             <div className="flex gap-2">
               <Tooltip content="With arrow (default)" arrow={true}>
-                <button className="px-3 py-2 bg-slate-100 text-slate-800 rounded text-sm cursor-pointer">
+                <Button size="sm" color="neutral">
                   With Arrow
-                </button>
+                </Button>
               </Tooltip>
               <Tooltip content="No arrow" arrow={false}>
-                <button className="px-3 py-2 bg-slate-100 text-slate-800 rounded text-sm cursor-pointer">
+                <Button size="sm" color="neutral">
                   No Arrow
-                </button>
+                </Button>
               </Tooltip>
             </div>
           </div>
@@ -260,18 +250,18 @@ export const TooltipShowcase: React.FC = () => {
                 tooltipClassName="font-bold shadow-xl"
                 maxWidth="200px"
               >
-                <button className="px-3 py-2 bg-purple-100 text-purple-800 rounded text-sm cursor-pointer">
+                <Button size="sm" color="secondary">
                   Custom Style
-                </button>
+                </Button>
               </Tooltip>
               <Tooltip
                 content="High z-index tooltip"
                 zIndex={999}
                 colorVariant="danger"
               >
-                <button className="px-3 py-2 bg-red-100 text-red-800 rounded text-sm cursor-pointer">
+                <Button size="sm" color="danger">
                   High Z-Index
-                </button>
+                </Button>
               </Tooltip>
             </div>
           </div>
@@ -281,9 +271,9 @@ export const TooltipShowcase: React.FC = () => {
             <h4 className="font-medium text-slate-700">Disabled State</h4>
             <div className="flex gap-2">
               <Tooltip content="This tooltip is disabled" disabled>
-                <button className="px-3 py-2 bg-gray-200 text-gray-500 rounded text-sm cursor-not-allowed">
+                <Button size="sm" color="neutral" disabled>
                   Disabled Tooltip
-                </button>
+                </Button>
               </Tooltip>
             </div>
           </div>
@@ -312,9 +302,7 @@ export const TooltipShowcase: React.FC = () => {
             size="lg"
             maxWidth="250px"
           >
-            <button className="px-4 py-2 bg-indigo-500 text-white rounded hover:bg-indigo-600 cursor-pointer">
-              Rich Content
-            </button>
+            <Button color="accent">Rich Content</Button>
           </Tooltip>
 
           <Tooltip
@@ -323,9 +311,7 @@ export const TooltipShowcase: React.FC = () => {
             maxWidth="300px"
             position="bottom"
           >
-            <button className="px-4 py-2 bg-teal-500 text-white rounded hover:bg-teal-600 cursor-pointer">
-              Long Content
-            </button>
+            <Button color="info">Long Content</Button>
           </Tooltip>
         </div>
       </section>

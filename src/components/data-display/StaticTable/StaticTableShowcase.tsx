@@ -1,5 +1,6 @@
 import { StaticTable } from "./StaticTable"
 import type { StaticTableColumn, StaticTableRow } from "./types"
+import { Button } from "../../forms/Button/Button"
 
 // Sample data for demonstrations
 const basicColumns: StaticTableColumn[] = [
@@ -101,7 +102,7 @@ const colorVariantRows: StaticTableRow[] = [
     department: "HR",
     salary: "$60,000",
     status: "Inactive",
-    colorVariant: "error",
+    colorVariant: "danger",
   },
 ]
 
@@ -159,12 +160,12 @@ const customRenderColumns: StaticTableColumn[] = [
     align: "center",
     render: () => (
       <div className="flex gap-1">
-        <button className="px-2 py-1 text-xs bg-pp-blue-100 text-pp-blue-800 rounded hover:bg-pp-blue-200">
+        <Button size="xs" color="primary">
           Edit
-        </button>
-        <button className="px-2 py-1 text-xs bg-pp-red-100 text-pp-red-800 rounded hover:bg-pp-red-200">
+        </Button>
+        <Button size="xs" color="danger">
           Delete
-        </button>
+        </Button>
       </div>
     ),
   },
@@ -378,9 +379,9 @@ export const StaticTableShowcase = () => {
                     <p className="text-pp-gray-500">
                       Try adjusting your search criteria or add some users.
                     </p>
-                    <button className="mt-4 px-4 py-2 bg-pp-blue-600 text-white rounded-lg hover:bg-pp-blue-700">
+                    <Button className="mt-4" color="primary">
                       Add User
-                    </button>
+                    </Button>
                   </div>
                 }
               />

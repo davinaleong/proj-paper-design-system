@@ -16,7 +16,6 @@ import {
   ThemeProvider,
   Paper,
   Typography,
-  Icon,
   Container,
   Brand,
 } from "./components/core"
@@ -94,38 +93,32 @@ function AppContent() {
             </div>
 
             <div className="flex items-center gap-3">
-              <button
+              <IconButton
                 onClick={() => setCurrentTheme("light")}
-                className={`p-2 rounded-lg transition-colors ${
-                  currentTheme === "light"
-                    ? "bg-blue-100 text-blue-700"
-                    : "hover:bg-gray-100 dark:hover:bg-gray-800"
-                }`}
-              >
-                <Icon icon={Sun} size="sm" aria-label="Light theme" />
-              </button>
+                icon={Sun}
+                variant={currentTheme === "light" ? "solid" : "ghost"}
+                color={currentTheme === "light" ? "primary" : "neutral"}
+                aria-label="Light theme"
+                size="sm"
+              />
 
-              <button
+              <IconButton
                 onClick={() => setCurrentTheme("paper")}
-                className={`p-2 rounded-lg transition-colors ${
-                  currentTheme === "paper"
-                    ? "bg-teal-100 text-teal-700"
-                    : "hover:bg-gray-100 dark:hover:bg-gray-800"
-                }`}
-              >
-                <Icon icon={Palette} size="sm" aria-label="Paper theme" />
-              </button>
+                icon={Palette}
+                variant={currentTheme === "paper" ? "solid" : "ghost"}
+                color={currentTheme === "paper" ? "info" : "neutral"}
+                aria-label="Paper theme"
+                size="sm"
+              />
 
-              <button
+              <IconButton
                 onClick={() => setCurrentTheme("dark")}
-                className={`p-2 rounded-lg transition-colors ${
-                  currentTheme === "dark"
-                    ? "bg-gray-700 text-white"
-                    : "hover:bg-gray-100 dark:hover:bg-gray-800"
-                }`}
-              >
-                <Icon icon={Moon} size="sm" aria-label="Dark theme" />
-              </button>
+                icon={Moon}
+                variant={currentTheme === "dark" ? "solid" : "ghost"}
+                color={currentTheme === "dark" ? "neutral" : "neutral"}
+                aria-label="Dark theme"
+                size="sm"
+              />
             </div>
           </header>
         </Container>
