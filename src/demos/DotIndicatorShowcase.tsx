@@ -1,13 +1,13 @@
 import {
   DotIndicator,
-  DotIndicatorShowcase,
+  DotIndicatorShowcase as DotIndicatorComponentShowcase,
 } from "../components/utilities/DotIndicator"
 import { Stack } from "../components/layout/Stack"
 import { Flex } from "../components/layout/Flex"
 import { Typography } from "../components/core/Typography"
 import { Paper } from "../components/core/Paper"
 
-export function DotIndicatorDemo() {
+export function DotIndicatorShowcase() {
   return (
     <div className="p-8 space-y-8">
       <Paper className="p-6">
@@ -98,7 +98,7 @@ export function DotIndicatorDemo() {
       </Paper>
 
       {/* Full Showcase */}
-      <DotIndicatorShowcase />
+      <DotIndicatorComponentShowcase />
     </div>
   )
 }

@@ -2,16 +2,16 @@ import { ThemeProvider } from "./components/core"
 import { AppHeader } from "./components/AppHeader"
 import { FloatingNavbar } from "./components/navigation"
 import {
-  CoreComponentsDemo,
+  CoreComponentsShowcase,
   TypographyShowcase,
   LayoutShowcase,
   UIPrimitivesShowcase,
-} from "./demos/components"
+} from "./demos/component-showcases"
 import {
   FormControlsShowcase,
   DataDisplayShowcase,
   NavigationShowcase,
-} from "./demos/showcases"
+} from "./demos/feature-showcases"
 import "./App.css"
 
 function App() {
@@ -49,7 +49,7 @@ function AppContent() {
       <main className="space-y-0">
         {/* Core Components */}
         <section id="overview">
-          <CoreComponentsDemo />
+          <CoreComponentsShowcase />
         </section>
 
         <section id="typography">

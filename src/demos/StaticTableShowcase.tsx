@@ -1,8 +1,8 @@
 import { StaticTable } from "../components/data-display/StaticTable"
-import { StaticTableShowcase } from "../components/data-display/StaticTable/StaticTableShowcase"
+import { StaticTableShowcase as StaticTableComponentShowcase } from "../components/data-display/StaticTable/StaticTableShowcase"
 
 // Quick integration test component
-export const StaticTableDemo = () => {
+export const StaticTableShowcase = () => {
   const sampleColumns = [
     { key: "id", label: "ID", align: "center" as const, width: "80px" },
     {
@@ -54,7 +54,7 @@ export const StaticTableDemo = () => {
 
         <section>
           <h2 className="text-xl font-semibold mb-4">Complete Showcase</h2>
-          <StaticTableShowcase />
+          <StaticTableComponentShowcase />
         </section>
       </div>
     </div>

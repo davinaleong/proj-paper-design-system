@@ -1,4 +1,5 @@
-export { CoreComponentsDemo } from "./CoreComponentsDemo"
+export { CoreComponentsShowcase } from "./CoreComponentsShowcase"
 export { TypographyShowcase } from "./TypographyShowcase"
 export { LayoutShowcase } from "./LayoutShowcase"
 export { UIPrimitivesShowcase } from "./UIPrimitivesShowcase"
+export { default as FormFieldShowcase } from "./FormFieldShowcase"

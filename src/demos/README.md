@@ -1,61 +1,68 @@
-# Demos and Showcases
+# Component Showcases
 
-This folder contains all demo and showcase code for the Paper Design System components.
+This folder contains all showcase code for the Paper Design System components. All files follow the "Showcase" naming convention for consistency.
 
 ## Structure
 
 ```
 src/demos/
-├── components/          # Component demos (formerly src/demo/)
-│   ├── CoreComponentsDemo.tsx
-│   ├── FormFieldDemo.tsx
+├── component-showcases/    # Individual component showcases
+│   ├── CoreComponentsShowcase.tsx
+│   ├── FormFieldShowcase.tsx
 │   ├── LayoutShowcase.tsx
 │   ├── TypographyShowcase.tsx
 │   ├── UIPrimitivesShowcase.tsx
 │   └── index.ts
-├── showcases/          # Feature showcases (formerly src/showcases/)
+├── feature-showcases/      # Multi-component feature showcases
 │   ├── DataDisplayShowcase.tsx
 │   ├── FormControlsShowcase.tsx
 │   ├── NavigationShowcase.tsx
 │   └── index.ts
-├── DotIndicatorDemo.tsx     # Individual component demo
-├── StaticTableDemo.tsx      # Individual component demo
-├── index.ts                 # Main exports
-└── README.md               # This file
+├── DotIndicatorShowcase.tsx    # Individual component showcase
+├── StaticTableShowcase.tsx     # Individual component showcase
+├── index.ts                    # Main exports
+└── README.md                   # This file
 ```
 
 ## Usage
 
-All demos and showcases can be imported from the main demos folder:
+All showcases can be imported from the main demos folder:
 
-```typescript
+````typescript
 import {
-  // Component demos
-  CoreComponentsDemo,
+  // Component showcases
+  CoreComponentsShowcase,
   TypographyShowcase,
   LayoutShowcase,
   UIPrimitivesShowcase,
+  FormFieldShowcase,
 
   // Feature showcases
   FormControlsShowcase,
   DataDisplayShowcase,
   NavigationShowcase,
 
-  // Individual demos
-  DotIndicatorDemo,
-  StaticTableDemo,
+  // Individual showcases
+  DotIndicatorShowcase,
+  StaticTableShowcase,
 } from "./demos"
-```
-
 Or import from specific subfolders:
 
 ```typescript
-import { FormControlsShowcase } from "./demos/showcases"
-import { TypographyShowcase } from "./demos/components"
+import { FormControlsShowcase } from "./demos/feature-showcases"
+import { TypographyShowcase } from "./demos/component-showcases"
 ```
 
 ## Organization
 
-- **components/**: Focused demos for specific component categories (core, layout, forms, etc.)
-- **showcases/**: Comprehensive showcases that demonstrate multiple related components together
-- **Root level**: Individual component demos and utility demos
+- **component-showcases/**: Individual component showcases focusing on specific component categories (core, layout, forms, etc.)
+- **feature-showcases/**: Comprehensive showcases that demonstrate multiple related components working together
+- **Root level**: Standalone component showcases and specialized demonstrations
+
+## Naming Convention
+
+All files consistently use the "Showcase" suffix:
+- File names: `ComponentNameShowcase.tsx`
+- Function names: `ComponentNameShowcase()`
+- Export names: `ComponentNameShowcase`
+````

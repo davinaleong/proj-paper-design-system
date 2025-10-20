@@ -1,18 +1,19 @@
-// Export all components from demos/components
+// Export all component showcases
 export {
-  CoreComponentsDemo,
+  CoreComponentsShowcase,
   TypographyShowcase,
   LayoutShowcase,
   UIPrimitivesShowcase,
-} from "./components"
+  FormFieldShowcase,
+} from "./component-showcases"
 
-// Export all showcases from demos/showcases
+// Export all feature showcases
 export {
   FormControlsShowcase,
   DataDisplayShowcase,
   NavigationShowcase,
-} from "./showcases"
+} from "./feature-showcases"
 
-// Export individual demo files
-export { DotIndicatorDemo } from "./DotIndicatorDemo"
-export { StaticTableDemo } from "./StaticTableDemo"
+// Export individual showcase files
+export { DotIndicatorShowcase } from "./DotIndicatorShowcase"
+export { StaticTableShowcase } from "./StaticTableShowcase"

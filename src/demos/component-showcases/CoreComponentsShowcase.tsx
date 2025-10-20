@@ -1,7 +1,7 @@
 import { Palette } from "lucide-react"
 import { Paper, Typography, Icon } from "../../components/core"
 
-export function CoreComponentsDemo() {
+export function CoreComponentsShowcase() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
       <Paper variant="elevated" padding="lg">
