@@ -1,5 +1,5 @@
-import { StaticTable } from "./components/data-display/StaticTable"
-import { StaticTableShowcase } from "./components/data-display/StaticTable/StaticTableShowcase"
+import { StaticTable } from "../components/data-display/StaticTable"
+import { StaticTableShowcase } from "../components/data-display/StaticTable/StaticTableShowcase"
 
 // Quick integration test component
 export const StaticTableDemo = () => {

@@ -1,5 +1,5 @@
-import { Paper, Typography, Container } from "../components/core"
-import { FloatingNavbar } from "../components/navigation"
+import { Paper, Typography } from "../../components/core"
+import { FloatingNavbar } from "../../components/navigation"
 
 export function NavigationShowcase() {
   const navItems = [
@@ -13,7 +13,7 @@ export function NavigationShowcase() {
   ]
 
   return (
-    <Container maxWidth="xl" className="space-y-12 py-12">
+    <>
       <section id="navigation">
         <Paper>
           <div className="mb-8">
@@ -129,6 +129,6 @@ export function NavigationShowcase() {
         position="top-right"
         offset={{ x: 20, y: 120 }}
       />
-    </Container>
+    </>
   )
 }

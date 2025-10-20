@@ -5,7 +5,7 @@ import {
   Textarea,
   Checkbox,
   Button,
-} from "../components/forms"
+} from "../../components/forms"
 
 export default function FormFieldDemo() {
   return (

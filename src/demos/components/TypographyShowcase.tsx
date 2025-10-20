@@ -1,5 +1,5 @@
-import { Typography, Paper } from "../components/core"
-import { Input, Button } from "../components/forms"
+import { Typography, Paper } from "../../components/core"
+import { Input, Button } from "../../components/forms"
 
 export function TypographyShowcase() {
   return (

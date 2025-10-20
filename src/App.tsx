@@ -6,12 +6,12 @@ import {
   TypographyShowcase,
   LayoutShowcase,
   UIPrimitivesShowcase,
-} from "./demo"
+} from "./demos/components"
 import {
   FormControlsShowcase,
   DataDisplayShowcase,
   NavigationShowcase,
-} from "./showcases"
+} from "./demos/showcases"
 import "./App.css"
 
 function App() {

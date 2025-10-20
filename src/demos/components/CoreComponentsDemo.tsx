@@ -1,5 +1,5 @@
 import { Palette } from "lucide-react"
-import { Paper, Typography, Icon } from "../components/core"
+import { Paper, Typography, Icon } from "../../components/core"
 
 export function CoreComponentsDemo() {
   return (

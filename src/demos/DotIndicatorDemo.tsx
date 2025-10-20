@@ -1,11 +1,11 @@
 import {
   DotIndicator,
   DotIndicatorShowcase,
-} from "./components/utilities/DotIndicator"
-import { Stack } from "./components/layout/Stack"
-import { Flex } from "./components/layout/Flex"
-import { Typography } from "./components/core/Typography"
-import { Paper } from "./components/core/Paper"
+} from "../components/utilities/DotIndicator"
+import { Stack } from "../components/layout/Stack"
+import { Flex } from "../components/layout/Flex"
+import { Typography } from "../components/core/Typography"
+import { Paper } from "../components/core/Paper"
 
 export function DotIndicatorDemo() {
   return (

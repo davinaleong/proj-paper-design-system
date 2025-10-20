@@ -1,4 +1,4 @@
-import { Typography } from "../components/core"
+import { Typography } from "../../components/core"
 import {
   Flex,
   Stack,
@@ -8,7 +8,7 @@ import {
   Divider,
   Section,
   Panel,
-} from "../components/layout"
+} from "../../components/layout"
 
 export function UIPrimitivesShowcase() {
   return (

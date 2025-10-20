@@ -1,4 +1,4 @@
-import { Typography } from "../components/core"
+import { Typography } from "../../components/core"
 import {
   Grid,
   Stack,
@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardBody,
   CardFooter,
-} from "../components/layout"
+} from "../../components/layout"
 
 export function LayoutShowcase() {
   return (
