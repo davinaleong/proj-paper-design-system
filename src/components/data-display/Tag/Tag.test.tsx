@@ -9,9 +9,9 @@ describe("Tag Component", () => {
     it("renders with default props", () => {
       render(<Tag>Default Tag</Tag>)
 
-      const tag = screen.getByText("Default Tag")
-      expect(tag).toBeInTheDocument()
-      expect(tag).toHaveClass("inline-flex", "items-center", "justify-center")
+      const tagRoot = document.querySelector("span.flex.items-center")
+      expect(tagRoot).toBeInTheDocument()
+      expect(tagRoot).toHaveClass("flex", "items-center", "justify-center")
     })
 
     it("renders children correctly", () => {
@@ -23,8 +23,8 @@ describe("Tag Component", () => {
     it("applies custom className", () => {
       render(<Tag className="custom-class">Test</Tag>)
 
-      const tag = screen.getByText("Test")
-      expect(tag).toHaveClass("custom-class")
+      const tagRoot = document.querySelector("span.flex.items-center")
+      expect(tagRoot).toHaveClass("custom-class")
     })
 
     it("forwards ref correctly", () => {
@@ -40,29 +40,29 @@ describe("Tag Component", () => {
     it("renders xs size correctly", () => {
       render(<Tag size="xs">Extra Small</Tag>)
 
-      const tag = screen.getByText("Extra Small")
-      expect(tag).toHaveClass("px-1.5", "py-0.5", "text-xs")
+      const tagRoot = document.querySelector("span.flex.items-center")
+      expect(tagRoot).toHaveClass("px-1.5", "py-0.5", "text-xs")
     })
 
     it("renders sm size correctly", () => {
       render(<Tag size="sm">Small</Tag>)
 
-      const tag = screen.getByText("Small")
-      expect(tag).toHaveClass("px-2", "py-1", "text-xs")
+      const tagRoot = document.querySelector("span.flex.items-center")
+      expect(tagRoot).toHaveClass("px-2", "py-1", "text-xs")
     })
 
     it("renders md size correctly (default)", () => {
       render(<Tag size="md">Medium</Tag>)
 
-      const tag = screen.getByText("Medium")
-      expect(tag).toHaveClass("px-2.5", "py-1.5", "text-sm")
+      const tagRoot = document.querySelector("span.flex.items-center")
+      expect(tagRoot).toHaveClass("px-2.5", "py-1.5", "text-sm")
     })
 
     it("renders lg size correctly", () => {
       render(<Tag size="lg">Large</Tag>)
 
-      const tag = screen.getByText("Large")
-      expect(tag).toHaveClass("px-3", "py-2", "text-base")
+      const tagRoot = document.querySelector("span.flex.items-center")
+      expect(tagRoot).toHaveClass("px-3", "py-2", "text-base")
     })
   })
 
@@ -166,8 +166,9 @@ describe("Tag Component", () => {
 
       const tag = screen.getByText("With Dot")
       expect(tag).toBeInTheDocument()
-      // Check for dot element (it should have rounded-full and bg-current classes)
-      const dotElement = tag.querySelector(".rounded-full.bg-current")
+      // The dot is a sibling of the text span, inside the content div
+      const contentDiv = tag.parentElement
+      const dotElement = contentDiv?.querySelector(".rounded-full.bg-current")
       expect(dotElement).toBeInTheDocument()
     })
 
@@ -184,8 +185,8 @@ describe("Tag Component", () => {
 
     it("preserves existing icon classes when cloning", () => {
       render(
-        <Tag 
-          size="lg" 
+        <Tag
+          size="lg"
           startIcon={<User data-testid="start-icon" className="text-red-500" />}
         >
           Large Tag
@@ -299,9 +300,9 @@ describe("Tag Component", () => {
     it("applies disabled styling", () => {
       render(<Tag disabled>Disabled Tag</Tag>)
 
-      const tag = screen.getByText("Disabled Tag")
-      expect(tag).toHaveClass("opacity-50", "cursor-not-allowed")
-      expect(tag).toHaveAttribute("aria-disabled", "true")
+      const tagRoot = document.querySelector("span.flex.items-center")
+      expect(tagRoot).toHaveClass("opacity-50", "cursor-not-allowed")
+      expect(tagRoot).toHaveAttribute("aria-disabled", "true")
     })
 
     it("prevents interactions when disabled", () => {
@@ -336,31 +337,33 @@ describe("Tag Component", () => {
     it("renders with rounded corners by default", () => {
       render(<Tag>Rounded Tag</Tag>)
 
-      const tag = screen.getByText("Rounded Tag")
-      expect(tag).toHaveClass("rounded-full")
+      const tagRoot = document.querySelector("span.flex.items-center")
+      expect(tagRoot).toHaveClass("rounded-full")
     })
 
     it("renders with square corners when rounded=false", () => {
       render(<Tag rounded={false}>Square Tag</Tag>)
 
-      const tag = screen.getByText("Square Tag")
-      expect(tag).toHaveClass("rounded-sm")
-      expect(tag).not.toHaveClass("rounded-full")
+      const tagRoot = document.querySelector("span.flex.items-center")
+      expect(tagRoot).toHaveClass("rounded-sm")
+      expect(tagRoot).not.toHaveClass("rounded-full")
     })
 
     it("applies maxWidth style", () => {
       render(<Tag maxWidth="100px">Long Tag Content</Tag>)
 
-      const tag = screen.getByText("Long Tag Content")
-      expect(tag).toHaveStyle({ maxWidth: "100px" })
+      const tagRoot = document.querySelector(
+        "span.flex.items-center"
+      ) as HTMLElement
+      expect(tagRoot.style.maxWidth).toBe("100px")
     })
 
     it("applies truncation classes when maxWidth is set", () => {
       render(<Tag maxWidth="50px">Very Long Tag Content</Tag>)
 
       const tag = screen.getByText("Very Long Tag Content")
-      const textElement = tag.querySelector(".truncate")
-      expect(textElement).toBeInTheDocument()
+      // The text span itself should have the truncate class
+      expect(tag).toHaveClass("truncate")
     })
   })
 
@@ -381,8 +384,8 @@ describe("Tag Component", () => {
         </Tag>
       )
 
-      const tag = screen.getByText("Disabled")
-      expect(tag).toHaveAttribute("aria-disabled", "true")
+      const tagRoot = document.querySelector("span.flex.items-center")
+      expect(tagRoot).toHaveAttribute("aria-disabled", "true")
     })
 
     it("has accessible dismiss button", () => {
@@ -409,8 +412,10 @@ describe("Tag Component", () => {
     it("handles empty children", () => {
       render(<Tag></Tag>)
 
-      const tag = screen.getByRole("generic")
-      expect(tag).toBeInTheDocument()
+      // The tag is rendered as a <span> with no role unless clickable
+      // So we check for the outermost Tag span
+      const tagRoot = document.querySelector("span.flex.items-center")
+      expect(tagRoot).toBeInTheDocument()
     })
 
     it("handles complex children", () => {
