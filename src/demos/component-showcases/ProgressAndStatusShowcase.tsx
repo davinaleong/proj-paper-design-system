@@ -13,7 +13,7 @@ export function ProgressAndStatusShowcase() {
           </Typography>
           <Typography variant="body" className="text-stone-600 mb-4">
             Visual indicators for progress, completion, and key status metrics
-            in your application, styled for the Paper Design System.
+            in your application, styled for Dav/Devs Paper.
           </Typography>
         </div>
 

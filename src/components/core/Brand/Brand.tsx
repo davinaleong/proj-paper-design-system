@@ -65,8 +65,8 @@ export const Brand = forwardRef<HTMLDivElement, BrandProps>(
       showLogo = true,
       showText = true,
       logoSrc = "/logo-coloured.svg",
-      title = "Paper Design System",
-      subtitle = "A warm, tactile component library",
+      title = "Dav/Devs Paper",
+      subtitle = "A warm, tactile design system",
       onClick,
       className,
       ...props
@@ -117,7 +117,7 @@ export const Brand = forwardRef<HTMLDivElement, BrandProps>(
     if (onClick) {
       return (
         <button
-          ref={ref as React.RefObject<HTMLButtonElement>}
+          ref={ref as React.Ref<HTMLButtonElement>}
           onClick={onClick}
           className={brandClasses}
           {...props}

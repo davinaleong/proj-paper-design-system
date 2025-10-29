@@ -1,4 +1,3 @@
-import React from "react"
 import { Paper, Typography } from "../../components/core"
 import { StaticTable } from "../../components/data-display/StaticTable"
 import { Table } from "../../components/data-display/Table"
@@ -349,7 +348,7 @@ export function DataDisplayShowcase() {
           </Typography>
           <Typography variant="body" className="text-stone-600 mb-4">
             Accessible tooltip component with multiple positioning options,
-            trigger modes, and Paper Design System styling.
+            trigger modes, and Dav/Devs Paper styling.
           </Typography>
           <Typography variant="body" className="mb-4">
             ✅ Multiple positioning options (top, bottom, left, right)

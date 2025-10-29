@@ -11,7 +11,7 @@ export function NavigationShowcase() {
             </Typography>
             <Typography variant="body" className="text-stone-600 mb-4">
               Navigation components for organizing and moving through your
-              application with Paper Design System styling.
+              application with Dav/Devs Paper styling.
             </Typography>
           </div>
 

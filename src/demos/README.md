@@ -1,6 +1,6 @@
 # Component Showcases
 
-This folder contains all showcase code for the Paper Design System components. All files follow the "Showcase" naming convention for consistency.
+This folder contains all showcase code for the Dav/Devs Paper components. All files follow the "Showcase" naming convention for consistency.
 
 ## Structure
 

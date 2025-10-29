@@ -1,5 +1,5 @@
 /**
- * Comprehensive color utilities for the Paper Design System
+ * Comprehensive color utilities for the Dav/Devs Paper Design System
  *
  * This module provides a complete color system with support for:
  * - All Tailwind CSS color variants (22 total)

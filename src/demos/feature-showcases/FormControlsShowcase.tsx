@@ -51,7 +51,7 @@ export function FormControlsShowcase() {
             Form Controls
           </Typography>
           <Typography variant="body" className="text-stone-600">
-            Comprehensive form components with Paper Design System styling,
+            Comprehensive form components with Dav/Devs Paper styling,
             including buttons, inputs, selections, and advanced controls.
           </Typography>
         </div>
@@ -161,9 +161,9 @@ export function FormControlsShowcase() {
                 </Typography>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <Input placeholder="Default input" />
-                  <Input placeholder="Outline input" variant="outline" />
+                  <Input placeholder="Outlined input" variant="outlined" />
                   <Input placeholder="Filled input" variant="filled" />
-                  <Input placeholder="Underlined input" variant="underlined" />
+                  <Input placeholder="Default variant" />
                 </div>
               </div>
 
