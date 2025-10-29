@@ -47,12 +47,12 @@ export type {
 } from "./Tooltip"
 // export { Chip } from "./Chip"
 export { ProgressCircle } from "./ProgressCircle"
-export type {
-  ProgressCircleProps,
-  ProgressCircleSize,
-  ProgressCircleVariant,
-} from "./ProgressCircle"
-// export { EmptyState } from "./EmptyState"
-// export { Statistic } from "./Statistic"
+export type { ProgressCircleProps } from "./ProgressCircle"
+export { ProgressBar } from "./ProgressBar"
+export type { ProgressBarProps } from "./ProgressBar"
+export { EmptyState } from "./EmptyState"
+export type { EmptyStateProps } from "./EmptyState"
+export { Statistic } from "./Statistic"
+export type { StatisticProps } from "./Statistic"
 // export { KPI } from "./KPI"
 // export { Timeline } from "./Timeline"

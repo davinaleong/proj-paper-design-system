@@ -226,8 +226,9 @@ Create a complete design system that feels **organic, readable, and professional
 
 - [x] **ProgressCircle** - Visual progress
 - [x] **ProgressBar** - Visual progress
-- [ ] **EmptyState** - No-data placeholders
-- [ ] **Statistic/KPI** - Metric display
+- [x] **EmptyState** - No-data placeholders
+- [x] **Statistic** - Metric display
+- [ ] **KPI** - Metric display
 - [ ] **Timeline** - Sequential events
 
 ### Phase 5: Navigation (Priority 2)

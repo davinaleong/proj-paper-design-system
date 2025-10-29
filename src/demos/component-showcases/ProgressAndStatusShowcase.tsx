@@ -1,11 +1,7 @@
-import { Bell, Upload, Search } from "lucide-react"
+import { Bell, Upload, Search, Users, DollarSign, TrendingUp, Activity } from "lucide-react"
 import { Paper, Typography, Icon } from "../../components/core"
-import { ProgressCircle } from "../../components/data-display/ProgressCircle/ProgressCircle"
-import { ProgressBar } from "../../components/data-display/ProgressBar/ProgressBar"
-import { EmptyState } from "../../components/data-display/EmptyState/EmptyState"
+import { ProgressCircle, ProgressBar, EmptyState, Statistic } from "../../components/data-display"
 import { Button } from "../../components/forms/Button/Button"
-// import { KPI } from "../../components/data-display/KPI/KPI"
-// import { Statistic } from "../../components/data-display/Statistic/Statistic"
 
 export function ProgressAndStatusShowcase() {
   return (
@@ -24,7 +20,7 @@ export function ProgressAndStatusShowcase() {
         {/* ProgressCircle Examples */}
         <div className="mb-8">
           <Typography variant="h3" className="mb-4">
-            ProgressCircle
+            Progress Circles
           </Typography>
           <Typography variant="body" className="text-stone-600 mb-4">
             Circular progress indicator for visualizing completion percentage.
@@ -51,7 +47,7 @@ export function ProgressAndStatusShowcase() {
         {/* ProgressBar Example */}
         <div className="mb-8">
           <Typography variant="h3" className="mb-4">
-            ProgressBar
+            Progress Bars
           </Typography>
           <Typography variant="body" className="text-stone-600 mb-4">
             Linear progress indicator for visualizing completion percentage in a
@@ -89,7 +85,7 @@ export function ProgressAndStatusShowcase() {
         {/* EmptyState Examples */}
         <div className="mb-8">
           <Typography variant="h3" className="mb-4">
-            EmptyState
+            Empty States
           </Typography>
           <Typography variant="body" className="text-stone-600 mb-4">
             Visual representation for empty or no-content states, providing clear feedback and guidance to users.
@@ -142,6 +138,100 @@ export function ProgressAndStatusShowcase() {
           </Typography>
         </div>
 
+        {/* Statistic Examples */}
+        <div className="mb-8">
+          <Typography variant="h3" className="mb-4">
+            Statistic
+          </Typography>
+          <Typography variant="body" className="text-stone-600 mb-4">
+            Display key metrics and statistics with optional trend indicators and custom styling.
+          </Typography>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
+            {/* Basic Statistic */}
+            <Statistic
+              value="1,234"
+              label="Total Users"
+              description="Active users this month"
+            />
+            
+            {/* Statistic with Icon */}
+            <Statistic
+              value="$12,345"
+              label="Revenue"
+              description="Monthly recurring revenue"
+              icon={<Icon icon={DollarSign} size="md" />}
+              variant="success"
+            />
+            
+            {/* Statistic with Trend (Up) */}
+            <Statistic
+              value="89.2%"
+              label="Conversion Rate"
+              description="Last 30 days"
+              icon={<Icon icon={TrendingUp} size="md" />}
+              variant="info"
+              trend={{
+                value: 12.5,
+                label: "vs last month",
+                type: "up"
+              }}
+            />
+            
+            {/* Statistic with Trend (Down) */}
+            <Statistic
+              value="342"
+              label="Active Sessions"
+              description="Current live sessions"
+              icon={<Icon icon={Activity} size="md" />}
+              variant="warning"
+              trend={{
+                value: -8.3,
+                label: "vs yesterday",
+                type: "down"
+              }}
+            />
+          </div>
+          
+          {/* Different Sizes */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <Statistic
+              value="42"
+              label="Small Size"
+              description="Compact display"
+              size="sm"
+              align="center"
+            />
+            
+            <Statistic
+              value="1,337"
+              label="Medium Size"
+              description="Default size"
+              size="md"
+              align="center"
+              variant="success"
+            />
+            
+            <Statistic
+              value="9.8M"
+              label="Large Size"
+              description="Prominent display"
+              size="lg"
+              align="center"
+              variant="error"
+              icon={<Icon icon={Users} size="lg" />}
+            />
+          </div>
+          
+          <Typography variant="body" className="mb-2">
+            ✅ Multiple size variants (sm, md, lg)
+            <br />✅ Color variants for different states
+            <br />✅ Optional trend indicators with icons
+            <br />✅ Flexible content alignment
+            <br />✅ Icon support for visual context
+          </Typography>
+        </div>
+
         {/* Future Progress/Status Components */}
         <div className="space-y-6">
           <Typography variant="h3" className="mb-4">
@@ -150,18 +240,18 @@ export function ProgressAndStatusShowcase() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <div className="p-4 border border-stone-200 rounded-lg">
               <Typography variant="h4" className="mb-2">
-                KPI
+                KPI Dashboard
               </Typography>
               <Typography variant="body" className="text-stone-600 text-sm">
-                Key performance indicator metric
+                Key performance indicator dashboard
               </Typography>
             </div>
             <div className="p-4 border border-stone-200 rounded-lg">
               <Typography variant="h4" className="mb-2">
-                Statistic
+                Timeline
               </Typography>
               <Typography variant="body" className="text-stone-600 text-sm">
-                Highlighted numeric value
+                Event timeline visualization
               </Typography>
             </div>
           </div>
