@@ -7,7 +7,7 @@ import {
   Button,
 } from "../../components/forms"
 
-export default function FormFieldShowcase() {
+export function FormFieldShowcase() {
   return (
     <div className="p-8 space-y-8 max-w-2xl mx-auto">
       <h1 className="text-3xl font-bold">Form Field & Form Group Demo</h1>

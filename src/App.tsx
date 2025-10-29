@@ -6,6 +6,7 @@ import {
   TypographyShowcase,
   LayoutShowcase,
   UIPrimitivesShowcase,
+  ProgressAndStatusShowcase,
 } from "./demos/component-showcases"
 import {
   FormControlsShowcase,
@@ -31,6 +32,11 @@ function AppContent() {
     { id: "form-controls", label: "Form Controls", href: "#form-controls" },
     { id: "data-display", label: "Data Display", href: "#data-display" },
     { id: "navigation", label: "Navigation", href: "#navigation" },
+    {
+      id: "progress-and-status",
+      label: "Progress & Status",
+      href: "#progress-and-status",
+    },
   ]
 
   return (
@@ -77,6 +83,11 @@ function AppContent() {
         {/* Navigation */}
         <section id="navigation">
           <NavigationShowcase />
+        </section>
+
+        {/* Progress & Status Components */}
+        <section id="progress-and-status">
+          <ProgressAndStatusShowcase />
         </section>
       </main>
     </div>

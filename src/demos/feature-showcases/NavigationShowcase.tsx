@@ -1,17 +1,6 @@
 import { Paper, Typography } from "../../components/core"
-import { FloatingNavbar } from "../../components/navigation"
 
 export function NavigationShowcase() {
-  const navItems = [
-    { id: "overview", label: "Overview", href: "#overview" },
-    { id: "typography", label: "Typography", href: "#typography" },
-    { id: "layout", label: "Layout", href: "#layout" },
-    { id: "ui-primitives", label: "UI Primitives", href: "#ui-primitives" },
-    { id: "form-controls", label: "Form Controls", href: "#form-controls" },
-    { id: "data-display", label: "Data Display", href: "#data-display" },
-    { id: "navigation", label: "Navigation", href: "#navigation" },
-  ]
-
   return (
     <>
       <section id="navigation">
@@ -122,13 +111,6 @@ export function NavigationShowcase() {
           </div>
         </Paper>
       </section>
-
-      {/* Floating Navbar is rendered here for demo purposes */}
-      <FloatingNavbar
-        items={navItems}
-        position="top-right"
-        offset={{ x: 20, y: 120 }}
-      />
     </>
   )
 }
