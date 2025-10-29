@@ -1,6 +1,9 @@
-import { Paper, Typography } from "../../components/core"
+import { Bell, Upload, Search } from "lucide-react"
+import { Paper, Typography, Icon } from "../../components/core"
 import { ProgressCircle } from "../../components/data-display/ProgressCircle/ProgressCircle"
 import { ProgressBar } from "../../components/data-display/ProgressBar/ProgressBar"
+import { EmptyState } from "../../components/data-display/EmptyState/EmptyState"
+import { Button } from "../../components/forms/Button/Button"
 // import { KPI } from "../../components/data-display/KPI/KPI"
 // import { Statistic } from "../../components/data-display/Statistic/Statistic"
 
@@ -80,6 +83,62 @@ export function ProgressAndStatusShowcase() {
             ✅ Customizable height, color, and label color
             <br />✅ Optional label or percent display
             <br />✅ Accessible and responsive
+          </Typography>
+        </div>
+
+        {/* EmptyState Examples */}
+        <div className="mb-8">
+          <Typography variant="h3" className="mb-4">
+            EmptyState
+          </Typography>
+          <Typography variant="body" className="text-stone-600 mb-4">
+            Visual representation for empty or no-content states, providing clear feedback and guidance to users.
+          </Typography>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+            {/* Basic EmptyState */}
+            <EmptyState
+              title="No items found"
+              description="There are no items to display at the moment."
+            />
+            
+            {/* EmptyState with Icon */}
+            <EmptyState
+              title="No notifications"
+              description="You're all caught up! Check back later for new notifications."
+              icon={<Icon icon={Bell} size="lg" />}
+            />
+            
+            {/* EmptyState with Action */}
+            <EmptyState
+              title="No files uploaded"
+              description="Get started by uploading your first file to the system."
+              icon={<Icon icon={Upload} size="lg" />}
+              action={
+                <Button variant="solid" size="sm">
+                  Upload File
+                </Button>
+              }
+            />
+            
+            {/* Search EmptyState */}
+            <EmptyState
+              title="No search results"
+              description="Try adjusting your search terms or filters to find what you're looking for."
+              icon={<Icon icon={Search} size="lg" />}
+              action={
+                <Button variant="outline" size="sm">
+                  Clear Filters
+                </Button>
+              }
+            />
+          </div>
+          
+          <Typography variant="body" className="mb-2">
+            ✅ Customizable title and description
+            <br />✅ Optional icon support
+            <br />✅ Action button integration
+            <br />✅ Responsive design
           </Typography>
         </div>
 
