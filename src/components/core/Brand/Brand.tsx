@@ -64,7 +64,7 @@ export const Brand = forwardRef<HTMLDivElement, BrandProps>(
       size = "md",
       showLogo = true,
       showText = true,
-      logoSrc = "/logo.png",
+      logoSrc = "/logo-coloured.svg",
       title = "Paper Design System",
       subtitle = "A warm, tactile component library",
       onClick,
