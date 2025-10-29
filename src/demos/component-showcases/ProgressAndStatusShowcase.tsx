@@ -1,6 +1,6 @@
 import { Paper, Typography } from "../../components/core"
 import { ProgressCircle } from "../../components/data-display/ProgressCircle/ProgressCircle"
-// import { ProgressBar } from "../../components/data-display/ProgressBar/ProgressBar"
+import { ProgressBar } from "../../components/data-display/ProgressBar/ProgressBar"
 // import { KPI } from "../../components/data-display/KPI/KPI"
 // import { Statistic } from "../../components/data-display/Statistic/Statistic"
 
@@ -45,20 +45,50 @@ export function ProgressAndStatusShowcase() {
           </Typography>
         </div>
 
+        {/* ProgressBar Example */}
+        <div className="mb-8">
+          <Typography variant="h3" className="mb-4">
+            ProgressBar
+          </Typography>
+          <Typography variant="body" className="text-stone-600 mb-4">
+            Linear progress indicator for visualizing completion percentage in a
+            bar format.
+          </Typography>
+          <div className="space-y-4">
+            <ProgressBar
+              value={60}
+              color="#2563eb"
+              label="Loading"
+              labelColor="black"
+            />
+            <ProgressBar
+              value={85}
+              color="#16a34a"
+              height={12}
+              label="Almost done"
+              labelColor="white"
+            />
+            <ProgressBar
+              value={100}
+              color="#dc2626"
+              label="Complete"
+              showPercent={false}
+              labelColor="white"
+            />
+          </div>
+          <Typography variant="body" className="mb-2 mt-2">
+            ✅ Customizable height, color, and label color
+            <br />✅ Optional label or percent display
+            <br />✅ Accessible and responsive
+          </Typography>
+        </div>
+
         {/* Future Progress/Status Components */}
         <div className="space-y-6">
           <Typography variant="h3" className="mb-4">
             Coming Soon
           </Typography>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div className="p-4 border border-stone-200 rounded-lg">
-              <Typography variant="h4" className="mb-2">
-                Progress Bar
-              </Typography>
-              <Typography variant="body" className="text-stone-600 text-sm">
-                Linear progress indicator
-              </Typography>
-            </div>
             <div className="p-4 border border-stone-200 rounded-lg">
               <Typography variant="h4" className="mb-2">
                 KPI
