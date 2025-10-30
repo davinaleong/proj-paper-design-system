@@ -1,5 +1,5 @@
 import { Palette } from "lucide-react"
-import { Paper, Typography, Icon } from "../../components/core"
+import { Paper, Typography, Icon, Brand } from "../../components/core"
 
 export function CoreComponentsShowcase() {
   return (
@@ -48,6 +48,54 @@ export function CoreComponentsShowcase() {
         <Typography variant="bodySmall" color="muted">
           ✅ Responsive width management with consistent padding system
         </Typography>
+      </Paper>
+
+      <Paper variant="elevated" padding="lg">
+        <Typography variant="h4" className="mb-4">
+          Brand
+        </Typography>
+        <div className="space-y-4">
+          {/* Default Brand */}
+          <div>
+            <Typography variant="caption" color="muted" className="mb-2 block">
+              Default Brand
+            </Typography>
+            <Brand />
+          </div>
+
+          {/* Custom Font Sizes */}
+          <div>
+            <Typography variant="caption" color="muted" className="mb-2 block">
+              Custom Title Size (h2)
+            </Typography>
+            <Brand titleVariant="h2" />
+          </div>
+
+          <div>
+            <Typography variant="caption" color="muted" className="mb-2 block">
+              Custom Title & Subtitle Sizes
+            </Typography>
+            <Brand 
+              titleVariant="h1" 
+              subtitleVariant="body"
+              title="Large Brand"
+              subtitle="Enhanced subtitle typography"
+            />
+          </div>
+
+          <div>
+            <Typography variant="caption" color="muted" className="mb-2 block">
+              Compact with Custom Fonts
+            </Typography>
+            <Brand 
+              size="sm"
+              titleVariant="h5" 
+              subtitleVariant="bodySmall"
+              title="Custom Size"
+              subtitle="Small but readable"
+            />
+          </div>
+        </div>
       </Paper>
 
       <Paper variant="elevated" padding="lg" background="success">

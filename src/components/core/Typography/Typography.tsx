@@ -52,7 +52,7 @@ const VARIANT_CLASSES: Record<TypographyVariant, string> = {
   overline: `font-montserrat ${containerResponsiveFonts.xs} font-medium uppercase tracking-wider leading-normal text-gray-500 dark:text-gray-400`,
 
   // Code text (Source Code Pro) - container-responsive
-  code: `font-source-code-pro ${containerResponsiveFonts.sm} bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded-md`,
+  code: `font-source-code-pro ${containerResponsiveFonts.sm} bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded-sm`,
   pre: `font-source-code-pro ${containerResponsiveFonts.sm} bg-gray-100 dark:bg-gray-800 p-4 rounded-lg overflow-x-auto`,
 }
 

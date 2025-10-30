@@ -24,7 +24,7 @@ function App() {
 }
 
 function AppContent() {
-  const navItems = [
+  const floatingNavItems = [
     { id: "overview", label: "Overview", href: "#overview" },
     { id: "typography", label: "Typography", href: "#typography" },
     { id: "layout", label: "Layout", href: "#layout" },
@@ -43,7 +43,7 @@ function AppContent() {
     <div className="min-h-screen bg-[#faf9f6] dark:bg-gray-900">
       {/* Floating Navigation */}
       <FloatingNavbar
-        items={navItems}
+        items={floatingNavItems}
         position="top-right"
         offset={{ x: 20, y: 120 }}
       />

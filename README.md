@@ -127,7 +127,8 @@ function App() {
 - **Timeline** ✅ - Event timeline visualization
 
 ### Navigation
-- **FloatingNavbar** 🚧 - Floating navigation component
+- **FloatingNavbar** ✅ - Floating navigation component
+- **Navbar** ✅ - Traditional navigation bar with dropdowns and mobile support
 - **Breadcrumb** 📋 - Navigation breadcrumbs
 - **Pagination** 📋 - Page navigation
 

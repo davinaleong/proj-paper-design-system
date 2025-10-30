@@ -1,6 +1,8 @@
 import { forwardRef } from "react"
 import { clsx } from "clsx"
 import { Typography } from "../Typography"
+import type { TypographyVariant } from "../Typography/types"
+import { containerQueryContext } from "../../../utils/containerFonts"
 
 export interface BrandProps {
   /**
@@ -28,6 +30,14 @@ export interface BrandProps {
    */
   subtitle?: string
   /**
+   * Custom title font size variant (overrides size preset)
+   */
+  titleVariant?: TypographyVariant
+  /**
+   * Custom subtitle font size variant (overrides size preset)
+   */
+  subtitleVariant?: TypographyVariant
+  /**
    * Click handler for brand
    */
   onClick?: () => void
@@ -35,6 +45,13 @@ export interface BrandProps {
    * Additional CSS classes
    */
   className?: string
+  /**
+   * When true, the brand will act as a container query context so its
+   * typography scales relative to the brand's container (and therefore
+   * effectively scales with its parent element).
+   * @default true
+   */
+  scaleWithParent?: boolean
 }
 
 const SIZE_CONFIG = {
@@ -67,6 +84,9 @@ export const Brand = forwardRef<HTMLDivElement, BrandProps>(
       logoSrc = "/logo-coloured.svg",
       title = "Dav/Devs Paper",
       subtitle = "A warm, tactile design system",
+      titleVariant,
+      subtitleVariant,
+      scaleWithParent = true,
       onClick,
       className,
       ...props
@@ -75,15 +95,24 @@ export const Brand = forwardRef<HTMLDivElement, BrandProps>(
   ) => {
     const config = SIZE_CONFIG[size]
 
+    // Use custom variants if provided, otherwise fall back to size presets
+    const finalTitleVariant = titleVariant || config.titleVariant
+    const finalSubtitleVariant = subtitleVariant || config.subtitleVariant
+
     const brandClasses = clsx(
-      "flex items-center",
+      "flex items-center flex-shrink-0",
       config.gap,
       onClick && "cursor-pointer hover:opacity-80 transition-opacity",
       className
     )
 
+    // If scaleWithParent is enabled, make this element a container query
+    // context so Typography's container-aware classes will scale relative
+    // to this element's inline size.
+    const rootClasses = clsx(brandClasses, scaleWithParent && containerQueryContext)
+
     const content = (
-      <>
+      <div>
         {showLogo && (
           <img
             src={logoSrc}
@@ -93,16 +122,16 @@ export const Brand = forwardRef<HTMLDivElement, BrandProps>(
         )}
 
         {showText && (
-          <div className="flex flex-col min-w-0 flex-1">
+          <div className="flex flex-col flex-1">
             <Typography
-              variant={config.titleVariant}
+              variant={finalTitleVariant}
               className="font-playfair leading-tight"
             >
               {title}
             </Typography>
             {subtitle && size !== "sm" && (
               <Typography
-                variant={config.subtitleVariant}
+                variant={finalSubtitleVariant}
                 color="muted"
                 className="mt-0.5"
               >
@@ -111,7 +140,7 @@ export const Brand = forwardRef<HTMLDivElement, BrandProps>(
             )}
           </div>
         )}
-      </>
+      </div>
     )
 
     if (onClick) {
@@ -119,7 +148,7 @@ export const Brand = forwardRef<HTMLDivElement, BrandProps>(
         <button
           ref={ref as React.Ref<HTMLButtonElement>}
           onClick={onClick}
-          className={brandClasses}
+          className={rootClasses}
           {...props}
         >
           {content}
@@ -128,7 +157,7 @@ export const Brand = forwardRef<HTMLDivElement, BrandProps>(
     }
 
     return (
-      <div ref={ref} className={brandClasses} {...props}>
+      <div ref={ref} className={rootClasses} {...props}>
         {content}
       </div>
     )

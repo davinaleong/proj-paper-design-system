@@ -308,7 +308,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
   // Tooltip content classes
   const tooltipClasses = cn(
     // Base styling
-    "absolute rounded-md shadow-lg border z-50",
+    "absolute rounded-sm shadow-lg border z-50",
     "backdrop-blur-sm transition-all duration-200",
     "pointer-events-auto select-none",
 
