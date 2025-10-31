@@ -11,61 +11,6 @@ import { containerResponsiveUI } from "../../../utils/containerFonts"
 import type { TextAlignment } from "../shared"
 import { Button } from "../Button"
 
-const sizeClasses = {
-  sm: "h-9 px-3 text-sm",
-  md: "h-10 px-3",
-  lg: "h-12 px-4 text-lg",
-}
-
-const baseTriggerClasses = [
-  "relative",
-  "w-full",
-  "flex",
-  "items-center",
-  "justify-between",
-  "gap-2",
-  "rounded-sm", // Paper theme consistency
-  "border",
-  "bg-white",
-  "transition-all",
-  "duration-200",
-  "cursor-pointer",
-  "focus:outline-none",
-  "focus:ring-2",
-  "focus:ring-stone-400",
-  "focus:ring-offset-2",
-  "disabled:cursor-not-allowed",
-  "disabled:opacity-50",
-]
-
-const variantClasses = {
-  default: [
-    "border-stone-300",
-    "hover:border-stone-400",
-    "focus:border-stone-500",
-  ],
-  filled: [
-    "border-transparent",
-    "bg-stone-100",
-    "hover:bg-stone-200",
-    "focus:bg-white",
-    "focus:border-stone-500",
-  ],
-  outlined: [
-    "border-stone-400",
-    "hover:border-stone-500",
-    "focus:border-stone-600",
-    "bg-transparent",
-  ],
-}
-
-const errorClasses = [
-  "border-red-300",
-  "hover:border-red-400",
-  "focus:border-red-500",
-  "focus:ring-red-400",
-]
-
 const dropdownClasses = [
   "absolute",
   "z-50",
@@ -289,14 +234,6 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
       setFocusedIndex(-1)
     }, [filteredOptions])
 
-    const triggerClasses = cn(
-      baseTriggerClasses,
-      sizeClasses[size],
-      variantClasses[variant],
-      hasError && errorClasses,
-      className
-    )
-
     const renderSelectedValue = () => {
       if (renderValue) {
         return renderValue(selectedValue || "", allOptions)
@@ -346,7 +283,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
     }
 
     return (
-      <div className="space-y-1">
+      <div className={cn("space-y-1", className)}>
         {label && (
           <label
             htmlFor={selectId}
@@ -363,29 +300,35 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
         )}
 
         <div className="relative">
-          <button
+          <Button
             ref={ref || triggerRef}
             type="button"
+            variant={variant === "filled" ? "solid" : "outline"}
+            size={size}
             id={selectId}
             disabled={disabled}
             onClick={() => setIsOpen(!isOpen)}
             onFocus={onFocus}
             onBlur={onBlur}
             onKeyDown={handleKeyDown}
-            className={triggerClasses}
             aria-haspopup="listbox"
             aria-expanded={isOpen}
+            color={hasError ? "danger" : "default"}
+            className={cn(
+              "w-full justify-between",
+              variant === "filled" && "bg-stone-100 hover:bg-stone-200",
+              hasError && "border-red-300 hover:border-red-400 focus:border-red-500 focus:ring-red-400"
+            )}
             {...props}
           >
             <div className="flex-1 min-w-0">{renderSelectedValue()}</div>
-
             <ChevronDown
               className={cn(
                 "w-4 h-4 text-stone-500 transition-transform duration-200",
                 isOpen && "rotate-180"
               )}
             />
-          </button>
+          </Button>
 
           {/* Hidden input for form submission */}
           {name && (

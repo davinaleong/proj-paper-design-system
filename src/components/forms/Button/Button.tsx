@@ -1,4 +1,5 @@
 import { Loader2 } from "lucide-react"
+import { forwardRef } from "react"
 import type { ButtonProps } from "./types"
 import { cn } from "../../../utils/cn.js"
 import { getColorClasses } from "../../../utils/colors"
@@ -28,6 +29,10 @@ const baseClasses = [
   "transition-all",
   "duration-200",
   "cursor-pointer",
+  "focus:outline-none",
+  "focus:ring-2",
+  "focus:ring-stone-400",
+  "focus:ring-offset-2",
   "disabled:opacity-50",
   "disabled:cursor-not-allowed",
   "disabled:hover:transform-none",
@@ -81,7 +86,7 @@ const variantClasses = {
   ],
 }
 
-export function Button({
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
   children,
   variant = "solid",
   size = "md",
@@ -95,7 +100,8 @@ export function Button({
   type = "button",
   onClick,
   className,
-}: ButtonProps) {
+  ...props
+}, ref) => {
   const isDisabled = disabled || loading
 
   const buttonClasses = cn(
@@ -167,12 +173,14 @@ export function Button({
 
   return (
     <button
+      ref={ref}
       type={type}
       onClick={onClick}
       disabled={isDisabled}
       className={buttonClasses}
+      {...props}
     >
       {renderContent()}
     </button>
   )
-}
+})

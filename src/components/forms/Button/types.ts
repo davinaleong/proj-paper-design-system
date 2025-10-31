@@ -1,4 +1,4 @@
-import type { ReactNode } from "react"
+import type { ReactNode, ButtonHTMLAttributes } from "react"
 import type { LucideIcon } from "lucide-react"
 import type { ColorVariant } from "../../../utils/colors"
 
@@ -6,7 +6,7 @@ export type ButtonVariant = "solid" | "outline" | "ghost" | "link"
 
 export type ButtonSize = "xs" | "sm" | "md" | "lg" | "xl"
 
-export interface ButtonProps {
+export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'onClick' | 'disabled' | 'type' | 'className'> {
   /**
    * Button content
    */
