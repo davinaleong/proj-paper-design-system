@@ -3,6 +3,7 @@ import { Upload, X, CheckCircle, AlertCircle, FileIcon } from "lucide-react"
 import type { FileUploadProps, FileUploadProgress } from "./types"
 import { cn } from "../../../utils/cn.js"
 import { containerResponsiveUI } from "../../../utils/containerFonts"
+import { Button } from "../Button"
 
 const baseUploadClasses = [
   "relative",
@@ -370,13 +371,14 @@ export const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(
                   <AlertCircle className="w-5 h-5 text-red-600" />
                 )}
 
-                <button
+                <Button
+                  variant="ghost"
+                  size="xs"
+                  icon={X}
                   onClick={() => removeFile(item.file)}
-                  className="p-1 hover:bg-stone-200 rounded transition-colors"
+                  className="p-1 hover:bg-stone-200 rounded transition-colors w-6 h-6 min-w-0"
                   aria-label={`Remove ${item.file.name}`}
-                >
-                  <X className="w-4 h-4 text-stone-500" />
-                </button>
+                />
               </div>
             </div>
           ))}
@@ -441,31 +443,36 @@ export const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(
           <div className="bg-white rounded-lg shadow-xl max-w-md w-full p-6">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold">Upload Files</h3>
-              <button
+              <Button
+                variant="ghost"
+                size="xs"
+                icon={X}
                 onClick={() => setIsPopupOpen(false)}
-                className="p-1 hover:bg-stone-100 rounded"
-              >
-                <X className="w-5 h-5" />
-              </button>
+                className="p-1 hover:bg-stone-100 rounded w-6 h-6 min-w-0"
+              />
             </div>
 
             {renderUploadArea()}
             {renderFileList()}
 
             <div className="flex justify-end gap-2 mt-6">
-              <button
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={() => setIsPopupOpen(false)}
-                className="px-4 py-2 text-sm text-stone-600 hover:text-stone-800"
+                className="text-stone-600 hover:text-stone-800"
               >
                 Cancel
-              </button>
-              <button
+              </Button>
+              <Button
+                variant="solid"
+                size="sm"
+                color="primary"
                 onClick={() => setIsPopupOpen(false)}
-                className="px-4 py-2 text-sm bg-blue-600 text-white rounded hover:bg-blue-700"
                 disabled={uploadProgress.length === 0}
               >
                 Done
-              </button>
+              </Button>
             </div>
           </div>
         </div>
@@ -483,7 +490,11 @@ export const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(
           </>
         ) : (
           <>
-            <button
+            <Button
+              variant="outline"
+              size="lg"
+              icon={Upload}
+              iconPosition="left"
               onClick={openFileDialog}
               disabled={isDisabled}
               className={cn(
@@ -493,11 +504,8 @@ export const FileUpload = forwardRef<HTMLInputElement, FileUploadProps>(
                   : "border-stone-300 hover:border-stone-400 hover:bg-stone-50"
               )}
             >
-              <Upload className="mx-auto h-8 w-8 text-stone-400 mb-2" />
-              <span className="text-sm text-stone-600">
-                Click to open upload dialog
-              </span>
-            </button>
+              Click to open upload dialog
+            </Button>
             {renderPopupUpload()}
           </>
         )}

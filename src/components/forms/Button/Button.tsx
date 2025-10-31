@@ -21,9 +21,9 @@ const minWidthClasses = {
 }
 
 const baseClasses = [
+  "min-w-[15ch]",
   "inline-flex",
   "items-center",
-  "justify-center",
   "font-medium",
   "transition-all",
   "duration-200",
@@ -37,6 +37,7 @@ const baseClasses = [
 // Paper theme button styles following Sample.tsx patterns
 const variantClasses = {
   solid: [
+    "justify-center",
     "rounded-sm",
     "border",
     "shadow-sm",
@@ -46,6 +47,7 @@ const variantClasses = {
     "active:translate-y-0",
   ],
   outline: [
+    "justify-center",
     "rounded-sm",
     "border-2",
     "bg-transparent",
@@ -56,6 +58,7 @@ const variantClasses = {
     "active:translate-y-0",
   ],
   ghost: [
+    "justify-center",
     "rounded-sm",
     "border",
     "border-transparent",
@@ -65,6 +68,7 @@ const variantClasses = {
     "active:bg-stone-200/50",
   ],
   link: [
+    "justify-start",
     "bg-transparent",
     "border-0",
     "p-0",

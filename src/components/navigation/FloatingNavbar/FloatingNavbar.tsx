@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import type { FloatingNavbarProps } from "./types"
 import { cn } from "../../../utils/cn.js"
+import { Button } from "../../forms/Button"
 
 const getPositionClasses = (position: string) => {
   const baseClasses = {
@@ -114,18 +115,20 @@ export const FloatingNavbar = ({
       <ul className="space-y-1">
         {items.map((item) => (
           <li key={item.id}>
-            <button
+            <Button
+              variant="link"
+              size="sm"
               onClick={() => handleItemClick(item)}
               className={cn(
-                "cursor-pointer w-full text-left px-3 py-2 text-sm rounded-sm transition-all duration-200",
-                "hover:bg-stone-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1",
+                "w-full text-left text-sm transition-all duration-200",
+                "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1",
                 activeId === item.id
                   ? "bg-blue-100 text-blue-900 font-medium border-l-2 border-blue-500 pl-2"
                   : "text-stone-700 hover:text-stone-900"
               )}
             >
               {item.label}
-            </button>
+            </Button>
           </li>
         ))}
       </ul>

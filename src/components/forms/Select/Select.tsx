@@ -9,6 +9,7 @@ import type {
 import { cn } from "../../../utils/cn.js"
 import { containerResponsiveUI } from "../../../utils/containerFonts"
 import type { TextAlignment } from "../shared"
+import { Button } from "../Button"
 
 const sizeClasses = {
   sm: "h-9 px-3 text-sm",
@@ -76,23 +77,6 @@ const dropdownClasses = [
   "rounded-sm",
   "shadow-lg",
   "overflow-hidden",
-]
-
-const optionClasses = [
-  "w-full",
-  "px-3",
-  "py-2",
-  "text-left",
-  "flex",
-  "items-center",
-  "gap-2",
-  "hover:bg-stone-50",
-  "focus:bg-stone-50",
-  "focus:outline-none",
-  "disabled:opacity-50",
-  "disabled:cursor-not-allowed",
-  "transition-colors",
-  "duration-150",
 ]
 
 const textAlignClasses: Record<TextAlignment, string> = {
@@ -479,7 +463,9 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
                             const isFocused = globalIndex === focusedIndex
 
                             return (
-                              <button
+                              <Button
+                                variant="link"
+                                size="sm"
                                 key={option.value}
                                 type="button"
                                 disabled={option.disabled || item.disabled}
@@ -487,8 +473,10 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
                                   handleValueChange(option.value, option)
                                 }
                                 className={cn(
-                                  optionClasses,
-                                  "pl-6", // Indent grouped options
+                                  "w-full px-3 py-2 text-left flex items-center gap-2",
+                                  "hover:bg-stone-50 focus:bg-stone-50 focus:outline-none",
+                                  "disabled:opacity-50 disabled:cursor-not-allowed",
+                                  "transition-colors duration-150 pl-6", // Indent grouped options
                                   isSelected && "bg-blue-50 text-blue-700",
                                   isFocused && "bg-stone-100",
                                   (option.disabled || item.disabled) &&
@@ -510,7 +498,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
                                     )}
                                   </>
                                 )}
-                              </button>
+                              </Button>
                             )
                           })}
                         </div>
@@ -527,13 +515,18 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
                       const isFocused = globalIndex === focusedIndex
 
                       return (
-                        <button
+                        <Button
+                          variant="link"
+                          size="sm"
                           key={item.value}
                           type="button"
                           disabled={item.disabled}
                           onClick={() => handleValueChange(item.value, item)}
                           className={cn(
-                            optionClasses,
+                            "w-full px-3 py-2 text-left flex items-center gap-2",
+                            "hover:bg-stone-50 focus:bg-stone-50 focus:outline-none",
+                            "disabled:opacity-50 disabled:cursor-not-allowed",
+                            "transition-colors duration-150",
                             isSelected && "bg-blue-50 text-blue-700",
                             isFocused && "bg-stone-100",
                             item.disabled && "opacity-50 cursor-not-allowed"
@@ -552,7 +545,7 @@ export const Select = forwardRef<HTMLButtonElement, SelectProps>(
                               )}
                             </>
                           )}
-                        </button>
+                        </Button>
                       )
                     }
                   })
