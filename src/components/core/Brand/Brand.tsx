@@ -1,6 +1,7 @@
 import { forwardRef } from "react"
 import { clsx } from "clsx"
 import { Typography } from "../Typography"
+import { Button } from "../../forms/Button"
 import type { TypographyVariant } from "../Typography/types"
 import { containerQueryContext } from "../../../utils/containerFonts"
 
@@ -124,14 +125,17 @@ export const Brand = forwardRef<HTMLDivElement, BrandProps>(
 
     if (onClick) {
       return (
-        <button
-          ref={ref as React.Ref<HTMLButtonElement>}
+        <Button
+          variant="ghost"
+          className={clsx(
+            rootClasses,
+            "p-0 h-auto min-w-0 hover:bg-transparent hover:opacity-80"
+          )}
           onClick={onClick}
-          className={rootClasses}
           {...props}
         >
           {content}
-        </button>
+        </Button>
       )
     }
 
