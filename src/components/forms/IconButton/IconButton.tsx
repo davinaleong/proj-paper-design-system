@@ -64,6 +64,12 @@ const variantClasses = {
     "hover:border-stone-200/60",
     "active:bg-stone-200/50",
   ],
+  plain: [
+    "bg-transparent",
+    "border-0",
+    "shadow-none",
+    "rounded-none",
+  ],
 }
 
 export function IconButton({
@@ -84,10 +90,14 @@ export function IconButton({
     baseClasses,
     sizeClasses[size],
     variantClasses[variant],
-    getColorClasses(
-      color,
-      variant === "solid" ? "solid" : variant === "outline" ? "outline" : "soft"
-    ),
+    
+    // Apply color classes for non-plain variants
+    variant !== "plain" &&
+      getColorClasses(
+        color,
+        variant === "solid" ? "solid" : variant === "outline" ? "outline" : "soft"
+      ),
+    
     className
   )
 

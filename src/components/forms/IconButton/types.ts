@@ -1,7 +1,7 @@
 import type { LucideIcon } from "lucide-react"
 import type { ColorVariant } from "../../../utils/colors"
 
-export type IconButtonVariant = "solid" | "outline" | "ghost"
+export type IconButtonVariant = "solid" | "outline" | "ghost" | "plain"
 
 export type IconButtonSize = "xs" | "sm" | "md" | "lg" | "xl"
 

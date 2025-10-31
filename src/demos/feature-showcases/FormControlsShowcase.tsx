@@ -106,20 +106,78 @@ export function FormControlsShowcase() {
                 <Typography variant="h4" className="mb-4">
                   Icon Buttons
                 </Typography>
-                <div className="flex flex-wrap gap-4">
-                  <IconButton icon={Heart} aria-label="Like" />
-                  <IconButton
-                    icon={Download}
-                    variant="outline"
-                    aria-label="Download"
-                  />
-                  <IconButton icon={Edit} variant="ghost" aria-label="Edit" />
-                  <IconButton
-                    icon={Trash2}
-                    variant="solid"
-                    color="danger"
-                    aria-label="Delete"
-                  />
+                
+                {/* Variants */}
+                <div className="mb-6">
+                  <Typography variant="bodySmall" color="muted" className="mb-3">
+                    Variants
+                  </Typography>
+                  <div className="flex flex-wrap gap-4 items-center">
+                    <IconButton icon={Heart} variant="solid" aria-label="Like (solid)" />
+                    <IconButton
+                      icon={Download}
+                      variant="outline"
+                      aria-label="Download (outline)"
+                    />
+                    <IconButton icon={Edit} variant="ghost" aria-label="Edit (ghost)" />
+                    <IconButton icon={Search} variant="plain" aria-label="Search (plain)" />
+                  </div>
+                </div>
+
+                {/* Sizes */}
+                <div className="mb-6">
+                  <Typography variant="bodySmall" color="muted" className="mb-3">
+                    Sizes
+                  </Typography>
+                  <div className="flex flex-wrap gap-4 items-center">
+                    <IconButton icon={Settings} size="xs" aria-label="Extra small" />
+                    <IconButton icon={Settings} size="sm" aria-label="Small" />
+                    <IconButton icon={Settings} size="md" aria-label="Medium" />
+                    <IconButton icon={Settings} size="lg" aria-label="Large" />
+                    <IconButton icon={Settings} size="xl" aria-label="Extra large" />
+                  </div>
+                </div>
+
+                {/* Colors */}
+                <div className="mb-6">
+                  <Typography variant="bodySmall" color="muted" className="mb-3">
+                    Colors (solid variant)
+                  </Typography>
+                  <div className="flex flex-wrap gap-4 items-center">
+                    <IconButton icon={Heart} variant="solid" color="primary" aria-label="Primary" />
+                    <IconButton icon={Heart} variant="solid" color="secondary" aria-label="Secondary" />
+                    <IconButton icon={Heart} variant="solid" color="success" aria-label="Success" />
+                    <IconButton icon={Heart} variant="solid" color="warning" aria-label="Warning" />
+                    <IconButton icon={Heart} variant="solid" color="danger" aria-label="Danger" />
+                    <IconButton icon={Heart} variant="solid" color="info" aria-label="Info" />
+                  </div>
+                </div>
+
+                {/* States */}
+                <div className="mb-6">
+                  <Typography variant="bodySmall" color="muted" className="mb-3">
+                    States
+                  </Typography>
+                  <div className="flex flex-wrap gap-4 items-center">
+                    <IconButton icon={Mail} aria-label="Normal" />
+                    <IconButton icon={Lock} disabled aria-label="Disabled" />
+                    <IconButton icon={Download} loading aria-label="Loading" />
+                  </div>
+                </div>
+
+                {/* Plain variant examples */}
+                <div className="mb-6">
+                  <Typography variant="bodySmall" color="muted" className="mb-3">
+                    Plain Variant (no styling)
+                  </Typography>
+                  <div className="flex flex-wrap gap-4 items-center">
+                    <IconButton icon={Search} variant="plain" aria-label="Search" />
+                    <IconButton icon={Edit} variant="plain" size="sm" aria-label="Edit" />
+                    <IconButton icon={Trash2} variant="plain" size="lg" aria-label="Delete" />
+                  </div>
+                  <Typography variant="caption" color="muted" className="mt-2">
+                    Perfect for custom styling or integration into other components
+                  </Typography>
                 </div>
               </div>
 
