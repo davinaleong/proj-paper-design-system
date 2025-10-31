@@ -126,7 +126,7 @@ export const Brand = forwardRef<HTMLDivElement, BrandProps>(
     if (onClick) {
       return (
         <Button
-          variant="ghost"
+          variant="plain"
           className={clsx(
             rootClasses,
             "p-0 h-auto min-w-0 hover:bg-transparent hover:opacity-80"

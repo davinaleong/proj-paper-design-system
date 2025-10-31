@@ -84,6 +84,14 @@ const variantClasses = {
     "hover:no-underline",
     "hover:opacity-70",
   ],
+  plain: [
+    "justify-start",
+    "bg-transparent",
+    "border-0",
+    "p-0",
+    "shadow-none",
+    "rounded-none",
+  ],
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
@@ -112,8 +120,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
     // Apply minimum width if enabled
     minWidth && minWidthClasses[size],
 
-    // Apply color classes for non-link variants
-    variant !== "link" &&
+    // Apply color classes for non-link and non-plain variants
+    variant !== "link" && variant !== "plain" &&
       getColorClasses(
         color,
         variant === "solid"
@@ -152,7 +160,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
       children
     )
 
-    if (variant === "link") {
+    if (variant === "link" || variant === "plain") {
       return (
         <>
           {iconElement && iconPosition === "left" && iconElement}

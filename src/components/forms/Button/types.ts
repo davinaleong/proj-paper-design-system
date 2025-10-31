@@ -2,7 +2,7 @@ import type { ReactNode, ButtonHTMLAttributes } from "react"
 import type { LucideIcon } from "lucide-react"
 import type { ColorVariant } from "../../../utils/colors"
 
-export type ButtonVariant = "solid" | "outline" | "ghost" | "link"
+export type ButtonVariant = "solid" | "outline" | "ghost" | "link" | "plain"
 
 export type ButtonSize = "xs" | "sm" | "md" | "lg" | "xl"
 
