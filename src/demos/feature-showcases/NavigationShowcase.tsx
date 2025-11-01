@@ -1,6 +1,6 @@
 import { Paper, Typography, Brand } from "../../components/core"
-import { Navbar, Sidebar, Breadcrumbs } from "../../components/navigation"
-import { Home, Users, Settings, Bell, Search, FileText, Calendar, Mail, BarChart3, Zap, Shield, FolderOpen, File } from "lucide-react"
+import { Navbar, Sidebar, Breadcrumbs, Tabs } from "../../components/navigation"
+import { Home, Users, Settings, Bell, Search, FileText, Calendar, Mail, BarChart3, Zap, Shield, FolderOpen, File, Database, Globe } from "lucide-react"
 
 export function NavigationShowcase() {
   // Sample navigation items
@@ -653,6 +653,231 @@ export function NavigationShowcase() {
             </div>
           </div>
 
+          {/* Tabs Section */}
+          <div className="space-y-6">
+            <Typography variant="h3" className="mb-4">
+              Tabs
+            </Typography>
+            
+            <Typography variant="body" color="muted" className="mb-6">
+              Tabbed interfaces for organizing content into switchable sections with multiple variants and orientations.
+            </Typography>
+
+            {/* Basic Tabs Example */}
+            <div className="space-y-4">
+              <Typography variant="h4" className="mb-3">
+                Basic Tab Interface
+              </Typography>
+              
+              <Tabs
+                items={[
+                  {
+                    id: "overview",
+                    label: "Overview",
+                    icon: Home,
+                    content: (
+                      <div className="space-y-4">
+                        <Typography variant="h4" color="stone">Dashboard Overview</Typography>
+                        <Typography variant="body" color="stone">
+                          Welcome to your dashboard. Here you can view recent activity, project summaries, and quick access to important features.
+                        </Typography>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <Paper className="p-4">
+                            <Typography variant="h5" color="stone" className="mb-2">Active Projects</Typography>
+                            <Typography variant="h3" color="primary">12</Typography>
+                          </Paper>
+                          <Paper className="p-4">
+                            <Typography variant="h5" color="stone" className="mb-2">Team Members</Typography>
+                            <Typography variant="h3" color="success">8</Typography>
+                          </Paper>
+                        </div>
+                      </div>
+                    )
+                  },
+                  {
+                    id: "analytics",
+                    label: "Analytics",
+                    icon: BarChart3,
+                    badge: "New",
+                    content: (
+                      <div className="space-y-4">
+                        <Typography variant="h4" color="stone">Analytics Dashboard</Typography>
+                        <Typography variant="body" color="stone">
+                          View detailed analytics and performance metrics for your projects and team.
+                        </Typography>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                          <Paper className="p-4 text-center">
+                            <Typography variant="h3" color="primary" className="mb-2">2.4k</Typography>
+                            <Typography variant="body" color="stone">Page Views</Typography>
+                          </Paper>
+                          <Paper className="p-4 text-center">
+                            <Typography variant="h3" color="success" className="mb-2">98.2%</Typography>
+                            <Typography variant="body" color="stone">Uptime</Typography>
+                          </Paper>
+                          <Paper className="p-4 text-center">
+                            <Typography variant="h3" color="warning" className="mb-2">1.8s</Typography>
+                            <Typography variant="body" color="stone">Load Time</Typography>
+                          </Paper>
+                        </div>
+                      </div>
+                    )
+                  },
+                  {
+                    id: "settings",
+                    label: "Settings",
+                    icon: Settings,
+                    content: (
+                      <div className="space-y-4">
+                        <Typography variant="h4" color="stone">Application Settings</Typography>
+                        <Typography variant="body" color="stone">
+                          Configure your application preferences, security settings, and team permissions.
+                        </Typography>
+                        <div className="space-y-3">
+                          <Paper className="p-4">
+                            <Typography variant="h5" color="stone" className="mb-2">General Settings</Typography>
+                            <Typography variant="body" color="stone">Theme, language, timezone preferences</Typography>
+                          </Paper>
+                          <Paper className="p-4">
+                            <Typography variant="h5" color="stone" className="mb-2">Security</Typography>
+                            <Typography variant="body" color="stone">Password policy, two-factor authentication</Typography>
+                          </Paper>
+                        </div>
+                      </div>
+                    )
+                  },
+                  {
+                    id: "team",
+                    label: "Team",
+                    icon: Users,
+                    disabled: true,
+                    content: (
+                      <div className="space-y-4">
+                        <Typography variant="h4" color="stone">Team Management</Typography>
+                        <Typography variant="body" color="stone">
+                          Manage team members, roles, and permissions.
+                        </Typography>
+                      </div>
+                    )
+                  }
+                ]}
+                variant="tabs"
+                color="primary"
+                size="md"
+                defaultActiveTab="overview"
+                showContent={true}
+              />
+            </div>
+
+            {/* Tab Variants */}
+            <div className="space-y-4">
+              <Typography variant="h4" className="mb-3">
+                Tab Variants
+              </Typography>
+              
+              <div className="grid grid-cols-1 gap-6">
+                {/* Pills Variant */}
+                <div className="space-y-3">
+                  <Typography variant="bodySmall" color="muted">Pills Style</Typography>
+                  <Tabs
+                    items={[
+                      { id: "files", label: "Files", icon: FileText, content: <Typography variant="body">File management interface</Typography> },
+                      { id: "data", label: "Database", icon: Database, content: <Typography variant="body">Database connections and queries</Typography> },
+                      { id: "network", label: "Network", icon: Globe, content: <Typography variant="body">Network monitoring and settings</Typography> }
+                    ]}
+                    variant="pills"
+                    color="success"
+                    size="sm"
+                    showContent={false}
+                  />
+                </div>
+
+                {/* Ghost Variant */}
+                <div className="space-y-3">
+                  <Typography variant="bodySmall" color="muted">Ghost Style</Typography>
+                  <Tabs
+                    items={[
+                      { id: "inbox", label: "Inbox", icon: Mail, badge: "3", content: <Typography variant="body">Email inbox</Typography> },
+                      { id: "calendar-tab", label: "Calendar", icon: Calendar, content: <Typography variant="body">Calendar events</Typography> },
+                      { id: "tasks", label: "Tasks", icon: FileText, badge: "12", content: <Typography variant="body">Task management</Typography> }
+                    ]}
+                    variant="ghost"
+                    color="warning"
+                    showContent={false}
+                  />
+                </div>
+
+                {/* Links Variant */}
+                <div className="space-y-3">
+                  <Typography variant="bodySmall" color="muted">Links Style</Typography>
+                  <Tabs
+                    items={[
+                      { id: "docs", label: "Documentation", icon: FileText, content: <Typography variant="body">Documentation</Typography> },
+                      { id: "api", label: "API Reference", icon: Zap, content: <Typography variant="body">API docs</Typography> },
+                      { id: "guides", label: "Guides", icon: FolderOpen, content: <Typography variant="body">Tutorial guides</Typography> }
+                    ]}
+                    variant="links"
+                    color="info"
+                    showContent={false}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Vertical Tabs */}
+            <div className="space-y-4">
+              <Typography variant="h4" className="mb-3">
+                Vertical Orientation
+              </Typography>
+              
+              <div className="border border-stone-200 rounded-lg p-4 bg-white">
+                <Tabs
+                  items={[
+                    { 
+                      id: "profile-settings", 
+                      label: "Profile", 
+                      icon: Users, 
+                      content: (
+                        <Typography variant="body">
+                          Manage your profile information, avatar, and personal preferences.
+                        </Typography>
+                      ) 
+                    },
+                    { 
+                      id: "security-settings", 
+                      label: "Security", 
+                      icon: Shield, 
+                      content: (
+                        <Typography variant="body">
+                          Configure security settings, password, and two-factor authentication.
+                        </Typography>
+                      ) 
+                    },
+                    { 
+                      id: "notification-settings", 
+                      label: "Notifications", 
+                      icon: Bell, 
+                      badge: "2",
+                      content: (
+                        <Typography variant="body">
+                          Set up notification preferences for email, push, and in-app alerts.
+                        </Typography>
+                      ) 
+                    }
+                  ]}
+                  variant="ghost"
+                  color="secondary"
+                  orientation="vertical"
+                  showContent={true}
+                />
+              </div>
+            </div>
+
+            <Typography variant="caption" color="muted" className="mt-4">
+              Tabs support multiple variants (tabs, pills, ghost, links, plain), orientations (horizontal, vertical), 
+              sizes, color themes, icons, badges, and can be controlled or uncontrolled.
+            </Typography>
+          </div>
+
           {/* Future Navigation Components */}
           <div className="space-y-6">
             <Typography variant="h3" className="mb-4">
@@ -660,15 +885,6 @@ export function NavigationShowcase() {
             </Typography>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div className="p-4 border border-stone-200 rounded-lg">
-                <Typography variant="h4" className="mb-2">
-                  Tabs
-                </Typography>
-                <Typography variant="body" className="text-stone-600 text-sm">
-                  Content switching interface
-                </Typography>
-              </div>
-
               <div className="p-4 border border-stone-200 rounded-lg">
                 <Typography variant="h4" className="mb-2">
                   Pagination
