@@ -13,6 +13,7 @@ import {
   DataDisplayShowcase,
   NavigationShowcase,
 } from "./demos/feature-showcases"
+import { PaginationScrollTest } from "./demos/PaginationScrollTest"
 import "./App.css"
 
 function App() {
@@ -32,6 +33,7 @@ function AppContent() {
     { id: "form-controls", label: "Form Controls", href: "#form-controls" },
     { id: "data-display", label: "Data Display", href: "#data-display" },
     { id: "navigation", label: "Navigation", href: "#navigation" },
+    { id: "scroll-test", label: "Scroll Test", href: "#scroll-test" },
     {
       id: "progress-and-status",
       label: "Progress & Status",
@@ -83,6 +85,11 @@ function AppContent() {
         {/* Navigation */}
         <section id="navigation">
           <NavigationShowcase />
+        </section>
+
+        {/* Pagination Scroll Test */}
+        <section id="scroll-test">
+          <PaginationScrollTest />
         </section>
 
         {/* Progress & Status Components */}

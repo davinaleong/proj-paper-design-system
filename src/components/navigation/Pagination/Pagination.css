@@ -1,0 +1,61 @@
+/* Pagination scrollbar hiding styles */
+.pagination-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.pagination-scroll-container {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  position: relative;
+  scroll-behavior: smooth;
+  /* Ensure the container can actually scroll */
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* Ensure scrolling works properly */
+.pagination-scroll-container > nav {
+  /* Prevent shrinking below content width */
+  flex-shrink: 0;
+  /* Ensure content can extend beyond container */
+  min-width: max-content;
+}
+
+/* Optional: Add subtle fade indicators for scrollable content on larger screens */
+@media (min-width: 640px) {
+  .pagination-scroll-container::before,
+  .pagination-scroll-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 16px;
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  .pagination-scroll-container:hover::before,
+  .pagination-scroll-container:hover::after {
+    opacity: 1;
+  }
+
+  .pagination-scroll-container::before {
+    left: 0;
+    background: linear-gradient(to right, rgba(250, 249, 246, 0.9), rgba(250, 249, 246, 0));
+  }
+
+  .pagination-scroll-container::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(250, 249, 246, 0.9), rgba(250, 249, 246, 0));
+  }
+}
+
+/* Mobile-first: Remove shadows on small screens for better touch scrolling */
+@media (max-width: 639px) {
+  .pagination-scroll-container::before,
+  .pagination-scroll-container::after {
+    display: none;
+  }
+}

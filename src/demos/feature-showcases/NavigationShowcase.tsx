@@ -1,5 +1,5 @@
 import { Paper, Typography, Brand } from "../../components/core"
-import { Navbar, Sidebar, Breadcrumbs, Tabs } from "../../components/navigation"
+import { Navbar, Sidebar, Breadcrumbs, Tabs, Pagination } from "../../components/navigation"
 import { Home, Users, Settings, Bell, Search, FileText, Calendar, Mail, BarChart3, Zap, Shield, FolderOpen, File, Database, Globe } from "lucide-react"
 
 export function NavigationShowcase() {
@@ -878,6 +878,169 @@ export function NavigationShowcase() {
             </Typography>
           </div>
 
+          {/* Pagination Section */}
+          <div className="space-y-6">
+            <Typography variant="h3" className="mb-4">
+              Pagination
+            </Typography>
+            
+            <Typography variant="body" color="muted" className="mb-6">
+              Navigate through multi-page content with various formats including numbers, letters, and roman numerals.
+            </Typography>
+
+            {/* Basic Pagination Examples */}
+            <div className="space-y-6">
+              <Typography variant="h4" className="mb-3">
+                Pagination Formats
+              </Typography>
+              
+              <div className="grid grid-cols-1 gap-6">
+                {/* Numeric Pagination */}
+                <div className="border border-stone-200 rounded-lg p-4 bg-white">
+                  <Typography variant="bodySmall" color="muted" className="mb-3">
+                    Numeric Pagination (1 ... 3, 4, 5 ... 7)
+                  </Typography>
+                  <Pagination
+                    currentPage={4}
+                    totalPages={15}
+                    format="numbers"
+                    variant="outline"
+                    color="primary"
+                    onPageChange={() => {}}
+                    showPageInfo={true}
+                  />
+                </div>
+
+                {/* Letter Pagination */}
+                <div className="border border-stone-200 rounded-lg p-4 bg-white">
+                  <Typography variant="bodySmall" color="muted" className="mb-3">
+                    Letter Pagination (a ... c, d, e ... g)
+                  </Typography>
+                  <Pagination
+                    currentPage={4}
+                    totalPages={12}
+                    format="letters"
+                    variant="ghost"
+                    color="success"
+                    onPageChange={() => {}}
+                    showPageInfo={true}
+                  />
+                </div>
+
+                {/* Roman Numeral Pagination */}
+                <div className="border border-stone-200 rounded-lg p-4 bg-white">
+                  <Typography variant="bodySmall" color="muted" className="mb-3">
+                    Roman Numeral Pagination (i ... iii, iv, v ... vii)
+                  </Typography>
+                  <Pagination
+                    currentPage={5}
+                    totalPages={10}
+                    format="roman"
+                    variant="solid"
+                    color="secondary"
+                    onPageChange={() => {}}
+                    showPageInfo={true}
+                  />
+                </div>
+
+                {/* Simple Navigation */}
+                <div className="border border-stone-200 rounded-lg p-4 bg-white">
+                  <Typography variant="bodySmall" color="muted" className="mb-3">
+                    Previous / Next Navigation
+                  </Typography>
+                  <Pagination
+                    currentPage={2}
+                    totalPages={5}
+                    format="prev-next"
+                    variant="link"
+                    color="info"
+                    onPageChange={() => {}}
+                  />
+                </div>
+
+                {/* Full Navigation */}
+                <div className="border border-stone-200 rounded-lg p-4 bg-white">
+                  <Typography variant="bodySmall" color="muted" className="mb-3">
+                    First / Previous / Current / Next / Last
+                  </Typography>
+                  <Pagination
+                    currentPage={3}
+                    totalPages={8}
+                    format="first-last"
+                    variant="outline"
+                    color="warning"
+                    onPageChange={() => {}}
+                    showPageInfo={true}
+                  />
+                </div>
+
+                {/* Horizontal Scrolling Test */}
+                <div className="border border-stone-200 rounded-lg p-4 bg-white">
+                  <Typography variant="bodySmall" color="muted" className="mb-3">
+                    Horizontal Scrolling (Large Page Count)
+                  </Typography>
+                  <div className="max-w-sm mx-auto border border-dashed border-blue-300 p-2 rounded">
+                    <Typography variant="caption" color="muted" className="mb-2 block text-center">
+                      Constrained to 384px width - scroll horizontally →
+                    </Typography>
+                    <Pagination
+                      currentPage={25}
+                      totalPages={100}
+                      format="numbers"
+                      variant="outline"
+                      color="primary"
+                      onPageChange={() => {}}
+                      siblingCount={3}
+                      showBoundaries={true}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Pagination Variants */}
+            <div className="space-y-4">
+              <Typography variant="h4" className="mb-3">
+                Style Variants
+              </Typography>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="border border-stone-200 rounded-lg p-4 bg-white">
+                  <Typography variant="bodySmall" color="muted" className="mb-3">
+                    Solid Variant
+                  </Typography>
+                  <Pagination
+                    currentPage={3}
+                    totalPages={7}
+                    variant="solid"
+                    color="primary"
+                    size="sm"
+                    onPageChange={() => {}}
+                  />
+                </div>
+
+                <div className="border border-stone-200 rounded-lg p-4 bg-white">
+                  <Typography variant="bodySmall" color="muted" className="mb-3">
+                    Ghost Variant
+                  </Typography>
+                  <Pagination
+                    currentPage={3}
+                    totalPages={7}
+                    variant="ghost"
+                    color="success"
+                    size="sm"
+                    onPageChange={() => {}}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <Typography variant="caption" color="muted" className="mt-4">
+              Pagination supports multiple formats (numbers, letters, roman numerals), variants (solid, outline, ghost, link, plain), 
+              sizes, color themes, and comprehensive accessibility features.
+            </Typography>
+          </div>
+
           {/* Future Navigation Components */}
           <div className="space-y-6">
             <Typography variant="h3" className="mb-4">
@@ -885,15 +1048,6 @@ export function NavigationShowcase() {
             </Typography>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div className="p-4 border border-stone-200 rounded-lg">
-                <Typography variant="h4" className="mb-2">
-                  Pagination
-                </Typography>
-                <Typography variant="body" className="text-stone-600 text-sm">
-                  Page navigation controls
-                </Typography>
-              </div>
-
               <div className="p-4 border border-stone-200 rounded-lg">
                 <Typography variant="h4" className="mb-2">
                   Stepper
