@@ -17,6 +17,22 @@ export type TypographyVariant =
   | "overline"
   | "code"
   | "pre"
+  | "strong"
+  | "em"
+  | "small"
+  | "kbd"
+  | "del"
+  | "sub"
+  | "sup"
+  | "abbr"
+  | "cite"
+  | "q"
+  | "dfn"
+  | "samp"
+  | "var"
+  | "time"
+  | "data"
+  | "ins"
 
 export type TypographyWeight =
   | "thin"
@@ -84,4 +100,35 @@ export interface TypographyProps {
    * HTML element type (auto-determined by variant if not specified)
    */
   as?: ElementType
+
+  /**
+   * Title attribute for abbreviations and other elements
+   */
+  title?: string
+
+  /**
+   * DateTime attribute for time elements
+   */
+  dateTime?: string
+
+  /**
+   * Value attribute for data elements
+   */
+  value?: string | number
+
+  /**
+   * ID attribute
+   */
+  id?: string
+
+  /**
+   * Common HTML event handlers and attributes
+   */
+  onClick?: () => void
+  onMouseEnter?: () => void
+  onMouseLeave?: () => void
+  role?: string
+  'aria-label'?: string
+  'aria-describedby'?: string
+  'data-testid'?: string
 }

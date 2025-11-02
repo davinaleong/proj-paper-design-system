@@ -5,6 +5,10 @@ export {
   LayoutShowcase,
   UIPrimitivesShowcase,
   FormFieldShowcase,
+  ProgressAndStatusShowcase,
+  TabsShowcase,
+  PaginationShowcase,
+  StepperShowcase,
 } from "./component-showcases"
 
 // Export all feature showcases
@@ -16,5 +20,5 @@ export {
 
 // Export individual showcase files
 export { DotIndicatorShowcase } from "./DotIndicatorShowcase"
-export { StaticTableShowcase } from "./StaticTableShowcase"
-export { ProgressCircleShowcase } from "./component-showcases"
+export { StaticTableShowcase } from "./component-showcases/StaticTableShowcase"
+export { SemanticTypographyTest } from "./SemanticTypographyTest"

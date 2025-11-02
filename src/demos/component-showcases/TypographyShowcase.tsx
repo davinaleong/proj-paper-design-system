@@ -174,6 +174,163 @@ export function TypographyShowcase() {
         </div>
       </div>
 
+      {/* Semantic Text Elements */}
+      <div className="mb-12">
+        <Typography variant="h3" className="mb-6">
+          Semantic Text Elements
+        </Typography>
+        <Typography variant="body" className="mb-6 text-stone-600">
+          HTML semantic text elements with appropriate styling for enhanced meaning and accessibility.
+        </Typography>
+        
+        <div className="space-y-6">
+          {/* Text Emphasis and Modification */}
+          <Paper variant="outlined" padding="lg">
+            <Typography variant="h5" className="mb-4">
+              Text Emphasis & Modification
+            </Typography>
+            <div className="space-y-3">
+              <div>
+                <Typography variant="body">
+                  This text contains <Typography variant="strong" as="span">strong emphasis</Typography> and{" "}
+                  <Typography variant="em" as="span">emphasized text</Typography> for better readability.
+                </Typography>
+              </div>
+              <div>
+                <Typography variant="body">
+                  Here's some <Typography variant="small" as="span">small text</Typography> and{" "}
+                  <Typography variant="del" as="span">deleted content</Typography> with{" "}
+                  <Typography variant="ins" as="span">inserted replacement</Typography>.
+                </Typography>
+              </div>
+              <div>
+                <Typography variant="body">
+                  Mathematical formulas: E = mc<Typography variant="sup" as="span">2</Typography> and{" "}
+                  chemical notation: H<Typography variant="sub" as="span">2</Typography>O.
+                </Typography>
+              </div>
+            </div>
+          </Paper>
+
+          {/* Code and Technical Elements */}
+          <Paper variant="outlined" padding="lg">
+            <Typography variant="h5" className="mb-4">
+              Code & Technical Elements
+            </Typography>
+            <div className="space-y-3">
+              <div>
+                <Typography variant="body">
+                  Press <Typography variant="kbd" as="span">Ctrl</Typography> +{" "}
+                  <Typography variant="kbd" as="span">C</Typography> to copy or{" "}
+                  <Typography variant="kbd" as="span">⌘</Typography> +{" "}
+                  <Typography variant="kbd" as="span">V</Typography> to paste.
+                </Typography>
+              </div>
+              <div>
+                <Typography variant="body">
+                  The function <Typography variant="var" as="span">userName</Typography> returns{" "}
+                  <Typography variant="samp" as="span">"john_doe"</Typography> as sample output.
+                </Typography>
+              </div>
+              <div>
+                <Typography variant="body">
+                  In programming, a <Typography variant="dfn" as="span">variable</Typography> is a symbolic name 
+                  associated with a value.
+                </Typography>
+              </div>
+            </div>
+          </Paper>
+
+          {/* Citations and References */}
+          <Paper variant="outlined" padding="lg">
+            <Typography variant="h5" className="mb-4">
+              Citations & References
+            </Typography>
+            <div className="space-y-3">
+              <div>
+                <Typography variant="body">
+                  As mentioned in <Typography variant="cite" as="span">The Design of Everyday Things</Typography>,{" "}
+                  good design is about understanding user needs.
+                </Typography>
+              </div>
+              <div>
+                <Typography variant="body">
+                  The famous quote <Typography variant="q" as="span">Design is not just what it looks like and feels like</Typography>{" "}
+                  emphasizes the importance of functionality.
+                </Typography>
+              </div>
+              <div>
+                <Typography variant="body">
+                  The term <Typography variant="abbr" as="span" title="User Experience">UX</Typography> refers to{" "}
+                  the overall experience a user has with a product.
+                </Typography>
+              </div>
+            </div>
+          </Paper>
+
+          {/* Data and Time Elements */}
+          <Paper variant="outlined" padding="lg">
+            <Typography variant="h5" className="mb-4">
+              Data & Time Elements
+            </Typography>
+            <div className="space-y-3">
+              <div>
+                <Typography variant="body">
+                  The meeting is scheduled for{" "}
+                  <Typography variant="time" as="span" dateTime="2025-11-02T14:00">
+                    November 2, 2025 at 2:00 PM
+                  </Typography>.
+                </Typography>
+              </div>
+              <div>
+                <Typography variant="body">
+                  The current temperature is{" "}
+                  <Typography variant="data" as="span" value="23">
+                    23°C
+                  </Typography> with humidity at{" "}
+                  <Typography variant="data" as="span" value="65">
+                    65%
+                  </Typography>.
+                </Typography>
+              </div>
+            </div>
+          </Paper>
+
+          {/* Usage Examples in Context */}
+          <Paper variant="outlined" padding="lg">
+            <Typography variant="h5" className="mb-4">
+              Real-World Usage Example
+            </Typography>
+            <div className="prose max-w-none">
+              <Typography variant="body" className="mb-4">
+                Welcome to our <Typography variant="strong" as="span">advanced tutorial</Typography>! 
+                This guide will teach you about <Typography variant="em" as="span">semantic HTML</Typography> 
+                and how it improves <Typography variant="abbr" as="span" title="Search Engine Optimization">SEO</Typography>.
+              </Typography>
+              
+              <Typography variant="body" className="mb-4">
+                <Typography variant="strong" as="span">Quick Start:</Typography> Press{" "}
+                <Typography variant="kbd" as="span">F12</Typography> to open developer tools, then type{" "}
+                <Typography variant="code" as="span">console.log('Hello World')</Typography> in the console.
+              </Typography>
+              
+              <Typography variant="body" className="mb-4">
+                <Typography variant="del" as="span">Old method:</Typography>{" "}
+                <Typography variant="ins" as="span">New improved approach:</Typography> Use semantic elements 
+                like <Typography variant="code" as="span">&lt;time&gt;</Typography> for dates and{" "}
+                <Typography variant="code" as="span">&lt;abbr&gt;</Typography> for abbreviations.
+              </Typography>
+              
+              <Typography variant="body">
+                <Typography variant="small" as="span">
+                  Last updated: <Typography variant="time" as="span" dateTime="2025-11-02">November 2, 2025</Typography>
+                </Typography>
+              </Typography>
+            </div>
+          </Paper>
+        </div>
+      </div>
+
       <Paper
         variant="elevated"
         padding="lg"

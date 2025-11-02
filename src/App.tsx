@@ -1,4 +1,4 @@
-import { ThemeProvider } from "./components/core"
+import { ThemeProvider, Typography, Paper } from "./components/core"
 import { AppHeader } from "./components/AppHeader"
 import { FloatingNavbar } from "./components/navigation"
 import {
@@ -61,6 +61,34 @@ function AppContent() {
 
         <section id="typography">
           <TypographyShowcase />
+        </section>
+
+        {/* Semantic Typography Examples */}
+        <section id="semantic-typography">
+          <Paper className="p-6 my-8">
+            <Typography variant="h3" className="mb-4 text-stone-800">
+              Semantic Typography Examples
+            </Typography>
+
+            <div className="space-y-4 text-stone-800">
+              <div><Typography variant="strong">Strong text</Typography> — bold emphasis</div>
+              <div><Typography variant="em">Emphasized text</Typography> — italicized</div>
+              <div><Typography variant="small">Small text</Typography> — fine print</div>
+              <div>Keyboard input: <Typography variant="kbd">Ctrl</Typography> + <Typography variant="kbd">C</Typography></div>
+              <div><Typography variant="del">Deleted text</Typography> — shows removed content</div>
+              <div><Typography variant="ins">Inserted text</Typography> — shows inserted content</div>
+              <div>Formula: H<Typography variant="sub">2</Typography>O — subscript example</div>
+              <div>Math: E = mc<Typography variant="sup">2</Typography> — superscript example</div>
+              <div><Typography variant="abbr" title="World Wide Web">WWW</Typography> — abbreviation with title</div>
+              <div>Reference: <Typography variant="cite">Design System Handbook</Typography></div>
+              <div>He said <Typography variant="q">"Hello world"</Typography> — inline quote</div>
+              <div><Typography variant="dfn">Responsive design</Typography> — definition term</div>
+              <div>Sample output: <Typography variant="samp">Hello, world!</Typography></div>
+              <div>Variable: <Typography variant="var">userName</Typography></div>
+              <div>Published: <Typography variant="time" dateTime="2024-01-15">January 15, 2024</Typography></div>
+              <div>Value: <Typography variant="data" value="42">42</Typography></div>
+            </div>
+          </Paper>
         </section>
 
         <section id="layout">

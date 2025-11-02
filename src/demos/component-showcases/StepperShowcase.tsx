@@ -12,11 +12,11 @@ import {
   Upload,
   Save
 } from 'lucide-react';
-import { Stepper } from '../../components/navigation/Stepper';
-import { Button } from '../../components/forms/Button';
-import { Paper } from '../../components/core/Paper';
-import { Typography } from '../../components/core/Typography';
-import { Section } from '../../components/layout/Section';
+import { Stepper } from '../../components/navigation';
+import { Button } from '../../components/forms';
+import { Paper } from '../../components/core';
+import { Typography } from '../../components/core';
+import { Section } from '../../components/layout';
 import type { StepData } from '../../components/navigation/Stepper/types';
 
 export const StepperShowcase: React.FC = () => {
