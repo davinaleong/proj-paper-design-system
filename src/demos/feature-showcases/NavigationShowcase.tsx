@@ -1,6 +1,6 @@
 import { Paper, Typography, Brand } from "../../components/core"
-import { Navbar, Sidebar, Breadcrumbs, Tabs, Pagination } from "../../components/navigation"
-import { Home, Users, Settings, Bell, Search, FileText, Calendar, Mail, BarChart3, Zap, Shield, FolderOpen, File, Database, Globe } from "lucide-react"
+import { Navbar, Sidebar, Breadcrumbs, Tabs, Pagination, Stepper } from "../../components/navigation"
+import { Home, Users, Settings, Bell, Search, FileText, Calendar, Mail, BarChart3, Zap, Shield, FolderOpen, File, Database, Globe, User, CreditCard, CheckCircle } from "lucide-react"
 
 export function NavigationShowcase() {
   // Sample navigation items
@@ -1041,6 +1041,89 @@ export function NavigationShowcase() {
             </Typography>
           </div>
 
+          {/* Stepper Component */}
+          <div className="space-y-6">
+            <Typography variant="h3" className="mb-4">
+              Stepper
+            </Typography>
+
+            <Typography variant="body" className="text-stone-600 mb-6">
+              Step indicators for multi-step processes with various formats and interactive features.
+            </Typography>
+
+            <div className="space-y-8">
+              {/* Numeric Format */}
+              <div>
+                <Typography variant="h4" className="mb-4">
+                  Numeric Format
+                </Typography>
+                <div className="border border-stone-200 rounded-lg p-6 bg-white">
+                  <Stepper
+                    steps={[
+                      { id: 1, title: "Account", description: "Create account", status: "completed" },
+                      { id: 2, title: "Profile", description: "Set up profile", status: "completed" },
+                      { id: 3, title: "Verification", description: "Verify email", status: "current" },
+                      { id: 4, title: "Complete", description: "Finish setup", status: "pending" }
+                    ]}
+                    currentStep={2}
+                    format="numeric"
+                    variant="solid"
+                    color="primary"
+                  />
+                </div>
+              </div>
+
+              {/* Custom Icons */}
+              <div>
+                <Typography variant="h4" className="mb-4">
+                  Custom Icons
+                </Typography>
+                <div className="border border-stone-200 rounded-lg p-6 bg-white">
+                  <Stepper
+                    steps={[
+                      { id: 'user', title: "User Details", status: "completed", icon: User },
+                      { id: 'payment', title: "Payment", status: "current", icon: CreditCard },
+                      { id: 'complete', title: "Complete", status: "pending", icon: CheckCircle }
+                    ]}
+                    currentStep={1}
+                    format="custom"
+                    variant="solid"
+                    color="success"
+                    size="lg"
+                  />
+                </div>
+              </div>
+
+              {/* Vertical Layout */}
+              <div>
+                <Typography variant="h4" className="mb-4">
+                  Vertical Layout
+                </Typography>
+                <div className="border border-stone-200 rounded-lg p-6 bg-white max-w-md">
+                  <Stepper
+                    steps={[
+                      { id: 1, title: "Planning", description: "Define requirements", status: "completed" },
+                      { id: 2, title: "Design", description: "Create mockups", status: "completed" },
+                      { id: 3, title: "Development", description: "Build features", status: "current" },
+                      { id: 4, title: "Testing", description: "Quality assurance", status: "pending" }
+                    ]}
+                    currentStep={2}
+                    format="numeric"
+                    variant="outline"
+                    color="purple"
+                    orientation="vertical"
+                    size="md"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <Typography variant="caption" color="muted" className="mt-4">
+              Stepper supports numeric, alpha, roman, and custom icon formats with horizontal/vertical layouts, 
+              multiple variants, sizes, colors, and interactive step navigation.
+            </Typography>
+          </div>
+
           {/* Future Navigation Components */}
           <div className="space-y-6">
             <Typography variant="h3" className="mb-4">
@@ -1050,19 +1133,19 @@ export function NavigationShowcase() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               <div className="p-4 border border-stone-200 rounded-lg">
                 <Typography variant="h4" className="mb-2">
-                  Stepper
+                  Command Palette
                 </Typography>
                 <Typography variant="body" className="text-stone-600 text-sm">
-                  Multi-step process indicator
+                  Keyboard-driven navigation
                 </Typography>
               </div>
 
               <div className="p-4 border border-stone-200 rounded-lg">
                 <Typography variant="h4" className="mb-2">
-                  Command Palette
+                  Menu
                 </Typography>
                 <Typography variant="body" className="text-stone-600 text-sm">
-                  Keyboard-driven navigation
+                  Contextual menu system
                 </Typography>
               </div>
             </div>

@@ -1,0 +1,252 @@
+/* Stepper Component Styles */
+
+/* Base stepper container */
+.stepper {
+  /* Paper theme styling */
+  font-family: inherit;
+  color: inherit;
+}
+
+/* Step connector lines */
+.stepper-connector {
+  background-color: #e5e3df; /* Paper theme border color */
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* Dark mode connector */
+.dark .stepper-connector {
+  background-color: rgb(55 65 81); /* gray-700 */
+}
+
+/* Completed step connector */
+.stepper-connector.bg-success {
+  background-color: rgb(34 197 94); /* green-500 */
+}
+
+.dark .stepper-connector.bg-success {
+  background-color: rgb(34 197 94); /* green-500 */
+}
+
+/* Error step connector */
+.stepper-connector.bg-danger {
+  background-color: rgb(239 68 68); /* red-500 */
+}
+
+.dark .stepper-connector.bg-danger {
+  background-color: rgb(239 68 68); /* red-500 */
+}
+
+/* Horizontal stepper specific styles */
+.stepper.stepper-horizontal {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.stepper.stepper-horizontal .stepper-steps {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 0;
+}
+
+.stepper.stepper-horizontal .stepper-connector {
+  flex: 1;
+  height: 2px;
+  min-width: 24px;
+  margin: 0 8px;
+}
+
+/* Vertical stepper specific styles */
+.stepper.stepper-vertical {
+  display: flex;
+  flex-direction: column;
+}
+
+.stepper.stepper-vertical .stepper-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.stepper.stepper-vertical .stepper-connector {
+  width: 2px;
+  min-height: 32px;
+  margin: 8px 0;
+}
+
+/* Step item animations */
+.stepper .step-item {
+  transition: all 0.2s ease-in-out;
+}
+
+.stepper .step-item:hover {
+  transform: translateY(-1px);
+}
+
+/* Step content area */
+.stepper-content {
+  background-color: #faf9f6; /* Paper base */
+  border: 1px solid #e5e3df; /* Paper border */
+  border-radius: 8px;
+  padding: 16px;
+  margin-top: 24px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+.dark .stepper-content {
+  background-color: rgb(17 24 39); /* gray-900 */
+  border-color: rgb(55 65 81); /* gray-700 */
+}
+
+/* Step indicator focus styles */
+.stepper .step-indicator:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgb(59 130 246 / 0.5); /* blue-500/50 */
+}
+
+.stepper .step-indicator:focus-visible {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px rgb(59 130 246 / 0.5); /* blue-500/50 */
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  /* Mobile: prefer vertical layout for better usability */
+  .stepper.stepper-horizontal {
+    flex-direction: column;
+  }
+  
+  .stepper.stepper-horizontal .stepper-steps {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .stepper.stepper-horizontal .stepper-connector {
+    width: 2px;
+    height: 32px;
+    margin: 8px 0;
+    margin-left: 16px; /* Offset to align with step indicators */
+  }
+  
+  /* Smaller step indicators on mobile */
+  .stepper .step-indicator {
+    min-width: 32px;
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+}
+
+/* Step status specific styling */
+.stepper .step-completed {
+  color: rgb(34 197 94); /* green-500 */
+}
+
+.stepper .step-current {
+  color: rgb(59 130 246); /* blue-500 */
+  font-weight: 600;
+}
+
+.stepper .step-error {
+  color: rgb(239 68 68); /* red-500 */
+}
+
+.stepper .step-pending {
+  color: rgb(156 163 175); /* gray-400 */
+}
+
+/* Dark mode step status */
+.dark .stepper .step-completed {
+  color: rgb(34 197 94); /* green-500 */
+}
+
+.dark .stepper .step-current {
+  color: rgb(96 165 250); /* blue-400 */
+}
+
+.dark .stepper .step-error {
+  color: rgb(248 113 113); /* red-400 */
+}
+
+.dark .stepper .step-pending {
+  color: rgb(107 114 128); /* gray-500 */
+}
+
+/* Animation for step transitions */
+@keyframes stepComplete {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.stepper .step-completed .step-indicator {
+  animation: stepComplete 0.3s ease-in-out;
+}
+
+/* Paper theme specific enhancements */
+.stepper.paper-theme {
+  background-color: transparent;
+}
+
+.stepper.paper-theme .stepper-content {
+  background-color: #ffffff;
+  border: 1px solid #e5e3df;
+  box-shadow: 
+    0 1px 3px 0 rgb(0 0 0 / 0.1),
+    0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+.stepper.paper-theme .stepper-connector {
+  background-color: #e5e3df;
+}
+
+/* Accessibility improvements */
+.stepper .step-indicator[aria-current="step"] {
+  box-shadow: 0 0 0 2px rgb(59 130 246 / 0.5);
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .stepper-connector {
+    background-color: #000000;
+  }
+  
+  .dark .stepper-connector {
+    background-color: #ffffff;
+  }
+  
+  .stepper .step-pending {
+    color: #666666;
+  }
+  
+  .dark .stepper .step-pending {
+    color: #999999;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .stepper .step-item,
+  .stepper-content,
+  .stepper-connector {
+    transition: none;
+  }
+  
+  .stepper .step-completed .step-indicator {
+    animation: none;
+  }
+  
+  .stepper .step-item:hover {
+    transform: none;
+  }
+}
