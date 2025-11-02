@@ -13,7 +13,6 @@ import {
   DataDisplayShowcase,
   NavigationShowcase,
 } from "./demos/feature-showcases"
-import { PaginationScrollTest } from "./demos/PaginationScrollTest"
 import "./App.css"
 
 function App() {
@@ -85,11 +84,6 @@ function AppContent() {
         {/* Navigation */}
         <section id="navigation">
           <NavigationShowcase />
-        </section>
-
-        {/* Pagination Scroll Test */}
-        <section id="scroll-test">
-          <PaginationScrollTest />
         </section>
 
         {/* Progress & Status Components */}
