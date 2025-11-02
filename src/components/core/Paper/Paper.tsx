@@ -95,6 +95,9 @@ export const Paper = forwardRef<HTMLElement, PaperProps>(
       // Base styles
       "relative",
 
+      // Container query context for responsive typography
+      "[container-type:inline-size]",
+
       // Paper theme: always rounded-sm for consistency
       "rounded-sm",
 

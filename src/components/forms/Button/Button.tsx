@@ -22,7 +22,6 @@ const minWidthClasses = {
 }
 
 const baseClasses = [
-  "min-w-[15ch]",
   "inline-flex",
   "items-center",
   "font-medium",
@@ -155,9 +154,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
 
     // Wrap children in truncation span if truncate is enabled
     const textContent = truncate ? (
-      <span className="truncate min-w-0">{children}</span>
+      <span className="truncate min-w-0 flex-shrink">{children}</span>
     ) : (
-      children
+      <span className="whitespace-nowrap">{children}</span>
     )
 
     if (variant === "link" || variant === "plain") {

@@ -87,32 +87,32 @@ export const containerResponsiveBody = {
 export const containerResponsiveUI = {
   // Button text
   button: {
-    sm: "text-xs [container-type:inline-size] [@container(min-width:320px)]:text-sm [@container(min-width:480px)]:text-sm [@container(min-width:640px)]:text-sm",
-    md: "text-sm [container-type:inline-size] [@container(min-width:320px)]:text-base [@container(min-width:480px)]:text-base [@container(min-width:640px)]:text-base",
-    lg: "text-base [container-type:inline-size] [@container(min-width:320px)]:text-lg [@container(min-width:480px)]:text-lg [@container(min-width:640px)]:text-lg",
+    sm: "text-xs [@container(min-width:320px)]:text-sm [@container(min-width:480px)]:text-sm [@container(min-width:640px)]:text-sm",
+    md: "text-sm [@container(min-width:320px)]:text-base [@container(min-width:480px)]:text-base [@container(min-width:640px)]:text-base",
+    lg: "text-base [@container(min-width:320px)]:text-lg [@container(min-width:480px)]:text-lg [@container(min-width:640px)]:text-lg",
   },
 
   // Input text
   input: {
-    sm: "text-sm [container-type:inline-size] [@container(min-width:320px)]:text-sm [@container(min-width:480px)]:text-base [@container(min-width:640px)]:text-base",
-    md: "text-sm [container-type:inline-size] [@container(min-width:320px)]:text-base [@container(min-width:480px)]:text-base [@container(min-width:640px)]:text-lg",
-    lg: "text-base [container-type:inline-size] [@container(min-width:320px)]:text-lg [@container(min-width:480px)]:text-lg [@container(min-width:640px)]:text-xl",
+    sm: "text-sm [@container(min-width:320px)]:text-sm [@container(min-width:480px)]:text-base [@container(min-width:640px)]:text-base",
+    md: "text-sm [@container(min-width:320px)]:text-base [@container(min-width:480px)]:text-base [@container(min-width:640px)]:text-lg",
+    lg: "text-base [@container(min-width:320px)]:text-lg [@container(min-width:480px)]:text-lg [@container(min-width:640px)]:text-xl",
   },
 
   // Label text
   label:
-    "text-sm font-medium [container-type:inline-size] [@container(min-width:320px)]:text-sm [@container(min-width:480px)]:text-base [@container(min-width:640px)]:text-base",
+    "text-sm font-medium [@container(min-width:320px)]:text-sm [@container(min-width:480px)]:text-base [@container(min-width:640px)]:text-base",
 
   // Helper text
   helper:
-    "text-xs [container-type:inline-size] [@container(min-width:320px)]:text-xs [@container(min-width:480px)]:text-sm [@container(min-width:640px)]:text-sm",
+    "text-xs [@container(min-width:320px)]:text-xs [@container(min-width:480px)]:text-sm [@container(min-width:640px)]:text-sm",
 
   // Badge text
   badge:
-    "text-xs font-medium [container-type:inline-size] [@container(min-width:320px)]:text-xs [@container(min-width:480px)]:text-sm [@container(min-width:640px)]:text-sm",
+    "text-xs font-medium [@container(min-width:320px)]:text-xs [@container(min-width:480px)]:text-sm [@container(min-width:640px)]:text-sm",
 
   // Navigation text
-  nav: "text-sm font-medium [container-type:inline-size] [@container(min-width:320px)]:text-base [@container(min-width:480px)]:text-base [@container(min-width:640px)]:text-lg",
+  nav: "text-sm font-medium [@container(min-width:320px)]:text-base [@container(min-width:480px)]:text-base [@container(min-width:640px)]:text-lg",
 } as const
 
 // Utility class to make any element a container query context
