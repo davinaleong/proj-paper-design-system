@@ -1,6 +1,7 @@
+import { useState } from "react"
 import { Paper, Typography, Brand } from "../../components/core"
-import { Navbar, Sidebar, Breadcrumbs, Tabs, Pagination, Stepper } from "../../components/navigation"
-import { Home, Users, Settings, Bell, Search, FileText, Calendar, Mail, BarChart3, Zap, Shield, FolderOpen, File, Database, Globe, User, CreditCard, CheckCircle } from "lucide-react"
+import { Navbar, Sidebar, Breadcrumbs, Tabs, Pagination, Stepper, CommandPalette, Menu, TreeView } from "../../components/navigation"
+import { Home, Users, Settings, Bell, Search, FileText, Calendar, Mail, BarChart3, Zap, Shield, FolderOpen, File, Database, Globe, User, CreditCard, CheckCircle, Copy, Edit, Trash2, Plus, Download, Share, Heart, Star, Bookmark, MessageSquare, Code, Package, GitBranch, Folder, Image, Video, Music, X } from "lucide-react"
 
 export function NavigationShowcase() {
   // Sample navigation items
@@ -48,6 +49,644 @@ export function NavigationShowcase() {
       ]
     },
   ]
+
+  // Command Palette demo helper component
+  function CommandPaletteDemoCard() {
+    const [open, setOpen] = useState(false)
+
+    const sampleCommands = [
+      {
+        id: "open-settings",
+        name: "Open Settings",
+        description: "Open the settings panel",
+        shortcut: ["S"],
+        execute: () => window.alert("Settings opened"),
+      },
+      {
+        id: "go-home",
+        name: "Go to Home",
+        description: "Scroll to the overview section",
+        shortcut: ["H"],
+        execute: () => {
+          const el = document.querySelector('#overview')
+          if (el) el.scrollIntoView({ behavior: 'smooth' })
+        },
+      },
+      {
+        id: "create-item",
+        name: "Create New Item",
+        description: "Open create item dialog",
+        shortcut: ["N"],
+        execute: () => window.alert('Create item'),
+      },
+    ]
+
+    return (
+      <div className="p-4 border border-stone-200 rounded-lg flex flex-col gap-3">
+        <div>
+          <Typography variant="h4" className="mb-2">Command Palette</Typography>
+          <Typography variant="body" className="text-stone-600 text-sm">Keyboard-driven navigation (press Ctrl/Cmd+K)</Typography>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setOpen(true)}
+            className="px-3 py-2 bg-stone-100 hover:bg-stone-200 rounded text-sm"
+          >
+            Open Palette
+          </button>
+          <div className="text-xs text-stone-500">or press <Typography variant="kbd" as="span">⌘K</Typography> / <Typography variant="kbd" as="span">Ctrl+K</Typography></div>
+        </div>
+
+        {open && (
+          <CommandPalette
+            commands={sampleCommands}
+            initialOpen={true}
+            onOpenChange={(o) => setOpen(o)}
+          />
+        )}
+      </div>
+    )
+  }
+
+  // Advanced Command Palette Demo
+  function AdvancedCommandPaletteDemo() {
+    const [open, setOpen] = useState(false)
+
+    const advancedCommands = [
+      {
+        id: "quick-search",
+        name: "Quick Search",
+        description: "Search across all content and files",
+        shortcut: ["Ctrl", "F"],
+        execute: () => window.alert('Opening quick search...'),
+      },
+      {
+        id: "global-nav",
+        name: "Go to Dashboard",
+        description: "Navigate to the main dashboard",
+        shortcut: ["G", "D"],
+        execute: () => window.alert('Navigating to dashboard...'),
+      },
+      {
+        id: "user-profile",
+        name: "View Profile",
+        description: "Open your user profile settings",
+        shortcut: ["G", "P"],
+        execute: () => window.alert('Opening profile...'),
+      },
+      {
+        id: "help-center",
+        name: "Help & Support",
+        description: "Access documentation and support",
+        shortcut: ["?"],
+        execute: () => window.alert('Opening help center...'),
+      },
+      {
+        id: "feedback",
+        name: "Send Feedback",
+        description: "Report bugs or suggest features",
+        execute: () => window.alert('Opening feedback form...'),
+      },
+      {
+        id: "keyboard-shortcuts",
+        name: "Keyboard Shortcuts",
+        description: "View all available keyboard shortcuts",
+        shortcut: ["Ctrl", "?"],
+        execute: () => window.alert('Showing shortcuts...'),
+      },
+    ]
+
+    return (
+      <div className="space-y-4">
+        <div>
+          <Typography variant="body" className="text-stone-600 mb-4">
+            Extended command palette with navigation, search, and utility commands with multi-key shortcuts.
+          </Typography>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setOpen(true)}
+            className="px-3 py-2 bg-blue-100 hover:bg-blue-200 text-blue-800 rounded text-sm font-medium"
+          >
+            Open Advanced Palette
+          </button>
+          <Typography variant="caption" className="text-stone-500">
+            Try searching "profile", "help", or "nav"
+          </Typography>
+        </div>
+
+        {open && (
+          <CommandPalette
+            commands={advancedCommands}
+            placeholder="Search commands and actions..."
+            initialOpen={true}
+            onOpenChange={(o) => setOpen(o)}
+          />
+        )}
+      </div>
+    )
+  }
+
+  // Theme Command Palette Demo  
+  function ThemeCommandPaletteDemo() {
+    const [open, setOpen] = useState(false)
+    const [currentTheme, setCurrentTheme] = useState<'light' | 'dark' | 'auto'>('light')
+
+    const themeCommands = [
+      {
+        id: "theme-light",
+        name: "Switch to Light Theme",
+        description: "Use light mode for the interface",
+        shortcut: ["T", "L"],
+        execute: () => {
+          setCurrentTheme('light')
+          window.alert('Switched to light theme')
+        },
+      },
+      {
+        id: "theme-dark",
+        name: "Switch to Dark Theme", 
+        description: "Use dark mode for the interface",
+        shortcut: ["T", "D"],
+        execute: () => {
+          setCurrentTheme('dark')
+          window.alert('Switched to dark theme')
+        },
+      },
+      {
+        id: "theme-auto",
+        name: "Auto Theme",
+        description: "Follow system theme preference",
+        shortcut: ["T", "A"],
+        execute: () => {
+          setCurrentTheme('auto')
+          window.alert('Using system theme')
+        },
+      },
+      {
+        id: "settings-notifications",
+        name: "Notification Settings",
+        description: "Configure notification preferences",
+        execute: () => window.alert('Opening notification settings...'),
+      },
+      {
+        id: "settings-privacy",
+        name: "Privacy Settings",
+        description: "Manage privacy and data settings",
+        execute: () => window.alert('Opening privacy settings...'),
+      },
+      {
+        id: "settings-accessibility",
+        name: "Accessibility Settings",
+        description: "Configure accessibility options",
+        execute: () => window.alert('Opening accessibility settings...'),
+      },
+    ]
+
+    return (
+      <div className="space-y-4">
+        <div>
+          <Typography variant="body" className="text-stone-600 mb-2">
+            Theme switching and settings commands with state management.
+          </Typography>
+          <Typography variant="caption" className="text-stone-500">
+            Current theme: <span className="font-medium">{currentTheme}</span>
+          </Typography>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setOpen(true)}
+            className="px-3 py-2 bg-purple-100 hover:bg-purple-200 text-purple-800 rounded text-sm font-medium"
+          >
+            Open Theme Settings
+          </button>
+          <Typography variant="caption" className="text-stone-500">
+            Try "theme", "dark", "notifications"
+          </Typography>
+        </div>
+
+        {open && (
+          <CommandPalette
+            commands={themeCommands}
+            placeholder="Search settings and theme options..."
+            initialOpen={true}
+            onOpenChange={(o) => setOpen(o)}
+          />
+        )}
+      </div>
+    )
+  }
+
+  // Developer Command Palette Demo
+  function DeveloperCommandPaletteDemo() {
+    const [open, setOpen] = useState(false)
+
+    const devCommands = [
+      {
+        id: "console-log",
+        name: "Open Browser Console",
+        description: "Open developer tools console",
+        shortcut: ["F12"],
+        execute: () => {
+          console.log('Command palette demo - opening console')
+          window.alert('Check browser console (F12)')
+        },
+      },
+      {
+        id: "reload-page",
+        name: "Reload Page",
+        description: "Refresh the current page",
+        shortcut: ["Ctrl", "R"],
+        execute: () => window.location.reload(),
+      },
+      {
+        id: "clear-cache",
+        name: "Clear Cache",
+        description: "Clear browser cache and reload",
+        shortcut: ["Ctrl", "Shift", "R"],
+        execute: () => {
+          window.alert('Clearing cache and reloading...')
+          window.location.reload()
+        },
+      },
+      {
+        id: "inspect-element",
+        name: "Inspect Element",
+        description: "Enable element inspector",
+        execute: () => window.alert('Element inspector activated'),
+      },
+      {
+        id: "view-source",
+        name: "View Page Source",
+        description: "View HTML source code",
+        shortcut: ["Ctrl", "U"],
+        execute: () => window.alert('Opening page source...'),
+      },
+      {
+        id: "performance",
+        name: "Performance Monitor",
+        description: "Open performance analysis tools",
+        execute: () => {
+          console.log('Performance monitoring started')
+          window.alert('Performance monitor opened (check console)')
+        },
+      },
+      {
+        id: "network-tab",
+        name: "Network Analysis",
+        description: "Monitor network requests",
+        execute: () => window.alert('Opening network analysis...'),
+      },
+    ]
+
+    return (
+      <div className="space-y-4">
+        <div>
+          <Typography variant="body" className="text-stone-600 mb-4">
+            Developer-focused commands for debugging, performance monitoring, and development tasks.
+          </Typography>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setOpen(true)}
+            className="px-3 py-2 bg-green-100 hover:bg-green-200 text-green-800 rounded text-sm font-medium"
+          >
+            Open Dev Tools
+          </button>
+          <Typography variant="caption" className="text-stone-500">
+            Try "console", "reload", "performance"
+          </Typography>
+        </div>
+
+        {open && (
+          <CommandPalette
+            commands={devCommands}
+            placeholder="Search developer commands..."
+            initialOpen={true}
+            onOpenChange={(o) => setOpen(o)}
+          />
+        )}
+      </div>
+    )
+  }
+
+  // File Navigation Command Demo
+  function FileNavigationCommandDemo() {
+    const [open, setOpen] = useState(false)
+
+    const fileCommands = [
+      {
+        id: "recent-files",
+        name: "Recent Files",
+        description: "View recently opened files",
+        shortcut: ["Ctrl", "Shift", "T"],
+        execute: () => window.alert('Showing recent files...'),
+      },
+      {
+        id: "file-search",
+        name: "Search Files",
+        description: "Search across all project files",
+        shortcut: ["Ctrl", "P"],
+        execute: () => window.alert('Opening file search...'),
+      },
+      {
+        id: "goto-line",
+        name: "Go to Line",
+        description: "Jump to specific line number",
+        shortcut: ["Ctrl", "G"],
+        execute: () => window.alert('Go to line dialog opened'),
+      },
+      {
+        id: "file-tree",
+        name: "Toggle File Explorer",
+        description: "Show/hide file explorer sidebar",
+        shortcut: ["Ctrl", "B"],
+        execute: () => window.alert('Toggling file explorer...'),
+      },
+      {
+        id: "new-file",
+        name: "New File",
+        description: "Create a new file",
+        shortcut: ["Ctrl", "N"],
+        execute: () => window.alert('Creating new file...'),
+      },
+      {
+        id: "save-file",
+        name: "Save File",
+        description: "Save current file",
+        shortcut: ["Ctrl", "S"],
+        execute: () => window.alert('File saved!'),
+      },
+      {
+        id: "save-all",
+        name: "Save All Files",
+        description: "Save all open files",
+        shortcut: ["Ctrl", "Shift", "S"],
+        execute: () => window.alert('All files saved!'),
+      },
+      {
+        id: "close-tab",
+        name: "Close Tab",
+        description: "Close current file tab",
+        shortcut: ["Ctrl", "W"],
+        execute: () => window.alert('Tab closed'),
+      },
+    ]
+
+    return (
+      <div className="space-y-4">
+        <div>
+          <Typography variant="body" className="text-stone-600 mb-4">
+            File management and navigation commands commonly found in code editors and file managers.
+          </Typography>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setOpen(true)}
+            className="px-3 py-2 bg-orange-100 hover:bg-orange-200 text-orange-800 rounded text-sm font-medium"
+          >
+            Open File Commands
+          </button>
+          <Typography variant="caption" className="text-stone-500">
+            Try "file", "save", "search", "new"
+          </Typography>
+        </div>
+
+        {open && (
+          <CommandPalette
+            commands={fileCommands}
+            placeholder="Search file commands..."
+            initialOpen={true}
+            onOpenChange={(o) => setOpen(o)}
+          />
+        )}
+      </div>
+    )
+  }
+
+  // TreeView demo helper component
+  function TreeViewDemo({ showLines = true, showIcons = true }: { showLines?: boolean, showIcons?: boolean }) {
+    const [selectedId, setSelectedId] = useState<string>()
+
+    const treeData = [
+      {
+        id: "root",
+        label: "Project Root",
+        icon: Folder,
+        children: [
+          {
+            id: "src",
+            label: "src",
+            icon: Folder,
+            children: [
+              {
+                id: "components",
+                label: "components",
+                icon: Folder,
+                children: [
+                  { id: "button.tsx", label: "Button.tsx", icon: Code },
+                  { id: "input.tsx", label: "Input.tsx", icon: Code },
+                  { id: "modal.tsx", label: "Modal.tsx", icon: Code },
+                ]
+              },
+              {
+                id: "utils",
+                label: "utils",
+                icon: Folder,
+                children: [
+                  { id: "helpers.ts", label: "helpers.ts", icon: Code },
+                  { id: "api.ts", label: "api.ts", icon: Code },
+                ]
+              },
+              { id: "main.tsx", label: "main.tsx", icon: Code },
+              { id: "app.tsx", label: "App.tsx", icon: Code },
+            ]
+          },
+          {
+            id: "public",
+            label: "public",
+            icon: Folder,
+            children: [
+              { id: "index.html", label: "index.html", icon: FileText },
+              { id: "favicon.ico", label: "favicon.ico", icon: Image },
+              {
+                id: "assets",
+                label: "assets",
+                icon: Folder,
+                children: [
+                  { id: "logo.png", label: "logo.png", icon: Image },
+                  { id: "banner.jpg", label: "banner.jpg", icon: Image },
+                  { id: "video.mp4", label: "video.mp4", icon: Video },
+                  { id: "audio.mp3", label: "audio.mp3", icon: Music },
+                ]
+              }
+            ]
+          },
+          { id: "package.json", label: "package.json", icon: Package, badge: "main" },
+          { id: "README.md", label: "README.md", icon: FileText },
+          { id: ".gitignore", label: ".gitignore", icon: GitBranch },
+        ]
+      },
+      {
+        id: "node_modules",
+        label: "node_modules",
+        icon: Package,
+        badge: "1.2k",
+        disabled: true,
+        children: []
+      }
+    ]
+
+    return (
+      <TreeView
+        data={treeData}
+        defaultExpanded={["root", "src", "components", "public"]}
+        selectedId={selectedId}
+        onSelect={(node) => {
+          setSelectedId(node.id)
+          if (!node.children?.length) {
+            alert(`Selected: ${node.label}`)
+          }
+        }}
+        showLines={showLines}
+        showIcons={showIcons}
+      />
+    )
+  }
+
+  // Contained FAB Demo Component
+  function FABDemoContained({ actions }: { actions: Array<{ id: string, label: string, icon: React.ElementType, onClick: () => void, badge?: string }> }) {
+    const [isExpanded, setIsExpanded] = useState(false)
+
+    return (
+      <div className="flex flex-col gap-2">
+        {/* Secondary actions */}
+        {isExpanded && (
+          <div className="flex flex-col gap-2">
+            {actions.map((action) => {
+              const ActionIcon = action.icon
+              return (
+                <button
+                  key={action.id}
+                  onClick={() => {
+                    action.onClick()
+                    setIsExpanded(false)
+                  }}
+                  className="relative w-12 h-12 bg-white border border-stone-200 rounded-full flex items-center justify-center shadow-lg hover:bg-stone-50 hover:shadow-xl transition-all"
+                  title={action.label}
+                >
+                  <ActionIcon className="w-5 h-5 text-stone-700" />
+                  {action.badge && (
+                    <span className="absolute -top-1 -right-1 w-5 h-5 bg-blue-600 text-white text-xs rounded-full flex items-center justify-center">
+                      {action.badge}
+                    </span>
+                  )}
+                </button>
+              )
+            })}
+          </div>
+        )}
+
+        {/* Main FAB */}
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="w-14 h-14 bg-blue-600 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 hover:shadow-xl transition-all"
+          title="Quick Actions"
+        >
+          {isExpanded ? (
+            <X className="w-6 h-6" />
+          ) : (
+            <Plus className="w-6 h-6" />
+          )}
+        </button>
+      </div>
+    )
+  }
+
+  // Contained Toolbar Demo Component
+  function ToolbarDemoContained() {
+    const toolbarActions = [
+      { id: "copy", label: "Copy", icon: Copy, onClick: () => alert("Copy") },
+      { id: "edit", label: "Edit", icon: Edit, onClick: () => alert("Edit") },
+      { id: "share", label: "Share", icon: Share, onClick: () => alert("Share") },
+      { id: "download", label: "Download", icon: Download, onClick: () => alert("Download") },
+      { id: "trash", label: "Delete", icon: Trash2, onClick: () => alert("Delete") },
+    ]
+
+    return (
+      <div className="flex items-center gap-2 p-2 bg-white border border-stone-200 rounded-lg shadow-lg">
+        {toolbarActions.map((action) => {
+          const ActionIcon = action.icon
+          return (
+            <button
+              key={action.id}
+              onClick={action.onClick}
+              className="p-2 rounded-sm hover:bg-stone-100 transition-colors"
+              title={action.label}
+            >
+              <ActionIcon className="w-5 h-5 text-stone-700" />
+            </button>
+          )
+        })}
+      </div>
+    )
+  }
+
+  // Contained Menu Variant Demo Component
+  function MenuVariantDemoContained() {
+    const [isExpanded, setIsExpanded] = useState(false)
+    const menuActions = [
+      { id: "comment", label: "Add Comment", icon: MessageSquare, onClick: () => alert("Comment") },
+      { id: "bookmark", label: "Bookmark", icon: Bookmark, onClick: () => alert("Bookmark"), badge: "new" },
+      { id: "share", label: "Share", icon: Share, onClick: () => alert("Share") },
+      { id: "download", label: "Download", icon: Download, onClick: () => alert("Download") },
+      { id: "edit", label: "Edit", icon: Edit, onClick: () => alert("Edit") },
+    ]
+
+    return (
+      <div className="relative">
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 transition-colors"
+        >
+          {isExpanded ? <X className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
+        </button>
+
+        {isExpanded && (
+          <div className="absolute bottom-16 right-0 w-48 p-2 bg-white border border-stone-200 rounded-lg shadow-lg">
+            {menuActions.map((action) => {
+              const ActionIcon = action.icon
+              return (
+                <button
+                  key={action.id}
+                  onClick={() => {
+                    action.onClick()
+                    setIsExpanded(false)
+                  }}
+                  className="w-full flex items-center gap-3 p-2 rounded-sm text-left hover:bg-stone-100 transition-colors"
+                >
+                  <ActionIcon className="w-4 h-4 text-stone-700" />
+                  <Typography variant="body" className="text-sm text-stone-900">
+                    {action.label}
+                  </Typography>
+                  {action.badge && (
+                    <span className="ml-auto px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">
+                      {action.badge}
+                    </span>
+                  )}
+                </button>
+              )
+            })}
+          </div>
+        )}
+      </div>
+    )
+  }
 
   return (
     <>
@@ -1124,31 +1763,384 @@ export function NavigationShowcase() {
             </Typography>
           </div>
 
-          {/* Future Navigation Components */}
+          {/* Command Palette Section */}
           <div className="space-y-6">
             <Typography variant="h3" className="mb-4">
-              Coming Soon
+              Command Palette
             </Typography>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div className="p-4 border border-stone-200 rounded-lg">
-                <Typography variant="h4" className="mb-2">
-                  Command Palette
-                </Typography>
-                <Typography variant="body" className="text-stone-600 text-sm">
-                  Keyboard-driven navigation
-                </Typography>
-              </div>
+            <Typography variant="body" className="text-stone-600 mb-6">
+              Keyboard-driven command interface for quick navigation and actions. Press Ctrl/Cmd+K to open the global command palette.
+            </Typography>
 
-              <div className="p-4 border border-stone-200 rounded-lg">
-                <Typography variant="h4" className="mb-2">
-                  Menu
-                </Typography>
-                <Typography variant="body" className="text-stone-600 text-sm">
-                  Contextual menu system
-                </Typography>
+            {/* Basic Command Palette */}
+            <div className="space-y-4">
+              <Typography variant="h4" className="mb-3">
+                Basic Command Palette
+              </Typography>
+              
+              <div className="border border-stone-200 rounded-lg p-6 bg-white">
+                <div className="mb-4">
+                  <Typography variant="body" className="text-stone-600 mb-4">
+                    A simple command palette with basic navigation and action commands.
+                  </Typography>
+                </div>
+
+                <CommandPaletteDemoCard />
               </div>
             </div>
+
+            {/* Advanced Commands Demo */}
+            <div className="space-y-4">
+              <Typography variant="h4" className="mb-3">
+                Advanced Commands
+              </Typography>
+              
+              <div className="border border-stone-200 rounded-lg p-6 bg-white">
+                <AdvancedCommandPaletteDemo />
+              </div>
+            </div>
+
+            {/* Theme Switching Demo */}
+            <div className="space-y-4">
+              <Typography variant="h4" className="mb-3">
+                Theme & Settings Commands
+              </Typography>
+              
+              <div className="border border-stone-200 rounded-lg p-6 bg-white">
+                <ThemeCommandPaletteDemo />
+              </div>
+            </div>
+
+            {/* Developer Commands Demo */}
+            <div className="space-y-4">
+              <Typography variant="h4" className="mb-3">
+                Developer Commands
+              </Typography>
+              
+              <div className="border border-stone-200 rounded-lg p-6 bg-white">
+                <DeveloperCommandPaletteDemo />
+              </div>
+            </div>
+
+            {/* File Navigation Demo */}
+            <div className="space-y-4">
+              <Typography variant="h4" className="mb-3">
+                File & Navigation Commands
+              </Typography>
+              
+              <div className="border border-stone-200 rounded-lg p-6 bg-white">
+                <FileNavigationCommandDemo />
+              </div>
+            </div>
+
+            <Typography variant="caption" color="muted" className="mt-4">
+              Command palette supports keyboard navigation (↑↓ arrows, Enter), search filtering, 
+              keyboard shortcuts, command descriptions, and custom execution handlers.
+            </Typography>
+          </div>
+
+          {/* Menu Component */}
+          <div className="space-y-6">
+            <Typography variant="h3" className="mb-4">
+              Menu
+            </Typography>
+
+            <Typography variant="body" className="text-stone-600 mb-6">
+              Contextual menu system with support for nested items, shortcuts, and separators.
+            </Typography>
+
+            {/* Basic Menu */}
+            <div className="space-y-4">
+              <Typography variant="h4" className="mb-3">
+                Basic Context Menu
+              </Typography>
+              
+              <div className="border border-stone-200 rounded-lg p-6 bg-white">
+                <div className="flex flex-wrap gap-4">
+                  <Menu
+                    trigger={
+                      <button className="px-4 py-2 bg-blue-600 text-white rounded-sm hover:bg-blue-700">
+                        File Menu
+                      </button>
+                    }
+                    items={[
+                      { id: "new", label: "New File", icon: FileText, shortcut: ["Ctrl", "N"], onClick: () => alert("New file") },
+                      { id: "open", label: "Open", icon: FolderOpen, shortcut: ["Ctrl", "O"], onClick: () => alert("Open file") },
+                      { id: "sep1", label: "", separator: true },
+                      { id: "save", label: "Save", icon: Download, shortcut: ["Ctrl", "S"], onClick: () => alert("Save file") },
+                      { id: "save-as", label: "Save As...", onClick: () => alert("Save as") },
+                      { id: "sep2", label: "", separator: true },
+                      { id: "exit", label: "Exit", disabled: true, onClick: () => alert("Exit") },
+                    ]}
+                  />
+
+                  <Menu
+                    trigger={
+                      <button className="px-4 py-2 bg-green-600 text-white rounded-sm hover:bg-green-700">
+                        Edit Menu
+                      </button>
+                    }
+                    items={[
+                      { id: "copy", label: "Copy", icon: Copy, shortcut: ["Ctrl", "C"], onClick: () => alert("Copy") },
+                      { id: "cut", label: "Cut", icon: Edit, shortcut: ["Ctrl", "X"], onClick: () => alert("Cut") },
+                      { id: "paste", label: "Paste", icon: Plus, shortcut: ["Ctrl", "V"], onClick: () => alert("Paste") },
+                      { id: "sep1", label: "", separator: true },
+                      { id: "delete", label: "Delete", icon: Trash2, onClick: () => alert("Delete") },
+                    ]}
+                    align="center"
+                  />
+
+                  <Menu
+                    trigger={
+                      <button className="px-4 py-2 bg-purple-600 text-white rounded-sm hover:bg-purple-700">
+                        Share Menu
+                      </button>
+                    }
+                    items={[
+                      { id: "share-link", label: "Copy Link", icon: Share, onClick: () => alert("Copy link") },
+                      { id: "share-email", label: "Share via Email", icon: Mail, onClick: () => alert("Share email") },
+                      { id: "sep1", label: "", separator: true },
+                      { id: "bookmark", label: "Add Bookmark", icon: Bookmark, onClick: () => alert("Bookmark") },
+                      { id: "favorite", label: "Add to Favorites", icon: Heart, onClick: () => alert("Favorite") },
+                    ]}
+                    align="end"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Nested Menu */}
+            <div className="space-y-4">
+              <Typography variant="h4" className="mb-3">
+                Nested Menu
+              </Typography>
+              
+              <div className="border border-stone-200 rounded-lg p-6 bg-white">
+                <Menu
+                  trigger={
+                    <button className="px-4 py-2 bg-stone-600 text-white rounded-sm hover:bg-stone-700">
+                      Advanced Menu
+                    </button>
+                  }
+                  items={[
+                    { id: "new", label: "New", icon: Plus, 
+                      children: [
+                        { id: "file", label: "File", icon: FileText, onClick: () => alert("New file") },
+                        { id: "folder", label: "Folder", icon: Folder, onClick: () => alert("New folder") },
+                        { id: "project", label: "Project", icon: Package, onClick: () => alert("New project") },
+                      ]
+                    },
+                    { id: "open", label: "Open Recent", icon: FolderOpen,
+                      children: [
+                        { id: "project1", label: "My Project", onClick: () => alert("Open project 1") },
+                        { id: "project2", label: "Design System", onClick: () => alert("Open project 2") },
+                        { id: "project3", label: "Portfolio Site", onClick: () => alert("Open project 3") },
+                      ]
+                    },
+                    { id: "sep1", label: "", separator: true },
+                    { id: "preferences", label: "Preferences", icon: Settings,
+                      children: [
+                        { id: "theme", label: "Theme", onClick: () => alert("Theme settings") },
+                        { id: "shortcuts", label: "Keyboard Shortcuts", onClick: () => alert("Shortcuts") },
+                        { id: "extensions", label: "Extensions", onClick: () => alert("Extensions") },
+                      ]
+                    },
+                  ]}
+                />
+              </div>
+            </div>
+
+            {/* Menu Positioning */}
+            <div className="space-y-4">
+              <Typography variant="h4" className="mb-3">
+                Menu Positioning
+              </Typography>
+              
+              <div className="border border-stone-200 rounded-lg p-8 bg-white">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                  <Menu
+                    trigger={<button className="px-3 py-2 bg-blue-100 text-blue-800 rounded">Top</button>}
+                    side="top"
+                    items={[
+                      { id: "item1", label: "Item 1", onClick: () => alert("Item 1") },
+                      { id: "item2", label: "Item 2", onClick: () => alert("Item 2") },
+                    ]}
+                  />
+                  
+                  <Menu
+                    trigger={<button className="px-3 py-2 bg-green-100 text-green-800 rounded">Right</button>}
+                    side="right"
+                    items={[
+                      { id: "item1", label: "Item 1", onClick: () => alert("Item 1") },
+                      { id: "item2", label: "Item 2", onClick: () => alert("Item 2") },
+                    ]}
+                  />
+                  
+                  <Menu
+                    trigger={<button className="px-3 py-2 bg-yellow-100 text-yellow-800 rounded">Bottom</button>}
+                    side="bottom"
+                    items={[
+                      { id: "item1", label: "Item 1", onClick: () => alert("Item 1") },
+                      { id: "item2", label: "Item 2", onClick: () => alert("Item 2") },
+                    ]}
+                  />
+                  
+                  <Menu
+                    trigger={<button className="px-3 py-2 bg-red-100 text-red-800 rounded">Left</button>}
+                    side="left"
+                    items={[
+                      { id: "item1", label: "Item 1", onClick: () => alert("Item 1") },
+                      { id: "item2", label: "Item 2", onClick: () => alert("Item 2") },
+                    ]}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <Typography variant="caption" color="muted" className="mt-4">
+              Menu supports nested items, keyboard shortcuts, separators, disabled states, and flexible positioning.
+            </Typography>
+          </div>
+
+          {/* TreeView Component */}
+          <div className="space-y-6">
+            <Typography variant="h3" className="mb-4">
+              Tree View
+            </Typography>
+
+            <Typography variant="body" className="text-stone-600 mb-6">
+              Hierarchical data navigation with expandable nodes, icons, and badges.
+            </Typography>
+
+            {/* Basic TreeView */}
+            <div className="space-y-4">
+              <Typography variant="h4" className="mb-3">
+                File System Tree
+              </Typography>
+              
+              <div className="border border-stone-200 rounded-lg p-6 bg-white">
+                <TreeViewDemo />
+              </div>
+            </div>
+
+            {/* TreeView without lines */}
+            <div className="space-y-4">
+              <Typography variant="h4" className="mb-3">
+                Clean Tree (No Connection Lines)
+              </Typography>
+              
+              <div className="border border-stone-200 rounded-lg p-6 bg-white">
+                <TreeViewDemo showLines={false} />
+              </div>
+            </div>
+
+            {/* TreeView without icons */}
+            <div className="space-y-4">
+              <Typography variant="h4" className="mb-3">
+                Text-Only Tree
+              </Typography>
+              
+              <div className="border border-stone-200 rounded-lg p-6 bg-white">
+                <TreeViewDemo showIcons={false} />
+              </div>
+            </div>
+
+            <Typography variant="caption" color="muted" className="mt-4">
+              TreeView supports nested hierarchies, custom icons, badges, connection lines, and selection states.
+            </Typography>
+          </div>
+
+          {/* QuickActions Component */}
+          <div className="space-y-6">
+            <Typography variant="h3" className="mb-4">
+              Quick Actions
+            </Typography>
+
+            <Typography variant="body" className="text-stone-600 mb-6">
+              Floating action buttons and toolbars for quick access to common actions.
+            </Typography>
+
+            {/* FAB Demo */}
+            <div className="space-y-4">
+              <Typography variant="h4" className="mb-3">
+                Floating Action Button (FAB)
+              </Typography>
+              
+              <div className="border border-stone-200 rounded-lg p-6 bg-white">
+                <Typography variant="body" className="text-stone-600 mb-4">
+                  FAB examples with expandable secondary actions and badges:
+                </Typography>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* FAB Demo 1 */}
+                  <div className="border border-stone-200 rounded-lg p-4 bg-stone-50 min-h-[200px] relative">
+                    <Typography variant="bodySmall" color="muted" className="mb-2">
+                      FAB with Secondary Actions
+                    </Typography>
+                    <div className="absolute bottom-4 right-4">
+                      <FABDemoContained actions={[
+                        { id: "edit", label: "Edit", icon: Edit, onClick: () => alert("Edit") },
+                        { id: "share", label: "Share", icon: Share, onClick: () => alert("Share") },
+                        { id: "bookmark", label: "Bookmark", icon: Bookmark, onClick: () => alert("Bookmark") },
+                      ]} />
+                    </div>
+                  </div>
+
+                  {/* FAB Demo 2 */}
+                  <div className="border border-stone-200 rounded-lg p-4 bg-stone-50 min-h-[200px] relative">
+                    <Typography variant="bodySmall" color="muted" className="mb-2">
+                      FAB with Badge Notifications
+                    </Typography>
+                    <div className="absolute bottom-4 right-4">
+                      <FABDemoContained actions={[
+                        { id: "like", label: "Like", icon: Heart, onClick: () => alert("Liked!"), badge: "3" },
+                        { id: "star", label: "Star", icon: Star, onClick: () => alert("Starred!") },
+                        { id: "comment", label: "Comment", icon: MessageSquare, onClick: () => alert("Comment"), badge: "new" },
+                      ]} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Toolbar Demo */}
+            <div className="space-y-4">
+              <Typography variant="h4" className="mb-3">
+                Action Toolbar
+              </Typography>
+              
+              <div className="border border-stone-200 rounded-lg p-6 bg-white">
+                <Typography variant="body" className="text-stone-600 mb-4">
+                  Toolbar variant for horizontal action layouts:
+                </Typography>
+                
+                <div className="flex justify-center">
+                  <ToolbarDemoContained />
+                </div>
+              </div>
+            </div>
+
+            {/* Menu Variant Demo */}
+            <div className="space-y-4">
+              <Typography variant="h4" className="mb-3">
+                Action Menu
+              </Typography>
+              
+              <div className="border border-stone-200 rounded-lg p-6 bg-stone-50 min-h-48 relative">
+                <Typography variant="body" className="text-stone-600 mb-4">
+                  Menu variant with expandable action list:
+                </Typography>
+                
+                <div className="absolute bottom-4 right-4">
+                  <MenuVariantDemoContained />
+                </div>
+              </div>
+            </div>
+
+            <Typography variant="caption" color="muted" className="mt-4">
+              QuickActions supports FAB, toolbar, and menu variants with flexible positioning and badge support.
+            </Typography>
           </div>
         </Paper>
       </section>
