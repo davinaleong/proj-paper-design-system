@@ -90,7 +90,7 @@ function ActivityItemComponent({
       onClick={item.onClick}
     >
       {/* Icon or Avatar */}
-      <div className="flex-shrink-0 flex items-start pt-1">
+      <div className="flex-shrink-0">
         {item.avatar ? (
           <div className={cn("rounded-full overflow-hidden", styles.avatar)}>
             {item.avatar}
@@ -106,54 +106,47 @@ function ActivityItemComponent({
 
       {/* Content */}
       <div className="flex-1 min-w-0">
-        <div className="flex items-start justify-between gap-2">
-          <div className="flex-1 min-w-0">
-            <Typography
-              variant="body"
-              className={cn("font-medium text-gray-900", styles.title)}
-            >
-              {item.title}
-            </Typography>
-            {item.description && (
-              <Typography
-                variant="bodySmall"
-                className={cn("text-gray-600 mt-0.5", styles.description)}
-              >
-                {item.description}
-              </Typography>
-            )}
-            {item.metadata && <div className="mt-2">{item.metadata}</div>}
-          </div>
-          
-          {/* Timestamp and Action */}
-          <div className="flex-shrink-0 flex flex-col items-end gap-2 text-right">
-            <Typography
-              variant="bodySmall"
-              className={cn(
-                "text-gray-600 text-right",
-                styles.timestamp
-              )}
-            >
-              {showRelativeTime
-                ? formatRelativeTime(item.timestamp)
-                : new Date(item.timestamp).toLocaleString()}
-            </Typography>
-
-            {item.action && (
-              <div
-                onClick={(e) => e.stopPropagation()}
-                className="flex-shrink-0"
-              >
-                {item.action}
-              </div>
-            )}
-          </div>
-        </div>
+        <Typography
+          variant="body"
+          className={cn("font-medium text-gray-900", styles.title)}
+        >
+          {item.title}
+        </Typography>
+        {item.description && (
+          <Typography
+            variant="bodySmall"
+            className={cn("text-gray-600 mt-0.5", styles.description)}
+          >
+            {item.description}
+          </Typography>
+        )}
+        {item.metadata && <div className="mt-2">{item.metadata}</div>}
       </div>
+      
+      {/* Timestamp */}
+      <div className="flex-shrink-0 text-right">
+        <Typography
+          variant="bodySmall"
+          className={cn("text-gray-600", styles.timestamp)}
+        >
+          {showRelativeTime
+            ? formatRelativeTime(item.timestamp)
+            : new Date(item.timestamp).toLocaleString()}
+        </Typography>
+      </div>
+
+      {/* Action */}
+      {item.action && (
+        <div
+          onClick={(e) => e.stopPropagation()}
+          className="flex-shrink-0"
+        >
+          {item.action}
+        </div>
+      )}
     </div>
   )
 }
-
 
 export function ActivityFeed({
   items,
