@@ -74,10 +74,7 @@ function ActivityItemComponent({
   return (
     <div
       className={cn(
-        // Use grid for stable alignment
-        "grid items-start border-l-2 border-transparent hover:border-gray-200 hover:bg-gray-50",
-        // Grid template: Icon | Content | Timestamp+Action
-        "grid-cols-[auto_1fr_auto] gap-3",
+        "flex gap-3 border-l-2 border-transparent hover:border-gray-200 hover:bg-gray-50",
         styles.item,
         item.onClick && "cursor-pointer",
         variantClass && `border-l-${item.variant === "success"
@@ -92,8 +89,8 @@ function ActivityItemComponent({
       )}
       onClick={item.onClick}
     >
-      {/* Icon */}
-      <div className="flex items-center justify-center w-8 h-8">
+      {/* Icon or Avatar */}
+      <div className="flex-shrink-0 flex items-start pt-1">
         {item.avatar ? (
           <div className={cn("rounded-full overflow-hidden", styles.avatar)}>
             {item.avatar}
@@ -107,47 +104,51 @@ function ActivityItemComponent({
         )}
       </div>
 
-      {/* Title + Description */}
-      <div className="min-w-0">
-        <Typography
-          variant="body"
-          className={cn("font-medium text-gray-900", styles.title)}
-        >
-          {item.title}
-        </Typography>
-        {item.description && (
-          <Typography
-            variant="bodySmall"
-            className={cn("text-gray-600 mt-0.5", styles.description)}
-          >
-            {item.description}
-          </Typography>
-        )}
-        {item.metadata && <div className="mt-2">{item.metadata}</div>}
-      </div>
-
-      {/* Timestamp and Action */}
-      <div className="flex flex-col items-end gap-2 text-right min-w-0">
-        <Typography
-          variant="bodySmall"
-          className={cn(
-            "text-gray-600 text-right",
-            styles.timestamp
-          )}
-        >
-          {showRelativeTime
-            ? formatRelativeTime(item.timestamp)
-            : new Date(item.timestamp).toLocaleString()}
-        </Typography>
-
-        {item.action && (
-          <div
-            onClick={(e) => e.stopPropagation()}
-            className="flex-shrink-0"
-          >
-            {item.action}
+      {/* Content */}
+      <div className="flex-1 min-w-0">
+        <div className="flex items-start justify-between gap-2">
+          <div className="flex-1 min-w-0">
+            <Typography
+              variant="body"
+              className={cn("font-medium text-gray-900", styles.title)}
+            >
+              {item.title}
+            </Typography>
+            {item.description && (
+              <Typography
+                variant="bodySmall"
+                className={cn("text-gray-600 mt-0.5", styles.description)}
+              >
+                {item.description}
+              </Typography>
+            )}
+            {item.metadata && <div className="mt-2">{item.metadata}</div>}
           </div>
-        )}
+          
+          {/* Timestamp and Action */}
+          <div className="flex-shrink-0 flex flex-col items-end gap-2 text-right">
+            <Typography
+              variant="bodySmall"
+              className={cn(
+                "text-gray-600 text-right",
+                styles.timestamp
+              )}
+            >
+              {showRelativeTime
+                ? formatRelativeTime(item.timestamp)
+                : new Date(item.timestamp).toLocaleString()}
+            </Typography>
+
+            {item.action && (
+              <div
+                onClick={(e) => e.stopPropagation()}
+                className="flex-shrink-0"
+              >
+                {item.action}
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   )
