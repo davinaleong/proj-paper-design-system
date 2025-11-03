@@ -7,6 +7,7 @@ import {
   LayoutShowcase,
   UIPrimitivesShowcase,
   ProgressAndStatusShowcase,
+  ProseShowcase,
 } from "./demos/component-showcases"
 import {
   FormControlsShowcase,
@@ -37,6 +38,7 @@ function AppContent() {
       label: "Progress & Status",
       href: "#progress-and-status",
     },
+    { id: "prose", label: "Prose Styles", href: "#prose" },
   ]
 
   return (
@@ -116,6 +118,11 @@ function AppContent() {
         {/* Progress & Status Components */}
         <section id="progress-and-status">
           <ProgressAndStatusShowcase />
+        </section>
+
+        {/* Prose Styles */}
+        <section id="prose">
+          <ProseShowcase />
         </section>
       </main>
     </div>
