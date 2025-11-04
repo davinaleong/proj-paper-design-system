@@ -8,6 +8,7 @@ import {
   UIPrimitivesShowcase,
   ProgressAndStatusShowcase,
   ProseShowcase,
+  AlertShowcase,
 } from "./demos/component-showcases"
 import {
   FormControlsShowcase,
@@ -38,6 +39,7 @@ function AppContent() {
       label: "Progress & Status",
       href: "#progress-and-status",
     },
+    { id: "alerts", label: "Alerts", href: "#alerts" },
     { id: "prose", label: "Prose Styles", href: "#prose" },
   ]
 
@@ -118,6 +120,11 @@ function AppContent() {
         {/* Progress & Status Components */}
         <section id="progress-and-status">
           <ProgressAndStatusShowcase />
+        </section>
+
+        {/* Alerts */}
+        <section id="alerts">
+          <AlertShowcase />
         </section>
 
         {/* Prose Styles */}
