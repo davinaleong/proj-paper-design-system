@@ -1,6 +1,7 @@
 import { ThemeProvider, Typography, Paper } from "./components/core"
 import { AppHeader } from "./components/AppHeader"
-import { FloatingNavbar } from "./components/navigation"
+import { Sidebar } from "./components/navigation"
+import { Home, FileText, BarChart3, Navigation, TrendingUp } from "lucide-react"
 import {
   CoreComponentsShowcase,
   TypographyShowcase,
@@ -42,50 +43,93 @@ function App() {
 }
 
 function AppContent() {
-  const floatingNavItems = [
-    { id: "overview", label: "Overview", href: "#overview" },
-    { id: "typography", label: "Typography", href: "#typography" },
-    { id: "layout", label: "Layout", href: "#layout" },
-    { id: "ui-primitives", label: "UI Primitives", href: "#ui-primitives" },
-    { id: "form-controls", label: "Form Controls", href: "#form-controls" },
-    { id: "data-display", label: "Data Display", href: "#data-display" },
-    { id: "navbar", label: "Navbar", href: "#navbar" },
-    { id: "floating-navbar", label: "Floating Navbar", href: "#floating-navbar" },
-    { id: "sidebar", label: "Sidebar", href: "#sidebar" },
-    { id: "breadcrumbs", label: "Breadcrumbs", href: "#breadcrumbs" },
-    { id: "tabs", label: "Tabs", href: "#tabs" },
-    { id: "pagination", label: "Pagination", href: "#pagination" },
-    { id: "stepper", label: "Stepper", href: "#stepper" },
-    { id: "command-palette", label: "Command Palette", href: "#command-palette" },
-    { id: "menu", label: "Menu", href: "#menu" },
-    { id: "tree-view", label: "Tree View", href: "#tree-view" },
-    { id: "quick-actions", label: "Quick Actions", href: "#quick-actions" },
-    { id: "alerts", label: "Alerts", href: "#alerts" },
-    { id: "progress-circle", label: "Progress Circle", href: "#progress-circle" },
-    { id: "progress-bar", label: "Progress Bar", href: "#progress-bar" },
-    { id: "empty-state", label: "Empty State", href: "#empty-state" },
-    { id: "statistic", label: "Statistics", href: "#statistic" },
-    { id: "kpi", label: "KPI", href: "#kpi" },
-    { id: "timeline", label: "Timeline", href: "#timeline" },
-    { id: "additional-progress", label: "Additional Progress", href: "#additional-progress" },
-    { id: "prose", label: "Prose Styles", href: "#prose" },
+  const sidebarItems = [
+    // Core Components Group
+    { 
+      id: "core", 
+      label: "Core Components", 
+      icon: Home,
+      children: [
+        { id: "overview", label: "Overview", href: "#overview" },
+        { id: "typography", label: "Typography", href: "#typography" },
+        { id: "layout", label: "Layout", href: "#layout" },
+        { id: "ui-primitives", label: "UI Primitives", href: "#ui-primitives" },
+        { id: "prose", label: "Prose Styles", href: "#prose" },
+      ]
+    },
+    // Form Controls Group
+    { 
+      id: "forms", 
+      label: "Form Controls", 
+      icon: FileText,
+      children: [
+        { id: "form-controls", label: "Form Controls", href: "#form-controls" },
+      ]
+    },
+    // Data Display Group
+    { 
+      id: "data", 
+      label: "Data Display", 
+      icon: BarChart3,
+      children: [
+        { id: "data-display", label: "Data Display", href: "#data-display" },
+        { id: "statistic", label: "Statistics", href: "#statistic" },
+        { id: "kpi", label: "KPI", href: "#kpi" },
+        { id: "timeline", label: "Timeline", href: "#timeline" },
+        { id: "empty-state", label: "Empty State", href: "#empty-state" },
+      ]
+    },
+    // Navigation Group
+    { 
+      id: "navigation", 
+      label: "Navigation", 
+      icon: Navigation,
+      children: [
+        { id: "navbar", label: "Navbar", href: "#navbar" },
+        { id: "floating-navbar", label: "Floating Navbar", href: "#floating-navbar" },
+        { id: "sidebar", label: "Sidebar", href: "#sidebar" },
+        { id: "breadcrumbs", label: "Breadcrumbs", href: "#breadcrumbs" },
+        { id: "tabs", label: "Tabs", href: "#tabs" },
+        { id: "pagination", label: "Pagination", href: "#pagination" },
+        { id: "stepper", label: "Stepper", href: "#stepper" },
+        { id: "command-palette", label: "Command Palette", href: "#command-palette" },
+        { id: "menu", label: "Menu", href: "#menu" },
+        { id: "tree-view", label: "Tree View", href: "#tree-view" },
+        { id: "quick-actions", label: "Quick Actions", href: "#quick-actions" },
+      ]
+    },
+    // Progress & Status Group
+    { 
+      id: "progress", 
+      label: "Progress & Status", 
+      icon: TrendingUp,
+      children: [
+        { id: "progress-circle", label: "Progress Circle", href: "#progress-circle" },
+        { id: "progress-bar", label: "Progress Bar", href: "#progress-bar" },
+        { id: "additional-progress", label: "Additional Progress", href: "#additional-progress" },
+        { id: "alerts", label: "Alerts", href: "#alerts" },
+      ]
+    },
   ]
 
   return (
-    <div className="min-h-screen bg-[#faf9f6] dark:bg-gray-900">
-      {/* Floating Navigation */}
-      <FloatingNavbar
-        items={floatingNavItems}
-        position="top-right"
-        offset={{ x: 20, y: 120 }}
-        className="max-h-[70vh] overflow-y-auto"
+    <div className="min-h-screen bg-[#faf9f6] dark:bg-gray-900 flex">
+      {/* Sidebar Navigation */}
+      <Sidebar
+        items={sidebarItems}
+        brand={{ text: "Paper Design System", logo: "/logo-coloured.svg" }}
+        className="w-80 flex-shrink-0"
+        spy={true}
+        spyOffset={100}
       />
 
-      {/* Header */}
-      <AppHeader />
+      {/* Main Content Area */}
+      <div className="flex-1 flex flex-col">
+        {/* Header */}
+        <AppHeader />
 
-      {/* Main Content */}
-      <main className="space-y-0">
+        {/* Main Content */}
+        <main className="flex-1 space-y-0 overflow-y-auto">
         {/* Core Components */}
         <section id="overview">
           <CoreComponentsShowcase />
@@ -230,7 +274,8 @@ function AppContent() {
         <section id="prose">
           <ProseShowcase />
         </section>
-      </main>
+        </main>
+      </div>
     </div>
   )
 }
