@@ -1,0 +1,202 @@
+import { Typography, Brand } from "../../components/core"
+import { Navbar } from "../../components/navigation"
+import { Home, Users, Settings, Bell, Search } from "lucide-react"
+
+export function NavbarShowcase() {
+  // Sample navigation items
+  const navItems = [
+    { id: "home", label: "Home", href: "#overview", icon: Home },
+    { id: "about", label: "About", href: "#typography", icon: Users },
+    { 
+      id: "services", 
+      label: "Services", 
+      icon: Settings,
+      children: [
+        { id: "design", label: "Design", href: "#ui-primitives" },
+        { id: "development", label: "Development", href: "#form-controls" },
+        { id: "consulting", label: "Consulting", href: "#data-display" },
+      ]
+    },
+    { id: "contact", label: "Contact", href: "#navigation", icon: Bell, badge: "New" },
+  ]
+
+  return (
+    <div id="navbar" className="space-y-8">
+      <div>
+        <Typography variant="h3" className="mb-4">
+          Navbar
+        </Typography>
+        <Typography variant="body" className="text-stone-600 mb-6">
+          A flexible navigation bar with support for dropdowns, mobile menus, and various styling options.
+        </Typography>
+
+        {/* Default Navbar */}
+        <div className="mb-6">
+          <Typography variant="h4" className="mb-3">
+            Default Navbar
+          </Typography>
+          <div className="border border-stone-200 rounded-lg overflow-hidden">
+            <Navbar
+              items={navItems}
+              brand={{ text: "Dav/Devs Paper" }}
+            />
+          </div>
+        </div>
+
+        {/* Solid Navbar */}
+        <div className="mb-6">
+          <Typography variant="h4" className="mb-3">
+            Solid Navbar
+          </Typography>
+          <div className="border border-stone-200 rounded-lg overflow-hidden">
+            <Navbar
+              items={navItems}
+              brand={{ text: "Brand" }}
+              variant="solid"
+            />
+          </div>
+        </div>
+
+        {/* Compact Navbar */}
+        <div className="mb-6">
+          <Typography variant="h4" className="mb-3">
+            Compact Navbar
+          </Typography>
+          <div className="border border-stone-200 rounded-lg overflow-hidden">
+            <Navbar
+              items={navItems}
+              brand={{ text: "Compact" }}
+              compact={true}
+            />
+          </div>
+        </div>
+
+        {/* Navbar with Right Content */}
+        <div className="mb-6">
+          <Typography variant="h4" className="mb-3">
+            Navbar with Right Content
+          </Typography>
+          <div className="border border-stone-200 rounded-lg overflow-hidden">
+            <Navbar
+              items={navItems.slice(0, 2)} // Show fewer items
+              brand={{ text: "Brand" }}
+              rightContent={
+                <div className="flex items-center gap-2">
+                  <button className="p-2 hover:bg-stone-100 rounded-sm">
+                    <Search className="w-4 h-4" />
+                  </button>
+                  <button className="px-3 py-1.5 bg-blue-600 text-white text-sm rounded-sm hover:bg-blue-700">
+                    Sign In
+                  </button>
+                </div>
+              }
+            />
+          </div>
+        </div>
+
+        {/* Custom Brand Font Sizes */}
+        <div className="mb-6">
+          <Typography variant="h4" className="mb-3">
+            Custom Brand Font Sizes
+          </Typography>
+          <Typography variant="body" className="text-stone-600 mb-4">
+            Demonstrate how to customize brand font sizes using titleVariant and subtitleVariant props.
+          </Typography>
+          
+          <div className="space-y-4">
+            <div>
+              <Typography variant="bodySmall" color="muted" className="mb-2">
+                Large Brand (h1 title, body subtitle)
+              </Typography>
+              <div className="border border-stone-200 rounded-lg overflow-hidden">
+                <Navbar
+                  items={navItems.slice(0, 2)}
+                  brand={{
+                    text: "Large Brand",
+                    titleVariant: "h1",
+                    subtitleVariant: "body"
+                  }}
+                />
+              </div>
+            </div>
+
+            <div>
+              <Typography variant="bodySmall" color="muted" className="mb-2">
+                Medium Brand (h3 title, bodySmall subtitle)
+              </Typography>
+              <div className="border border-stone-200 rounded-lg overflow-hidden">
+                <Navbar
+                  items={navItems.slice(0, 2)}
+                  brand={{
+                    text: "Medium Brand",
+                    titleVariant: "h3",
+                    subtitleVariant: "bodySmall"
+                  }}
+                />
+              </div>
+            </div>
+
+            <div>
+              <Typography variant="bodySmall" color="muted" className="mb-2">
+                Small Brand (h6 title, caption subtitle)
+              </Typography>
+              <div className="border border-stone-200 rounded-lg overflow-hidden">
+                <Navbar
+                  items={navItems.slice(0, 2)}
+                  brand={{
+                    text: "Small Brand",
+                    titleVariant: "h6",
+                    subtitleVariant: "caption"
+                  }}
+                  compact={true}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Standalone Brand Examples */}
+        <div className="mb-6">
+          <Typography variant="h4" className="mb-3">
+            Standalone Brand Component
+          </Typography>
+          <Typography variant="body" className="text-stone-600 mb-4">
+            Brand component with various font size customizations.
+          </Typography>
+          
+          <div className="border border-stone-200 rounded-lg p-6 space-y-6">
+            <div>
+              <Typography variant="caption" color="muted" className="mb-2 block">
+                Default Brand
+              </Typography>
+              <Brand />
+            </div>
+
+            <div>
+              <Typography variant="caption" color="muted" className="mb-2 block">
+                Large Brand (h1 title)
+              </Typography>
+              <Brand 
+                titleVariant="h1" 
+                title="Big Brand Name"
+                subtitle="Impressive tagline"
+              />
+            </div>
+
+            <div>
+              <Typography variant="caption" color="muted" className="mb-2 block">
+                Compact Brand (caption title, overline subtitle)
+              </Typography>
+              <Brand 
+                titleVariant="caption" 
+                subtitleVariant="overline"
+                title="Tiny Brand"
+                subtitle="SMALL SUBTITLE"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}

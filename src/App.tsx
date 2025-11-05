@@ -15,11 +15,21 @@ import {
   KPIShowcase,
   TimelineShowcase,
   AdditionalProgressShowcase,
+  NavbarShowcase,
+  FloatingNavbarShowcase,
+  SidebarShowcase,
+  BreadcrumbsShowcase,
+  TabsShowcase,
+  PaginationShowcase,
+  StepperShowcase,
+  CommandPaletteShowcase,
+  MenuShowcase,
+  TreeViewShowcase,
+  QuickActionsShowcase,
 } from "./demos/component-showcases"
 import {
   FormControlsShowcase,
   DataDisplayShowcase,
-  NavigationShowcase,
 } from "./demos/feature-showcases"
 import "./App.css"
 
@@ -39,7 +49,17 @@ function AppContent() {
     { id: "ui-primitives", label: "UI Primitives", href: "#ui-primitives" },
     { id: "form-controls", label: "Form Controls", href: "#form-controls" },
     { id: "data-display", label: "Data Display", href: "#data-display" },
-    { id: "navigation", label: "Navigation", href: "#navigation" },
+    { id: "navbar", label: "Navbar", href: "#navbar" },
+    { id: "floating-navbar", label: "Floating Navbar", href: "#floating-navbar" },
+    { id: "sidebar", label: "Sidebar", href: "#sidebar" },
+    { id: "breadcrumbs", label: "Breadcrumbs", href: "#breadcrumbs" },
+    { id: "tabs", label: "Tabs", href: "#tabs" },
+    { id: "pagination", label: "Pagination", href: "#pagination" },
+    { id: "stepper", label: "Stepper", href: "#stepper" },
+    { id: "command-palette", label: "Command Palette", href: "#command-palette" },
+    { id: "menu", label: "Menu", href: "#menu" },
+    { id: "tree-view", label: "Tree View", href: "#tree-view" },
+    { id: "quick-actions", label: "Quick Actions", href: "#quick-actions" },
     { id: "alerts", label: "Alerts", href: "#alerts" },
     { id: "progress-circle", label: "Progress Circle", href: "#progress-circle" },
     { id: "progress-bar", label: "Progress Bar", href: "#progress-bar" },
@@ -58,6 +78,7 @@ function AppContent() {
         items={floatingNavItems}
         position="top-right"
         offset={{ x: 20, y: 120 }}
+        className="max-h-[70vh] overflow-y-auto"
       />
 
       {/* Header */}
@@ -120,9 +141,49 @@ function AppContent() {
           <DataDisplayShowcase />
         </section>
 
-        {/* Navigation */}
-        <section id="navigation">
-          <NavigationShowcase />
+        {/* Navigation Components */}
+        <section id="navbar">
+          <NavbarShowcase />
+        </section>
+
+        <section id="floating-navbar">
+          <FloatingNavbarShowcase />
+        </section>
+
+        <section id="sidebar">
+          <SidebarShowcase />
+        </section>
+
+        <section id="breadcrumbs">
+          <BreadcrumbsShowcase />
+        </section>
+
+        <section id="tabs">
+          <TabsShowcase />
+        </section>
+
+        <section id="pagination">
+          <PaginationShowcase />
+        </section>
+
+        <section id="stepper">
+          <StepperShowcase />
+        </section>
+
+        <section id="command-palette">
+          <CommandPaletteShowcase />
+        </section>
+
+        <section id="menu">
+          <MenuShowcase />
+        </section>
+
+        <section id="tree-view">
+          <TreeViewShowcase />
+        </section>
+
+        <section id="quick-actions">
+          <QuickActionsShowcase />
         </section>
 
         {/* Alerts */}

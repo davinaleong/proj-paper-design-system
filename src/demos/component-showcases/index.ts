@@ -17,3 +17,13 @@ export { StatisticShowcase } from "./StatisticShowcase"
 export { KPIShowcase } from "./KPIShowcase"
 export { TimelineShowcase } from "./TimelineShowcase"
 export { AdditionalProgressShowcase } from "./AdditionalProgressShowcase"
+
+// New split navigation showcases
+export { NavbarShowcase } from "./NavbarShowcase"
+export { FloatingNavbarShowcase } from "./FloatingNavbarShowcase"
+export { SidebarShowcase } from "./SidebarShowcase"
+export { BreadcrumbsShowcase } from "./BreadcrumbsShowcase"
+export { CommandPaletteShowcase } from "./CommandPaletteShowcase"
+export { MenuShowcase } from "./MenuShowcase"
+export { TreeViewShowcase } from "./TreeViewShowcase"
+export { QuickActionsShowcase } from "./QuickActionsShowcase"
