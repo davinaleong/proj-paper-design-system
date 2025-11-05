@@ -12,6 +12,7 @@ import {
   AlertShowcase,
   ToastShowcase,
   ModalShowcase,
+  ConfirmationDialogShowcase,
   LuminanceShowcase,
   ProgressCircleShowcase,
   ProgressBarShowcase,
@@ -126,6 +127,7 @@ function AppContent() {
         { id: "alerts", label: "Alerts", href: "#alerts" },
         { id: "toast", label: "Toast", href: "#toast" },
         { id: "modal", label: "Modal", href: "#modal" },
+        { id: "confirmation-dialog", label: "Confirmation Dialog", href: "#confirmation-dialog" },
       ]
     },
   ]
@@ -276,6 +278,11 @@ function AppContent() {
         {/* Modal */}
         <section id="modal">
           <ModalShowcase />
+        </section>
+
+        {/* Confirmation Dialog */}
+        <section id="confirmation-dialog">
+          <ConfirmationDialogShowcase />
         </section>
 
         {/* Progress Circle */}
