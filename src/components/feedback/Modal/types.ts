@@ -123,7 +123,7 @@ export interface ModalProps {
   className?: string
 
   /**
-   * Additional CSS classes for the backdrop
+   * Additional CSS classes for the backdrop (note: with dialog element, backdrop styling is handled via backdrop:: pseudo-element)
    */
   backdropClassName?: string
 

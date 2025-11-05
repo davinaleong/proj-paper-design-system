@@ -47,7 +47,7 @@ export const Modal = ({
   minimizedPosition = { x: 20, y: 20 },
   zIndex = 50,
   className,
-  backdropClassName,
+  backdropClassName: _backdropClassName, // Not used with dialog element
   contentClassName,
   onStateChange,
   onOpen,
@@ -58,8 +58,7 @@ export const Modal = ({
 }: ModalProps) => {
   const [internalState, setInternalState] = useState<ModalState>("closed")
   const [isMaximized, setIsMaximized] = useState(false)
-  const modalRef = useRef<HTMLDivElement>(null)
-  const backdropRef = useRef<HTMLDivElement>(null)
+  const dialogRef = useRef<HTMLDialogElement>(null)
 
   // Use controlled state if provided, otherwise use internal state
   const currentState = controlledState ?? (open ? (internalState === "minimized" ? "minimized" : "open") : "closed")
@@ -70,6 +69,22 @@ export const Modal = ({
       setInternalState(open ? "open" : "closed")
     }
   }, [open, controlledState])
+
+  // Handle dialog open/close with native dialog methods
+  useEffect(() => {
+    const dialog = dialogRef.current
+    if (!dialog) return
+
+    if (currentState === "open") {
+      if (!dialog.open) {
+        dialog.showModal()
+      }
+    } else if (currentState === "closed") {
+      if (dialog.open) {
+        dialog.close()
+      }
+    }
+  }, [currentState])
 
   // Handle state changes
   const handleStateChange = useCallback((newState: ModalState) => {
@@ -114,24 +129,51 @@ export const Modal = ({
     handleStateChange("closed")
   }, [handleStateChange])
 
-  // Handle backdrop click
-  const handleBackdropClick = useCallback((e: React.MouseEvent) => {
-    if (e.target === backdropRef.current && closeOnBackdropClick && backdrop !== "static") {
-      handleClose()
+  // Handle backdrop click (for dialog, this means clicking outside the modal content)
+  const handleBackdropClick = useCallback((e: React.MouseEvent<HTMLDialogElement>) => {
+    if (closeOnBackdropClick && backdrop !== "static") {
+      const dialog = e.currentTarget
+      const rect = dialog.getBoundingClientRect()
+      const isInDialog = (
+        rect.top <= e.clientY &&
+        e.clientY <= rect.top + rect.height &&
+        rect.left <= e.clientX &&
+        e.clientX <= rect.left + rect.width
+      )
+      
+      // If the click was on the backdrop (outside dialog content)
+      if (!isInDialog) {
+        handleClose()
+      }
     }
   }, [closeOnBackdropClick, backdrop, handleClose])
 
-  // Handle escape key
+  // Handle escape key and dialog close events
   useEffect(() => {
+    const dialog = dialogRef.current
+    if (!dialog) return
+
+    const handleDialogClose = () => {
+      if (currentState === "open") {
+        handleClose()
+      }
+    }
+
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape" && closeOnEscape && currentState === "open") {
+        e.preventDefault() // Prevent default dialog close
         handleClose()
       }
     }
 
     if (currentState === "open") {
-      document.addEventListener("keydown", handleEscape)
-      return () => document.removeEventListener("keydown", handleEscape)
+      dialog.addEventListener("close", handleDialogClose)
+      dialog.addEventListener("keydown", handleEscape)
+      
+      return () => {
+        dialog.removeEventListener("close", handleDialogClose)
+        dialog.removeEventListener("keydown", handleEscape)
+      }
     }
   }, [currentState, closeOnEscape, handleClose])
 
@@ -146,29 +188,6 @@ export const Modal = ({
     }
   }, [currentState])
 
-  // Don't render anything if closed
-  if (currentState === "closed") {
-    return null
-  }
-
-  // Render minimized taskbar item
-  if (currentState === "minimized") {
-    return createPortal(
-      <ModalTaskbarItem
-        title={title}
-        icon={icon}
-        color={color}
-        position={minimizedPosition}
-        onClick={handleRestore}
-        onClose={handleClose}
-      />,
-      document.body
-    )
-  }
-
-  // Get color classes with luminance-based text optimization
-  const colorClasses = getColorClassesWithLuminance(color, variant === "solid" ? "solid" : "soft", true)
-  
   // Map color variants to their approximate hex values for luminance calculation
   const getColorHex = (colorVariant: ColorVariant, isSolid: boolean = false): string => {
     const solidColors = {
@@ -255,35 +274,51 @@ export const Modal = ({
   const backgroundHex = getColorHex(color, variant === "solid")
   const optimalTextClasses = getOptimalTextClasses(backgroundHex)
 
-  return createPortal(
-    <div
+  // Don't render anything if closed
+  if (currentState === "closed") {
+    return null
+  }
+
+  // Render minimized taskbar item
+  if (currentState === "minimized") {
+    return createPortal(
+      <ModalTaskbarItem
+        title={title}
+        icon={icon}
+        color={color}
+        position={minimizedPosition}
+        onClick={handleRestore}
+        onClose={handleClose}
+      />,
+      document.body
+    )
+  }
+
+  // Get color classes
+  const colorClasses = getColorClassesWithLuminance(color, variant === "solid" ? "solid" : "soft", true)
+
+  return (
+    <dialog
+      ref={dialogRef}
       className={cn(
-        "fixed inset-0 flex items-center justify-center",
+        "backdrop:bg-black/20 backdrop:backdrop-blur-sm",
+        "p-0 border-0 bg-transparent",
+        "w-full h-full max-w-none max-h-none",
+        "fixed inset-0",
         `z-${zIndex}`,
         className
       )}
+      onClick={handleBackdropClick}
     >
-      {/* Backdrop */}
-      {backdrop && (
-        <div
-          ref={backdropRef}
-          className={cn(
-            "absolute inset-0 bg-black/20 backdrop-blur-sm",
-            backdropClassName
-          )}
-          onClick={handleBackdropClick}
-        />
-      )}
-
       {/* Modal Content */}
       <div
-        ref={modalRef}
         className={cn(
-          "relative flex flex-col",
+          "flex flex-col",
           "transition-all duration-300 ease-in-out",
           "rounded-lg overflow-hidden",
+          "mx-auto mt-[10vh]",
           // Size classes
-          isMaximized ? "w-full h-full max-w-none rounded-none" : sizeClasses[size],
+          isMaximized ? "w-full h-full max-w-none rounded-none mt-0" : sizeClasses[size],
           // Variant classes
           variantClasses[variant],
           // Color classes
@@ -292,8 +327,9 @@ export const Modal = ({
           contentClassName
         )}
         style={{
-          maxHeight: isMaximized ? "100vh" : "90vh",
+          maxHeight: isMaximized ? "100vh" : "80vh",
         }}
+        onClick={(e) => e.stopPropagation()} // Prevent backdrop click when clicking modal content
       >
         {/* Header */}
         {(header || title || icon || minimizable || maximizable || closable) && (
@@ -342,8 +378,7 @@ export const Modal = ({
           </ModalFooter>
         )}
       </div>
-    </div>,
-    document.body
+    </dialog>
   )
 }
 
