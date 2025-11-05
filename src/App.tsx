@@ -6,9 +6,15 @@ import {
   TypographyShowcase,
   LayoutShowcase,
   UIPrimitivesShowcase,
-  ProgressAndStatusShowcase,
   ProseShowcase,
   AlertShowcase,
+  ProgressCircleShowcase,
+  ProgressBarShowcase,
+  EmptyStateShowcase,
+  StatisticShowcase,
+  KPIShowcase,
+  TimelineShowcase,
+  AdditionalProgressShowcase,
 } from "./demos/component-showcases"
 import {
   FormControlsShowcase,
@@ -34,12 +40,14 @@ function AppContent() {
     { id: "form-controls", label: "Form Controls", href: "#form-controls" },
     { id: "data-display", label: "Data Display", href: "#data-display" },
     { id: "navigation", label: "Navigation", href: "#navigation" },
-    {
-      id: "progress-and-status",
-      label: "Progress & Status",
-      href: "#progress-and-status",
-    },
     { id: "alerts", label: "Alerts", href: "#alerts" },
+    { id: "progress-circle", label: "Progress Circle", href: "#progress-circle" },
+    { id: "progress-bar", label: "Progress Bar", href: "#progress-bar" },
+    { id: "empty-state", label: "Empty State", href: "#empty-state" },
+    { id: "statistic", label: "Statistics", href: "#statistic" },
+    { id: "kpi", label: "KPI", href: "#kpi" },
+    { id: "timeline", label: "Timeline", href: "#timeline" },
+    { id: "additional-progress", label: "Additional Progress", href: "#additional-progress" },
     { id: "prose", label: "Prose Styles", href: "#prose" },
   ]
 
@@ -117,14 +125,44 @@ function AppContent() {
           <NavigationShowcase />
         </section>
 
-        {/* Progress & Status Components */}
-        <section id="progress-and-status">
-          <ProgressAndStatusShowcase />
-        </section>
-
         {/* Alerts */}
         <section id="alerts">
           <AlertShowcase />
+        </section>
+
+        {/* Progress Circle */}
+        <section id="progress-circle">
+          <ProgressCircleShowcase />
+        </section>
+
+        {/* Progress Bar */}
+        <section id="progress-bar">
+          <ProgressBarShowcase />
+        </section>
+
+        {/* Empty State */}
+        <section id="empty-state">
+          <EmptyStateShowcase />
+        </section>
+
+        {/* Statistics */}
+        <section id="statistic">
+          <StatisticShowcase />
+        </section>
+
+        {/* KPI */}
+        <section id="kpi">
+          <KPIShowcase />
+        </section>
+
+        {/* Timeline */}
+        <section id="timeline">
+          <TimelineShowcase />
+        </section>
+
+        {/* Additional Progress Components */}
+        <section id="additional-progress">
+          <AdditionalProgressShowcase />
         </section>
 
         {/* Prose Styles */}

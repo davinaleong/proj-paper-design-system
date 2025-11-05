@@ -9,3 +9,12 @@ export { PaginationShowcase } from "./PaginationShowcase"
 export { StepperShowcase } from "./StepperShowcase"
 export { ProseShowcase } from "./ProseShowcase"
 export { AlertShowcase } from "./AlertShowcase"
+
+// New split progress and status showcases
+export { ProgressCircleShowcase } from "./ProgressCircleShowcase"
+export { ProgressBarShowcase } from "./ProgressBarShowcase"
+export { EmptyStateShowcase } from "./EmptyStateShowcase"
+export { StatisticShowcase } from "./StatisticShowcase"
+export { KPIShowcase } from "./KPIShowcase"
+export { TimelineShowcase } from "./TimelineShowcase"
+export { AdditionalProgressShowcase } from "./AdditionalProgressShowcase"
