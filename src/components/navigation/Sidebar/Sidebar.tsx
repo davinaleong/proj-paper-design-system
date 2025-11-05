@@ -13,7 +13,7 @@ const variantClasses = {
 }
 
 const positionClasses = {
-  fixed: "fixed top-0 left-0 bottom-0 z-40",
+  fixed: "fixed top-0 left-0 bottom-0 z-40 lg:block",
   sticky: "sticky top-0 h-screen",
   static: "relative h-full",
 }
@@ -357,12 +357,13 @@ export const Sidebar = ({
       <aside
         ref={sidebarRef}
         className={cn(
-          "flex flex-col transition-all duration-300 ease-in-out overflow-hidden",
+          "flex flex-col transition-all duration-300 ease-in-out",
           positionClasses[position],
           variantClasses[variant],
           isCollapsed ? collapsedWidthClasses[width] : widthClasses[width],
-          position === "fixed" && "lg:translate-x-0",
-          position === "fixed" && !open && "-translate-x-full",
+          position === "fixed" && "lg:translate-x-0 h-screen",
+          position === "fixed" && !open && "-translate-x-full lg:translate-x-0",
+          position !== "fixed" && "overflow-hidden",
           className
         )}
       >
@@ -428,7 +429,7 @@ export const Sidebar = ({
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 overflow-y-auto overflow-x-hidden p-2">
+        <nav className="flex-1 overflow-y-auto overflow-x-hidden p-2 min-h-0">
           <div className="space-y-1">
             {items.map((item) => renderNavItem(item))}
           </div>

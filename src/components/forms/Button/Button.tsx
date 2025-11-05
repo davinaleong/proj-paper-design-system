@@ -2,7 +2,7 @@ import { Loader2 } from "lucide-react"
 import { forwardRef } from "react"
 import type { ButtonProps } from "./types"
 import { cn } from "../../../utils/cn.js"
-import { getColorClasses } from "../../../utils/colors"
+import { getColorClassesWithLuminance } from "../../../utils/colors"
 import { containerResponsiveUI } from "../../../utils/containerFonts"
 
 const sizeClasses = {
@@ -121,13 +121,14 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
 
     // Apply color classes for non-link and non-plain variants
     variant !== "link" && variant !== "plain" &&
-      getColorClasses(
+      getColorClassesWithLuminance(
         color,
         variant === "solid"
           ? "solid"
           : variant === "outline"
           ? "outline"
-          : "soft"
+          : "soft",
+        true  // Enable automatic optimal text color calculation
       ),
 
     // Link variant colors

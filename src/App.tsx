@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { ThemeProvider, Typography, Paper } from "./components/core"
 import { AppHeader } from "./components/AppHeader"
 import { Sidebar } from "./components/navigation"
@@ -10,6 +11,7 @@ import {
   ProseShowcase,
   AlertShowcase,
   ToastShowcase,
+  LuminanceTestShowcase,
   ProgressCircleShowcase,
   ProgressBarShowcase,
   EmptyStateShowcase,
@@ -44,6 +46,8 @@ function App() {
 }
 
 function AppContent() {
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false)
+
   const sidebarItems = [
     // Core Components Group
     { 
@@ -65,6 +69,7 @@ function AppContent() {
       icon: FileText,
       children: [
         { id: "form-controls", label: "Form Controls", href: "#form-controls" },
+        { id: "luminance-test", label: "Button Text Colors", href: "#luminance-test" },
       ]
     },
     // Data Display Group
@@ -115,24 +120,27 @@ function AppContent() {
   ]
 
   return (
-    <div className="min-h-screen bg-[#faf9f6] dark:bg-gray-900 flex overflow-hidden">
-      {/* Sidebar Navigation */}
+    <div className="min-h-screen bg-[#faf9f6] dark:bg-gray-900">
+      {/* Fixed Sidebar Navigation */}
       <Sidebar
         items={sidebarItems}
         brand={{ text: "Paper Design System", logo: "/logo-coloured.svg" }}
         width="lg"
-        className="flex-shrink-0"
+        position="fixed"
+        open={isMobileSidebarOpen}
+        className="h-screen"
         spy={true}
         spyOffset={100}
+        onClose={() => setIsMobileSidebarOpen(false)}
       />
 
-      {/* Main Content Area */}
-      <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
+      {/* Main Content Area - with left margin to account for fixed sidebar */}
+      <div className="flex flex-col min-h-screen lg:ml-72 relative z-10">
         {/* Header */}
-        <AppHeader />
+        <AppHeader onMobileMenuClick={() => setIsMobileSidebarOpen(true)} />
 
         {/* Main Content */}
-        <main className="flex-1 space-y-0 overflow-y-auto overflow-x-hidden">
+        <main className="flex-1 space-y-0">
         {/* Core Components */}
         <section id="overview">
           <CoreComponentsShowcase />
@@ -181,6 +189,11 @@ function AppContent() {
         {/* Form Controls */}
         <section id="form-controls">
           <FormControlsShowcase />
+        </section>
+
+        {/* Luminance Test */}
+        <section id="luminance-test">
+          <LuminanceTestShowcase />
         </section>
 
         {/* Data Display */}
