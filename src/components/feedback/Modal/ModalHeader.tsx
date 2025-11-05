@@ -13,6 +13,7 @@ export const ModalHeader = ({
   closable = true,
   state = "open",
   color = "default",
+  optimalTextClasses,
   children,
   className,
   onMinimize,
@@ -30,7 +31,10 @@ export const ModalHeader = ({
       <div className="flex items-center space-x-3 min-w-0 flex-1">
         {Icon && (
           <div className="flex-shrink-0">
-            <Icon className="w-5 h-5 text-stone-600" />
+            <Icon className={cn(
+              "w-5 h-5",
+              optimalTextClasses || "text-stone-600"
+            )} />
           </div>
         )}
         
@@ -38,7 +42,10 @@ export const ModalHeader = ({
           {title && (
             <Typography 
               variant="h5" 
-              className="text-stone-900 font-semibold truncate"
+              className={cn(
+                "font-semibold truncate",
+                optimalTextClasses || "text-stone-900"
+              )}
             >
               {title}
             </Typography>
@@ -46,7 +53,10 @@ export const ModalHeader = ({
           {description && (
             <Typography 
               variant="small" 
-              className="text-stone-600 truncate"
+              className={cn(
+                "truncate opacity-80",
+                optimalTextClasses || "text-stone-600"
+              )}
             >
               {description}
             </Typography>

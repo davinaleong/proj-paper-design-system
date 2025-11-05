@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react"
 import { createPortal } from "react-dom"
 import { cn } from "../../../utils/cn"
-import { getColorClassesWithLuminance } from "../../../utils/colors"
+import { getColorClassesWithLuminance, getOptimalTextClasses, type ColorVariant } from "../../../utils/colors"
 import type { ModalProps, ModalState } from "./types"
 import { ModalHeader } from "./ModalHeader"
 import { ModalBody } from "./ModalBody"
@@ -166,8 +166,94 @@ export const Modal = ({
     )
   }
 
-  // Get color classes
+  // Get color classes with luminance-based text optimization
   const colorClasses = getColorClassesWithLuminance(color, variant === "solid" ? "solid" : "soft", true)
+  
+  // Map color variants to their approximate hex values for luminance calculation
+  const getColorHex = (colorVariant: ColorVariant, isSolid: boolean = false): string => {
+    const solidColors = {
+      primary: "#2563eb", // blue-600
+      secondary: "#475569", // slate-600  
+      danger: "#dc2626", // red-600
+      success: "#16a34a", // green-600
+      warning: "#ca8a04", // yellow-600
+      info: "#0284c7", // sky-600
+      paper: "#0f766e", // teal-600 (from paperColors.accent)
+      accent: "#0f766e", // teal-600
+      default: "#4b5563", // gray-600
+      muted: "#9ca3af", // gray-400
+      transparent: "#ffffff",
+      custom: "#ffffff",
+      // Full Tailwind spectrum - solid (600 shades)
+      slate: "#475569", // slate-600
+      gray: "#4b5563", // gray-600
+      zinc: "#52525b", // zinc-600
+      neutral: "#525252", // neutral-600
+      stone: "#57534e", // stone-600
+      red: "#dc2626", // red-600
+      orange: "#ea580c", // orange-600
+      amber: "#d97706", // amber-600
+      yellow: "#ca8a04", // yellow-600
+      lime: "#65a30d", // lime-600
+      green: "#16a34a", // green-600
+      emerald: "#059669", // emerald-600
+      teal: "#0d9488", // teal-600
+      cyan: "#0891b2", // cyan-600
+      sky: "#0284c7", // sky-600
+      blue: "#2563eb", // blue-600
+      indigo: "#4f46e5", // indigo-600
+      violet: "#7c3aed", // violet-600
+      purple: "#9333ea", // purple-600
+      fuchsia: "#c026d3", // fuchsia-600
+      pink: "#db2777", // pink-600
+      rose: "#e11d48", // rose-600
+    }
+    
+    const softColors = {
+      primary: "#dbeafe", // blue-50
+      secondary: "#f8fafc", // slate-50
+      danger: "#fef2f2", // red-50
+      success: "#f0fdf4", // green-50
+      warning: "#fefce8", // yellow-50
+      info: "#f0f9ff", // sky-50
+      paper: "#faf9f6", // from paperColors.base
+      accent: "#f0fdfa", // teal-50
+      default: "#ffffff",
+      muted: "#f9fafb", // gray-50
+      transparent: "#ffffff",
+      custom: "#ffffff",
+      // Full Tailwind spectrum - soft (50 shades)
+      slate: "#f8fafc", // slate-50
+      gray: "#f9fafb", // gray-50
+      zinc: "#fafafa", // zinc-50
+      neutral: "#fafafa", // neutral-50
+      stone: "#fafaf9", // stone-50
+      red: "#fef2f2", // red-50
+      orange: "#fff7ed", // orange-50
+      amber: "#fffbeb", // amber-50
+      yellow: "#fefce8", // yellow-50
+      lime: "#f7fee7", // lime-50
+      green: "#f0fdf4", // green-50
+      emerald: "#ecfdf5", // emerald-50
+      teal: "#f0fdfa", // teal-50
+      cyan: "#ecfeff", // cyan-50
+      sky: "#f0f9ff", // sky-50
+      blue: "#eff6ff", // blue-50
+      indigo: "#eef2ff", // indigo-50
+      violet: "#f5f3ff", // violet-50
+      purple: "#faf5ff", // purple-50
+      fuchsia: "#fdf4ff", // fuchsia-50
+      pink: "#fdf2f8", // pink-50
+      rose: "#fff1f2", // rose-50
+    }
+    
+    const colorMap = isSolid ? solidColors : softColors
+    return colorMap[colorVariant as keyof typeof colorMap] || colorMap.default
+  }
+  
+  // Calculate optimal text colors based on the background
+  const backgroundHex = getColorHex(color, variant === "solid")
+  const optimalTextClasses = getOptimalTextClasses(backgroundHex)
 
   return createPortal(
     <div
@@ -220,12 +306,14 @@ export const Modal = ({
             closable={closable}
             state={currentState}
             color={color}
+            optimalTextClasses={optimalTextClasses}
             onMinimize={handleMinimize}
             onMaximize={handleMaximize}
             onClose={handleClose}
             onRestore={handleRestore}
             className={cn(
-              "border-b border-stone-200/60"
+              "border-b border-stone-200/60",
+              optimalTextClasses
             )}
           >
             {header}
@@ -234,7 +322,10 @@ export const Modal = ({
 
         {/* Body */}
         <ModalBody
-          className="flex-1 overflow-y-auto"
+          className={cn(
+            "flex-1 overflow-y-auto",
+            optimalTextClasses
+          )}
         >
           {children}
         </ModalBody>
@@ -242,7 +333,10 @@ export const Modal = ({
         {/* Footer */}
         {footer && (
           <ModalFooter
-            className="border-t border-stone-200/60"
+            className={cn(
+              "border-t border-stone-200/60",
+              optimalTextClasses
+            )}
           >
             {footer}
           </ModalFooter>

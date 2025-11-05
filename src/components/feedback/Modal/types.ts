@@ -205,6 +205,11 @@ export interface ModalHeaderProps {
   color?: ColorVariant
 
   /**
+   * Optimal text color classes calculated from luminance
+   */
+  optimalTextClasses?: string
+
+  /**
    * Custom header content
    */
   children?: ReactNode

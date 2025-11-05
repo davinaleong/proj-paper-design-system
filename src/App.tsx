@@ -2,7 +2,7 @@ import { useState } from "react"
 import { ThemeProvider, Typography, Paper } from "./components/core"
 import { AppHeader } from "./components/AppHeader"
 import { Sidebar } from "./components/navigation"
-import { Home, FileText, BarChart3, Navigation, TrendingUp } from "lucide-react"
+import { Home, FileText, BarChart3, Navigation, TrendingUp, MessageCircle } from "lucide-react"
 import {
   CoreComponentsShowcase,
   TypographyShowcase,
@@ -115,6 +115,14 @@ function AppContent() {
         { id: "progress-circle", label: "Progress Circle", href: "#progress-circle" },
         { id: "progress-bar", label: "Progress Bar", href: "#progress-bar" },
         { id: "additional-progress", label: "Additional Progress", href: "#additional-progress" },
+      ]
+    },
+    // User Feedback Group
+    { 
+      id: "feedback", 
+      label: "User Feedback", 
+      icon: MessageCircle,
+      children: [
         { id: "alerts", label: "Alerts", href: "#alerts" },
         { id: "toast", label: "Toast", href: "#toast" },
         { id: "modal", label: "Modal", href: "#modal" },
