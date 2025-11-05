@@ -156,7 +156,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(({
     const textContent = truncate ? (
       <span className="truncate min-w-0 flex-shrink">{children}</span>
     ) : (
-      <span className="whitespace-nowrap">{children}</span>
+      <span className="whitespace-nowrap inline-flex gap-1">{children}</span>
     )
 
     if (variant === "link" || variant === "plain") {
