@@ -357,7 +357,7 @@ export const Sidebar = ({
       <aside
         ref={sidebarRef}
         className={cn(
-          "flex flex-col transition-all duration-300 ease-in-out",
+          "flex flex-col transition-all duration-300 ease-in-out overflow-hidden",
           positionClasses[position],
           variantClasses[variant],
           isCollapsed ? collapsedWidthClasses[width] : widthClasses[width],
@@ -428,7 +428,7 @@ export const Sidebar = ({
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 overflow-y-auto p-2">
+        <nav className="flex-1 overflow-y-auto overflow-x-hidden p-2">
           <div className="space-y-1">
             {items.map((item) => renderNavItem(item))}
           </div>

@@ -113,23 +113,24 @@ function AppContent() {
   ]
 
   return (
-    <div className="min-h-screen bg-[#faf9f6] dark:bg-gray-900 flex">
+    <div className="min-h-screen bg-[#faf9f6] dark:bg-gray-900 flex overflow-hidden">
       {/* Sidebar Navigation */}
       <Sidebar
         items={sidebarItems}
         brand={{ text: "Paper Design System", logo: "/logo-coloured.svg" }}
-        className="w-80 flex-shrink-0"
+        width="lg"
+        className="flex-shrink-0"
         spy={true}
         spyOffset={100}
       />
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         {/* Header */}
         <AppHeader />
 
         {/* Main Content */}
-        <main className="flex-1 space-y-0 overflow-y-auto">
+        <main className="flex-1 space-y-0 overflow-y-auto overflow-x-hidden">
         {/* Core Components */}
         <section id="overview">
           <CoreComponentsShowcase />
