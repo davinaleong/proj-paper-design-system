@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Moon, Sun, Palette } from "lucide-react"
-import { Paper, Container, Brand } from "../components/core"
+import { Paper, Typography } from "../components/core"
 import { IconButton } from "../components/forms"
 
 export function AppHeader() {
@@ -12,12 +12,13 @@ export function AppHeader() {
     <Paper
       variant="elevated"
       padding="md"
-      className="sticky top-0 z-50 backdrop-blur-md"
+      className="sticky top-0 z-50 backdrop-blur-md border-b border-stone-200"
     >
-      <Container maxWidth="xl">
-        <header className="flex items-center justify-between">
+      <header className="flex items-center justify-between">
           <div className="flex-1">
-            <Brand />
+            <Typography variant="h4" className="text-stone-800">
+              Component Documentation
+            </Typography>
           </div>
 
           <div className="flex items-center gap-3">
@@ -44,7 +45,6 @@ export function AppHeader() {
             />
           </div>
         </header>
-      </Container>
     </Paper>
   )
 }
