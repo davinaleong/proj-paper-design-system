@@ -254,8 +254,9 @@ export const AlertShowcase: React.FC = () => {
               <Button
                 variant="ghost"
                 size="sm"
+                color="danger"
                 onClick={() => alert('Custom close action')}
-                className="text-white hover:bg-white/10 -m-1"
+                className=" hover:bg-white/10 -m-1"
               >
                 <Trash2 className="w-4 h-4" />
               </Button>
