@@ -840,3 +840,303 @@ export function getBorderColorClasses(
 
   return clsx(borderClasses[color], extra)
 }
+
+/**
+ * Luminance calculation utilities for determining optimal text contrast
+ */
+
+/**
+ * Convert a hex color to RGB values.
+ *
+ * @param hex - Hex color string (with or without #)
+ * @returns RGB object with r, g, b values (0-255)
+ */
+function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
+  // Remove # if present and ensure we have a valid hex string
+  const cleanHex = hex.replace('#', '')
+  
+  // Handle 3-digit hex colors
+  if (cleanHex.length === 3) {
+    const expandedHex = cleanHex
+      .split('')
+      .map(char => char + char)
+      .join('')
+    return hexToRgb(expandedHex)
+  }
+  
+  // Handle 6-digit hex colors
+  if (cleanHex.length === 6) {
+    const result = /^([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(cleanHex)
+    return result
+      ? {
+          r: parseInt(result[1], 16),
+          g: parseInt(result[2], 16),
+          b: parseInt(result[3], 16),
+        }
+      : null
+  }
+  
+  return null
+}
+
+/**
+ * Calculate the relative luminance of a color according to WCAG guidelines.
+ * Uses the formula: L = 0.2126 * R + 0.7152 * G + 0.0722 * B
+ * where R, G, B are the linearized RGB values.
+ *
+ * @param r - Red value (0-255)
+ * @param g - Green value (0-255)
+ * @param b - Blue value (0-255)
+ * @returns Relative luminance (0-1, where 0 is darkest and 1 is lightest)
+ */
+function calculateLuminance(r: number, g: number, b: number): number {
+  // Convert RGB values to 0-1 range
+  const [rs, gs, bs] = [r, g, b].map(c => {
+    const sRGB = c / 255
+    // Apply gamma correction
+    return sRGB <= 0.03928 ? sRGB / 12.92 : Math.pow((sRGB + 0.055) / 1.055, 2.4)
+  })
+  
+  // Calculate relative luminance using WCAG formula
+  return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs
+}
+
+/**
+ * Calculate the contrast ratio between two colors.
+ *
+ * @param luminance1 - Luminance of the first color
+ * @param luminance2 - Luminance of the second color
+ * @returns Contrast ratio (1-21, where 21 is maximum contrast)
+ */
+function calculateContrastRatio(luminance1: number, luminance2: number): number {
+  const lighter = Math.max(luminance1, luminance2)
+  const darker = Math.min(luminance1, luminance2)
+  return (lighter + 0.05) / (darker + 0.05)
+}
+
+/**
+ * Determine the optimal text color (black or white) for a given background color
+ * based on WCAG contrast guidelines.
+ *
+ * @param backgroundColor - Background color as hex string (e.g., "#ff0000" or "ff0000")
+ * @param threshold - Luminance threshold for determining light vs dark (default: 0.5)
+ * @returns "black" or "white" based on optimal contrast
+ *
+ * @example
+ * ```typescript
+ * getOptimalTextColor("#ffffff") // returns "black"
+ * getOptimalTextColor("#000000") // returns "white"
+ * getOptimalTextColor("#ff0000") // returns "white"
+ * getOptimalTextColor("#90EE90") // returns "black"
+ * ```
+ */
+export function getOptimalTextColor(
+  backgroundColor: string,
+  threshold: number = 0.5
+): "black" | "white" {
+  const rgb = hexToRgb(backgroundColor)
+  
+  if (!rgb) {
+    // Fallback to black for invalid colors
+    console.warn(`Invalid hex color: ${backgroundColor}. Defaulting to black text.`)
+    return "black"
+  }
+  
+  const luminance = calculateLuminance(rgb.r, rgb.g, rgb.b)
+  
+  // If luminance is above threshold, use black text, otherwise white
+  return luminance > threshold ? "black" : "white"
+}
+
+/**
+ * Get the contrast ratio between a background color and potential text colors.
+ * Useful for accessibility compliance checking.
+ *
+ * @param backgroundColor - Background color as hex string
+ * @returns Object with contrast ratios for black and white text
+ *
+ * @example
+ * ```typescript
+ * const ratios = getContrastRatios("#3366cc")
+ * console.log(ratios.black) // e.g., 5.74
+ * console.log(ratios.white) // e.g., 3.66
+ * console.log(ratios.optimal) // "white" (higher contrast)
+ * ```
+ */
+export function getContrastRatios(backgroundColor: string): {
+  black: number
+  white: number
+  optimal: "black" | "white"
+} {
+  const rgb = hexToRgb(backgroundColor)
+  
+  if (!rgb) {
+    console.warn(`Invalid hex color: ${backgroundColor}. Using default values.`)
+    return { black: 1, white: 1, optimal: "black" }
+  }
+  
+  const bgLuminance = calculateLuminance(rgb.r, rgb.g, rgb.b)
+  const blackLuminance = 0 // Black has 0 luminance
+  const whiteLuminance = 1 // White has maximum luminance
+  
+  const blackContrast = calculateContrastRatio(bgLuminance, blackLuminance)
+  const whiteContrast = calculateContrastRatio(bgLuminance, whiteLuminance)
+  
+  return {
+    black: blackContrast,
+    white: whiteContrast,
+    optimal: blackContrast > whiteContrast ? "black" : "white",
+  }
+}
+
+/**
+ * Check if a color combination meets WCAG accessibility standards.
+ *
+ * @param backgroundColor - Background color as hex string
+ * @param textColor - Text color as hex string
+ * @param level - WCAG conformance level ("AA" or "AAA")
+ * @param size - Text size category ("normal" or "large")
+ * @returns Whether the combination meets the specified standard
+ */
+export function meetsWCAGStandard(
+  backgroundColor: string,
+  textColor: string,
+  level: "AA" | "AAA" = "AA",
+  size: "normal" | "large" = "normal"
+): boolean {
+  const bgRgb = hexToRgb(backgroundColor)
+  const textRgb = hexToRgb(textColor)
+  
+  if (!bgRgb || !textRgb) {
+    return false
+  }
+  
+  const bgLuminance = calculateLuminance(bgRgb.r, bgRgb.g, bgRgb.b)
+  const textLuminance = calculateLuminance(textRgb.r, textRgb.g, textRgb.b)
+  const contrast = calculateContrastRatio(bgLuminance, textLuminance)
+  
+  // WCAG 2.1 standards
+  const standards = {
+    AA: {
+      normal: 4.5,
+      large: 3,
+    },
+    AAA: {
+      normal: 7,
+      large: 4.5,
+    },
+  }
+  
+  return contrast >= standards[level][size]
+}
+
+/**
+ * Get optimal text color classes based on background color luminance.
+ * This is a practical utility that returns Tailwind classes for optimal contrast.
+ *
+ * @param backgroundColor - Background color as hex string
+ * @param customTextColors - Optional custom text colors { black: string, white: string }
+ * @returns Tailwind classes for optimal text color
+ *
+ * @example
+ * ```typescript
+ * getOptimalTextClasses("#ffffff") // returns "text-black dark:text-black"
+ * getOptimalTextClasses("#000000") // returns "text-white dark:text-white"
+ * getOptimalTextClasses("#3b82f6") // returns "text-white dark:text-white"
+ * 
+ * // With custom colors
+ * getOptimalTextClasses("#3b82f6", { 
+ *   black: "text-gray-900", 
+ *   white: "text-gray-100" 
+ * }) // returns "text-gray-100 dark:text-gray-100"
+ * ```
+ */
+export function getOptimalTextClasses(
+  backgroundColor: string,
+  customTextColors?: { black: string; white: string }
+): string {
+  const optimalColor = getOptimalTextColor(backgroundColor)
+  
+  const defaultColors = {
+    black: "text-black dark:text-black",
+    white: "text-white dark:text-white",
+  }
+  
+  const colors = customTextColors || defaultColors
+  
+  return optimalColor === "black" ? colors.black : colors.white
+}
+
+/**
+ * Enhanced color classes function that uses luminance-based text color calculation.
+ * This is an upgraded version of getColorClasses that ensures optimal contrast.
+ *
+ * @param color - One of the supported color variants
+ * @param style - The styling approach (soft, solid, outline, ghost)
+ * @param autoTextColor - Whether to automatically calculate optimal text color (default: false)
+ * @param extra - Optional extra classes to merge
+ * @returns Tailwind classes with optimal text contrast when autoTextColor is true
+ */
+export function getColorClassesWithLuminance(
+  color: ColorVariant = "default",
+  style: ColorStyle = "soft",
+  autoTextColor: boolean = false,
+  extra?: string
+): string {
+  const baseClasses = getColorClasses(color, style)
+  
+  if (!autoTextColor) {
+    return clsx(baseClasses, extra)
+  }
+  
+  // Extract background color for solid variants to calculate optimal text
+  if (style === "solid") {
+    const colorMap: Record<ColorVariant, string> = {
+      primary: "#3b82f6",
+      secondary: "#64748b", 
+      danger: "#ef4444",
+      success: "#10b981",
+      warning: "#f59e0b",
+      info: "#0ea5e9",
+      default: "#6b7280",
+      paper: "#0f766e",
+      muted: "#9ca3af",
+      accent: "#14b8a6",
+      transparent: "transparent",
+      custom: "",
+      // Tailwind color spectrum
+      slate: "#64748b",
+      gray: "#6b7280",
+      zinc: "#71717a",
+      neutral: "#737373",
+      stone: "#78716c",
+      red: "#ef4444",
+      orange: "#f97316",
+      amber: "#f59e0b",
+      yellow: "#eab308",
+      lime: "#84cc16",
+      green: "#22c55e",
+      emerald: "#10b981",
+      teal: "#14b8a6",
+      cyan: "#06b6d4",
+      sky: "#0ea5e9",
+      blue: "#3b82f6",
+      indigo: "#6366f1",
+      violet: "#8b5cf6",
+      purple: "#a855f7",
+      fuchsia: "#d946ef",
+      pink: "#ec4899",
+      rose: "#f43f5e",
+    }
+    
+    const bgColor = colorMap[color]
+    if (bgColor && bgColor !== "transparent" && bgColor !== "") {
+      const optimalTextClasses = getOptimalTextClasses(bgColor)
+      // Remove existing text color classes and add optimal ones
+      const classesWithoutText = baseClasses.replace(/text-\w+/g, '').replace(/dark:text-\w+/g, '')
+      return clsx(classesWithoutText, optimalTextClasses, extra)
+    }
+  }
+  
+  return clsx(baseClasses, extra)
+}
