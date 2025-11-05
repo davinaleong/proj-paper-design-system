@@ -9,6 +9,7 @@ import {
   UIPrimitivesShowcase,
   ProseShowcase,
   AlertShowcase,
+  ToastShowcase,
   ProgressCircleShowcase,
   ProgressBarShowcase,
   EmptyStateShowcase,
@@ -108,6 +109,7 @@ function AppContent() {
         { id: "progress-bar", label: "Progress Bar", href: "#progress-bar" },
         { id: "additional-progress", label: "Additional Progress", href: "#additional-progress" },
         { id: "alerts", label: "Alerts", href: "#alerts" },
+        { id: "toast", label: "Toast", href: "#toast" },
       ]
     },
   ]
@@ -234,6 +236,11 @@ function AppContent() {
         {/* Alerts */}
         <section id="alerts">
           <AlertShowcase />
+        </section>
+
+        {/* Toast */}
+        <section id="toast">
+          <ToastShowcase />
         </section>
 
         {/* Progress Circle */}

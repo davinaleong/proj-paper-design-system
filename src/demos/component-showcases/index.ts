@@ -8,6 +8,7 @@ export { PaginationShowcase } from "./PaginationShowcase"
 export { StepperShowcase } from "./StepperShowcase"
 export { ProseShowcase } from "./ProseShowcase"
 export { AlertShowcase } from "./AlertShowcase"
+export { ToastDemo as ToastShowcase } from "./ToastShowcase"
 
 // New split progress and status showcases
 export { ProgressCircleShowcase } from "./ProgressCircleShowcase"
