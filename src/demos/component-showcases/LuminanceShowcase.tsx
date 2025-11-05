@@ -8,7 +8,7 @@ import { Paper, Typography } from "../../components/core"
 import { Button, IconButton } from "../../components/forms"
 import { getOptimalTextColor, getContrastRatios } from "../../utils/colors"
 
-export function LuminanceTestShowcase() {
+export function LuminanceShowcase() {
   // Test colors from our design system
   const testColors = [
     { name: "Primary", variant: "primary" as const, hex: "#3b82f6" },

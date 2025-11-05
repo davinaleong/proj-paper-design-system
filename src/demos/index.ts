@@ -5,7 +5,6 @@ export {
   LayoutShowcase,
   UIPrimitivesShowcase,
   FormFieldShowcase,
-  ProgressAndStatusShowcase,
   TabsShowcase,
   PaginationShowcase,
   StepperShowcase,
@@ -15,7 +14,6 @@ export {
 export {
   FormControlsShowcase,
   DataDisplayShowcase,
-  NavigationShowcase,
 } from "./feature-showcases"
 
 // Export individual showcase files

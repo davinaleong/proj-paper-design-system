@@ -11,7 +11,7 @@ import {
   ProseShowcase,
   AlertShowcase,
   ToastShowcase,
-  LuminanceTestShowcase,
+  LuminanceShowcase,
   ProgressCircleShowcase,
   ProgressBarShowcase,
   EmptyStateShowcase,
@@ -127,7 +127,7 @@ function AppContent() {
         brand={{ text: "Paper Design System", logo: "/logo-coloured.svg" }}
         width="lg"
         position="fixed"
-        open={isMobileSidebarOpen}
+        open={isMobileSidebarOpen || window.innerWidth >= 768}
         className="h-screen"
         spy={true}
         spyOffset={100}
@@ -135,7 +135,7 @@ function AppContent() {
       />
 
       {/* Main Content Area - with left margin to account for fixed sidebar */}
-      <div className="flex flex-col min-h-screen lg:ml-72 relative z-10">
+      <div className="flex flex-col min-h-screen md:ml-72 relative z-10">
         {/* Header */}
         <AppHeader onMobileMenuClick={() => setIsMobileSidebarOpen(true)} />
 
@@ -193,7 +193,7 @@ function AppContent() {
 
         {/* Luminance Test */}
         <section id="luminance-test">
-          <LuminanceTestShowcase />
+          <LuminanceShowcase />
         </section>
 
         {/* Data Display */}

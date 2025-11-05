@@ -13,7 +13,7 @@ const variantClasses = {
 }
 
 const positionClasses = {
-  fixed: "fixed top-0 left-0 bottom-0 z-40 lg:block",
+  fixed: "fixed top-0 left-0 bottom-0 z-40",
   sticky: "sticky top-0 h-screen",
   static: "relative h-full",
 }
@@ -339,7 +339,7 @@ export const Sidebar = ({
     )
   }
 
-  if (position === "fixed" && !open) {
+  if (position === "fixed" && !open && window.innerWidth < 768) {
     return null
   }
 
@@ -348,7 +348,7 @@ export const Sidebar = ({
       {/* Backdrop for mobile */}
       {position === "fixed" && open && (
         <div 
-          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-30 lg:hidden"
+          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-30 md:hidden"
           onClick={onClose}
         />
       )}
@@ -361,9 +361,14 @@ export const Sidebar = ({
           positionClasses[position],
           variantClasses[variant],
           isCollapsed ? collapsedWidthClasses[width] : widthClasses[width],
-          position === "fixed" && "lg:translate-x-0 h-screen",
-          position === "fixed" && !open && "-translate-x-full lg:translate-x-0",
-          position !== "fixed" && "overflow-hidden",
+          // Fixed sidebar positioning
+          position === "fixed" && [
+            "h-screen",
+            "md:flex",
+            "overflow-hidden",
+            !open && "hidden md:flex",
+            open && "flex md:flex",
+          ],
           className
         )}
       >
@@ -420,7 +425,7 @@ export const Sidebar = ({
                 icon={X}
                 variant="ghost"
                 size="sm"
-                className="lg:hidden"
+                className="md:hidden"
                 aria-label="Close sidebar"
                 onClick={onClose}
               />

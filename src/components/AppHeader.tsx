@@ -25,11 +25,11 @@ export function AppHeader({ onMobileMenuClick }: AppHeaderProps) {
             icon={Menu}
             variant="ghost"
             size="sm"
-            className="lg:hidden"
+            className="md:hidden"
             aria-label="Open menu"
           />
 
-          <div className="flex-1 lg:flex-initial">
+          <div className="flex-1 md:flex-initial">
             <Typography variant="h4" className="text-stone-800">
               Component Documentation
             </Typography>

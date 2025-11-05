@@ -9,7 +9,7 @@ export { StepperShowcase } from "./StepperShowcase"
 export { ProseShowcase } from "./ProseShowcase"
 export { AlertShowcase } from "./AlertShowcase"
 export { ToastDemo as ToastShowcase } from "./ToastShowcase"
-export { LuminanceTestShowcase } from "./LuminanceTestShowcase"
+export { LuminanceShowcase } from "./LuminanceShowcase"
 
 // New split progress and status showcases
 export { ProgressCircleShowcase } from "./ProgressCircleShowcase"
