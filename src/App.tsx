@@ -11,6 +11,7 @@ import {
   ProseShowcase,
   AlertShowcase,
   ToastShowcase,
+  ModalShowcase,
   LuminanceShowcase,
   ProgressCircleShowcase,
   ProgressBarShowcase,
@@ -56,10 +57,12 @@ function AppContent() {
       icon: Home,
       children: [
         { id: "overview", label: "Overview", href: "#overview" },
+        { id: "luminance", label: "Luminance-Based Text Colors", href: "#luminance" },
         { id: "typography", label: "Typography", href: "#typography" },
         { id: "layout", label: "Layout", href: "#layout" },
         { id: "ui-primitives", label: "UI Primitives", href: "#ui-primitives" },
         { id: "prose", label: "Prose Styles", href: "#prose" },
+
       ]
     },
     // Form Controls Group
@@ -69,7 +72,6 @@ function AppContent() {
       icon: FileText,
       children: [
         { id: "form-controls", label: "Form Controls", href: "#form-controls" },
-        { id: "luminance-test", label: "Button Text Colors", href: "#luminance-test" },
       ]
     },
     // Data Display Group
@@ -115,6 +117,7 @@ function AppContent() {
         { id: "additional-progress", label: "Additional Progress", href: "#additional-progress" },
         { id: "alerts", label: "Alerts", href: "#alerts" },
         { id: "toast", label: "Toast", href: "#toast" },
+        { id: "modal", label: "Modal", href: "#modal" },
       ]
     },
   ]
@@ -146,8 +149,19 @@ function AppContent() {
           <CoreComponentsShowcase />
         </section>
 
+        {/* Luminance */}
+        <section id="luminance">
+          <LuminanceShowcase />
+        </section>
+
+        {/* Typography */}
         <section id="typography">
           <TypographyShowcase />
+        </section>
+
+        {/* Luminance */}
+        <section id="luminance">
+          <LuminanceShowcase />
         </section>
 
         {/* Semantic Typography Examples */}
@@ -189,11 +203,6 @@ function AppContent() {
         {/* Form Controls */}
         <section id="form-controls">
           <FormControlsShowcase />
-        </section>
-
-        {/* Luminance Test */}
-        <section id="luminance-test">
-          <LuminanceShowcase />
         </section>
 
         {/* Data Display */}
@@ -254,6 +263,11 @@ function AppContent() {
         {/* Toast */}
         <section id="toast">
           <ToastShowcase />
+        </section>
+
+        {/* Modal */}
+        <section id="modal">
+          <ModalShowcase />
         </section>
 
         {/* Progress Circle */}

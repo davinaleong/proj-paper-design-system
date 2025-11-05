@@ -1,2 +1,3 @@
 export { Alert } from './Alert'
 export { Toast, ToastProvider, useToast, useToastHelpers } from './Toast'
+export { Modal, ModalHeader, ModalBody, ModalFooter, ModalTaskbarItem } from './Modal'
