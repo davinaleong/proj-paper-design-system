@@ -34,6 +34,7 @@ import {
   TreeViewShowcase,
   QuickActionsShowcase,
 } from "./demos/component-showcases"
+import { LoaderShowcase } from "./components/feedback/Loader/LoaderShowcase"
 import {
   FormControlsShowcase,
   DataDisplayShowcase,
@@ -130,6 +131,7 @@ function AppContent() {
         { id: "modal", label: "Modal", href: "#modal" },
         { id: "confirmation-dialog", label: "Confirmation Dialog", href: "#confirmation-dialog" },
         { id: "loading-spinner", label: "Loading Spinner", href: "#loading-spinner" },
+        { id: "loader", label: "Loader", href: "#loader" },
       ]
     },
   ]
@@ -289,6 +291,11 @@ function AppContent() {
         {/* Loading Spinner */}
         <section id="loading-spinner">
           <LoadingSpinnerShowcase />
+        </section>
+
+        {/* Loader */}
+        <section id="loader">
+          <LoaderShowcase />
         </section>
 
         {/* Progress Circle */}

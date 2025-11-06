@@ -1,0 +1,51 @@
+/* Loader component animations */
+
+@keyframes loaderEllipsisFade {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+
+.paper-loader-ellipsis {
+  display: inline-flex;
+  align-items: center;
+}
+
+.paper-loader-dot {
+  display: inline-block;
+  animation: loaderEllipsisFade var(--loader-speed, 1.5s) infinite ease-in-out;
+}
+
+.paper-loader-dot-1 {
+  animation-delay: 0s;
+}
+
+.paper-loader-dot-2 {
+  animation-delay: 0.2s;
+}
+
+.paper-loader-dot-3 {
+  animation-delay: 0.4s;
+}
+
+/* Prevent text selection on dots */
+.paper-loader-ellipsis {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* Accessibility - Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .paper-loader-dot {
+    animation: none;
+    opacity: 0.7;
+  }
+}

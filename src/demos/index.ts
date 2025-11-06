@@ -17,6 +17,7 @@ export {
 } from "./feature-showcases"
 
 // Export individual showcase files
-export { DotIndicatorShowcase } from "./DotIndicatorShowcase"
 export { StaticTableShowcase } from "./component-showcases/StaticTableShowcase"
-export { SemanticTypographyTest } from "./SemanticTypographyTest"
+
+// Export feedback component showcases
+export { LoaderShowcase } from "../components/feedback/Loader/LoaderShowcase"
