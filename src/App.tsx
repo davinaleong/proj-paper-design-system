@@ -36,6 +36,7 @@ import {
 } from "./demos/component-showcases"
 import { LoaderShowcase } from "./components/feedback/Loader/LoaderShowcase"
 import { SkeletonShowcase } from "./components/feedback/Skeleton/SkeletonShowcase"
+import { PopoverShowcase } from "./components/feedback/Popover/PopoverShowcase"
 import {
   FormControlsShowcase,
   DataDisplayShowcase,
@@ -134,6 +135,7 @@ function AppContent() {
         { id: "loading-spinner", label: "Loading Spinner", href: "#loading-spinner" },
         { id: "loader", label: "Loader", href: "#loader" },
         { id: "skeleton", label: "Skeleton", href: "#skeleton" },
+        { id: "popover", label: "Popover", href: "#popover" },
       ]
     },
   ]
@@ -303,6 +305,11 @@ function AppContent() {
         {/* Skeleton */}
         <section id="skeleton">
           <SkeletonShowcase />
+        </section>
+
+        {/* Popover */}
+        <section id="popover">
+          <PopoverShowcase />
         </section>
 
         {/* Progress Circle */}

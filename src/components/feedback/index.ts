@@ -12,3 +12,4 @@ export {
   SkeletonButton, 
   SkeletonCard 
 } from './Skeleton'
+export { Popover } from './Popover'

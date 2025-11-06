@@ -13,6 +13,7 @@ export { ModalShowcase } from "./ModalShowcase"
 export { ConfirmationDialogShowcase } from "./ConfirmationDialogShowcase"
 export { LoadingSpinnerShowcase } from "./LoadingSpinnerShowcase"
 export { LuminanceShowcase } from "./LuminanceShowcase"
+export { PopoverShowcase } from "../../components/feedback/Popover/PopoverShowcase"
 
 // New split progress and status showcases
 export { ProgressCircleShowcase } from "./ProgressCircleShowcase"
