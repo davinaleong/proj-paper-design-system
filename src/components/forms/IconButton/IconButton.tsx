@@ -1,3 +1,4 @@
+import { forwardRef } from "react"
 import { Loader2 } from "lucide-react"
 import type { IconButtonProps } from "./types"
 import { cn } from "../../../utils/cn.js"
@@ -72,7 +73,7 @@ const variantClasses = {
   ],
 }
 
-export function IconButton({
+export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(({
   icon: Icon,
   "aria-label": ariaLabel,
   variant = "solid",
@@ -83,7 +84,7 @@ export function IconButton({
   type = "button",
   onClick,
   className,
-}: IconButtonProps) {
+}, ref) => {
   const isDisabled = disabled || loading
 
   const buttonClasses = cn(
@@ -106,6 +107,7 @@ export function IconButton({
 
   return (
     <button
+      ref={ref}
       type={type}
       onClick={onClick}
       disabled={isDisabled}
@@ -119,4 +121,6 @@ export function IconButton({
       )}
     </button>
   )
-}
+})
+
+IconButton.displayName = 'IconButton'

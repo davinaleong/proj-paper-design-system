@@ -267,47 +267,111 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
   // Determine chevron icon
   const ChevronIcon = chevronIcon || (placement.startsWith('top') ? ChevronUp : ChevronDown);
 
-  // Clone the Button child and inject chevron as icon
+  // Check if child is IconButton
+  const isIconButton = React.isValidElement(children) && 
+    typeof (children as React.ReactElement).type === 'function' && 
+    ((children as React.ReactElement).type as React.ComponentType<unknown>).displayName === 'IconButton';
+
+  // Create composite icon for IconButton that combines original icon with chevron
+  const createCompositeIcon = (OriginalIcon: React.ComponentType<{ className?: string }>) => {
+    return function CompositeIcon({ className, ...props }: { className?: string }) {
+      return (
+        <div className={cn("relative inline-flex items-center justify-center", className)} {...props}>
+          <OriginalIcon className="w-full h-full" />
+          {showChevron && (
+            <ChevronIcon 
+              className={cn(
+                "absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-white dark:bg-gray-800 rounded-full p-0.5",
+                isOpen && "rotate-180",
+                "transition-transform duration-200"
+              )} 
+            />
+          )}
+        </div>
+      );
+    };
+  };
+
+  // Clone the Button child and inject chevron as icon (for regular Button) or composite icon (for IconButton)
   const triggerElement = React.isValidElement(children) 
-    ? React.cloneElement(children as React.ReactElement<Record<string, unknown>>, {
-        ref: triggerRef,
-        onClick: (event: React.MouseEvent) => {
-          handleTriggerClick(event);
-          // Call existing onClick if present
-          const originalOnClick = (children as React.ReactElement<{ onClick?: (event: React.MouseEvent) => void }>).props.onClick;
-          if (originalOnClick) {
-            originalOnClick(event);
-          }
-        },
-        onMouseEnter: () => {
-          handleTriggerMouseEnter();
-        },
-        onMouseLeave: () => {
-          handleTriggerMouseLeave();
-        },
-        onFocus: () => {
-          handleTriggerFocus();
-        },
-        onBlur: () => {
-          handleTriggerBlur();
-        },
-        onContextMenu: (event: React.MouseEvent) => {
-          handleTriggerContextMenu(event);
-        },
-        // Inject chevron icon - only if showChevron is true
-        ...(showChevron && {
-          icon: ChevronIcon,
-          iconPosition: chevronPlacement,
-        }),
-        className: cn(
-          (children as React.ReactElement<{ className?: string }>).props.className,
-          isOpen && 'paper-dropdown-trigger--active'
-        ),
-        disabled: disabled || (children as React.ReactElement<{ disabled?: boolean }>).props.disabled,
-        'aria-expanded': isOpen,
-        'aria-haspopup': true,
-        'aria-describedby': isOpen ? 'paper-dropdown-menu-content' : undefined,
-      })
+    ? (isIconButton 
+        ? React.cloneElement(children as React.ReactElement<Record<string, unknown>>, {
+            ref: triggerRef,
+            onClick: (event: React.MouseEvent) => {
+              handleTriggerClick(event);
+              const originalOnClick = (children as React.ReactElement<{ onClick?: (event: React.MouseEvent) => void }>).props.onClick;
+              if (originalOnClick) {
+                originalOnClick(event);
+              }
+            },
+            onMouseEnter: () => {
+              handleTriggerMouseEnter();
+            },
+            onMouseLeave: () => {
+              handleTriggerMouseLeave();
+            },
+            onFocus: () => {
+              handleTriggerFocus();
+            },
+            onBlur: () => {
+              handleTriggerBlur();
+            },
+            onContextMenu: (event: React.MouseEvent) => {
+              handleTriggerContextMenu(event);
+            },
+            // Replace icon with composite icon that includes chevron (if showChevron is true)
+            icon: showChevron 
+              ? createCompositeIcon((children as React.ReactElement<{ icon: React.ComponentType<{ className?: string }> }>).props.icon)
+              : (children as React.ReactElement<{ icon: React.ComponentType<{ className?: string }> }>).props.icon,
+            className: cn(
+              (children as React.ReactElement<{ className?: string }>).props.className,
+              isOpen && 'paper-dropdown-trigger--active'
+            ),
+            disabled: disabled || (children as React.ReactElement<{ disabled?: boolean }>).props.disabled,
+            'aria-expanded': isOpen,
+            'aria-haspopup': true,
+            'aria-describedby': isOpen ? 'paper-dropdown-menu-content' : undefined,
+          })
+        : React.cloneElement(children as React.ReactElement<Record<string, unknown>>, {
+            ref: triggerRef,
+            onClick: (event: React.MouseEvent) => {
+              handleTriggerClick(event);
+              // Call existing onClick if present
+              const originalOnClick = (children as React.ReactElement<{ onClick?: (event: React.MouseEvent) => void }>).props.onClick;
+              if (originalOnClick) {
+                originalOnClick(event);
+              }
+            },
+            onMouseEnter: () => {
+              handleTriggerMouseEnter();
+            },
+            onMouseLeave: () => {
+              handleTriggerMouseLeave();
+            },
+            onFocus: () => {
+              handleTriggerFocus();
+            },
+            onBlur: () => {
+              handleTriggerBlur();
+            },
+            onContextMenu: (event: React.MouseEvent) => {
+              handleTriggerContextMenu(event);
+            },
+            // Handle chevron icon injection - only for regular Button, not IconButton
+            ...(showChevron && {
+              icon: ChevronIcon,
+              iconPosition: chevronPlacement,
+            }),
+            className: cn(
+              (children as React.ReactElement<{ className?: string }>).props.className,
+              isOpen && 'paper-dropdown-trigger--active'
+            ),
+            disabled: disabled || (children as React.ReactElement<{ disabled?: boolean }>).props.disabled,
+            'aria-expanded': isOpen,
+            'aria-haspopup': true,
+            'aria-describedby': isOpen ? 'paper-dropdown-menu-content' : undefined,
+          })
+      )
     : (
         // Fallback for non-React elements
         <span
