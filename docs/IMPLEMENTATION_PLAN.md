@@ -277,7 +277,7 @@ Create a complete design system that feels **organic, readable, and professional
 #### 7.1 Overlay Components
 
 - [x] **Popover** - Floating content
-- [ ] **DropdownMenu** - Contextual actions
+- [x] **DropdownMenu** - Contextual actions
 - [ ] **ContextMenu** - Right-click menus
 - [ ] **Drawer** - Slide-out panels
 
