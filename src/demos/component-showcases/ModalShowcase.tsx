@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Settings, FileText, Heart, Download, Bell, User, Mail, Calendar } from "lucide-react"
-import { Paper, Typography } from "../../components/core"
+import { Typography } from "../../components/core"
 import { Button } from "../../components/forms"
 import { Modal } from "../../components/feedback"
 import type { ModalState, ModalVariant } from "../../components/feedback/Modal/types"
@@ -35,22 +35,20 @@ export function ModalShowcase() {
   ]
 
   return (
-    <Paper className="p-8 my-8">
-      <div className="space-y-12">
-        {/* Header */}
-        <div>
-          <Typography variant="h2" className="text-stone-900 mb-2">
-            Modal Component
-          </Typography>
-          <Typography variant="body" className="text-stone-600">
-            Flexible modal component with Paper design system styling, multiple variants, color options, 
-            and taskbar-style minimize functionality.
-          </Typography>
-        </div>
+    <div className="space-y-8">
+      <div>
+        <Typography variant="h2" className="mb-2">
+          Modal
+        </Typography>
+        <Typography variant="body" color="muted">
+          Flexible modal component with Paper design system styling, multiple variants, color options, 
+          and taskbar-style minimize functionality.
+        </Typography>
+      </div>
 
         {/* Basic Modal */}
         <div>
-          <Typography variant="h3" className="mb-6">
+          <Typography variant="h3" className="mb-4">
             Basic Modal
           </Typography>
           <Typography variant="body" className="text-stone-600 mb-4">
@@ -366,7 +364,6 @@ export function ModalShowcase() {
             </Typography>
           </Modal>
         </div>
-      </div>
-    </Paper>
+    </div>
   )
 }

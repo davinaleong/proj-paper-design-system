@@ -33,17 +33,17 @@ export function LoadingSpinnerShowcase() {
   return (
     <div className="space-y-8">
       <div>
-        <Typography variant="h3" className="text-stone-900 mb-2">
+        <Typography variant="h2" className="mb-2">
           Loading Spinner
         </Typography>
-        <Typography variant="body" className="text-stone-600 mb-6">
+        <Typography variant="body" color="muted">
           Animated loading indicators with Lucide icons, customizable styling, and Paper Design System integration.
         </Typography>
       </div>
 
       {/* Basic Examples */}
       <section>
-        <Typography variant="h4" className="text-stone-800 mb-4">
+        <Typography variant="h3" className="mb-4">
           Basic Loading Spinners
         </Typography>
         
@@ -84,7 +84,7 @@ export function LoadingSpinnerShowcase() {
 
       {/* Spinner Icons */}
       <section>
-        <Typography variant="h4" className="text-stone-800 mb-4">
+        <Typography variant="h3" className="mb-4">
           Spinner Icon Variants
         </Typography>
         

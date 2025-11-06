@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Loader } from "./Loader"
-import { Paper } from "../../core"
+import { Paper, Typography } from "../../core"
 import { Stack, Grid, Divider } from "../../layout"
 import type { ColorVariant } from "../../../utils/colors"
 import type { LoaderSize } from "./types"
@@ -24,19 +24,19 @@ export function LoaderShowcase() {
   const sizes: LoaderSize[] = ["sm", "md", "lg"]
 
   return (
-    <div className="p-8 space-y-8">
-      <div className="text-center space-y-2">
-        <h1 className="text-3xl font-bold">
-          Loader Component
-        </h1>
-        <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+    <div className="space-y-8">
+      <div>
+        <Typography variant="h2" className="mb-2">
+          Loader
+        </Typography>
+        <Typography variant="body" color="muted">
           Simple text-based loader with animated ellipsis for inline usage and loading states.
-        </p>
+        </Typography>
       </div>
 
       {/* Interactive Controls */}
       <Paper className="p-6">
-        <h2 className="text-xl font-semibold mb-4">Interactive Demo</h2>
+        <Typography variant="h3" className="mb-4">Interactive Demo</Typography>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Controls */}
@@ -143,7 +143,7 @@ export function LoaderShowcase() {
           {/* Preview */}
           <div className="border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-lg p-8 flex items-center justify-center min-h-[200px]">
             <div className="text-center space-y-4">
-              <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Preview</h3>
+              <Typography variant="bodySmall" color="muted">Preview</Typography>
               <div className={isInline ? "inline-block" : "block"}>
                 <Loader
                   loading={isLoading}
@@ -156,9 +156,9 @@ export function LoaderShowcase() {
                 />
               </div>
               {isInline && (
-                <p className="text-gray-600 dark:text-gray-400">
+                <Typography variant="body" color="muted">
                   This is some text before the loader. <Loader loading={isLoading} text="Processing" color={selectedColor} size={selectedSize} speed={animationSpeed} inline /> And this text comes after.
-                </p>
+                </Typography>
               )}
             </div>
           </div>
@@ -169,7 +169,7 @@ export function LoaderShowcase() {
 
       {/* Size Variations */}
       <Paper className="p-6">
-        <h2 className="text-xl font-semibold mb-4">Size Variations</h2>
+        <Typography variant="h3" className="mb-4">Size Variations</Typography>
         <Stack direction="column" gap="lg">
           {sizes.map((size) => (
             <div key={size} className="flex items-center space-x-4">
@@ -182,7 +182,7 @@ export function LoaderShowcase() {
 
       {/* Color Variants */}
       <Paper className="p-6">
-        <h2 className="text-xl font-semibold mb-4">Color Variants</h2>
+        <Typography variant="h3" className="mb-4">Color Variants</Typography>
         <Grid columns={4} gap="md">
           {colors.slice(0, 8).map((color) => (
             <div key={color} className="text-center space-y-2">
@@ -195,37 +195,37 @@ export function LoaderShowcase() {
 
       {/* Usage Examples */}
       <Paper className="p-6">
-        <h2 className="text-xl font-semibold mb-4">Usage Examples</h2>
+        <Typography variant="h3" className="mb-4">Usage Examples</Typography>
         <Stack direction="column" gap="lg">
           <div>
-            <h3 className="text-lg font-medium mb-2">Basic Loading</h3>
+            <Typography variant="h4" className="mb-2">Basic Loading</Typography>
             <Loader text="Please wait" />
           </div>
 
           <div>
-            <h3 className="text-lg font-medium mb-2">Without Ellipsis</h3>
+            <Typography variant="h4" className="mb-2">Without Ellipsis</Typography>
             <Loader text="Processing your request" showEllipsis={false} color="info" />
           </div>
 
           <div>
-            <h3 className="text-lg font-medium mb-2">Inline Usage</h3>
-            <p className="text-gray-600 dark:text-gray-400">
+            <Typography variant="h4" className="mb-2">Inline Usage</Typography>
+            <Typography variant="body" color="muted">
               Submitting your form <Loader text="please wait" inline color="warning" size="sm" /> while we process your information.
-            </p>
+            </Typography>
           </div>
 
           <div>
-            <h3 className="text-lg font-medium mb-2">Fast Animation</h3>
+            <Typography variant="h4" className="mb-2">Fast Animation</Typography>
             <Loader text="Quick loading" speed={0.8} color="success" />
           </div>
 
           <div>
-            <h3 className="text-lg font-medium mb-2">Slow Animation</h3>
+            <Typography variant="h4" className="mb-2">Slow Animation</Typography>
             <Loader text="Taking some time" speed={2.5} color="secondary" />
           </div>
 
           <div>
-            <h3 className="text-lg font-medium mb-2">Custom Content</h3>
+            <Typography variant="h4" className="mb-2">Custom Content</Typography>
             <Loader color="purple">
               <span className="font-semibold">Custom loading message</span>
             </Loader>
@@ -235,24 +235,24 @@ export function LoaderShowcase() {
 
       {/* Code Examples */}
       <Paper className="p-6">
-        <h2 className="text-xl font-semibold mb-4">Code Examples</h2>
+        <Typography variant="h3" className="mb-4">Code Examples</Typography>
         <div className="space-y-4">
           <div>
-            <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">Basic Usage</h3>
+            <Typography variant="bodySmall" color="muted" className="mb-2">Basic Usage</Typography>
             <pre className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg text-sm overflow-x-auto">
               <code>{`<Loader text="Loading data" />`}</code>
             </pre>
           </div>
 
           <div>
-            <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">Inline Usage</h3>
+            <Typography variant="bodySmall" color="muted" className="mb-2">Inline Usage</Typography>
             <pre className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg text-sm overflow-x-auto">
               <code>{`<p>Processing <Loader text="please wait" inline size="sm" /> ...</p>`}</code>
             </pre>
           </div>
 
           <div>
-            <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-2">Customized</h3>
+            <Typography variant="bodySmall" color="muted" className="mb-2">Customized</Typography>
             <pre className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg text-sm overflow-x-auto">
               <code>{`<Loader
   text="Custom loading"

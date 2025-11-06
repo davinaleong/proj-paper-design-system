@@ -12,10 +12,12 @@ import {
 
 export function UIPrimitivesShowcase() {
   return (
-    <div className="mt-16" id="ui-primitives">
-      <Typography variant="h2" className="mb-8">
-        UI Primitives
-      </Typography>
+    <div className="space-y-8">
+      <div>
+        <Typography variant="h2" className="mb-2">
+          UI Primitives
+        </Typography>
+      </div>
 
       {/* Avatar Components */}
       <div className="mb-12">

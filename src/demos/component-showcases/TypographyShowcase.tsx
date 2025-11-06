@@ -3,19 +3,21 @@ import { Input, Button } from "../../components/forms"
 
 export function TypographyShowcase() {
   return (
-    <div className="mt-16" id="typography">
-      <Typography variant="h2" className="mb-8">
-        Container-Based Typography
-      </Typography>
-      <Typography variant="body" className="mb-8 text-stone-600">
-        Typography that scales based on container width rather than viewport
-        size. Each container adapts its text size based on its own available
-        space, providing perfect scaling for component-based layouts.
-      </Typography>
+    <div className="space-y-8">
+      <div>
+        <Typography variant="h2" className="mb-2">
+          Typography
+        </Typography>
+        <Typography variant="body" color="muted">
+          Typography that scales based on container width rather than viewport
+          size. Each container adapts its text size based on its own available
+          space, providing perfect scaling for component-based layouts.
+        </Typography>
+      </div>
 
       {/* Responsive Headings */}
-      <div className="mb-12">
-        <Typography variant="h3" className="mb-6">
+      <div>
+        <Typography variant="h3" className="mb-4">
           Responsive Headings
         </Typography>
         <div className="space-y-6">
