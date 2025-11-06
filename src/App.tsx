@@ -13,6 +13,7 @@ import {
   ToastShowcase,
   ModalShowcase,
   ConfirmationDialogShowcase,
+  LoadingSpinnerShowcase,
   LuminanceShowcase,
   ProgressCircleShowcase,
   ProgressBarShowcase,
@@ -128,6 +129,7 @@ function AppContent() {
         { id: "toast", label: "Toast", href: "#toast" },
         { id: "modal", label: "Modal", href: "#modal" },
         { id: "confirmation-dialog", label: "Confirmation Dialog", href: "#confirmation-dialog" },
+        { id: "loading-spinner", label: "Loading Spinner", href: "#loading-spinner" },
       ]
     },
   ]
@@ -282,6 +284,11 @@ function AppContent() {
         {/* Confirmation Dialog */}
         <section id="confirmation-dialog">
           <ConfirmationDialogShowcase />
+        </section>
+
+        {/* Loading Spinner */}
+        <section id="loading-spinner">
+          <LoadingSpinnerShowcase />
         </section>
 
         {/* Progress Circle */}
