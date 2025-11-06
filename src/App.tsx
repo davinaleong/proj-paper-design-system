@@ -133,27 +133,26 @@ function AppContent() {
   ]
 
   return (
-    <div className="min-h-screen bg-[#faf9f6] dark:bg-gray-900">
-      {/* Fixed Sidebar Navigation */}
-      <Sidebar
-        items={sidebarItems}
-        brand={{ text: "Paper Design System", logo: "/logo-coloured.svg" }}
-        width="lg"
-        position="fixed"
-        open={isMobileSidebarOpen || window.innerWidth >= 768}
-        className="h-screen"
-        spy={true}
-        spyOffset={100}
-        onClose={() => setIsMobileSidebarOpen(false)}
-      />
+  <div className="flex bg-[#faf9f6] dark:bg-gray-900 min-h-screen">
+    {/* Sidebar (fixed for md+) */}
+    <Sidebar
+      items={sidebarItems}
+      brand={{ text: "Paper Design System", logo: "/logo-coloured.svg" }}
+      width="lg"
+      position="fixed"
+      open={isMobileSidebarOpen}
+      className="h-screen"
+      spy={true}
+      spyOffset={100}
+      onClose={() => setIsMobileSidebarOpen(false)}
+    />
 
-      {/* Main Content Area - with left margin to account for fixed sidebar */}
-      <div className="flex flex-col min-h-screen md:ml-72 relative z-10">
-        {/* Header */}
-        <AppHeader onMobileMenuClick={() => setIsMobileSidebarOpen(true)} />
+    {/* Main content wrapper */}
+    <div className="flex-1 flex flex-col min-h-screen md:ml-72 relative z-10 overflow-x-hidden">
+      <AppHeader onMobileMenuClick={() => setIsMobileSidebarOpen(true)} />
 
-        {/* Main Content */}
-        <main className="flex-1 space-y-0">
+      {/* Scrollable content area */}
+      <main className="flex-1 overflow-y-auto overflow-x-hidden">
         {/* Core Components */}
         <section id="overview">
           <CoreComponentsShowcase />
@@ -324,10 +323,10 @@ function AppContent() {
         <section id="prose">
           <ProseShowcase />
         </section>
-        </main>
-      </div>
+      </main>
     </div>
-  )
+  </div>
+)
 }
 
 export default App
