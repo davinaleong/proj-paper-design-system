@@ -83,6 +83,11 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(({
   disabled = false,
   type = "button",
   onClick,
+  onMouseEnter,
+  onMouseLeave,
+  onFocus,
+  onBlur,
+  onContextMenu,
   className,
 }, ref) => {
   const isDisabled = disabled || loading
@@ -110,6 +115,11 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(({
       ref={ref}
       type={type}
       onClick={onClick}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      onFocus={onFocus}
+      onBlur={onBlur}
+      onContextMenu={onContextMenu}
       disabled={isDisabled}
       className={buttonClasses}
       aria-label={ariaLabel}

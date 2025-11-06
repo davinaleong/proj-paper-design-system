@@ -1,13 +1,18 @@
 import type { LucideIcon } from "lucide-react"
 import type { ColorVariant } from "../../../utils/colors"
+import type { ButtonHTMLAttributes, RefAttributes } from "react"
 
 export type IconButtonVariant = "solid" | "outline" | "ghost" | "plain"
-
 export type IconButtonSize = "xs" | "sm" | "md" | "lg" | "xl"
 
-export interface IconButtonProps {
+/**
+ * Props for the IconButton component.
+ * Extends standard HTML button attributes for full compatibility.
+ */
+export interface IconButtonProps
+  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "color" | "type" | "onClick"> {
   /**
-   * Icon to display
+   * Icon component to render (Lucide icon or compatible)
    */
   icon: LucideIcon
 
@@ -49,10 +54,37 @@ export interface IconButtonProps {
   /**
    * Click handler
    */
-  onClick?: () => void
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
+
+  /**
+   * Mouse enter handler
+   */
+  onMouseEnter?: (event: React.MouseEvent<HTMLButtonElement>) => void
+
+  /**
+   * Mouse leave handler
+   */
+  onMouseLeave?: (event: React.MouseEvent<HTMLButtonElement>) => void
+
+  /**
+   * Focus handler
+   */
+  onFocus?: (event: React.FocusEvent<HTMLButtonElement>) => void
+
+  /**
+   * Blur handler
+   */
+  onBlur?: (event: React.FocusEvent<HTMLButtonElement>) => void
+
+  /**
+   * Context menu handler
+   */
+  onContextMenu?: (event: React.MouseEvent<HTMLButtonElement>) => void
 
   /**
    * Additional CSS classes
    */
   className?: string
 }
+
+export type IconButtonRef = RefAttributes<HTMLButtonElement>

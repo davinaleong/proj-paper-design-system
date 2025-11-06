@@ -177,10 +177,18 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
     }
   }, [trigger, isOpen, setIsOpen, disabled]);
 
+  // Hover timeout ref for smooth hover interactions
+  const hoverTimeoutRef = useRef<number | null>(null);
+
   const handleTriggerMouseEnter = useCallback(() => {
     if (disabled) return;
     
     if (trigger === 'hover') {
+      // Clear any pending close timeout
+      if (hoverTimeoutRef.current) {
+        clearTimeout(hoverTimeoutRef.current);
+        hoverTimeoutRef.current = null;
+      }
       setIsOpen(true);
     }
   }, [trigger, setIsOpen, disabled]);
@@ -189,6 +197,30 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
     if (disabled) return;
     
     if (trigger === 'hover') {
+      // Add a delay before closing to allow moving to menu content
+      hoverTimeoutRef.current = window.setTimeout(() => {
+        setIsOpen(false);
+      }, 150);
+    }
+  }, [trigger, setIsOpen, disabled]);
+
+  const handleMenuMouseEnter = useCallback(() => {
+    if (disabled) return;
+    
+    if (trigger === 'hover') {
+      // Clear close timeout when entering menu content
+      if (hoverTimeoutRef.current) {
+        clearTimeout(hoverTimeoutRef.current);
+        hoverTimeoutRef.current = null;
+      }
+    }
+  }, [trigger, disabled]);
+
+  const handleMenuMouseLeave = useCallback(() => {
+    if (disabled) return;
+    
+    if (trigger === 'hover') {
+      // Close when leaving menu content
       setIsOpen(false);
     }
   }, [trigger, setIsOpen, disabled]);
@@ -264,6 +296,15 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
     return () => document.removeEventListener('keydown', handleEscapeKey);
   }, [isOpen, dismissible.escapeKey, setIsOpen]);
 
+  // Cleanup hover timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (hoverTimeoutRef.current) {
+        clearTimeout(hoverTimeoutRef.current);
+      }
+    };
+  }, []);
+
   // Determine chevron icon
   const ChevronIcon = chevronIcon || (placement.startsWith('top') ? ChevronUp : ChevronDown);
 
@@ -304,11 +345,21 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
                 originalOnClick(event);
               }
             },
-            onMouseEnter: () => {
+            onMouseEnter: (event: React.MouseEvent) => {
               handleTriggerMouseEnter();
+              // Call existing onMouseEnter if present
+              const originalOnMouseEnter = (children as React.ReactElement<{ onMouseEnter?: (event: React.MouseEvent) => void }>).props.onMouseEnter;
+              if (originalOnMouseEnter) {
+                originalOnMouseEnter(event);
+              }
             },
-            onMouseLeave: () => {
+            onMouseLeave: (event: React.MouseEvent) => {
               handleTriggerMouseLeave();
+              // Call existing onMouseLeave if present
+              const originalOnMouseLeave = (children as React.ReactElement<{ onMouseLeave?: (event: React.MouseEvent) => void }>).props.onMouseLeave;
+              if (originalOnMouseLeave) {
+                originalOnMouseLeave(event);
+              }
             },
             onFocus: () => {
               handleTriggerFocus();
@@ -429,6 +480,8 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
       ref={menuRef}
       id="paper-dropdown-menu-content"
       role="menu"
+      onMouseEnter={handleMenuMouseEnter}
+      onMouseLeave={handleMenuMouseLeave}
       className={cn(
         'paper-dropdown-menu',
         `paper-dropdown-menu--${variant}`,
