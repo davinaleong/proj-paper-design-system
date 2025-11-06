@@ -35,6 +35,7 @@ import {
   QuickActionsShowcase,
 } from "./demos/component-showcases"
 import { LoaderShowcase } from "./components/feedback/Loader/LoaderShowcase"
+import { SkeletonShowcase } from "./components/feedback/Skeleton/SkeletonShowcase"
 import {
   FormControlsShowcase,
   DataDisplayShowcase,
@@ -132,6 +133,7 @@ function AppContent() {
         { id: "confirmation-dialog", label: "Confirmation Dialog", href: "#confirmation-dialog" },
         { id: "loading-spinner", label: "Loading Spinner", href: "#loading-spinner" },
         { id: "loader", label: "Loader", href: "#loader" },
+        { id: "skeleton", label: "Skeleton", href: "#skeleton" },
       ]
     },
   ]
@@ -296,6 +298,11 @@ function AppContent() {
         {/* Loader */}
         <section id="loader">
           <LoaderShowcase />
+        </section>
+
+        {/* Skeleton */}
+        <section id="skeleton">
+          <SkeletonShowcase />
         </section>
 
         {/* Progress Circle */}
