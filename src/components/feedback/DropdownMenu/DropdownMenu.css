@@ -1,0 +1,308 @@
+/* DropdownMenu component styles */
+
+.paper-dropdown-menu {
+  position: absolute;
+  z-index: 50;
+  min-width: 12rem;
+  max-width: 20rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgb(229 231 235);
+  background-color: white;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  padding: 0.5rem 0;
+  transition: opacity var(--dropdown-duration, 200ms) ease-in-out,
+              transform var(--dropdown-duration, 200ms) ease-in-out;
+}
+
+/* Dark theme for dropdown menu */
+.dark .paper-dropdown-menu {
+  border-color: rgb(55 65 81);
+  background-color: rgb(31 41 55);
+}
+
+/* Dropdown menu variants following Button system */
+.paper-dropdown-menu--solid {
+  border: 1px solid rgb(229 231 235);
+  background-color: white;
+}
+
+.paper-dropdown-menu--outline {
+  border: 2px solid rgb(229 231 235);
+  background-color: white;
+}
+
+.paper-dropdown-menu--ghost {
+  border: 1px solid transparent;
+  background-color: rgb(249 250 251 / 0.95);
+  backdrop-filter: blur(8px);
+}
+
+.paper-dropdown-menu--link {
+  border: none;
+  background-color: white;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.paper-dropdown-menu--plain {
+  border: 1px solid rgb(229 231 235);
+  background-color: white;
+}
+
+/* Dark theme variants */
+.dark .paper-dropdown-menu--solid {
+  border-color: rgb(55 65 81);
+  background-color: rgb(31 41 55);
+}
+
+.dark .paper-dropdown-menu--outline {
+  border-color: rgb(55 65 81);
+  background-color: rgb(31 41 55);
+}
+
+.dark .paper-dropdown-menu--ghost {
+  background-color: rgb(17 24 39 / 0.95);
+}
+
+.dark .paper-dropdown-menu--link {
+  background-color: rgb(31 41 55);
+}
+
+.dark .paper-dropdown-menu--plain {
+  border-color: rgb(55 65 81);
+  background-color: rgb(31 41 55);
+}
+
+/* Menu item styles */
+.paper-dropdown-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  margin: 0 0.25rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: rgb(17 24 39);
+  cursor: pointer;
+  transition: background-color 150ms ease-in-out, color 150ms ease-in-out;
+  text-align: left;
+  width: calc(100% - 0.5rem);
+}
+
+.paper-dropdown-menu-item:hover {
+  background-color: rgb(243 244 246);
+  color: rgb(17 24 39);
+}
+
+.paper-dropdown-menu-item:focus {
+  outline: none;
+  background-color: rgb(243 244 246);
+  color: rgb(17 24 39);
+}
+
+.paper-dropdown-menu-item--disabled {
+  color: rgb(156 163 175);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.paper-dropdown-menu-item--selected {
+  background-color: rgb(59 130 246);
+  color: white;
+}
+
+.paper-dropdown-menu-item--selected:hover {
+  background-color: rgb(37 99 235);
+  color: white;
+}
+
+/* Dark theme menu items */
+.dark .paper-dropdown-menu-item {
+  color: rgb(229 231 235);
+}
+
+.dark .paper-dropdown-menu-item:hover {
+  background-color: rgb(55 65 81);
+  color: rgb(255 255 255);
+}
+
+.dark .paper-dropdown-menu-item:focus {
+  background-color: rgb(55 65 81);
+  color: rgb(255 255 255);
+}
+
+.dark .paper-dropdown-menu-item--disabled {
+  color: rgb(107 114 128);
+}
+
+.dark .paper-dropdown-menu-item--selected {
+  background-color: rgb(59 130 246);
+  color: white;
+}
+
+.dark .paper-dropdown-menu-item--selected:hover {
+  background-color: rgb(37 99 235);
+  color: white;
+}
+
+/* Menu item icon */
+.paper-dropdown-menu-item__icon {
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Menu item shortcut */
+.paper-dropdown-menu-item__shortcut {
+  margin-left: auto;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  color: rgb(107 114 128);
+}
+
+.dark .paper-dropdown-menu-item__shortcut {
+  color: rgb(156 163 175);
+}
+
+.paper-dropdown-menu-item--selected .paper-dropdown-menu-item__shortcut {
+  color: rgb(219 234 254);
+}
+
+/* Menu item description */
+.paper-dropdown-menu-item__description {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  color: rgb(107 114 128);
+  margin-top: 0.125rem;
+}
+
+.dark .paper-dropdown-menu-item__description {
+  color: rgb(156 163 175);
+}
+
+.paper-dropdown-menu-item--selected .paper-dropdown-menu-item__description {
+  color: rgb(219 234 254);
+}
+
+/* Menu separator */
+.paper-dropdown-menu-separator {
+  height: 1px;
+  background-color: rgb(229 231 235);
+  margin: 0.5rem 0;
+}
+
+.dark .paper-dropdown-menu-separator {
+  background-color: rgb(55 65 81);
+}
+
+/* Menu label */
+.paper-dropdown-menu-label {
+  padding: 0.375rem 0.75rem 0.25rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 600;
+  color: rgb(107 114 128);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.dark .paper-dropdown-menu-label {
+  color: rgb(156 163 175);
+}
+
+/* Trigger styles */
+.paper-dropdown-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.paper-dropdown-trigger--active {
+  outline: 2px solid rgb(59 130 246);
+  outline-offset: 2px;
+}
+
+/* Chevron styles */
+.paper-dropdown-chevron {
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  transition: transform 150ms ease-in-out;
+}
+
+.paper-dropdown-chevron--open {
+  transform: rotate(180deg);
+}
+
+.paper-dropdown-chevron--left {
+  order: -1;
+}
+
+.paper-dropdown-chevron--right {
+  order: 1;
+}
+
+/* Animation states */
+.paper-dropdown-menu--enter {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.paper-dropdown-menu--enter-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.paper-dropdown-menu--exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.paper-dropdown-menu--exit-active {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+/* Placement-specific entry animations */
+.paper-dropdown-menu--placement-top.paper-dropdown-menu--enter,
+.paper-dropdown-menu--placement-top-start.paper-dropdown-menu--enter,
+.paper-dropdown-menu--placement-top-end.paper-dropdown-menu--enter {
+  transform: translateY(4px) scale(0.95);
+}
+
+.paper-dropdown-menu--placement-bottom.paper-dropdown-menu--enter,
+.paper-dropdown-menu--placement-bottom-start.paper-dropdown-menu--enter,
+.paper-dropdown-menu--placement-bottom-end.paper-dropdown-menu--enter {
+  transform: translateY(-4px) scale(0.95);
+}
+
+.paper-dropdown-menu--placement-left.paper-dropdown-menu--enter,
+.paper-dropdown-menu--placement-left-start.paper-dropdown-menu--enter,
+.paper-dropdown-menu--placement-left-end.paper-dropdown-menu--enter {
+  transform: translateX(4px) scale(0.95);
+}
+
+.paper-dropdown-menu--placement-right.paper-dropdown-menu--enter,
+.paper-dropdown-menu--placement-right-start.paper-dropdown-menu--enter,
+.paper-dropdown-menu--placement-right-end.paper-dropdown-menu--enter {
+  transform: translateX(-4px) scale(0.95);
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .paper-dropdown-menu {
+    transition: none;
+  }
+  
+  .paper-dropdown-chevron {
+    transition: none;
+  }
+  
+  .paper-dropdown-menu--enter,
+  .paper-dropdown-menu--enter-active,
+  .paper-dropdown-menu--exit,
+  .paper-dropdown-menu--exit-active {
+    transform: none;
+  }
+}

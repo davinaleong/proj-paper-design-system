@@ -13,3 +13,9 @@ export {
   SkeletonCard 
 } from './Skeleton'
 export { Popover } from './Popover'
+export { 
+  DropdownMenu, 
+  DropdownMenuItem, 
+  DropdownMenuSeparator, 
+  DropdownMenuLabel 
+} from './DropdownMenu'
