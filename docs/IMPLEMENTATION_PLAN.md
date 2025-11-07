@@ -278,7 +278,7 @@ Create a complete design system that feels **organic, readable, and professional
 
 - [x] **Popover** - Floating content
 - [x] **DropdownMenu** - Contextual actions
-- [ ] **ContextMenu** - Right-click menus
+- [x] **ContextMenu** - Right-click menus
 - [ ] **Drawer** - Slide-out panels
 
 #### 7.2 Media & Display
