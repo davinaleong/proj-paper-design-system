@@ -22,7 +22,7 @@ export type PopoverPlacement =
   | "right-start" 
   | "right-end"
 
-export type PopoverTrigger = "click" | "hover" | "focus" | "contextMenu"
+export type PopoverTrigger = "click" | "hover" | "contextMenu"
 
 export interface PopoverDismissible {
   clickOutside?: boolean

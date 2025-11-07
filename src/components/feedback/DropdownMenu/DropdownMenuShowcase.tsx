@@ -123,13 +123,6 @@ export const DropdownMenuShowcase: React.FC = () => {
           >
             <Button variant="outline">Hover Menu</Button>
           </DropdownMenu>
-
-          <DropdownMenu 
-            items={basicMenuItems}
-            trigger="focus"
-          >
-            <Button variant="ghost">Focus Menu</Button>
-          </DropdownMenu>
         </div>
       </div>
 
@@ -319,23 +312,6 @@ export const DropdownMenuShowcase: React.FC = () => {
               icon={Bell} 
               variant="ghost" 
               aria-label="Notifications"
-            />
-          </DropdownMenu>
-
-          <DropdownMenu 
-            items={[
-              { children: 'Edit', icon: Edit },
-              { children: 'Duplicate', icon: Copy },
-              { children: 'Share', icon: Share },
-              'separator' as const,
-              { children: 'Archive', icon: FileText },
-              { children: 'Delete', icon: Trash2 }
-            ]}
-          >
-            <IconButton 
-              icon={MoreVertical} 
-              variant="ghost" 
-              aria-label="More actions"
             />
           </DropdownMenu>
         </div>

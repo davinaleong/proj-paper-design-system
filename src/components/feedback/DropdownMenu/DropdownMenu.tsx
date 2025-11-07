@@ -225,22 +225,6 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
     }
   }, [trigger, setIsOpen, disabled]);
 
-  const handleTriggerFocus = useCallback(() => {
-    if (disabled) return;
-    
-    if (trigger === 'focus') {
-      setIsOpen(true);
-    }
-  }, [trigger, setIsOpen, disabled]);
-
-  const handleTriggerBlur = useCallback(() => {
-    if (disabled) return;
-    
-    if (trigger === 'focus') {
-      setIsOpen(false);
-    }
-  }, [trigger, setIsOpen, disabled]);
-
   const handleTriggerContextMenu = useCallback((event: React.MouseEvent) => {
     if (disabled) return;
     
@@ -361,12 +345,6 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
                 originalOnMouseLeave(event);
               }
             },
-            onFocus: () => {
-              handleTriggerFocus();
-            },
-            onBlur: () => {
-              handleTriggerBlur();
-            },
             onContextMenu: (event: React.MouseEvent) => {
               handleTriggerContextMenu(event);
             },
@@ -399,12 +377,6 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
             onMouseLeave: () => {
               handleTriggerMouseLeave();
             },
-            onFocus: () => {
-              handleTriggerFocus();
-            },
-            onBlur: () => {
-              handleTriggerBlur();
-            },
             onContextMenu: (event: React.MouseEvent) => {
               handleTriggerContextMenu(event);
             },
@@ -430,8 +402,6 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
           onClick={handleTriggerClick}
           onMouseEnter={handleTriggerMouseEnter}
           onMouseLeave={handleTriggerMouseLeave}
-          onFocus={handleTriggerFocus}
-          onBlur={handleTriggerBlur}
           onContextMenu={handleTriggerContextMenu}
           className={cn(
             'paper-dropdown-trigger',

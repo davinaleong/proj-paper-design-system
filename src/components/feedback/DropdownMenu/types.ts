@@ -7,7 +7,7 @@ export type DropdownMenuVariant = ButtonVariant // "solid" | "outline" | "ghost"
 
 export type DropdownMenuSize = ButtonSize // "xs" | "sm" | "md" | "lg" | "xl"
 
-export type DropdownMenuTrigger = "click" | "hover" | "focus" | "contextMenu"
+export type DropdownMenuTrigger = "click" | "hover" | "contextMenu"
 
 export type ChevronPlacement = "left" | "right"
 

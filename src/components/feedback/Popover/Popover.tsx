@@ -184,22 +184,6 @@ export const Popover: React.FC<PopoverProps> = ({
     }
   }, [trigger, setIsOpen, disabled]);
 
-  const handleTriggerFocus = useCallback(() => {
-    if (disabled) return;
-    
-    if (trigger === 'focus') {
-      setIsOpen(true);
-    }
-  }, [trigger, setIsOpen, disabled]);
-
-  const handleTriggerBlur = useCallback(() => {
-    if (disabled) return;
-    
-    if (trigger === 'focus') {
-      setIsOpen(false);
-    }
-  }, [trigger, setIsOpen, disabled]);
-
   const handleTriggerContextMenu = useCallback((event: React.MouseEvent) => {
     if (disabled) return;
     
@@ -251,8 +235,6 @@ export const Popover: React.FC<PopoverProps> = ({
       onClick={handleTriggerClick}
       onMouseEnter={handleTriggerMouseEnter}
       onMouseLeave={handleTriggerMouseLeave}
-      onFocus={handleTriggerFocus}
-      onBlur={handleTriggerBlur}
       onContextMenu={handleTriggerContextMenu}
       className={cn(
         'inline-block',

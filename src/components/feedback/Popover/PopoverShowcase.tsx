@@ -62,19 +62,6 @@ export const PopoverShowcase: React.FC = () => {
           >
             <Button variant="outline">Hover Me</Button>
           </Popover>
-
-          <Popover
-            content={
-              <div className="p-3">
-                <Typography variant="bodySmall">
-                  Focus to see this popover.
-                </Typography>
-              </div>
-            }
-            trigger="focus"
-          >
-            <Button variant="ghost">Focus Me</Button>
-          </Popover>
         </div>
       </div>
 
@@ -283,35 +270,6 @@ export const PopoverShowcase: React.FC = () => {
               icon={Bell} 
               variant="ghost" 
               aria-label="Notifications"
-            />
-          </Popover>
-
-          <Popover
-            content={
-              <div className="p-4 space-y-2">
-                <div className="flex items-center gap-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded">
-                  <Heart className="w-4 h-4" />
-                  <Typography variant="bodySmall">Like</Typography>
-                </div>
-                <div className="flex items-center gap-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded">
-                  <Star className="w-4 h-4" />
-                  <Typography variant="bodySmall">Favorite</Typography>
-                </div>
-                <div className="flex items-center gap-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded">
-                  <Share className="w-4 h-4" />
-                  <Typography variant="bodySmall">Share</Typography>
-                </div>
-                <div className="flex items-center gap-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 p-2 rounded">
-                  <Download className="w-4 h-4" />
-                  <Typography variant="bodySmall">Download</Typography>
-                </div>
-              </div>
-            }
-          >
-            <IconButton 
-              icon={MoreVertical} 
-              variant="ghost" 
-              aria-label="More actions"
             />
           </Popover>
         </div>
