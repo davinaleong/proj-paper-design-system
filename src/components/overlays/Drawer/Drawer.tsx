@@ -81,7 +81,7 @@ const getDrawerSizeClasses = (position: DrawerPosition, size: DrawerSize): strin
 }
 
 const getDrawerPositionClasses = (position: DrawerPosition, isOpen: boolean): string => {
-  const baseClasses = "fixed transition-transform duration-300 ease-in-out"
+  const baseClasses = "fixed transition-transform duration-700 ease-in-out"
   
   switch (position) {
     case "left":
@@ -117,17 +117,17 @@ const getAnimationClasses = (animation: DrawerAnimation, isOpen: boolean): strin
   switch (animation) {
     case "fade":
       return cn(
-        "transition-opacity duration-300 ease-in-out",
+        "transition-opacity duration-700 ease-in-out",
         isOpen ? "opacity-100" : "opacity-0"
       )
     case "scale":
       return cn(
-        "transition-all duration-300 ease-in-out",
+        "transition-all duration-700 ease-in-out",
         isOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
       )
     case "slideScale":
       return cn(
-        "transition-all duration-300 ease-in-out",
+        "transition-all duration-700 ease-in-out",
         isOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
       )
     case "slide":
@@ -159,7 +159,7 @@ export function Drawer({
   trapFocus = true,
   contentClassName,
   overlayClassName,
-  animationDuration = 300,
+  animationDuration = 700,
   zIndex = 50,
   disabled = false,
   closeIcon = X,
@@ -326,7 +326,7 @@ export function Drawer({
       {overlay && (
         <div
           className={cn(
-            "fixed inset-0 bg-black/50 transition-opacity duration-300",
+            "fixed inset-0 bg-black/50 transition-opacity duration-700",
             overlayClassName
           )}
           style={{ 
