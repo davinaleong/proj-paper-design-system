@@ -14,7 +14,6 @@ const mapDrawerVariantToSection = (variant: DrawerVariant): SectionVariant => {
     case "outline":
       return "outlined"
     case "ghost":
-    case "link":
     case "plain":
     default:
       return "default"
@@ -22,36 +21,61 @@ const mapDrawerVariantToSection = (variant: DrawerVariant): SectionVariant => {
 }
 
 const getColorClasses = (color: DrawerColor, variant: DrawerVariant): string => {
-  if (variant === "plain" || color === "paper") {
+  // For plain variant, return no additional classes
+  if (variant === "plain") {
     return ""
   }
 
+  // For paper color with solid variant, use enhanced paper styling
+  if (variant === "solid" && color === "paper") {
+    return "bg-white border border-stone-200 shadow-lg"
+  }
+
+  // For paper color with outline variant, use subtle paper styling
+  if (variant === "outline" && color === "paper") {
+    return "bg-white border border-stone-200"
+  }
+
+  // For paper color with ghost variant, use minimal paper styling  
+  if (variant === "ghost" && color === "paper") {
+    return "bg-stone-50/50 border-transparent"
+  }
+
+  // For other paper color variants, return empty (use default Panel styling)
+  if (color === "paper") {
+    return ""
+  }
+  
+  // For outline and ghost variants, use solid backgrounds (not transparent)
+  // Only ghost variant should be more transparent
+  const bgOpacity = variant === "ghost" ? "/30" : ""
+  
   const colorMap: Record<string, string> = {
-    primary: "border-teal-200 bg-teal-50/50",
-    secondary: "border-stone-300 bg-stone-100/50",
-    success: "border-green-200 bg-green-50/50",
-    warning: "border-amber-200 bg-amber-50/50",  
-    danger: "border-red-200 bg-red-50/50",
-    info: "border-blue-200 bg-blue-50/50",
-    neutral: "border-stone-200 bg-stone-50/50",
+    primary: `border-teal-200 bg-teal-50${bgOpacity}`,
+    secondary: `border-stone-300 bg-stone-100${bgOpacity}`,
+    success: `border-green-200 bg-green-50${bgOpacity}`,
+    warning: `border-amber-200 bg-amber-50${bgOpacity}`,  
+    danger: `border-red-200 bg-red-50${bgOpacity}`,
+    info: `border-blue-200 bg-blue-50${bgOpacity}`,
+    neutral: `border-stone-200 bg-stone-50${bgOpacity}`,
     // Extended color palette
-    red: "border-red-200 bg-red-50/50",
-    orange: "border-orange-200 bg-orange-50/50",
-    amber: "border-amber-200 bg-amber-50/50",
-    yellow: "border-yellow-200 bg-yellow-50/50",
-    lime: "border-lime-200 bg-lime-50/50",
-    green: "border-green-200 bg-green-50/50",
-    emerald: "border-emerald-200 bg-emerald-50/50",
-    teal: "border-teal-200 bg-teal-50/50",
-    cyan: "border-cyan-200 bg-cyan-50/50",
-    sky: "border-sky-200 bg-sky-50/50",
-    blue: "border-blue-200 bg-blue-50/50",
-    indigo: "border-indigo-200 bg-indigo-50/50",
-    violet: "border-violet-200 bg-violet-50/50",
-    purple: "border-purple-200 bg-purple-50/50",
-    fuchsia: "border-fuchsia-200 bg-fuchsia-50/50",
-    pink: "border-pink-200 bg-pink-50/50",
-    rose: "border-rose-200 bg-rose-50/50",
+    red: `border-red-200 bg-red-50${bgOpacity}`,
+    orange: `border-orange-200 bg-orange-50${bgOpacity}`,
+    amber: `border-amber-200 bg-amber-50${bgOpacity}`,
+    yellow: `border-yellow-200 bg-yellow-50${bgOpacity}`,
+    lime: `border-lime-200 bg-lime-50${bgOpacity}`,
+    green: `border-green-200 bg-green-50${bgOpacity}`,
+    emerald: `border-emerald-200 bg-emerald-50${bgOpacity}`,
+    teal: `border-teal-200 bg-teal-50${bgOpacity}`,
+    cyan: `border-cyan-200 bg-cyan-50${bgOpacity}`,
+    sky: `border-sky-200 bg-sky-50${bgOpacity}`,
+    blue: `border-blue-200 bg-blue-50${bgOpacity}`,
+    indigo: `border-indigo-200 bg-indigo-50${bgOpacity}`,
+    violet: `border-violet-200 bg-violet-50${bgOpacity}`,
+    purple: `border-purple-200 bg-purple-50${bgOpacity}`,
+    fuchsia: `border-fuchsia-200 bg-fuchsia-50${bgOpacity}`,
+    pink: `border-pink-200 bg-pink-50${bgOpacity}`,
+    rose: `border-rose-200 bg-rose-50${bgOpacity}`,
   }
 
   return colorMap[color] || ""
@@ -81,31 +105,31 @@ const getDrawerSizeClasses = (position: DrawerPosition, size: DrawerSize): strin
 }
 
 const getDrawerPositionClasses = (position: DrawerPosition, isOpen: boolean): string => {
-  const baseClasses = "fixed transition-transform duration-700 ease-in-out"
+  const baseClasses = "fixed transition-all duration-700 ease-in-out"
   
   switch (position) {
     case "left":
       return cn(
         baseClasses,
-        "left-0 top-0",
+        "left-0 top-0 h-full",
         isOpen ? "translate-x-0" : "-translate-x-full"
       )
     case "right":
       return cn(
         baseClasses,
-        "right-0 top-0",
+        "right-0 top-0 h-full",
         isOpen ? "translate-x-0" : "translate-x-full"
       )
     case "top":
       return cn(
         baseClasses,
-        "top-0 left-0",
+        "top-0 left-0 w-full",
         isOpen ? "translate-y-0" : "-translate-y-full"
       )
     case "bottom":
       return cn(
         baseClasses,
-        "bottom-0 left-0",
+        "bottom-0 left-0 w-full",
         isOpen ? "translate-y-0" : "translate-y-full"
       )
     default:
@@ -133,11 +157,8 @@ const getAnimationClasses = (animation: DrawerAnimation, isOpen: boolean): strin
     case "slide":
     default:
       // For slide animation, position classes handle the transform
-      // We just add opacity transition here
-      return cn(
-        "transition-opacity duration-700 ease-in-out",
-        isOpen ? "opacity-100" : "opacity-0"
-      )
+      // No additional classes needed here
+      return ""
   }
 }
 
@@ -195,6 +216,21 @@ export function Drawer({
       return () => clearTimeout(timer)
     }
   }, [isOpen, animationDuration])
+
+  // Force opening animation by delaying the open state
+  const [isAnimatingOpen, setIsAnimatingOpen] = useState(false)
+  
+  useEffect(() => {
+    if (isOpen && shouldRender) {
+      // Ensure the element is mounted with closed state first
+      const timer = setTimeout(() => {
+        setIsAnimatingOpen(true)
+      }, 10) // Small delay to ensure DOM is ready
+      return () => clearTimeout(timer)
+    } else {
+      setIsAnimatingOpen(false)
+    }
+  }, [isOpen, shouldRender])
 
   const handleOpenChange = useCallback((open: boolean) => {
     if (disabled) return
@@ -347,7 +383,7 @@ export function Drawer({
           className={cn(
             "fixed inset-0 bg-black/50 transition-opacity duration-700",
             overlayClassName,
-            isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+            isAnimatingOpen ? "opacity-100" : "opacity-0 pointer-events-none"
           )}
           style={{ 
             zIndex: zIndex - 1
@@ -360,14 +396,14 @@ export function Drawer({
       <div
         ref={drawerRef}
         className={cn(
-          getDrawerPositionClasses(position, isOpen),
+          getDrawerPositionClasses(position, isAnimatingOpen),
           getDrawerSizeClasses(position, size),
-          getAnimationClasses(animation, isOpen),
+          getAnimationClasses(animation, isAnimatingOpen),
           "flex flex-col"
         )}
         style={{
           zIndex,
-          animationDuration: `${animationDuration}ms`
+          transitionDuration: `${animationDuration}ms`
         }}
       >
         <Panel

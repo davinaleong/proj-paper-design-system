@@ -64,7 +64,7 @@ export function DrawerShowcase() {
             position="left"
             title="Left Panel"
             variant="solid"
-            color="primary"
+            color="paper"
           >
             <Button variant="outline" className="w-full">From Left</Button>
           </Drawer>
@@ -81,7 +81,7 @@ export function DrawerShowcase() {
             position="right"
             title="Right Panel"
             variant="solid"
-            color="success"
+            color="paper"
           >
             <Button variant="outline" className="w-full">From Right</Button>
           </Drawer>
@@ -98,7 +98,7 @@ export function DrawerShowcase() {
             position="top"
             title="Top Panel"
             variant="solid"
-            color="warning"
+            color="paper"
             size="sm"
           >
             <Button variant="outline" className="w-full">From Top</Button>
@@ -116,7 +116,7 @@ export function DrawerShowcase() {
             position="bottom"
             title="Bottom Panel"
             variant="solid"
-            color="info"
+            color="paper"
             size="sm"
           >
             <Button variant="outline" className="w-full">From Bottom</Button>
@@ -127,14 +127,14 @@ export function DrawerShowcase() {
       {/* Variant System */}
       <Paper className="p-6">
         <Typography variant="h3" className="mb-4">Visual Variants</Typography>
-        <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           <Drawer
             content={<div className="space-y-4">
               <Typography variant="h4">Solid Variant</Typography>
               <Typography variant="body">Strong presence with elevated background.</Typography>
             </div>}
             variant="solid"
-            color="primary"
+            color="paper"
             title="Solid"
           >
             <Button variant="solid" size="sm" className="w-full">Solid</Button>
@@ -146,7 +146,7 @@ export function DrawerShowcase() {
               <Typography variant="body">Border-focused with clean lines.</Typography>
             </div>}
             variant="outline"
-            color="secondary"
+            color="paper"
             title="Outline"
           >
             <Button variant="outline" size="sm" className="w-full">Outline</Button>
@@ -158,22 +158,10 @@ export function DrawerShowcase() {
               <Typography variant="body">Minimal styling with subtle presence.</Typography>
             </div>}
             variant="ghost"
-            color="neutral"
+            color="paper"
             title="Ghost"
           >
             <Button variant="ghost" size="sm" className="w-full">Ghost</Button>
-          </Drawer>
-
-          <Drawer
-            content={<div className="space-y-4">
-              <Typography variant="h4">Link Variant</Typography>
-              <Typography variant="body">Text-focused appearance.</Typography>
-            </div>}
-            variant="link"
-            color="info"
-            title="Link"
-          >
-            <Button variant="link" size="sm" className="w-full">Link</Button>
           </Drawer>
 
           <Drawer
@@ -234,7 +222,7 @@ export function DrawerShowcase() {
               }
               animation={animation}
               title={`${animation} Effect`}
-              color="purple"
+              color="paper"
             >
               <Button variant="outline" size="sm" className="w-full">
                 {animation}
@@ -343,7 +331,7 @@ export function DrawerShowcase() {
               position="left"
               title="Navigation"
               variant="solid"
-              color="primary"
+              color="paper"
               size="md"
             >
               <IconButton 
@@ -406,7 +394,7 @@ export function DrawerShowcase() {
               position="right"
               title="Settings"
               variant="outline"
-              color="secondary"
+              color="paper"
               size="lg"
             >
               <Button 
@@ -474,7 +462,7 @@ export function DrawerShowcase() {
               position="bottom"
               title="Shopping Cart"
               variant="solid"
-              color="neutral"
+              color="paper"
               size="sm"
               animation="slideScale"
             >

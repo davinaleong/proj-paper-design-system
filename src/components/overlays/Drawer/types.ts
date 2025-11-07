@@ -3,7 +3,7 @@ import type { LucideIcon } from "lucide-react"
 import type { ColorVariant } from "../../../utils/colors"
 import type { ButtonVariant, ButtonSize } from "../../forms/Button/types"
 
-export type DrawerVariant = ButtonVariant // "solid" | "outline" | "ghost" | "link" | "plain"
+export type DrawerVariant = "solid" | "outline" | "ghost" | "plain"
 
 export type DrawerColor = ColorVariant
 
@@ -153,7 +153,7 @@ export interface DrawerTriggerProps {
   /**
    * Visual variant
    */
-  variant?: DrawerVariant
+  variant?: ButtonVariant
 
   /**
    * Button size
