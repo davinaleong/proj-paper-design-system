@@ -18,6 +18,7 @@ export { LoaderShowcase } from "./LoaderShowcase"
 export { SkeletonShowcase } from "./SkeletonShowcase"
 export { default as ContextMenuShowcase } from "./ContextMenuShowcase"
 export { default as DropdownMenuShowcase } from "./DropdownMenuShowcase"
+export { BackdropShowcase } from "./BackdropShowcase"
 export { DrawerShowcase } from "./DrawerShowcase"
 
 // New split progress and status showcases

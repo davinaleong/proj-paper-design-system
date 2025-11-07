@@ -18,6 +18,7 @@ export {
   ContextMenuShowcase,
   DropdownMenuShowcase,
   DrawerShowcase,
+  BackdropShowcase,
   LoaderShowcase,
   SkeletonShowcase,
   PopoverShowcase,
