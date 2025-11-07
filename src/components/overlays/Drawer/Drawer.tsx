@@ -132,7 +132,12 @@ const getAnimationClasses = (animation: DrawerAnimation, isOpen: boolean): strin
       )
     case "slide":
     default:
-      return ""
+      // For slide animation, position classes handle the transform
+      // We just add opacity transition here
+      return cn(
+        "transition-opacity duration-700 ease-in-out",
+        isOpen ? "opacity-100" : "opacity-0"
+      )
   }
 }
 
@@ -171,11 +176,25 @@ export function Drawer({
   const drawerRef = useRef<HTMLDivElement>(null)
   const triggerRef = useRef<HTMLDivElement>(null)
   const [mounted, setMounted] = useState(false)
+  const [shouldRender, setShouldRender] = useState(false)
 
   // Handle mounting for portal
   useEffect(() => {
     setMounted(true)
   }, [])
+
+  // Handle render state for transitions
+  useEffect(() => {
+    if (isOpen) {
+      setShouldRender(true)
+    } else {
+      // Delay unmounting to allow exit animation
+      const timer = setTimeout(() => {
+        setShouldRender(false)
+      }, animationDuration)
+      return () => clearTimeout(timer)
+    }
+  }, [isOpen, animationDuration])
 
   const handleOpenChange = useCallback((open: boolean) => {
     if (disabled) return
@@ -320,20 +339,20 @@ export function Drawer({
     </div>
   )
 
-  const drawerContent = isOpen && (
+  const drawerContent = shouldRender && (
     <>
       {/* Overlay */}
       {overlay && (
         <div
           className={cn(
             "fixed inset-0 bg-black/50 transition-opacity duration-700",
-            overlayClassName
+            overlayClassName,
+            isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
           )}
           style={{ 
-            zIndex: zIndex - 1,
-            opacity: isOpen ? 1 : 0
+            zIndex: zIndex - 1
           }}
-          onClick={closeOnOverlayClick ? handleClose : undefined}
+          onClick={closeOnOverlayClick && isOpen ? handleClose : undefined}
         />
       )}
 
