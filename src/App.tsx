@@ -37,6 +37,7 @@ import {
   DropdownMenuShowcase,
   DrawerShowcase,
   BackdropShowcase,
+  LightboxShowcase,
   LoaderShowcase,
   SkeletonShowcase,
   PopoverShowcase,
@@ -131,6 +132,7 @@ function AppContent() {
       icon: Layers,
       children: [
         { id: "backdrop", label: "Backdrop", href: "#backdrop" },
+        { id: "lightbox", label: "Lightbox", href: "#lightbox" },
         { id: "drawer", label: "Drawer", href: "#drawer" },
         { id: "popover", label: "Popover", href: "#popover" },
         { id: "dropdown-menu", label: "Dropdown Menu", href: "#dropdown-menu" },
@@ -289,6 +291,10 @@ function AppContent() {
         {/* Overlays */}
         <section id="backdrop">
           <BackdropShowcase />
+        </section>
+
+        <section id="lightbox">
+          <LightboxShowcase />
         </section>
 
         <section id="drawer">

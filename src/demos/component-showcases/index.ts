@@ -20,6 +20,7 @@ export { default as ContextMenuShowcase } from "./ContextMenuShowcase"
 export { default as DropdownMenuShowcase } from "./DropdownMenuShowcase"
 export { BackdropShowcase } from "./BackdropShowcase"
 export { DrawerShowcase } from "./DrawerShowcase"
+export { LightboxShowcase } from "./LightboxShowcase"
 
 // New split progress and status showcases
 export { ProgressCircleShowcase } from "./ProgressCircleShowcase"
