@@ -1,0 +1,153 @@
+/* ContextMenu Styles */
+.paper-context-menu {
+  /* Base menu styling */
+  position: absolute;
+  min-width: 160px;
+  max-width: 280px;
+  padding: 4px;
+  border-radius: 6px;
+  border: 1px solid var(--paper-border-color, #e2e8f0);
+  background: var(--paper-bg-white, #ffffff);
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  
+  /* Animation setup */
+  opacity: 0;
+  transform: scale(0.95) translateY(-4px);
+  transition: 
+    opacity var(--context-menu-duration, 200ms) ease-out,
+    transform var(--context-menu-duration, 200ms) ease-out;
+  
+  /* Focus management */
+  outline: none;
+  
+  /* Ensure proper layering */
+  pointer-events: auto;
+}
+
+/* Menu entrance animation */
+.paper-context-menu--enter {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.paper-context-menu--enter-active {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* Variant styling - solid colors handled by color classes */
+
+.paper-context-menu--outline {
+  background: var(--paper-bg-white, #ffffff);
+  border-width: 1px;
+  border-style: solid;
+}
+
+.paper-context-menu--ghost {
+  background: var(--paper-bg-white, #ffffff);
+  border-color: transparent;
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.paper-context-menu--soft {
+  border-color: transparent;
+  /* Soft variant colors handled by color classes */
+}
+
+/* Placement-specific animations */
+.paper-context-menu--placement-top,
+.paper-context-menu--placement-top-start,
+.paper-context-menu--placement-top-end {
+  transform-origin: bottom center;
+}
+
+.paper-context-menu--placement-bottom,
+.paper-context-menu--placement-bottom-start,
+.paper-context-menu--placement-bottom-end {
+  transform-origin: top center;
+}
+
+.paper-context-menu--placement-left,
+.paper-context-menu--placement-left-start,
+.paper-context-menu--placement-left-end {
+  transform-origin: right center;
+}
+
+.paper-context-menu--placement-right,
+.paper-context-menu--placement-right-start,
+.paper-context-menu--placement-right-end {
+  transform-origin: left center;
+}
+
+/* Trigger styling */
+.paper-context-menu-trigger {
+  /* Enable context menu on trigger */
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Safari */
+  -khtml-user-select: none;    /* Konqueror HTML */
+  -moz-user-select: none;      /* Old versions of Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;           /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .paper-context-menu {
+    background: var(--paper-bg-dark, #1f2937);
+    border-color: var(--paper-border-dark, #374151);
+    box-shadow: 
+      0 4px 6px -1px rgba(0, 0, 0, 0.25),
+      0 2px 4px -1px rgba(0, 0, 0, 0.15);
+  }
+  
+  .paper-context-menu--outline {
+    background: var(--paper-bg-dark, #1f2937);
+  }
+  
+  .paper-context-menu--ghost {
+    background: var(--paper-bg-dark, #1f2937);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .paper-context-menu {
+    border-width: 2px;
+    box-shadow: none;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .paper-context-menu {
+    transition: none;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .paper-context-menu {
+    min-width: 140px;
+    max-width: calc(100vw - 32px);
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .paper-context-menu {
+    /* Larger padding for touch */
+    padding: 6px;
+  }
+}
+
+/* Print styles */
+@media print {
+  .paper-context-menu {
+    display: none;
+  }
+}

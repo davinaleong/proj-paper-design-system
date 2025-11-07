@@ -19,3 +19,9 @@ export {
   DropdownMenuSeparator, 
   DropdownMenuLabel 
 } from './DropdownMenu'
+export { 
+  ContextMenu, 
+  ContextMenuItem, 
+  ContextMenuSeparator, 
+  ContextMenuLabel 
+} from './ContextMenu'

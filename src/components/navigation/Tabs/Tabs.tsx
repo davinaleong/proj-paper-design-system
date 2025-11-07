@@ -138,7 +138,6 @@ export const Tabs: React.FC<TabsProps> = ({
           const tabButtonClasses = getTabButtonClasses(variant, isActive, color, size)
           
           const buttonProps = {
-            key: item.id,
             variant: variant === "plain" ? "plain" : "ghost",
             color: isActive ? color : "stone",
             size,
@@ -158,6 +157,7 @@ export const Tabs: React.FC<TabsProps> = ({
           if (showIconsOnly && item.icon) {
             return (
               <IconButton
+                key={item.id}
                 {...buttonProps}
                 icon={item.icon}
                 aria-label={item.label}
@@ -167,6 +167,7 @@ export const Tabs: React.FC<TabsProps> = ({
 
           return (
             <Button
+              key={item.id}
               {...buttonProps}
               icon={showIcons && (iconPosition === "left" || iconPosition === "right" || iconPosition === "top") ? item.icon : undefined}
               iconPosition={iconPosition === "top" ? "left" : iconPosition}

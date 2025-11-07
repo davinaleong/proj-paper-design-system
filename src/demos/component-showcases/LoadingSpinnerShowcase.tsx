@@ -419,7 +419,7 @@ export function LoadingSpinnerShowcase() {
             <Typography variant="h5" className="text-stone-700 mb-3">
               Inline Usage
             </Typography>
-            <Typography variant="body" className="text-stone-700">
+            <div className="text-stone-700 font-montserrat text-sm leading-relaxed">
               Processing your request{" "}
               <LoadingSpinner
                 loading={true}
@@ -428,7 +428,7 @@ export function LoadingSpinnerShowcase() {
                 color="primary"
               />{" "}
               please wait...
-            </Typography>
+            </div>
           </div>
 
           {/* Custom Content */}
@@ -445,9 +445,9 @@ export function LoadingSpinnerShowcase() {
               centered={true}
             >
               <div className="text-center space-y-1">
-                <Typography variant="body" className="font-medium">
+                <div className="font-montserrat text-sm leading-relaxed font-medium">
                   Processing your request
-                </Typography>
+                </div>
                 <Typography variant="small" className="text-stone-600">
                   This may take a few moments...
                 </Typography>

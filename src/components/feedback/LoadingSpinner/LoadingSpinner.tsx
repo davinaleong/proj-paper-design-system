@@ -218,18 +218,32 @@ export const LoadingSpinner = ({
     />
   )
 
-  // Text element
+  // Text element - handle children differently from text to avoid nesting issues
   const textElement = textContent && (
-    <Typography
-      variant="body"
-      className={cn(
-        textSizeClasses[size],
-        getTextColorClasses(),
-        textClassName
-      )}
-    >
-      {textContent}
-    </Typography>
+    children ? (
+      // When children are provided, render them directly without Typography wrapper
+      <div
+        className={cn(
+          textSizeClasses[size],
+          getTextColorClasses(),
+          textClassName
+        )}
+      >
+        {children}
+      </div>
+    ) : (
+      // When text is provided, use Typography wrapper
+      <Typography
+        variant="body"
+        className={cn(
+          textSizeClasses[size],
+          getTextColorClasses(),
+          textClassName
+        )}
+      >
+        {text}
+      </Typography>
+    )
   )
 
   // Content container

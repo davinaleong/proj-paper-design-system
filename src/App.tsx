@@ -33,6 +33,7 @@ import {
   MenuShowcase,
   TreeViewShowcase,
   QuickActionsShowcase,
+  ContextMenuShowcase,
 } from "./demos/component-showcases"
 import { LoaderShowcase } from "./components/feedback/Loader/LoaderShowcase"
 import { SkeletonShowcase } from "./components/feedback/Skeleton/SkeletonShowcase"
@@ -138,6 +139,7 @@ function AppContent() {
         { id: "skeleton", label: "Skeleton", href: "#skeleton" },
         { id: "popover", label: "Popover", href: "#popover" },
         { id: "dropdown-menu", label: "Dropdown Menu", href: "#dropdown-menu" },
+        { id: "context-menu", label: "Context Menu", href: "#context-menu" },
       ]
     },
   ]
@@ -317,6 +319,11 @@ function AppContent() {
         {/* Dropdown Menu */}
         <section id="dropdown-menu">
           <DropdownMenuShowcase />
+        </section>
+
+        {/* Context Menu */}
+        <section id="context-menu">
+          <ContextMenuShowcase />
         </section>
 
         {/* Progress Circle */}
