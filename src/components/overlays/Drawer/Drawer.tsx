@@ -51,8 +51,8 @@ const getColorClasses = (color: DrawerColor, variant: DrawerVariant): string => 
   const bgOpacity = variant === "ghost" ? "/30" : ""
   
   const colorMap: Record<string, string> = {
-    primary: `border-teal-200 bg-teal-50${bgOpacity}`,
-    secondary: `border-stone-300 bg-stone-100${bgOpacity}`,
+    primary: `border-blue-200 bg-blue-50${bgOpacity}`,
+    secondary: `border-slate-300 bg-slate-100${bgOpacity}`,
     success: `border-green-200 bg-green-50${bgOpacity}`,
     warning: `border-amber-200 bg-amber-50${bgOpacity}`,  
     danger: `border-red-200 bg-red-50${bgOpacity}`,
@@ -175,7 +175,7 @@ export function Drawer({
     closeButton: true
   },
   variant = "solid",
-  color = "primary",
+  color = "paper",
   position = "right",
   animation = "slide",
   size = "md",

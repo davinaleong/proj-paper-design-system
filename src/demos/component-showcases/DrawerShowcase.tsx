@@ -64,7 +64,6 @@ export function DrawerShowcase() {
             position="left"
             title="Left Panel"
             variant="solid"
-            color="paper"
           >
             <Button variant="outline" className="w-full">From Left</Button>
           </Drawer>
@@ -81,7 +80,6 @@ export function DrawerShowcase() {
             position="right"
             title="Right Panel"
             variant="solid"
-            color="paper"
           >
             <Button variant="outline" className="w-full">From Right</Button>
           </Drawer>
@@ -98,7 +96,6 @@ export function DrawerShowcase() {
             position="top"
             title="Top Panel"
             variant="solid"
-            color="paper"
             size="sm"
           >
             <Button variant="outline" className="w-full">From Top</Button>
@@ -116,7 +113,6 @@ export function DrawerShowcase() {
             position="bottom"
             title="Bottom Panel"
             variant="solid"
-            color="paper"
             size="sm"
           >
             <Button variant="outline" className="w-full">From Bottom</Button>
@@ -134,7 +130,6 @@ export function DrawerShowcase() {
               <Typography variant="body">Strong presence with elevated background.</Typography>
             </div>}
             variant="solid"
-            color="paper"
             title="Solid"
           >
             <Button variant="solid" size="sm" className="w-full">Solid</Button>
@@ -146,7 +141,6 @@ export function DrawerShowcase() {
               <Typography variant="body">Border-focused with clean lines.</Typography>
             </div>}
             variant="outline"
-            color="paper"
             title="Outline"
           >
             <Button variant="outline" size="sm" className="w-full">Outline</Button>
@@ -158,7 +152,6 @@ export function DrawerShowcase() {
               <Typography variant="body">Minimal styling with subtle presence.</Typography>
             </div>}
             variant="ghost"
-            color="paper"
             title="Ghost"
           >
             <Button variant="ghost" size="sm" className="w-full">Ghost</Button>
@@ -170,7 +163,6 @@ export function DrawerShowcase() {
               <Typography variant="body">Completely unstyled base.</Typography>
             </div>}
             variant="plain"
-            color="paper"
             title="Plain"
           >
             <Button variant="plain" size="sm" className="w-full">Plain</Button>
@@ -222,7 +214,6 @@ export function DrawerShowcase() {
               }
               animation={animation}
               title={`${animation} Effect`}
-              color="paper"
             >
               <Button variant="outline" size="sm" className="w-full">
                 {animation}

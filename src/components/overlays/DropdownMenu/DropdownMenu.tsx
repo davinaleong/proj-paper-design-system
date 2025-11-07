@@ -11,7 +11,6 @@ import { DropdownMenuItem } from './DropdownMenuItem';
 import { DropdownMenuSeparator } from './DropdownMenuSeparator';
 import { DropdownMenuLabel } from './DropdownMenuLabel';
 import { cn } from '../../../utils';
-import './DropdownMenu.css';
 
 export const DropdownMenu: React.FC<DropdownMenuProps> = ({
   children,
@@ -21,8 +20,7 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
   trigger = 'click',
   placement = 'bottom-start',
   variant = 'solid',
-  size = 'md',
-  color = 'primary',
+
   showChevron = true,
   chevronPlacement = 'right',
   chevronIcon,
@@ -32,7 +30,6 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
   contentStyle,
   portal = true,
   disabled = false,
-  paper = true,
   animationDuration = 200,
   zIndex = 50,
   ...props
@@ -367,7 +364,7 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
             icon: createCompositeIcon((children as React.ReactElement<{ icon: React.ComponentType<{ className?: string }> }>).props.icon),
             className: cn(
               (children as React.ReactElement<{ className?: string }>).props.className,
-              isOpen && 'paper-dropdown-trigger--active'
+              isOpen && 'bg-stone-100 dark:bg-stone-800'
             ),
             disabled: disabled || (children as React.ReactElement<{ disabled?: boolean }>).props.disabled,
             'aria-expanded': isOpen,
@@ -400,7 +397,7 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
             }),
             className: cn(
               (children as React.ReactElement<{ className?: string }>).props.className,
-              isOpen && 'paper-dropdown-trigger--active'
+              isOpen && 'bg-stone-100 dark:bg-stone-800'
             ),
             disabled: disabled || (children as React.ReactElement<{ disabled?: boolean }>).props.disabled,
             'aria-expanded': isOpen,
@@ -417,9 +414,8 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
           onMouseLeave={handleTriggerMouseLeave}
           onContextMenu={handleTriggerContextMenu}
           className={cn(
-            'paper-dropdown-trigger',
             'inline-flex items-center gap-2',
-            isOpen && 'paper-dropdown-trigger--active',
+            isOpen && 'bg-stone-100 dark:bg-stone-800',
             disabled && 'cursor-not-allowed opacity-50'
           )}
           aria-expanded={isOpen}
@@ -466,13 +462,15 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
       onMouseEnter={handleMenuMouseEnter}
       onMouseLeave={handleMenuMouseLeave}
       className={cn(
-        'paper-dropdown-menu',
-        `paper-dropdown-menu--${variant}`,
-        `paper-dropdown-menu--placement-${placement}`,
+        'bg-white dark:bg-stone-900 border border-stone-200 dark:border-stone-700 rounded-lg shadow-lg',
+        'min-w-[12rem] max-w-[20rem] py-2',
+        'transition-all duration-200 ease-out',
         {
-          'paper-dropdown-menu--enter': isOpen,
-          'paper-dropdown-menu--enter-active': isOpen,
+          'opacity-100 scale-100 pointer-events-auto': isOpen,
+          'opacity-0 scale-95 pointer-events-none': !isOpen,
         },
+        variant === 'outline' && 'border-2',
+        variant === 'ghost' && 'bg-white/95 dark:bg-stone-900/95 backdrop-blur-sm',
         contentClassName
       )}
       style={{

@@ -8,7 +8,6 @@ export const DropdownMenuItem: React.FC<DropdownMenuItemProps> = ({
   iconPosition = 'left',
   disabled = false,
   selected = false,
-  color = 'primary',
   onClick,
   shortcut,
   description,
@@ -33,10 +32,14 @@ export const DropdownMenuItem: React.FC<DropdownMenuItemProps> = ({
       role="menuitem"
       tabIndex={disabled ? -1 : 0}
       className={cn(
-        'paper-dropdown-menu-item',
+        'flex items-center gap-3 px-3 py-2 text-sm',
+        'text-stone-900 dark:text-stone-100',
+        'hover:bg-stone-100 dark:hover:bg-stone-800',
+        'focus:bg-stone-100 dark:focus:bg-stone-800 focus:outline-none',
+        'cursor-pointer transition-colors duration-150',
         {
-          'paper-dropdown-menu-item--disabled': disabled,
-          'paper-dropdown-menu-item--selected': selected,
+          'text-stone-400 dark:text-stone-600 cursor-not-allowed hover:bg-transparent dark:hover:bg-transparent': disabled,
+          'bg-blue-100 dark:bg-blue-900/50 text-blue-900 dark:text-blue-100': selected,
         },
         className
       )}
@@ -46,28 +49,30 @@ export const DropdownMenuItem: React.FC<DropdownMenuItemProps> = ({
       {...props}
     >
       {Icon && iconPosition === 'left' && (
-        <Icon className="paper-dropdown-menu-item__icon" />
+        <Icon className="w-4 h-4 flex-shrink-0" />
       )}
       
       <div className="flex-1">
         <div className="flex items-center justify-between">
           <span>{children}</span>
           {shortcut && (
-            <span className="paper-dropdown-menu-item__shortcut">
+            <span className="text-xs text-stone-500 dark:text-stone-400 font-mono">
               {shortcut}
             </span>
           )}
         </div>
         {description && (
-          <div className="paper-dropdown-menu-item__description">
+          <div className="text-xs text-stone-600 dark:text-stone-400 mt-1">
             {description}
           </div>
         )}
       </div>
       
       {Icon && iconPosition === 'right' && (
-        <Icon className="paper-dropdown-menu-item__icon" />
+        <Icon className="w-4 h-4 flex-shrink-0" />
       )}
     </div>
   );
 };
+
+export default DropdownMenuItem;
