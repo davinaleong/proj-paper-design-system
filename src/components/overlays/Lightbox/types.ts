@@ -1,7 +1,6 @@
 import type { ReactNode, HTMLAttributes } from "react"
-import type { ColorVariant } from "../../../utils/colors"
 
-export type LightboxVariant = "solid" | "blurred" | "blurred-image"
+export type LightboxVariant = "black" | "blurred" | "blurred-image"
 
 export interface LightboxProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onClick'> {
   /**
@@ -15,19 +14,9 @@ export interface LightboxProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onC
   variant?: LightboxVariant
 
   /**
-   * Color overlay for blur and blurred-image variants
-   */
-  color?: ColorVariant
-
-  /**
    * Source image for blurred-image variant
    */
   imageSrc?: string
-
-  /**
-   * Opacity of the backdrop (0-1)
-   */
-  opacity?: number
 
   /**
    * Click handler for backdrop (to close lightbox)
