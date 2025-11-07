@@ -135,7 +135,7 @@ export function Lightbox({
       {/* Backdrop Layer */}
       <div
         className={cn(
-          "absolute inset-0",
+          "absolute inset-0 z-9",
           variant === "blurred" && "backdrop-blur-md",
           variant === "blurred-image" && "bg-cover bg-center bg-no-repeat backdrop-blur-sm"
         )}
