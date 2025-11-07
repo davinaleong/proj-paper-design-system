@@ -283,7 +283,7 @@ Create a complete design system that feels **organic, readable, and professional
 
 #### 7.2 Media & Display
 
-- [ ] **Backdrop/Overlay** - Modal backgrounds
+- [x] **Backdrop/Overlay** - Modal backgrounds
 - [ ] **Lightbox/ImagePreview** - Media viewing
 
 ### Phase 8: Utilities & Special (Priority 3)
