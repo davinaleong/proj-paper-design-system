@@ -1,7 +1,42 @@
+import { useState, useRef, useEffect } from "react"
 import { Typography } from "../../components/core"
 import { FileText, FolderOpen, Download, Copy, Edit, Trash2, Plus, Share, Heart, Star, Bookmark, MessageSquare } from "lucide-react"
 
 export function MenuShowcase() {
+  const [contextMenu, setContextMenu] = useState<{ x: number; y: number; visible: boolean }>({
+    x: 0,
+    y: 0,
+    visible: false
+  })
+  const contextAreaRef = useRef<HTMLDivElement>(null)
+
+  const handleContextMenu = (e: React.MouseEvent) => {
+    e.preventDefault()
+    const rect = e.currentTarget.getBoundingClientRect()
+    setContextMenu({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+      visible: true
+    })
+  }
+
+  const handleClickOutside = (e: MouseEvent) => {
+    if (contextAreaRef.current && !contextAreaRef.current.contains(e.target as Node)) {
+      setContextMenu(prev => ({ ...prev, visible: false }))
+    }
+  }
+
+  useEffect(() => {
+    if (contextMenu.visible) {
+      document.addEventListener('click', handleClickOutside)
+      return () => document.removeEventListener('click', handleClickOutside)
+    }
+  }, [contextMenu.visible])
+
+  const handleMenuItemClick = (action: string) => {
+    console.log(`Context menu action: ${action}`)
+    setContextMenu(prev => ({ ...prev, visible: false }))
+  }
   return (
     <div id="menu" className="space-y-8">
       <div>
@@ -143,13 +178,74 @@ export function MenuShowcase() {
           </Typography>
           
           <div className="border border-stone-200 rounded-lg p-6 bg-white">
-            <div className="p-4 bg-stone-100 rounded border-dashed border-2 border-stone-300">
+            <div 
+              ref={contextAreaRef}
+              className="relative p-4 bg-stone-100 rounded border-dashed border-2 border-stone-300 cursor-context-menu select-none"
+              onContextMenu={handleContextMenu}
+              onClick={() => setContextMenu(prev => ({ ...prev, visible: false }))}
+            >
               <Typography variant="body" className="text-stone-600 text-center">
                 Right-click this area to see a context menu
               </Typography>
+              
+              {/* Context Menu */}
+              {contextMenu.visible && (
+                <div 
+                  className="absolute bg-white border border-stone-200 rounded-lg shadow-lg p-2 min-w-48 z-50"
+                  style={{ 
+                    left: `${contextMenu.x}px`, 
+                    top: `${contextMenu.y}px`,
+                    // Ensure menu doesn't go off-screen
+                    transform: contextMenu.x > 200 ? 'translateX(-100%)' : 'none'
+                  }}
+                >
+                  <div 
+                    className="flex items-center gap-2 px-3 py-2 hover:bg-stone-100 rounded text-sm cursor-pointer"
+                    onClick={() => handleMenuItemClick('copy')}
+                  >
+                    <Copy className="w-4 h-4" />
+                    <span>Copy</span>
+                    <span className="ml-auto text-xs text-stone-500">Ctrl+C</span>
+                  </div>
+                  <div 
+                    className="flex items-center gap-2 px-3 py-2 hover:bg-stone-100 rounded text-sm cursor-pointer"
+                    onClick={() => handleMenuItemClick('paste')}
+                  >
+                    <Edit className="w-4 h-4" />
+                    <span>Paste</span>
+                    <span className="ml-auto text-xs text-stone-500">Ctrl+V</span>
+                  </div>
+                  <hr className="my-1 border-stone-200" />
+                  <div 
+                    className="flex items-center gap-2 px-3 py-2 hover:bg-stone-100 rounded text-sm cursor-pointer"
+                    onClick={() => handleMenuItemClick('inspect')}
+                  >
+                    <FileText className="w-4 h-4" />
+                    <span>Inspect Element</span>
+                  </div>
+                  <div 
+                    className="flex items-center gap-2 px-3 py-2 hover:bg-stone-100 rounded text-sm cursor-pointer"
+                    onClick={() => handleMenuItemClick('bookmark')}
+                  >
+                    <Bookmark className="w-4 h-4" />
+                    <span>Add to Bookmarks</span>
+                  </div>
+                  <hr className="my-1 border-stone-200" />
+                  <div 
+                    className="flex items-center gap-2 px-3 py-2 hover:bg-stone-100 rounded text-sm cursor-pointer"
+                    onClick={() => handleMenuItemClick('delete')}
+                  >
+                    <Trash2 className="w-4 h-4 text-red-500" />
+                    <span className="text-red-600">Delete</span>
+                  </div>
+                </div>
+              )}
             </div>
             <Typography variant="caption" color="muted" className="mt-2 block">
               Context menus appear on right-click and provide contextual actions relevant to the clicked element.
+              {contextMenu.visible && (
+                <span className="text-green-600 font-medium"> Menu is currently visible!</span>
+              )}
             </Typography>
           </div>
         </div>
