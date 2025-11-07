@@ -317,6 +317,131 @@ export const DropdownMenuShowcase: React.FC = () => {
         </div>
       </div>
 
+      {/* IconButton Chevron Placement */}
+      <div>
+        <Typography variant="h3" className="mb-4">
+          IconButton Chevron Placement
+        </Typography>
+        <div className="flex gap-4">
+          <DropdownMenu 
+            items={[
+              { children: 'Account Settings', icon: Settings },
+              { children: 'Notifications', icon: Bell },
+              { children: 'Privacy', icon: Lock },
+              'separator' as const,
+              { children: 'Sign Out', icon: Unlock }
+            ]}
+            chevronPlacement="left"
+          >
+            <IconButton 
+              icon={Settings} 
+              variant="outline" 
+              aria-label="Settings - Left Chevron"
+            />
+          </DropdownMenu>
+
+          <DropdownMenu 
+            items={[
+              { children: 'Mark as Read', icon: Eye },
+              { children: 'Archive', icon: FileText },
+              { children: 'Delete', icon: Trash2 }
+            ]}
+            chevronPlacement="right"
+          >
+            <IconButton 
+              icon={Bell} 
+              variant="outline" 
+              aria-label="Notifications - Right Chevron"
+            />
+          </DropdownMenu>
+
+          <DropdownMenu 
+            items={[
+              { children: 'Edit', icon: Edit },
+              { children: 'Duplicate', icon: Copy },
+              { children: 'Share', icon: Share },
+              'separator' as const,
+              { children: 'Archive', icon: FileText },
+              { children: 'Delete', icon: Trash2 }
+            ]}
+            showChevron={false}
+          >
+            <IconButton 
+              icon={MoreVertical} 
+              variant="outline" 
+              aria-label="More actions - No Chevron"
+            />
+          </DropdownMenu>
+        </div>
+        
+        <div className="mt-6">
+          <Typography variant="h4" className="mb-4">
+            Different IconButton Sizes with Chevrons
+          </Typography>
+          <div className="flex gap-4 items-center">
+            <DropdownMenu 
+              items={basicMenuItems}
+              chevronPlacement="right"
+            >
+              <IconButton 
+                icon={Settings} 
+                variant="outline" 
+                size="xs"
+                aria-label="Extra Small"
+              />
+            </DropdownMenu>
+
+            <DropdownMenu 
+              items={basicMenuItems}
+              chevronPlacement="left"
+            >
+              <IconButton 
+                icon={Bell} 
+                variant="outline" 
+                size="sm"
+                aria-label="Small"
+              />
+            </DropdownMenu>
+
+            <DropdownMenu 
+              items={basicMenuItems}
+              chevronPlacement="right"
+            >
+              <IconButton 
+                icon={User} 
+                variant="outline" 
+                size="md"
+                aria-label="Medium"
+              />
+            </DropdownMenu>
+
+            <DropdownMenu 
+              items={basicMenuItems}
+              chevronPlacement="left"
+            >
+              <IconButton 
+                icon={Settings} 
+                variant="outline" 
+                size="lg"
+                aria-label="Large"
+              />
+            </DropdownMenu>
+
+            <DropdownMenu 
+              items={basicMenuItems}
+              chevronPlacement="right"
+            >
+              <IconButton 
+                icon={MoreVertical} 
+                variant="outline" 
+                size="xl"
+                aria-label="Extra Large"
+              />
+            </DropdownMenu>
+          </div>
+        </div>
+      </div>
+
       {/* Rich Content */}
       <div>
         <Typography variant="h3" className="mb-4">

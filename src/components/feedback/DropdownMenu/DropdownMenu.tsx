@@ -300,13 +300,27 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
   // Create composite icon for IconButton that combines original icon with chevron
   const createCompositeIcon = (OriginalIcon: React.ComponentType<{ className?: string }>) => {
     return function CompositeIcon({ className, ...props }: { className?: string }) {
+      if (!showChevron) {
+        // If no chevron, just return the original icon
+        return <OriginalIcon className={className} {...props} />;
+      }
+
       return (
-        <div className={cn("relative inline-flex items-center justify-center", className)} {...props}>
-          <OriginalIcon className="w-full h-full" />
-          {showChevron && (
+        <div className={cn("inline-flex items-center gap-1", className)} {...props}>
+          {chevronPlacement === 'left' && (
             <ChevronIcon 
               className={cn(
-                "absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-white dark:bg-gray-800 rounded-full p-0.5",
+                "w-3 h-3 flex-shrink-0",
+                isOpen && "rotate-180",
+                "transition-transform duration-200"
+              )} 
+            />
+          )}
+          <OriginalIcon className="w-4 h-4 flex-shrink-0" />
+          {chevronPlacement === 'right' && (
+            <ChevronIcon 
+              className={cn(
+                "w-3 h-3 flex-shrink-0",
                 isOpen && "rotate-180",
                 "transition-transform duration-200"
               )} 
@@ -348,10 +362,8 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
             onContextMenu: (event: React.MouseEvent) => {
               handleTriggerContextMenu(event);
             },
-            // Replace icon with composite icon that includes chevron (if showChevron is true)
-            icon: showChevron 
-              ? createCompositeIcon((children as React.ReactElement<{ icon: React.ComponentType<{ className?: string }> }>).props.icon)
-              : (children as React.ReactElement<{ icon: React.ComponentType<{ className?: string }> }>).props.icon,
+            // Override with composite icon that includes chevron and preserves original icon
+            icon: createCompositeIcon((children as React.ReactElement<{ icon: React.ComponentType<{ className?: string }> }>).props.icon),
             className: cn(
               (children as React.ReactElement<{ className?: string }>).props.className,
               isOpen && 'paper-dropdown-trigger--active'
