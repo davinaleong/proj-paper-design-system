@@ -63,6 +63,49 @@ const getColorOverlayClasses = (color: ColorVariant): string => {
   return colorMap[color] || "bg-gray-600/30"
 }
 
+const getSolidColorClasses = (color: ColorVariant, opacity: number): string => {
+  const opacityValue = Math.round(opacity * 100)
+  const colorMap: Record<ColorVariant, string> = {
+    primary: `bg-blue-600/${opacityValue}`,
+    secondary: `bg-slate-600/${opacityValue}`,
+    success: `bg-green-600/${opacityValue}`,
+    warning: `bg-amber-600/${opacityValue}`,
+    danger: `bg-red-600/${opacityValue}`,
+    info: `bg-sky-600/${opacityValue}`,
+    paper: `bg-stone-600/${opacityValue}`,
+    default: `bg-black/${opacityValue}`,
+    muted: `bg-gray-500/${opacityValue}`,
+    accent: `bg-teal-600/${opacityValue}`,
+    transparent: "bg-transparent",
+    custom: "",
+    // Full color spectrum
+    slate: `bg-slate-600/${opacityValue}`,
+    gray: `bg-gray-600/${opacityValue}`,
+    zinc: `bg-zinc-600/${opacityValue}`,
+    neutral: `bg-neutral-600/${opacityValue}`,
+    stone: `bg-stone-600/${opacityValue}`,
+    red: `bg-red-600/${opacityValue}`,
+    orange: `bg-orange-600/${opacityValue}`,
+    amber: `bg-amber-600/${opacityValue}`,
+    yellow: `bg-yellow-600/${opacityValue}`,
+    lime: `bg-lime-600/${opacityValue}`,
+    green: `bg-green-600/${opacityValue}`,
+    emerald: `bg-emerald-600/${opacityValue}`,
+    teal: `bg-teal-600/${opacityValue}`,
+    cyan: `bg-cyan-600/${opacityValue}`,
+    sky: `bg-sky-600/${opacityValue}`,
+    blue: `bg-blue-600/${opacityValue}`,
+    indigo: `bg-indigo-600/${opacityValue}`,
+    violet: `bg-violet-600/${opacityValue}`,
+    purple: `bg-purple-600/${opacityValue}`,
+    fuchsia: `bg-fuchsia-600/${opacityValue}`,
+    pink: `bg-pink-600/${opacityValue}`,
+    rose: `bg-rose-600/${opacityValue}`,
+  }
+  
+  return colorMap[color] || `bg-black/${opacityValue}`
+}
+
 const getBackdropClasses = (
   variant: BackdropVariant,
   color: ColorVariant,
@@ -71,8 +114,8 @@ const getBackdropClasses = (
   const baseClasses = "fixed inset-0 transition-opacity duration-300"
   
   switch (variant) {
-    case "black":
-      return cn(baseClasses, `bg-black/${Math.round(opacity * 100)}`)
+    case "solid":
+      return cn(baseClasses, getSolidColorClasses(color, opacity))
     
     case "blur":
       return cn(
@@ -96,7 +139,7 @@ const getBackdropClasses = (
 
 export function Backdrop({
   isOpen = false,
-  variant = "black",
+  variant = "solid",
   color = "default",
   opacity = 0.5,
   onClick,

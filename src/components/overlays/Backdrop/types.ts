@@ -1,7 +1,7 @@
 import type { ReactNode, HTMLAttributes } from "react"
 import type { ColorVariant } from "../../../utils/colors"
 
-export type BackdropVariant = "black" | "blur" | "patterned"
+export type BackdropVariant = "solid" | "blur" | "patterned"
 
 export interface BackdropProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onClick'> {
   /**

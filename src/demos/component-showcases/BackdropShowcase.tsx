@@ -18,7 +18,7 @@ export function BackdropShowcase() {
           Backdrop
         </Typography>
         <Typography variant="body" color="muted">
-          Overlay backgrounds with black, blur, and patterned variants, including customizable color overlays.
+          Overlay backgrounds with solid, blur, and patterned variants, including customizable color overlays.
         </Typography>
       </div>
 
@@ -27,13 +27,13 @@ export function BackdropShowcase() {
         <Typography variant="h3" className="mb-4">Basic Variants</Typography>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div className="space-y-2">
-            <Typography variant="h5">Black Backdrop</Typography>
+            <Typography variant="h5">Solid Backdrop</Typography>
             <Button 
               variant="solid" 
-              onClick={() => openBackdrop('black')}
+              onClick={() => openBackdrop('solid')}
               className="w-full bg-blue-500 hover:bg-blue-600 text-white"
             >
-              Show Black Backdrop
+              Show Solid Backdrop
             </Button>
           </div>
           
@@ -61,9 +61,9 @@ export function BackdropShowcase() {
         </div>
       </Paper>
 
-      {/* Color Overlays */}
+      {/* Color Variants */}
       <Paper className="p-6">
-        <Typography variant="h3" className="mb-4">Color Overlays (Blur & Patterned Variants)</Typography>
+        <Typography variant="h3" className="mb-4">Color Variants</Typography>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {[
             "primary", "success", "warning", "danger", "info", "paper",
@@ -74,6 +74,14 @@ export function BackdropShowcase() {
                 {color}
               </Typography>
               <div className="flex flex-col gap-2">
+                <Button 
+                  variant="outline"
+                  size="sm"
+                  onClick={() => openBackdrop(`solid-${color}`)}
+                  className="w-full"
+                >
+                  Solid
+                </Button>
                 <Button 
                   variant="outline"
                   size="sm"
@@ -131,13 +139,13 @@ export function BackdropShowcase() {
 
       {/* Backdrops */}
       <Backdrop
-        isOpen={activeBackdrop === 'black'}
-        variant="black"
+        isOpen={activeBackdrop === 'solid'}
+        variant="solid"
         onClick={closeBackdrop}
       >
         <div className="fixed inset-0 flex items-center justify-center p-4">
           <div className="bg-white dark:bg-stone-900 p-8 rounded-lg shadow-lg max-w-md w-full text-center">
-            <Typography variant="h4" className="mb-4">Black Backdrop</Typography>
+            <Typography variant="h4" className="mb-4">Solid Backdrop</Typography>
             <Typography variant="body" className="mb-6">
               Solid black overlay with customizable opacity.
             </Typography>
@@ -187,6 +195,35 @@ export function BackdropShowcase() {
           </div>
         </div>
       </Backdrop>
+
+      {/* Solid Color Backdrops */}
+      {[
+        "primary", "success", "warning", "danger", "info", "paper",
+        "purple", "teal"
+      ].map((color) => (
+        <Backdrop
+          key={`solid-${color}`}
+          isOpen={activeBackdrop === `solid-${color}`}
+          variant="solid"
+          color={color as ColorVariant}
+          opacity={0.3}
+          onClick={closeBackdrop}
+        >
+          <div className="fixed inset-0 flex items-center justify-center p-4">
+            <div className="bg-white dark:bg-stone-900 p-8 rounded-lg shadow-lg max-w-md w-full text-center">
+              <Typography variant="h4" className="mb-4 capitalize">
+                {color} Solid Backdrop
+              </Typography>
+              <Typography variant="body" className="mb-6">
+                Solid {color} color backdrop.
+              </Typography>
+              <Button variant="solid" onClick={closeBackdrop}>
+                Close
+              </Button>
+            </div>
+          </div>
+        </Backdrop>
+      ))}
 
       {/* Color Overlay Backdrops */}
       {[
@@ -272,7 +309,7 @@ export function BackdropShowcase() {
         <Backdrop
           key={opacity}
           isOpen={activeBackdrop === `opacity-${opacity}`}
-          variant="black"
+          variant="solid"
           opacity={opacity}
           onClick={closeBackdrop}
         >
@@ -282,7 +319,7 @@ export function BackdropShowcase() {
                 {Math.round(opacity * 100)}% Opacity
               </Typography>
               <Typography variant="body" className="mb-6">
-                Black backdrop with {Math.round(opacity * 100)}% opacity.
+                Solid backdrop with {Math.round(opacity * 100)}% opacity.
               </Typography>
               <Button variant="solid" onClick={closeBackdrop}>
                 Close
