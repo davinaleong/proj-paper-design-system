@@ -34,15 +34,13 @@ import {
   TreeViewShowcase,
   QuickActionsShowcase,
   ContextMenuShowcase,
-} from "./demos/component-showcases"
-import { LoaderShowcase } from "./components/feedback/Loader/LoaderShowcase"
-import { SkeletonShowcase } from "./components/feedback/Skeleton/SkeletonShowcase"
-import { PopoverShowcase } from "./components/feedback/Popover/PopoverShowcase"
-import { DropdownMenuShowcase } from "./components/feedback/DropdownMenu/DropdownMenuShowcase"
-import {
+  DropdownMenuShowcase,
+  LoaderShowcase,
+  SkeletonShowcase,
+  PopoverShowcase,
   FormControlsShowcase,
   DataDisplayShowcase,
-} from "./demos/feature-showcases"
+} from "./demos"
 import "./App.css"
 
 function App() {

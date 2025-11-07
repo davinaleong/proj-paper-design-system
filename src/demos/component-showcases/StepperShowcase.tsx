@@ -311,16 +311,15 @@ export const StepperShowcase: React.FC = () => {
 
   return (
     <Section className="py-12">
-      <div className="max-w-6xl mx-auto space-y-12">
-        <div className="text-center space-y-4">
-          <Typography variant="h2" className="text-stone-900">
-            Stepper Component
-          </Typography>
-          <Typography variant="body" className="text-stone-600 max-w-2xl mx-auto">
-            A flexible stepper component for multi-step processes with support for different formats,
-            variants, and interactive features.
-          </Typography>
-        </div>
+      <div className="text-center space-y-4">
+        <Typography variant="h2" className="text-stone-900">
+          Stepper Component
+        </Typography>
+        <Typography variant="body" className="text-stone-600 max-w-2xl mx-auto">
+          A flexible stepper component for multi-step processes with support for different formats,
+          variants, and interactive features.
+        </Typography>
+      </div>
 
         {/* Basic Formats */}
         <div className="space-y-8">
@@ -674,7 +673,6 @@ export const StepperShowcase: React.FC = () => {
             ))}
           </div>
         </div>
-      </div>
     </Section>
   );
 };

@@ -1,4 +1,4 @@
-// Export all component showcases
+// Export all showcases - flattened import structure
 export {
   CoreComponentsShowcase,
   TypographyShowcase,
@@ -8,9 +8,35 @@ export {
   TabsShowcase,
   PaginationShowcase,
   StepperShowcase,
+  ProseShowcase,
+  AlertShowcase,
+  ToastShowcase,
+  ModalShowcase,
+  ConfirmationDialogShowcase,
+  LoadingSpinnerShowcase,
+  LuminanceShowcase,
+  ContextMenuShowcase,
+  DropdownMenuShowcase,
+  LoaderShowcase,
+  SkeletonShowcase,
+  PopoverShowcase,
+  ProgressCircleShowcase,
+  ProgressBarShowcase,
+  EmptyStateShowcase,
+  StatisticShowcase,
+  KPIShowcase,
+  TimelineShowcase,
+  AdditionalProgressShowcase,
+  NavbarShowcase,
+  FloatingNavbarShowcase,
+  SidebarShowcase,
+  BreadcrumbsShowcase,
+  CommandPaletteShowcase,
+  MenuShowcase,
+  TreeViewShowcase,
+  QuickActionsShowcase,
 } from "./component-showcases"
 
-// Export all feature showcases
 export {
   FormControlsShowcase,
   DataDisplayShowcase,
@@ -19,5 +45,5 @@ export {
 // Export individual showcase files
 export { StaticTableShowcase } from "./component-showcases/StaticTableShowcase"
 
-// Export feedback component showcases
-export { LoaderShowcase } from "../components/feedback/Loader/LoaderShowcase"
+// Export utility components
+export { PaginationScrollTest } from "./PaginationScrollTest"

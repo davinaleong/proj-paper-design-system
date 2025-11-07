@@ -1,20 +1,15 @@
 import React from 'react';
-import { Popover } from './Popover';
-import { Button } from '../../forms/Button';
-import { IconButton } from '../../forms/IconButton';
-import { Typography } from '../../core/Typography';
-import { Card } from '../../layout/Card';
-import { Badge } from '../../layout/Badge';
+import { Popover } from '../../components/feedback/Popover/Popover';
+import { Button } from '../../components/forms/Button';
+import { IconButton } from '../../components/forms/IconButton';
+import { Typography } from '../../components/core/Typography';
+import { Card } from '../../components/layout/Card';
+import { Badge } from '../../components/layout/Badge';
 import { 
   Settings, 
   User, 
   Bell, 
-  Info, 
-  MoreVertical,
-  Heart,
-  Star,
-  Share,
-  Download
+  Info
 } from 'lucide-react';
 
 export const PopoverShowcase: React.FC = () => {
