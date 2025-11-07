@@ -19,6 +19,8 @@ export * from "./utilities"
 // Feedback Components
 export * from "./feedback"
 
+// Overlay Components
+export * from "./overlays"
+
 // Other components will be added as they are implemented
-// export * from "./overlays"
 // export * from "./premium"

@@ -2,7 +2,7 @@ import { useState } from "react"
 import { ThemeProvider, Typography, Paper } from "./components/core"
 import { AppHeader } from "./components/AppHeader"
 import { Sidebar } from "./components/navigation"
-import { Home, FileText, BarChart3, Navigation, TrendingUp, MessageCircle } from "lucide-react"
+import { Home, FileText, BarChart3, Navigation, TrendingUp, MessageCircle, Layers } from "lucide-react"
 import {
   CoreComponentsShowcase,
   TypographyShowcase,
@@ -35,6 +35,7 @@ import {
   QuickActionsShowcase,
   ContextMenuShowcase,
   DropdownMenuShowcase,
+  DrawerShowcase,
   LoaderShowcase,
   SkeletonShowcase,
   PopoverShowcase,
@@ -122,6 +123,20 @@ function AppContent() {
         { id: "additional-progress", label: "Additional Progress", href: "#additional-progress" },
       ]
     },
+    // Overlays Group
+    { 
+      id: "overlays", 
+      label: "Overlays", 
+      icon: Layers,
+      children: [
+        { id: "drawer", label: "Drawer", href: "#drawer" },
+        { id: "popover", label: "Popover", href: "#popover" },
+        { id: "dropdown-menu", label: "Dropdown Menu", href: "#dropdown-menu" },
+        { id: "context-menu", label: "Context Menu", href: "#context-menu" },
+        { id: "modal", label: "Modal", href: "#modal" },
+        { id: "confirmation-dialog", label: "Confirmation Dialog", href: "#confirmation-dialog" },
+      ]
+    },
     // User Feedback Group
     { 
       id: "feedback", 
@@ -130,14 +145,9 @@ function AppContent() {
       children: [
         { id: "alerts", label: "Alerts", href: "#alerts" },
         { id: "toast", label: "Toast", href: "#toast" },
-        { id: "modal", label: "Modal", href: "#modal" },
-        { id: "confirmation-dialog", label: "Confirmation Dialog", href: "#confirmation-dialog" },
         { id: "loading-spinner", label: "Loading Spinner", href: "#loading-spinner" },
         { id: "loader", label: "Loader", href: "#loader" },
         { id: "skeleton", label: "Skeleton", href: "#skeleton" },
-        { id: "popover", label: "Popover", href: "#popover" },
-        { id: "dropdown-menu", label: "Dropdown Menu", href: "#dropdown-menu" },
-        { id: "context-menu", label: "Context Menu", href: "#context-menu" },
       ]
     },
   ]
@@ -274,54 +284,50 @@ function AppContent() {
           <QuickActionsShowcase />
         </section>
 
-        {/* Alerts */}
-        <section id="alerts">
-          <AlertShowcase />
+        {/* Overlays */}
+        <section id="drawer">
+          <DrawerShowcase />
         </section>
 
-        {/* Toast */}
-        <section id="toast">
-          <ToastShowcase />
-        </section>
-
-        {/* Modal */}
-        <section id="modal">
-          <ModalShowcase />
-        </section>
-
-        {/* Confirmation Dialog */}
-        <section id="confirmation-dialog">
-          <ConfirmationDialogShowcase />
-        </section>
-
-        {/* Loading Spinner */}
-        <section id="loading-spinner">
-          <LoadingSpinnerShowcase />
-        </section>
-
-        {/* Loader */}
-        <section id="loader">
-          <LoaderShowcase />
-        </section>
-
-        {/* Skeleton */}
-        <section id="skeleton">
-          <SkeletonShowcase />
-        </section>
-
-        {/* Popover */}
         <section id="popover">
           <PopoverShowcase />
         </section>
 
-        {/* Dropdown Menu */}
         <section id="dropdown-menu">
           <DropdownMenuShowcase />
         </section>
 
-        {/* Context Menu */}
         <section id="context-menu">
           <ContextMenuShowcase />
+        </section>
+
+        <section id="modal">
+          <ModalShowcase />
+        </section>
+
+        <section id="confirmation-dialog">
+          <ConfirmationDialogShowcase />
+        </section>
+
+        {/* User Feedback */}
+        <section id="alerts">
+          <AlertShowcase />
+        </section>
+
+        <section id="toast">
+          <ToastShowcase />
+        </section>
+
+        <section id="loading-spinner">
+          <LoadingSpinnerShowcase />
+        </section>
+
+        <section id="loader">
+          <LoaderShowcase />
+        </section>
+
+        <section id="skeleton">
+          <SkeletonShowcase />
         </section>
 
         {/* Progress Circle */}
