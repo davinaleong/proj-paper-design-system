@@ -4,47 +4,7 @@ import { cn } from "../../../utils"
 import type { LightboxProps } from "./types"
 import type { ColorVariant } from "../../../utils/colors"
 
-const getColorOverlayClasses = (color: ColorVariant): string => {
-  const colorMap: Record<ColorVariant, string> = {
-    primary: "bg-blue-600/20",
-    secondary: "bg-slate-600/20",
-    success: "bg-green-600/20",
-    warning: "bg-amber-600/20",
-    danger: "bg-red-600/20",
-    info: "bg-sky-600/20",
-    paper: "bg-stone-600/20",
-    default: "bg-gray-600/20",
-    muted: "bg-gray-500/20",
-    accent: "bg-teal-600/20",
-    transparent: "bg-transparent",
-    custom: "",
-    // Full color spectrum
-    slate: "bg-slate-600/20",
-    gray: "bg-gray-600/20",
-    zinc: "bg-zinc-600/20",
-    neutral: "bg-neutral-600/20",
-    stone: "bg-stone-600/20",
-    red: "bg-red-600/20",
-    orange: "bg-orange-600/20",
-    amber: "bg-amber-600/20",
-    yellow: "bg-yellow-600/20",
-    lime: "bg-lime-600/20",
-    green: "bg-green-600/20",
-    emerald: "bg-emerald-600/20",
-    teal: "bg-teal-600/20",
-    cyan: "bg-cyan-600/20",
-    sky: "bg-sky-600/20",
-    blue: "bg-blue-600/20",
-    indigo: "bg-indigo-600/20",
-    violet: "bg-violet-600/20",
-    purple: "bg-purple-600/20",
-    fuchsia: "bg-fuchsia-600/20",
-    pink: "bg-pink-600/20",
-    rose: "bg-rose-600/20",
-  }
-  
-  return colorMap[color] || "bg-gray-600/20"
-}
+
 
 const getSolidColorRgb = (color: ColorVariant): string => {
   const colorMap: Record<ColorVariant, string> = {
@@ -176,17 +136,18 @@ export function Lightbox({
       <div
         className={cn(
           "absolute inset-0",
-          variant === "blur" && "backdrop-blur-md",
-          variant === "blurred-image" && "bg-cover bg-center bg-no-repeat backdrop-blur-sm",
-          variant !== "solid" && getColorOverlayClasses(color)
+          variant === "blurred" && "backdrop-blur-md",
+          variant === "blurred-image" && "bg-cover bg-center bg-no-repeat backdrop-blur-sm"
         )}
         style={{
           ...(variant === "solid" ? {
             backgroundColor: `rgba(${getSolidColorRgb(color)}, ${opacity})`
-          } : {}),
-          ...(variant === "blurred-image" && imageSrc ? {
+          } : variant === "blurred" ? {
+            backgroundColor: `rgba(${getSolidColorRgb(color)}, 0.3)`
+          } : variant === "blurred-image" && imageSrc ? {
             backgroundImage: `url("${imageSrc}")`,
             filter: "blur(20px) brightness(0.3)",
+            backgroundColor: `rgba(${getSolidColorRgb(color)}, 0.2)`
           } : {}),
         }}
       />

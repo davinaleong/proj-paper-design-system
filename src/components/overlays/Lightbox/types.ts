@@ -1,7 +1,7 @@
 import type { ReactNode, HTMLAttributes } from "react"
 import type { ColorVariant } from "../../../utils/colors"
 
-export type LightboxVariant = "solid" | "blur" | "blurred-image"
+export type LightboxVariant = "solid" | "blurred" | "blurred-image"
 
 export interface LightboxProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onClick'> {
   /**

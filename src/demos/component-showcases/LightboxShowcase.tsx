@@ -14,9 +14,9 @@ export function LightboxShowcase() {
 
   // Sample images for demonstration
   const sampleImages = [
-    "/api/placeholder/800/600",
-    "/api/placeholder/600/800", 
-    "/api/placeholder/900/500",
+    "/wireframe.jpg",
+    "/wireframe.jpg", 
+    "/wireframe.jpg",
   ]
 
   return (
@@ -46,13 +46,13 @@ export function LightboxShowcase() {
           </div>
           
           <div className="space-y-2">
-            <Typography variant="h5">Blur Backdrop</Typography>
+            <Typography variant="h5">Blurred Backdrop</Typography>
             <Button 
               variant="solid" 
-              onClick={() => openLightbox('blur')}
+              onClick={() => openLightbox('blurred')}
               className="w-full bg-blue-500 hover:bg-blue-600 text-white"
             >
-              Show Blur Lightbox
+              Show Blurred Lightbox
             </Button>
           </div>
           
@@ -93,10 +93,10 @@ export function LightboxShowcase() {
                 <Button 
                   variant="outline"
                   size="sm"
-                  onClick={() => openLightbox(`blur-${color}`)}
+                  onClick={() => openLightbox(`blurred-${color}`)}
                   className="w-full"
                 >
-                  Blur
+                  Blurred
                 </Button>
                 <Button 
                   variant="outline"
@@ -157,8 +157,8 @@ export function LightboxShowcase() {
       </Lightbox>
 
       <Lightbox
-        isOpen={activeLightbox === 'blur'}
-        variant="blur"
+        isOpen={activeLightbox === 'blurred'}
+        variant="blurred"
         color="paper"
         onClose={closeLightbox}
       >
@@ -169,7 +169,7 @@ export function LightboxShowcase() {
           >
             <X className="w-5 h-5" />
           </button>
-          <Typography variant="h4" className="mb-4">Blur Lightbox</Typography>
+          <Typography variant="h4" className="mb-4">Blurred Lightbox</Typography>
           <Typography variant="body" className="mb-6">
             Blurred backdrop that maintains visual context while focusing attention.
           </Typography>
@@ -243,8 +243,8 @@ export function LightboxShowcase() {
       ].map((color) => (
         <div key={color}>
           <Lightbox
-            isOpen={activeLightbox === `blur-${color}`}
-            variant="blur"
+            isOpen={activeLightbox === `blurred-${color}`}
+            variant="blurred"
             color={color as ColorVariant}
             onClose={closeLightbox}
           >
@@ -256,10 +256,10 @@ export function LightboxShowcase() {
                 <X className="w-5 h-5" />
               </button>
               <Typography variant="h4" className="mb-4 capitalize">
-                {color} Blur Lightbox
+                {color} Blurred Lightbox
               </Typography>
               <Typography variant="body" className="mb-6">
-                Blur lightbox with {color} color overlay tint.
+                Blurred lightbox with {color} color overlay tint.
               </Typography>
               <Button variant="solid" onClick={closeLightbox}>
                 Close
