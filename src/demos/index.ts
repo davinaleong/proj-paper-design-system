@@ -92,6 +92,7 @@ export {
   ActivityItemShowcase,
   NotificationCenterShowcase,
   UserMenuShowcase,
+  ThemePreviewShowcase,
 } from "./advanced-ux"
 
 // Feature Showcases (composite showcases)

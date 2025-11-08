@@ -56,6 +56,7 @@ import {
   ActivityItemShowcase,
   NotificationCenterShowcase,
   UserMenuShowcase,
+  ThemePreviewShowcase,
 } from "./demos"
 import "./App.css"
 
@@ -130,6 +131,7 @@ function AppContent() {
         { id: "activity-item", label: "Activity Item", href: "#activity-item" },
         { id: "notification-center", label: "Notification Center", href: "#notification-center" },
         { id: "user-menu", label: "User Menu", href: "#user-menu" },
+        { id: "theme-preview", label: "Theme Preview", href: "#theme-preview" },
         { id: "command-palette", label: "Command Palette", href: "#command-palette" },
         { id: "quick-actions", label: "Quick Actions", href: "#quick-actions" },
       ]
@@ -363,6 +365,10 @@ function AppContent() {
 
         <section id="user-menu">
           <UserMenuShowcase />
+        </section>
+
+        <section id="theme-preview">
+          <ThemePreviewShowcase />
         </section>
 
         <section id="tabs">

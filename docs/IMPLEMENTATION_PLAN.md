@@ -315,7 +315,7 @@ Create a complete design system that feels **organic, readable, and professional
 - [x] **ActivityItem** - Activity feeds
 - [x] **NotificationCenter** - Notification management
 - [x] **UserMenu** - User account menus
-- [ ] **ThemePreview** - Theme showcase
+- [x] **ThemePreview** - Theme showcase
 
 ---
 

@@ -26,7 +26,7 @@ export * from "./feedback"
 export * from "./overlays"
 
 // Advanced Components
-export { CommandBar, NotificationCenter, UserMenu } from "./advanced"
+export { CommandBar, NotificationCenter, UserMenu, ThemePreview } from "./advanced"
 export { ActivityItem as AdvancedActivityItem } from "./advanced"
 export type { 
   CommandBarProps, 
@@ -56,4 +56,10 @@ export type {
   UserMenuSize,
   UserMenuVariant,
   UserMenuPosition,
+  ThemePreviewProps,
+  ThemeDefinition,
+  ThemeColorPalette,
+  ThemePreviewSize,
+  ThemePreviewVariant,
+  ThemeMode,
 } from "./advanced"

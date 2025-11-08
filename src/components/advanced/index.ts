@@ -40,3 +40,13 @@ export type {
   UserMenuVariant,
   UserMenuPosition,
 } from './UserMenu'
+
+export { ThemePreview } from './ThemePreview'
+export type {
+  ThemePreviewProps,
+  ThemeDefinition,
+  ThemeColorPalette,
+  ThemePreviewSize,
+  ThemePreviewVariant,
+  ThemeMode,
+} from './ThemePreview'
