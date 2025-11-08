@@ -21,6 +21,7 @@ export { default as DropdownMenuShowcase } from "./DropdownMenuShowcase"
 export { BackdropShowcase } from "./BackdropShowcase"
 export { DrawerShowcase } from "./DrawerShowcase"
 export { LightboxShowcase } from "./LightboxShowcase"
+export { SearchBarShowcase } from "./SearchBarShowcase"
 
 // New split progress and status showcases
 export { ProgressCircleShowcase } from "./ProgressCircleShowcase"

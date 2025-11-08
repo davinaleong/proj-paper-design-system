@@ -38,6 +38,7 @@ export {
   MenuShowcase,
   TreeViewShowcase,
   QuickActionsShowcase,
+  SearchBarShowcase,
 } from "./component-showcases"
 
 export {

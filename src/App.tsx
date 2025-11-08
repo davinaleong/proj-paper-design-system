@@ -2,7 +2,7 @@ import { useState } from "react"
 import { ThemeProvider, Typography, Paper } from "./components/core"
 import { AppHeader } from "./components/AppHeader"
 import { Sidebar } from "./components/navigation"
-import { Home, FileText, BarChart3, Navigation, TrendingUp, MessageCircle, Layers } from "lucide-react"
+import { Home, FileText, BarChart3, Navigation, TrendingUp, MessageCircle, Layers, Search } from "lucide-react"
 import {
   CoreComponentsShowcase,
   TypographyShowcase,
@@ -43,6 +43,7 @@ import {
   PopoverShowcase,
   FormControlsShowcase,
   DataDisplayShowcase,
+  SearchBarShowcase,
 } from "./demos"
 import "./App.css"
 
@@ -80,6 +81,15 @@ function AppContent() {
       icon: FileText,
       children: [
         { id: "form-controls", label: "Form Controls", href: "#form-controls" },
+      ]
+    },
+    // Specialized Inputs Group
+    { 
+      id: "specialized-inputs", 
+      label: "Specialized Inputs", 
+      icon: Search,
+      children: [
+        { id: "searchbar", label: "SearchBar", href: "#searchbar" },
       ]
     },
     // Data Display Group
@@ -236,6 +246,11 @@ function AppContent() {
         {/* Form Controls */}
         <section id="form-controls">
           <FormControlsShowcase />
+        </section>
+
+        {/* Specialized Inputs */}
+        <section id="searchbar">
+          <SearchBarShowcase />
         </section>
 
         {/* Data Display */}
