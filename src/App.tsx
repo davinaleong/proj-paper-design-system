@@ -3,6 +3,7 @@ import { ThemeProvider, Typography, Paper } from "./components/core"
 import { AppHeader } from "./components/AppHeader"
 import { Sidebar } from "./components/navigation"
 import { Home, FileText, BarChart3, Navigation, TrendingUp, MessageCircle, Layers, Search, Settings } from "lucide-react"
+import { Divider } from "./components/layout/Divider"
 import {
   CoreComponentsShowcase,
   TypographyShowcase,
@@ -229,29 +230,27 @@ function AppContent() {
 
       {/* Scrollable content area */}
       <main className="flex-1 overflow-y-auto overflow-x-hidden">
-        {/* Core Components */}
-        <section id="overview">
+        {/* =========================== */}
+        {/* CORE FOUNDATION */}
+        {/* =========================== */}
+        
+        <section id="overview" className="mb-8">
           <CoreComponentsShowcase />
         </section>
 
-        {/* Luminance */}
-        <section id="luminance">
+        <Divider className="my-12" />
+
+        <section id="luminance" className="mb-8">
           <LuminanceShowcase />
         </section>
 
-        {/* Typography */}
-        <section id="typography">
+        <section id="typography" className="mb-8">
           <TypographyShowcase />
         </section>
 
-        {/* Luminance */}
-        <section id="luminance">
-          <LuminanceShowcase />
-        </section>
-
         {/* Semantic Typography Examples */}
-        <section id="semantic-typography">
-          <Paper className="p-6 my-8">
+        <section id="semantic-typography" className="mb-8">
+          <Paper className="p-6">
             <Typography variant="h3" className="mb-4 text-stone-800">
               Semantic Typography Examples
             </Typography>
@@ -277,219 +276,258 @@ function AppContent() {
           </Paper>
         </section>
 
-        <section id="layout">
+        <section id="layout" className="mb-8">
           <LayoutShowcase />
         </section>
 
-        <section id="ui-primitives">
+        <section id="ui-primitives" className="mb-8">
           <UIPrimitivesShowcase />
         </section>
+        
+        <Divider className="my-12" />
 
-        {/* Form Controls */}
-        <section id="form-controls">
+        {/* =========================== */}
+        {/* FORM CONTROLS */}
+        {/* =========================== */}
+        
+        <section id="form-controls" className="mb-8">
           <FormControlsShowcase />
         </section>
 
         {/* Specialized Inputs */}
-        <section id="searchbar">
+        <section id="searchbar" className="mb-8">
           <SearchBarShowcase />
         </section>
 
-        <section id="filtermenu">
+        <section id="filtermenu" className="mb-8">
           <FilterMenuShowcase />
         </section>
 
-        <section id="datetimepicker">
+        <section id="datetimepicker" className="mb-8">
           <DateTimePickerShowcase />
         </section>
+        
+        <Divider className="my-12" />
 
-        {/* Data Display */}
-        <section id="data-display">
+        {/* =========================== */}
+        {/* DATA DISPLAY */}
+        {/* =========================== */}
+        
+        <section id="data-display" className="mb-8">
           <DataDisplayShowcase />
         </section>
 
-        {/* Navigation Components */}
-        <section id="navbar">
+        <Divider className="my-12" />
+        
+        {/* =========================== */}
+        {/* NAVIGATION COMPONENTS */}
+        {/* =========================== */}
+        
+        <section id="navbar" className="mb-8">
           <NavbarShowcase />
         </section>
 
-        <section id="floating-navbar">
+        <section id="floating-navbar" className="mb-8">
           <FloatingNavbarShowcase />
         </section>
 
-        <section id="sidebar">
+        <section id="sidebar" className="mb-8">
           <SidebarShowcase />
         </section>
 
-        <section id="breadcrumbs">
+        <section id="breadcrumbs" className="mb-8">
           <BreadcrumbsShowcase />
         </section>
 
-        <section id="breadcrumb-header">
+        <section id="breadcrumb-header" className="mb-8">
           <BreadcrumbHeaderShowcase />
         </section>
-
-        {/* System Utilities */}
-        <section id="theme-toggle">
-          <ThemeToggleShowcase />
-        </section>
-
-        <section id="dot-indicator">
-          <DotIndicatorShowcase />
-        </section>
-
-        <section id="scroll-area">
-          <ScrollAreaShowcase />
-        </section>
-
-        <section id="error-boundary">
-          <ErrorBoundaryShowcase />
-        </section>
-
-        <section id="clipboard-button">
-          <ClipboardButtonShowcase />
-        </section>
-
-        {/* Premium Components */}
-        <section id="command-bar">
-          <CommandBarShowcase />
-        </section>
-
-        <section id="activity-item">
-          <ActivityItemShowcase />
-        </section>
-
-        <section id="notification-center">
-          <NotificationCenterShowcase />
-        </section>
-
-        <section id="user-menu">
-          <UserMenuShowcase />
-        </section>
-
-        <section id="theme-preview">
-          <ThemePreviewShowcase />
-        </section>
-
-        <section id="tabs">
+        
+        <section id="tabs" className="mb-8">
           <TabsShowcase />
         </section>
 
-        <section id="pagination">
+        <section id="pagination" className="mb-8">
           <PaginationShowcase />
         </section>
 
-        <section id="stepper">
+        <section id="stepper" className="mb-8">
           <StepperShowcase />
         </section>
 
-        <section id="command-palette">
+        <section id="command-palette" className="mb-8">
           <CommandPaletteShowcase />
         </section>
 
-        <section id="menu">
+        <section id="menu" className="mb-8">
           <MenuShowcase />
         </section>
 
-        <section id="tree-view">
+        <section id="tree-view" className="mb-8">
           <TreeViewShowcase />
         </section>
 
-        <section id="quick-actions">
+        <section id="quick-actions" className="mb-8">
           <QuickActionsShowcase />
         </section>
+        
+        <Divider className="my-12" />
 
-        {/* Overlays */}
-        <section id="backdrop">
+        {/* =========================== */}
+        {/* SYSTEM UTILITIES */}
+        {/* =========================== */}
+        
+        <section id="theme-toggle" className="mb-8">
+          <ThemeToggleShowcase />
+        </section>
+
+        <section id="dot-indicator" className="mb-8">
+          <DotIndicatorShowcase />
+        </section>
+
+        <section id="scroll-area" className="mb-8">
+          <ScrollAreaShowcase />
+        </section>
+
+        <section id="error-boundary" className="mb-8">
+          <ErrorBoundaryShowcase />
+        </section>
+
+        <section id="clipboard-button" className="mb-8">
+          <ClipboardButtonShowcase />
+        </section>
+        
+        <Divider className="my-12" />
+
+        {/* =========================== */}
+        {/* ADVANCED UX COMPONENTS */}
+        {/* =========================== */}
+        
+        <section id="command-bar" className="mb-8">
+          <CommandBarShowcase />
+        </section>
+
+        <section id="activity-item" className="mb-8">
+          <ActivityItemShowcase />
+        </section>
+
+        <section id="notification-center" className="mb-8">
+          <NotificationCenterShowcase />
+        </section>
+
+        <section id="user-menu" className="mb-8">
+          <UserMenuShowcase />
+        </section>
+
+        <section id="theme-preview" className="mb-8">
+          <ThemePreviewShowcase />
+        </section>
+        
+        <Divider className="my-12" />
+
+        {/* =========================== */}
+        {/* OVERLAYS & INTERACTIVE */}
+        {/* =========================== */}
+        
+        <section id="backdrop" className="mb-8">
           <BackdropShowcase />
         </section>
 
-        <section id="lightbox">
+        <section id="lightbox" className="mb-8">
           <LightboxShowcase />
         </section>
 
-        <section id="drawer">
+        <section id="drawer" className="mb-8">
           <DrawerShowcase />
         </section>
 
-        <section id="popover">
+        <section id="popover" className="mb-8">
           <PopoverShowcase />
         </section>
 
-        <section id="dropdown-menu">
+        <section id="dropdown-menu" className="mb-8">
           <DropdownMenuShowcase />
         </section>
 
-        <section id="context-menu">
+        <section id="context-menu" className="mb-8">
           <ContextMenuShowcase />
         </section>
 
-        <section id="modal">
+        <section id="modal" className="mb-8">
           <ModalShowcase />
         </section>
 
-        <section id="confirmation-dialog">
+        <section id="confirmation-dialog" className="mb-8">
           <ConfirmationDialogShowcase />
         </section>
+        
+        <Divider className="my-12" />
 
-        {/* User Feedback */}
-        <section id="alerts">
+        {/* =========================== */}
+        {/* FEEDBACK & ALERTS */}
+        {/* =========================== */}
+        
+        <section id="alerts" className="mb-8">
           <AlertShowcase />
         </section>
 
-        <section id="toast">
+        <section id="toast" className="mb-8">
           <ToastShowcase />
         </section>
 
-        <section id="loading-spinner">
+        <section id="loading-spinner" className="mb-8">
           <LoadingSpinnerShowcase />
         </section>
 
-        <section id="loader">
+        <section id="loader" className="mb-8">
           <LoaderShowcase />
         </section>
 
-        <section id="skeleton">
+        <section id="skeleton" className="mb-8">
           <SkeletonShowcase />
         </section>
+        
+        <Divider className="my-12" />
 
-        {/* Progress Circle */}
-        <section id="progress-circle">
+        {/* =========================== */}
+        {/* PROGRESS & STATUS */}
+        {/* =========================== */}
+        
+        <section id="progress-circle" className="mb-8">
           <ProgressCircleShowcase />
         </section>
 
-        {/* Progress Bar */}
-        <section id="progress-bar">
+        <section id="progress-bar" className="mb-8">
           <ProgressBarShowcase />
         </section>
 
-        {/* Empty State */}
-        <section id="empty-state">
-          <EmptyStateShowcase />
-        </section>
-
-        {/* Statistics */}
-        <section id="statistic">
-          <StatisticShowcase />
-        </section>
-
-        {/* KPI */}
-        <section id="kpi">
-          <KPIShowcase />
-        </section>
-
-        {/* Timeline */}
-        <section id="timeline">
-          <TimelineShowcase />
-        </section>
-
-        {/* Additional Progress Components */}
-        <section id="additional-progress">
+        <section id="additional-progress" className="mb-8">
           <AdditionalProgressShowcase />
         </section>
 
-        {/* Prose Styles */}
-        <section id="prose">
+        <section id="empty-state" className="mb-8">
+          <EmptyStateShowcase />
+        </section>
+
+        <section id="statistic" className="mb-8">
+          <StatisticShowcase />
+        </section>
+
+        <section id="kpi" className="mb-8">
+          <KPIShowcase />
+        </section>
+
+        <section id="timeline" className="mb-8">
+          <TimelineShowcase />
+        </section>
+        
+        <Divider className="my-12" />
+        
+        {/* =========================== */}
+        {/* PROSE & CONTENT */}  
+        {/* =========================== */}
+        
+        <section id="prose" className="mb-8">
           <ProseShowcase />
         </section>
       </main>

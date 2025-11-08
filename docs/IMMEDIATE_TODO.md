@@ -1,7 +1,7 @@
 # IMMEDIATE TODO
 
 [ ] Check on Dark Mode version
-[ ] Tidy up Showcase page
+[x] Tidy up Showcase page - Added consistent spacing, organized sections with clear headers, removed duplicates
 [ ] HTML Documentation
 [ ] Next friendly
 [ ] Code preview
