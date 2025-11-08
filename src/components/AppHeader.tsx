@@ -1,16 +1,16 @@
 import { useState } from "react"
-import { Moon, Sun, Palette, Menu } from "lucide-react"
+import { Menu } from "lucide-react"
 import { Paper, Typography } from "../components/core"
 import { IconButton } from "../components/forms"
+import { ThemeToggle } from "../components/system-utilities"
+import type { ThemeToggleMode } from "../components/system-utilities/ThemeToggle/types"
 
 interface AppHeaderProps {
   onMobileMenuClick?: () => void
 }
 
 export function AppHeader({ onMobileMenuClick }: AppHeaderProps) {
-  const [currentTheme, setCurrentTheme] = useState<"light" | "dark" | "paper">(
-    "paper"
-  )
+  const [currentTheme, setCurrentTheme] = useState<ThemeToggleMode>("paper")
 
   return (
     <Paper
@@ -36,26 +36,14 @@ export function AppHeader({ onMobileMenuClick }: AppHeaderProps) {
           </div>
 
           <div className="flex items-center gap-3">
-            <IconButton
-              onClick={() => setCurrentTheme("light")}
-              icon={Sun}
-              variant={currentTheme === "light" ? "solid" : "ghost"}
+            <ThemeToggle
+              value={currentTheme}
+              onChange={setCurrentTheme}
+              variant="buttons"
               size="sm"
-              aria-label="Light theme"
-            />
-            <IconButton
-              onClick={() => setCurrentTheme("dark")}
-              icon={Moon}
-              variant={currentTheme === "dark" ? "solid" : "ghost"}
-              size="sm"
-              aria-label="Dark theme"
-            />
-            <IconButton
-              onClick={() => setCurrentTheme("paper")}
-              icon={Palette}
-              variant={currentTheme === "paper" ? "solid" : "ghost"}
-              size="sm"
-              aria-label="Paper theme"
+              buttonVariant="ghost"
+              showTooltips={true}
+              compact={true}
             />
           </div>
         </header>

@@ -300,7 +300,7 @@ Create a complete design system that feels **organic, readable, and professional
 #### 8.2 System Utilities
 
 - [x] **DotIndicator** - Animated status indicators and loading dots
-- [ ] **ThemeToggle** - Theme switching
+- [x] **ThemeToggle** - Theme switching
 - [ ] **ScrollArea** - Custom scrolling
 - [ ] **ErrorBoundary** - Error handling
 - [ ] **ClipboardButton** - Copy functionality

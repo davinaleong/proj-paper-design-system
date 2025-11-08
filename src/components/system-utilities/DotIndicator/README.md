@@ -15,7 +15,7 @@ A versatile animated dot indicator component for status visualization, notificat
 ## Basic Usage
 
 ```tsx
-import { DotIndicator } from "@/components/utilities/DotIndicator"
+import { DotIndicator } from "@/components/system-utilities/DotIndicator"
 
 // Basic dot indicator
 <DotIndicator />
@@ -180,7 +180,7 @@ The component follows accessibility best practices:
 
 ```tsx
 import { render, screen } from "@testing-library/react"
-import { DotIndicator } from "@/components/utilities/DotIndicator"
+import { DotIndicator } from "@/components/system-utilities/DotIndicator"
 
 test("renders dot indicator", () => {
   render(<DotIndicator data-testid="dot" />)

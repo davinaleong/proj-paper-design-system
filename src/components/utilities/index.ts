@@ -1,5 +1,4 @@
 // Utility Components
-export * from "./DotIndicator"
 export * from "./Prose"
 export * from "./BreadcrumbHeader"
 // TODO: Add other utility components as they are implemented

@@ -2,7 +2,7 @@ import { useState } from "react"
 import { ThemeProvider, Typography, Paper } from "./components/core"
 import { AppHeader } from "./components/AppHeader"
 import { Sidebar } from "./components/navigation"
-import { Home, FileText, BarChart3, Navigation, TrendingUp, MessageCircle, Layers, Search } from "lucide-react"
+import { Home, FileText, BarChart3, Navigation, TrendingUp, MessageCircle, Layers, Search, Settings } from "lucide-react"
 import {
   CoreComponentsShowcase,
   TypographyShowcase,
@@ -47,6 +47,8 @@ import {
   SearchBarShowcase,
   FilterMenuShowcase,
   DateTimePickerShowcase,
+  ThemeToggleShowcase,
+  DotIndicatorShowcase,
 } from "./demos"
 import "./App.css"
 
@@ -96,6 +98,16 @@ function AppContent() {
         { id: "filtermenu", label: "FilterMenu", href: "#filtermenu" },
         { id: "datetimepicker", label: "DateTimePicker", href: "#datetimepicker" },
         { id: "breadcrumb-header", label: "Breadcrumb Header", href: "#breadcrumb-header" },
+      ]
+    },
+    // System Utilities Group
+    { 
+      id: "system-utilities", 
+      label: "System Utilities", 
+      icon: Settings,
+      children: [
+        { id: "theme-toggle", label: "Theme Toggle", href: "#theme-toggle" },
+        { id: "dot-indicator", label: "Dot Indicator", href: "#dot-indicator" },
       ]
     },
     // Data Display Group
@@ -291,6 +303,15 @@ function AppContent() {
 
         <section id="breadcrumb-header">
           <BreadcrumbHeaderShowcase />
+        </section>
+
+        {/* System Utilities */}
+        <section id="theme-toggle">
+          <ThemeToggleShowcase />
+        </section>
+
+        <section id="dot-indicator">
+          <DotIndicatorShowcase />
         </section>
 
         <section id="tabs">

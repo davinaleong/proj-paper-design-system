@@ -35,6 +35,8 @@ export {
   SidebarShowcase,
   BreadcrumbsShowcase,
   BreadcrumbHeaderShowcase,
+  ThemeToggleShowcase,
+  DotIndicatorShowcase,
   CommandPaletteShowcase,
   MenuShowcase,
   TreeViewShowcase,
