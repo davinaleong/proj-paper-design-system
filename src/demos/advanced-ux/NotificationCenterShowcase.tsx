@@ -20,14 +20,14 @@ import {
   MessageCircle,
   UserMinus,
 } from 'lucide-react'
-import { NotificationCenter } from '../../components/premium/NotificationCenter'
+import { NotificationCenter } from '../../components'
+import type { Notification, NotificationStatus } from '../../components'
 import { Button } from '../../components/forms/Button'
 import { Typography } from '../../components/core/Typography'
 import { Container } from '../../components/core/Container'
 import { Section } from '../../components/layout/Section'
 import { Card } from '../../components/layout/Card'
 import { Flex } from '../../components/layout/Flex'
-import type { Notification, NotificationStatus } from '../../components/premium/NotificationCenter'
 
 // Sample notifications data
 const createSampleNotifications = (): Notification[] => [
@@ -44,7 +44,6 @@ const createSampleNotifications = (): Notification[] => [
     icon: AlertTriangle,
     iconColor: 'text-orange-600',
     sender: {
-      id: 'system',
       name: 'System Administrator',
       role: 'Admin',
       avatar: '/api/placeholder/32/32',
@@ -74,7 +73,6 @@ const createSampleNotifications = (): Notification[] => [
     timestamp: new Date(Date.now() - 15 * 60 * 1000), // 15 minutes ago
     category: 'messages',
     sender: {
-      id: 'sarah-chen',
       name: 'Sarah Chen',
       role: 'Product Manager',
       avatar: '/api/placeholder/32/32',
@@ -107,7 +105,6 @@ const createSampleNotifications = (): Notification[] => [
     icon: CheckCircle,
     iconColor: 'text-green-600',
     sender: {
-      id: 'deploy-bot',
       name: 'Deploy Bot',
       role: 'Automation',
       avatar: '/api/placeholder/32/32',
@@ -140,7 +137,6 @@ const createSampleNotifications = (): Notification[] => [
     icon: AlertCircle,
     iconColor: 'text-red-600',
     sender: {
-      id: 'security-system',
       name: 'Security System',
       role: 'Security',
       avatar: '/api/placeholder/32/32',
@@ -173,7 +169,6 @@ const createSampleNotifications = (): Notification[] => [
     timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000), // 2 hours ago
     category: 'reports',
     sender: {
-      id: 'analytics-bot',
       name: 'Analytics Bot',
       role: 'Analytics',
       avatar: '/api/placeholder/32/32',
@@ -204,7 +199,6 @@ const createSampleNotifications = (): Notification[] => [
     timestamp: new Date(Date.now() - 3 * 60 * 60 * 1000), // 3 hours ago
     category: 'team',
     sender: {
-      id: 'hr-system',
       name: 'HR System',
       role: 'Human Resources',
       avatar: '/api/placeholder/32/32',
@@ -371,7 +365,6 @@ export function NotificationCenterShowcase() {
       timestamp: new Date(),
       category: 'testing',
       sender: {
-        id: 'test-user',
         name: 'Test User',
         role: 'Tester',
         avatar: '/api/placeholder/32/32',
@@ -384,11 +377,11 @@ export function NotificationCenterShowcase() {
   const unreadCount = notifications.filter(n => n.status === 'unread').length
   
   return (
-    <Container size="full" className="py-8">
+    <Container maxWidth="full" className="py-8">
       <Section>
         <div className="mb-8">
           <Typography variant="h1" className="mb-4">
-            NotificationCenter Component
+            Notification Center
           </Typography>
           <Typography variant="body" className="text-stone-600 mb-6">
             A comprehensive notification management system with filtering, grouping, search, 
@@ -438,7 +431,7 @@ export function NotificationCenterShowcase() {
           </Typography>
           
           <Flex direction="column" gap="lg">
-            <Flex gap="md" wrap>
+            <Flex gap="md" wrap="wrap">
               <div>
                 <Typography variant="bodySmall" weight="semibold" className="mb-2 block">
                   Size
@@ -494,7 +487,7 @@ export function NotificationCenterShowcase() {
               </div>
             </Flex>
             
-            <Flex gap="md" wrap>
+            <Flex gap="md" wrap="wrap">
               <Button
                 variant="outline"
                 onClick={addRandomNotification}
@@ -645,9 +638,9 @@ export function NotificationCenterShowcase() {
           <Typography variant="h3" className="mb-4">
             Usage Example
           </Typography>
-          <div className="bg-stone-900 rounded-lg p-4 overflow-x-auto">
-            <pre className="text-sm text-stone-100">
-              <code>{`import { NotificationCenter } from '@/components/premium/NotificationCenter'
+        <div className="bg-stone-900 rounded-lg p-4 overflow-x-auto">
+          <pre className="text-sm text-stone-100">
+            <code>{`import { NotificationCenter } from '@/components/advanced/NotificationCenter'
 
 function App() {
   const [notifications, setNotifications] = useState([
@@ -660,7 +653,6 @@ function App() {
       status: 'unread',
       timestamp: new Date(),
       sender: {
-        id: 'sarah-chen',
         name: 'Sarah Chen',
         role: 'Product Manager',
         avatar: '/avatars/sarah.jpg',

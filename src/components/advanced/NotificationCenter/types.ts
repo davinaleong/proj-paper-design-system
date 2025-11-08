@@ -51,6 +51,11 @@ export interface NotificationAction {
 
 export interface NotificationSender {
   /**
+   * Unique identifier for the sender
+   */
+  id?: string
+  
+  /**
    * Sender name
    */
   name: string

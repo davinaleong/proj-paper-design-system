@@ -19,11 +19,11 @@ import {
   SkipForward,
   Volume2,
 } from 'lucide-react'
-import { CommandBar } from '../CommandBar'
-import { Typography } from '../../core/Typography'
-import { Paper } from '../../core/Paper'
-import { Switch } from '../../forms/Switch'
-import type { CommandBarGroup } from '../CommandBar/types'
+import { CommandBar } from '../../components'
+import type { CommandBarGroup } from '../../components'
+import { Typography } from '../../components/core/Typography'
+import { Paper } from '../../components/core/Paper'
+import { Switch } from '../../components/forms/Switch'
 
 // Sample action groups
 const getEditorActions = (onAction: (action: string) => void): CommandBarGroup[] => [

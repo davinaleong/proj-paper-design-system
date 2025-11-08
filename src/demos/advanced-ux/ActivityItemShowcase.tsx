@@ -9,11 +9,11 @@ import {
   AlertCircle,
   ExternalLink,
 } from 'lucide-react'
-import { ActivityItem } from '../ActivityItem'
-import { Typography } from '../../core/Typography'
-import { Paper } from '../../core/Paper'
-import { Switch } from '../../forms/Switch'
-import type { ActivityItemAction, ActivityItemType } from '../ActivityItem/types'
+import { AdvancedActivityItem as ActivityItem } from '../../components'
+import type { ActivityItemType, ActivityItemAction } from '../../components'
+import { Typography } from '../../components/core/Typography'
+import { Paper } from '../../components/core/Paper'
+import { Switch } from '../../components/forms/Switch'
 
 // Sample activity data
 const sampleActivities = [

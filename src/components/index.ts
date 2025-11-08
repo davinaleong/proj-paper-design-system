@@ -25,5 +25,28 @@ export * from "./feedback"
 // Overlay Components
 export * from "./overlays"
 
-// Premium Components
-export * from "./premium"
+// Advanced Components
+export { CommandBar, NotificationCenter } from "./advanced"
+export { ActivityItem as AdvancedActivityItem } from "./advanced"
+export type { 
+  CommandBarProps, 
+  CommandBarAction, 
+  CommandBarGroup,
+  CommandBarSize,
+  CommandBarPosition, 
+  CommandBarVariant,
+  ActivityItemProps, 
+  ActivityItemAction, 
+  ActivityItemActor,
+  ActivityItemSize,
+  ActivityItemVariant,
+  ActivityItemType,
+  NotificationCenterProps,
+  Notification,
+  NotificationAction,
+  NotificationSender,
+  NotificationGroup,
+  NotificationType,
+  NotificationPriority,
+  NotificationStatus,
+} from "./advanced"
