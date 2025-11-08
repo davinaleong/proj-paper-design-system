@@ -95,6 +95,16 @@ const priorityColors = {
   urgent: 'bg-red-100 text-red-700 border-red-200',
 }
 
+const filterColors = {
+  all: 'blue',
+  unread: 'slate',
+  urgent: 'orange',
+  info: 'sky',
+  success: 'green',
+  warning: 'amber',
+  error: 'red',
+} as const
+
 function formatTimestamp(timestamp: Date): string {
   const now = new Date()
   const diffMs = now.getTime() - timestamp.getTime()
@@ -482,6 +492,7 @@ export function NotificationCenter({
                 key={filter.id}
                 variant={selectedFilter === filter.id ? 'solid' : 'ghost'}
                 size="sm"
+                color={filterColors[filter.id as keyof typeof filterColors]}
                 onClick={() => setSelectedFilter(filter.id)}
                 className="flex-shrink-0"
               >
