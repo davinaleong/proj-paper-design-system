@@ -122,7 +122,7 @@ const DateTimePickerShowcase: React.FC = () => {
         </Typography>
         <div className="space-y-4">
           {sizes.map((size) => (
-            <div key={size} className="space-y-2">
+            <div key={size} className="space-y-2 pb-120">
               <Typography variant="body" className="font-medium capitalize">
                 Size: {size}
               </Typography>

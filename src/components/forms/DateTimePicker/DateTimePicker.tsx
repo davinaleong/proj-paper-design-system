@@ -202,18 +202,23 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = ({
 
   const VariantIcon = getVariantIcon(variant)
   const colorClasses = getColorClassesWithLuminance(color, appearance === "solid" ? "solid" : "soft")
+  
+  // Get optimal text color (black or white) based on background for solid appearance
+  const textColorClasses = appearance === "solid" 
+    ? getColorClassesWithLuminance(color, "solid", true).split(' ').filter(cls => cls.includes('text-')).join(' ')
+    : "text-black" // Default to black for non-solid appearances
 
   const inputClasses = cn(
     "flex items-center justify-between w-full cursor-pointer",
     "rounded-sm transition-all duration-200",
     "focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2",
     "disabled:opacity-50 disabled:cursor-not-allowed",
-    "text-stone-900", // Ensure readable text color
+    textColorClasses, // Use dynamic black/white text color
     sizeClasses[size],
     appearanceClasses[appearance],
     
-    // Only apply color classes for solid appearance to avoid text readability issues
-    appearance === "solid" && colorClasses,
+    // Only apply color classes for solid appearance (but extract text color separately)
+    appearance === "solid" && colorClasses.split(' ').filter(cls => !cls.includes('text-')).join(' '),
     
     // Error state
     error && "border-red-500 focus:ring-red-400",
@@ -276,10 +281,10 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = ({
           aria-required={required}
         >
           <div className="flex items-center gap-2 flex-1 min-w-0">
-            <VariantIcon className="w-4 h-4 text-stone-500 flex-shrink-0" />
+            <VariantIcon className="w-4 h-4 flex-shrink-0 opacity-70" />
             <span className={cn(
               "truncate",
-              !displayValue && "text-stone-500"
+              !displayValue && "opacity-70"
             )}>
               {displayValue || placeholder || `Select ${variant}...`}
             </span>
@@ -297,7 +302,7 @@ export const DateTimePicker: React.FC<DateTimePickerProps> = ({
               />
             )}
             <ChevronDown className={cn(
-              "w-4 h-4 text-stone-500 transition-transform duration-200",
+              "w-4 h-4 opacity-70 transition-transform duration-200",
               isOpen && "rotate-180"
             )} />
           </div>
