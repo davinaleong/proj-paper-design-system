@@ -1,5 +1,6 @@
 import { useState, useCallback, useMemo } from "react"
 import { Filter, ChevronDown, X, Check } from "lucide-react"
+import type { LucideIcon } from "lucide-react"
 import type { FilterMenuProps, FilterMenuState, FilterGroup, SortOption } from "./types"
 import { Button } from "../Button"
 import { SearchBar } from "../SearchBar"
@@ -25,7 +26,7 @@ const FilterMenuTrigger = ({
   variant?: "solid" | "outline" | "ghost" | "link" | "plain"
   size?: "xs" | "sm" | "md" | "lg" | "xl"
   color?: string
-  icon?: React.ComponentType<{ className?: string }>
+  icon?: LucideIcon
   isOpen?: boolean
   disabled?: boolean
   activeCount?: number
@@ -166,7 +167,7 @@ const FilterGroupSection = ({
                       <option.icon className="w-4 h-4 text-stone-500 dark:text-stone-400 shrink-0" />
                     )}
                     <span className={cn(
-                      containerResponsiveUI.body,
+                      "text-sm",
                       "text-stone-700 dark:text-stone-300 truncate"
                     )}>
                       {option.label}
