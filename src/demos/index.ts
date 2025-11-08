@@ -89,6 +89,7 @@ export {
 // Premium Components
 export {
   CommandBarShowcase,
+  ActivityItemShowcase,
 } from "./premium-showcases"
 
 // Feature Showcases (composite showcases)

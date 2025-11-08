@@ -53,6 +53,7 @@ import {
   ErrorBoundaryShowcase,
   ClipboardButtonShowcase,
   CommandBarShowcase,
+  ActivityItemShowcase,
 } from "./demos"
 import "./App.css"
 
@@ -124,6 +125,7 @@ function AppContent() {
       icon: Layers,
       children: [
         { id: "command-bar", label: "Command Bar", href: "#command-bar" },
+        { id: "activity-item", label: "Activity Item", href: "#activity-item" },
         { id: "command-palette", label: "Command Palette", href: "#command-palette" },
         { id: "quick-actions", label: "Quick Actions", href: "#quick-actions" },
       ]
@@ -345,6 +347,10 @@ function AppContent() {
         {/* Premium Components */}
         <section id="command-bar">
           <CommandBarShowcase />
+        </section>
+
+        <section id="activity-item">
+          <ActivityItemShowcase />
         </section>
 
         <section id="tabs">
