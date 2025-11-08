@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 
 export type ClipboardButtonVariant = 'button' | 'icon' | 'text'
 export type ClipboardButtonSize = 'sm' | 'md' | 'lg'

@@ -52,6 +52,7 @@ import {
   ScrollAreaShowcase,
   ErrorBoundaryShowcase,
   ClipboardButtonShowcase,
+  CommandBarShowcase,
 } from "./demos"
 import "./App.css"
 
@@ -116,6 +117,17 @@ function AppContent() {
         { id: "clipboard-button", label: "Clipboard Button", href: "#clipboard-button" },
       ]
     },
+    // Advanced UX Group
+    { 
+      id: "advanced-ux", 
+      label: "Advanced UX", 
+      icon: Layers,
+      children: [
+        { id: "command-bar", label: "Command Bar", href: "#command-bar" },
+        { id: "command-palette", label: "Command Palette", href: "#command-palette" },
+        { id: "quick-actions", label: "Quick Actions", href: "#quick-actions" },
+      ]
+    },
     // Data Display Group
     { 
       id: "data", 
@@ -142,10 +154,8 @@ function AppContent() {
         { id: "tabs", label: "Tabs", href: "#tabs" },
         { id: "pagination", label: "Pagination", href: "#pagination" },
         { id: "stepper", label: "Stepper", href: "#stepper" },
-        { id: "command-palette", label: "Command Palette", href: "#command-palette" },
         { id: "menu", label: "Menu", href: "#menu" },
         { id: "tree-view", label: "Tree View", href: "#tree-view" },
-        { id: "quick-actions", label: "Quick Actions", href: "#quick-actions" },
       ]
     },
     // Progress & Status Group
@@ -330,6 +340,11 @@ function AppContent() {
 
         <section id="clipboard-button">
           <ClipboardButtonShowcase />
+        </section>
+
+        {/* Premium Components */}
+        <section id="command-bar">
+          <CommandBarShowcase />
         </section>
 
         <section id="tabs">

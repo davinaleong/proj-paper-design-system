@@ -34,7 +34,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
     const errorDetails: ErrorInfo = {
       message: error.message,
       stack: error.stack,
-      componentStack: errorInfo.componentStack,
+      componentStack: errorInfo.componentStack || undefined,
       name: error.name,
       cause: error.cause,
     }

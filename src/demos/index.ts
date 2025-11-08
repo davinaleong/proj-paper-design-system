@@ -86,6 +86,11 @@ export {
   ClipboardButtonShowcase,
 } from "./system-utilities"
 
+// Premium Components
+export {
+  CommandBarShowcase,
+} from "./premium-showcases"
+
 // Feature Showcases (composite showcases)
 export {
   FormControlsShowcase,
