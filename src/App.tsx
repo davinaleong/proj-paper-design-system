@@ -44,6 +44,7 @@ import {
   FormControlsShowcase,
   DataDisplayShowcase,
   SearchBarShowcase,
+  FilterMenuShowcase,
 } from "./demos"
 import "./App.css"
 
@@ -89,7 +90,8 @@ function AppContent() {
       label: "Specialized Inputs", 
       icon: Search,
       children: [
-        { id: "searchbar", label: "Search Bar", href: "#searchbar" },
+        { id: "searchbar", label: "SearchBar", href: "#searchbar" },
+        { id: "filtermenu", label: "FilterMenu", href: "#filtermenu" },
       ]
     },
     // Data Display Group
@@ -251,6 +253,10 @@ function AppContent() {
         {/* Specialized Inputs */}
         <section id="searchbar">
           <SearchBarShowcase />
+        </section>
+
+        <section id="filtermenu">
+          <FilterMenuShowcase />
         </section>
 
         {/* Data Display */}

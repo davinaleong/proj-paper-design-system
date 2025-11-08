@@ -3,6 +3,7 @@ export * from "./Button"
 export * from "./IconButton"
 export * from "./Input"
 export * from "./SearchBar"
+export * from "./FilterMenu"
 export * from "./Textarea"
 
 // Shared form types

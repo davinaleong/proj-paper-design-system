@@ -39,6 +39,7 @@ export {
   TreeViewShowcase,
   QuickActionsShowcase,
   SearchBarShowcase,
+  FilterMenuShowcase,
 } from "./component-showcases"
 
 export {
