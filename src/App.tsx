@@ -89,7 +89,7 @@ function AppContent() {
       label: "Specialized Inputs", 
       icon: Search,
       children: [
-        { id: "searchbar", label: "SearchBar", href: "#searchbar" },
+        { id: "searchbar", label: "Search Bar", href: "#searchbar" },
       ]
     },
     // Data Display Group

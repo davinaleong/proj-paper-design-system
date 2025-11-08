@@ -166,7 +166,7 @@ export function SearchBarShowcase() {
       <Paper className="p-6">
         <Typography variant="h3" className="mb-4">Topbar Integration</Typography>
         <Typography variant="body" color="muted" className="mb-4">
-          Demonstration of SearchBar in typical navigation/topbar layouts
+          Demonstration of Search Bar in typical navigation/topbar layouts
         </Typography>
         
         {/* Mock Topbar */}
