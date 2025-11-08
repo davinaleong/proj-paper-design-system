@@ -82,6 +82,7 @@ export {
   DotIndicatorShowcase,
   ThemeToggleShowcase,
   ScrollAreaShowcase,
+  ErrorBoundaryShowcase,
 } from "./system-utilities"
 
 // Feature Showcases (composite showcases)

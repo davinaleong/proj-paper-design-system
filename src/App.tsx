@@ -50,6 +50,7 @@ import {
   ThemeToggleShowcase,
   DotIndicatorShowcase,
   ScrollAreaShowcase,
+  ErrorBoundaryShowcase,
 } from "./demos"
 import "./App.css"
 
@@ -110,6 +111,7 @@ function AppContent() {
         { id: "theme-toggle", label: "Theme Toggle", href: "#theme-toggle" },
         { id: "dot-indicator", label: "Dot Indicator", href: "#dot-indicator" },
         { id: "scroll-area", label: "Scroll Area", href: "#scroll-area" },
+        { id: "error-boundary", label: "Error Boundary", href: "#error-boundary" },
       ]
     },
     // Data Display Group
@@ -318,6 +320,10 @@ function AppContent() {
 
         <section id="scroll-area">
           <ScrollAreaShowcase />
+        </section>
+
+        <section id="error-boundary">
+          <ErrorBoundaryShowcase />
         </section>
 
         <section id="tabs">

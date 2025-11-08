@@ -2,6 +2,7 @@
 export * from "./DotIndicator"
 export * from "./ThemeToggle"
 export * from "./ScrollArea"
+export * from "./ErrorBoundary"
 // TODO: Add other system utility components as they are implemented
 // export * from "./ColorPicker"
 // export * from "./FontSizePicker"
