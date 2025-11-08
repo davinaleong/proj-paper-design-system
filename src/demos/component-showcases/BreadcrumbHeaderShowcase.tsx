@@ -384,6 +384,118 @@ export const BreadcrumbHeaderShowcase: React.FC = () => {
         </Stack>
       </Section>
 
+      {/* Paper Variants */}
+      <Section>
+        <Typography variant="h3" className="mb-4">
+          Paper Variants
+        </Typography>
+        <Typography variant="body" className="text-stone-600 mb-6">
+          The BreadcrumbHeader component supports different Paper variants for various visual styles.
+        </Typography>
+        <Stack gap="lg">
+          <div>
+            <Typography variant="h4" className="mb-2">Flat Variant</Typography>
+            <Typography variant="body" className="text-stone-600 mb-3">
+              No shadow or border, blends seamlessly with the background.
+            </Typography>
+            <BreadcrumbHeader
+              title="Flat Header Style"
+              subtitle="Clean and minimal appearance"
+              breadcrumbs={projectBreadcrumbs}
+              actions={[projectActions[0]]}
+              metadata={projectMetadata.slice(0, 2)}
+              className="border-0 shadow-none bg-stone-50"
+            />
+          </div>
+
+          <div>
+            <Typography variant="h4" className="mb-2">Elevated Variant (Default)</Typography>
+            <Typography variant="body" className="text-stone-600 mb-3">
+              Subtle shadow for depth and visual hierarchy.
+            </Typography>
+            <Paper className="p-0">
+              <BreadcrumbHeader
+                title="Elevated Header Style"
+                subtitle="Standard raised appearance with shadow"
+                breadcrumbs={projectBreadcrumbs}
+                actions={[projectActions[0], projectActions[1]]}
+                metadata={projectMetadata.slice(0, 2)}
+              />
+            </Paper>
+          </div>
+
+          <div>
+            <Typography variant="h4" className="mb-2">Outlined Variant</Typography>
+            <Typography variant="body" className="text-stone-600 mb-3">
+              Defined border without shadow for clean separation.
+            </Typography>
+            <BreadcrumbHeader
+              title="Outlined Header Style"
+              subtitle="Clear border definition without shadow"
+              breadcrumbs={projectBreadcrumbs}
+              actions={[projectActions[0]]}
+              metadata={[projectMetadata[0]]}
+              className="border-2 border-stone-200 shadow-none bg-white"
+            />
+          </div>
+
+          <div>
+            <Typography variant="h4" className="mb-2">Custom Background</Typography>
+            <Typography variant="body" className="text-stone-600 mb-3">
+              Different background colors and treatments.
+            </Typography>
+            <BreadcrumbHeader
+              title="Custom Background Header"
+              subtitle="With gradient background and custom styling"
+              breadcrumbs={projectBreadcrumbs}
+              actions={[
+                {
+                  id: "custom",
+                  label: "Custom Action",
+                  icon: Settings,
+                  variant: "outline",
+                  color: "secondary",
+                  onClick: () => console.log("Custom action")
+                }
+              ]}
+              className="bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200"
+            />
+          </div>
+
+          <div>
+            <Typography variant="h4" className="mb-2">Dark Theme Style</Typography>
+            <Typography variant="body" className="text-stone-600 mb-3">
+              Dark background with light text for contrast themes.
+            </Typography>
+            <BreadcrumbHeader
+              title="Dark Theme Header"
+              subtitle="Optimized for dark interfaces"
+              breadcrumbs={projectBreadcrumbs}
+              actions={[
+                {
+                  id: "dark",
+                  label: "Dark Action",
+                  icon: Eye,
+                  variant: "outline",
+                  color: "info",
+                  onClick: () => console.log("Dark action")
+                }
+              ]}
+              metadata={[
+                {
+                  id: "dark-status",
+                  label: "Theme",
+                  value: "Dark Mode",
+                  icon: AlertCircle
+                }
+              ]}
+              className="bg-stone-800 border border-stone-700 text-white"
+              titleClassName="text-white"
+            />
+          </div>
+        </Stack>
+      </Section>
+
       {/* No Breadcrumbs */}
       <Section>
         <Typography variant="h3" className="mb-4">
