@@ -55,6 +55,7 @@ import {
   CommandBarShowcase,
   ActivityItemShowcase,
   NotificationCenterShowcase,
+  UserMenuShowcase,
 } from "./demos"
 import "./App.css"
 
@@ -128,6 +129,7 @@ function AppContent() {
         { id: "command-bar", label: "Command Bar", href: "#command-bar" },
         { id: "activity-item", label: "Activity Item", href: "#activity-item" },
         { id: "notification-center", label: "Notification Center", href: "#notification-center" },
+        { id: "user-menu", label: "User Menu", href: "#user-menu" },
         { id: "command-palette", label: "Command Palette", href: "#command-palette" },
         { id: "quick-actions", label: "Quick Actions", href: "#quick-actions" },
       ]
@@ -357,6 +359,10 @@ function AppContent() {
 
         <section id="notification-center">
           <NotificationCenterShowcase />
+        </section>
+
+        <section id="user-menu">
+          <UserMenuShowcase />
         </section>
 
         <section id="tabs">

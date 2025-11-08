@@ -91,6 +91,7 @@ export {
   CommandBarShowcase,
   ActivityItemShowcase,
   NotificationCenterShowcase,
+  UserMenuShowcase,
 } from "./advanced-ux"
 
 // Feature Showcases (composite showcases)

@@ -29,3 +29,14 @@ export type {
   NotificationPriority,
   NotificationStatus,
 } from './NotificationCenter'
+
+export { UserMenu } from './UserMenu'
+export type {
+  UserMenuProps,
+  UserMenuItem,
+  UserMenuGroup,
+  UserProfile,
+  UserMenuSize,
+  UserMenuVariant,
+  UserMenuPosition,
+} from './UserMenu'

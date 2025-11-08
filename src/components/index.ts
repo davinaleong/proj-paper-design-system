@@ -26,7 +26,7 @@ export * from "./feedback"
 export * from "./overlays"
 
 // Advanced Components
-export { CommandBar, NotificationCenter } from "./advanced"
+export { CommandBar, NotificationCenter, UserMenu } from "./advanced"
 export { ActivityItem as AdvancedActivityItem } from "./advanced"
 export type { 
   CommandBarProps, 
@@ -49,4 +49,11 @@ export type {
   NotificationType,
   NotificationPriority,
   NotificationStatus,
+  UserMenuProps,
+  UserMenuItem,
+  UserMenuGroup,
+  UserProfile,
+  UserMenuSize,
+  UserMenuVariant,
+  UserMenuPosition,
 } from "./advanced"
