@@ -17,3 +17,15 @@ export type {
   ActivityItemVariant,
   ActivityItemType 
 } from './ActivityItem'
+
+export { NotificationCenter } from './NotificationCenter'
+export type {
+  NotificationCenterProps,
+  Notification,
+  NotificationAction,
+  NotificationSender,
+  NotificationGroup,
+  NotificationType,
+  NotificationPriority,
+  NotificationStatus,
+} from './NotificationCenter'

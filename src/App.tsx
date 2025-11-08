@@ -54,6 +54,7 @@ import {
   ClipboardButtonShowcase,
   CommandBarShowcase,
   ActivityItemShowcase,
+  NotificationCenterShowcase,
 } from "./demos"
 import "./App.css"
 
@@ -126,6 +127,7 @@ function AppContent() {
       children: [
         { id: "command-bar", label: "Command Bar", href: "#command-bar" },
         { id: "activity-item", label: "Activity Item", href: "#activity-item" },
+        { id: "notification-center", label: "Notification Center", href: "#notification-center" },
         { id: "command-palette", label: "Command Palette", href: "#command-palette" },
         { id: "quick-actions", label: "Quick Actions", href: "#quick-actions" },
       ]
@@ -351,6 +353,10 @@ function AppContent() {
 
         <section id="activity-item">
           <ActivityItemShowcase />
+        </section>
+
+        <section id="notification-center">
+          <NotificationCenterShowcase />
         </section>
 
         <section id="tabs">

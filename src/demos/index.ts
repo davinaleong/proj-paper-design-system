@@ -90,6 +90,7 @@ export {
 export {
   CommandBarShowcase,
   ActivityItemShowcase,
+  NotificationCenterShowcase,
 } from "./premium-showcases"
 
 // Feature Showcases (composite showcases)
