@@ -49,6 +49,7 @@ import {
   DateTimePickerShowcase,
   ThemeToggleShowcase,
   DotIndicatorShowcase,
+  ScrollAreaShowcase,
 } from "./demos"
 import "./App.css"
 
@@ -108,6 +109,7 @@ function AppContent() {
       children: [
         { id: "theme-toggle", label: "Theme Toggle", href: "#theme-toggle" },
         { id: "dot-indicator", label: "Dot Indicator", href: "#dot-indicator" },
+        { id: "scroll-area", label: "Scroll Area", href: "#scroll-area" },
       ]
     },
     // Data Display Group
@@ -312,6 +314,10 @@ function AppContent() {
 
         <section id="dot-indicator">
           <DotIndicatorShowcase />
+        </section>
+
+        <section id="scroll-area">
+          <ScrollAreaShowcase />
         </section>
 
         <section id="tabs">

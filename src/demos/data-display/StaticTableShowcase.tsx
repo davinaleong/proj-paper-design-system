@@ -1,60 +1,392 @@
-import { StaticTable } from "../../components/data-display/StaticTable"
-import { StaticTableShowcase as StaticTableComponentShowcase } from "../../components/data-display/StaticTable/StaticTableShowcase"
+import { StaticTable } from "../../components/data-display/StaticTable/StaticTable"
+import type { StaticTableColumn, StaticTableRow } from "../../components/data-display/StaticTable/types"
+import { Button } from "../../components/forms/Button/Button"
 
-// Quick integration test component
+// Sample data for demonstrations
+const basicColumns: StaticTableColumn[] = [
+  { key: "id", label: "ID", align: "center", width: "80px" },
+  { key: "name", label: "Name", align: "left" },
+  { key: "email", label: "Email", align: "left" },
+  { key: "role", label: "Role", align: "center" },
+  { key: "status", label: "Status", align: "center" },
+  { key: "notes", label: "Notes", align: "left" },
+]
+
+const basicRows: StaticTableRow[] = [
+  {
+    id: 1,
+    name: "John Doe",
+    email: "john@example.com",
+    role: "Admin",
+    status: "Active",
+    notes: "System administrator with full access privileges",
+  },
+  {
+    id: 2,
+    name: "Jane Smith",
+    email: "jane@example.com",
+    role: "Editor",
+    status: "Active",
+    notes: "Content editor responsible for blog posts and marketing materials",
+  },
+  {
+    id: 3,
+    name: "Bob Johnson",
+    email: "bob@example.com",
+    role: "User",
+    status: "Inactive",
+    notes: "Regular user account, currently on leave",
+  },
+  {
+    id: 4,
+    name: "Alice Brown",
+    email: "alice@example.com",
+    role: "Moderator",
+    status: "Pending",
+    notes:
+      "Community moderator application pending approval from management team",
+  },
+  {
+    id: 5,
+    name: "Dr. Christopher Alexander Wellington III",
+    email:
+      "christopher.alexander.wellington.the.third@verylongdomainname.example.organization.com",
+    role: "Senior Principal Software Architecture Consultant",
+    status: "Active",
+    notes:
+      "Senior consultant specializing in enterprise software architecture, microservices design patterns, cloud migration strategies, and technical leadership. Has over 15 years of experience in the industry and holds multiple certifications in AWS, Azure, and Google Cloud Platform.",
+  },
+]
+
+// Color variant examples
+const colorVariantColumns: StaticTableColumn[] = [
+  { key: "id", label: "ID", align: "center", width: "80px" },
+  { key: "name", label: "Name", align: "left", colorVariant: "primary" },
+  {
+    key: "department",
+    label: "Department",
+    align: "left",
+    colorVariant: "secondary",
+  },
+  { key: "salary", label: "Salary", align: "right", colorVariant: "success" },
+  { key: "status", label: "Status", align: "center", colorVariant: "info" },
+]
+
+const colorVariantRows: StaticTableRow[] = [
+  {
+    id: 1,
+    name: "John Doe",
+    department: "Engineering",
+    salary: "$75,000",
+    status: "Active",
+    colorVariant: "success",
+  },
+  {
+    id: 2,
+    name: "Jane Smith",
+    department: "Marketing",
+    salary: "$65,000",
+    status: "Active",
+  },
+  {
+    id: 3,
+    name: "Bob Johnson",
+    department: "Sales",
+    salary: "$55,000",
+    status: "Warning",
+    colorVariant: "warning",
+  },
+  {
+    id: 4,
+    name: "Alice Brown",
+    department: "HR",
+    salary: "$60,000",
+    status: "Inactive",
+    colorVariant: "danger",
+  },
+]
+
+// Custom render function examples
+const customRenderColumns: StaticTableColumn[] = [
+  { key: "id", label: "ID", align: "center", width: "80px" },
+  {
+    key: "name",
+    label: "Name",
+    align: "left",
+    render: (value) => (
+      <div className="flex items-center gap-2">
+        <div className="w-8 h-8 bg-pp-blue-100 rounded-full flex items-center justify-center text-pp-blue-800 font-medium text-sm">
+          {String(value).charAt(0)}
+        </div>
+        <span className="font-medium">{String(value)}</span>
+      </div>
+    ),
+  },
+  {
+    key: "email",
+    label: "Email",
+    align: "left",
+    render: (value) => (
+      <a
+        href={`mailto:${value}`}
+        className="text-pp-blue-600 hover:text-pp-blue-800 underline"
+      >
+        {String(value)}
+      </a>
+    ),
+  },
+  {
+    key: "progress",
+    label: "Progress",
+    align: "center",
+    render: (value) => {
+      const progress = Number(value) || 0
+      return (
+        <div className="flex items-center gap-2">
+          <div className="w-16 bg-pp-gray-200 rounded-full h-2">
+            <div
+              className="bg-pp-blue-600 h-2 rounded-full transition-all duration-300"
+              style={{ width: `${progress}%` }}
+            ></div>
+          </div>
+          <span className="text-sm text-pp-gray-600">{progress}%</span>
+        </div>
+      )
+    },
+  },
+  {
+    key: "actions",
+    label: "Actions",
+    align: "center",
+    render: () => (
+      <div className="flex gap-1">
+        <Button size="xs" color="primary">
+          Edit
+        </Button>
+        <Button size="xs" color="danger">
+          Delete
+        </Button>
+      </div>
+    ),
+  },
+]
+
+const customRenderRows: StaticTableRow[] = [
+  {
+    id: 1,
+    name: "John Doe",
+    email: "john@example.com",
+    progress: 85,
+    actions: "",
+  },
+  {
+    id: 2,
+    name: "Jane Smith",
+    email: "jane@example.com",
+    progress: 92,
+    actions: "",
+  },
+  {
+    id: 3,
+    name: "Bob Johnson",
+    email: "bob@example.com",
+    progress: 67,
+    actions: "",
+  },
+  {
+    id: 4,
+    name: "Alice Brown",
+    email: "alice@example.com",
+    progress: 78,
+    actions: "",
+  },
+]
+
 export const StaticTableShowcase = () => {
-  const sampleColumns = [
-    { key: "id", label: "ID", align: "center" as const, width: "80px" },
-    {
-      key: "name",
-      label: "Name",
-      align: "left" as const,
-      colorVariant: "primary" as const,
-    },
-    {
-      key: "status",
-      label: "Status",
-      align: "center" as const,
-      colorVariant: "success" as const,
-    },
-  ]
-
-  const sampleRows = [
-    { id: 1, name: "John Doe", status: "Active" },
-    {
-      id: 2,
-      name: "Jane Smith",
-      status: "Inactive",
-      colorVariant: "warning" as const,
-    },
-    {
-      id: 3,
-      name: "Bob Johnson",
-      status: "Pending",
-      colorVariant: "info" as const,
-    },
-  ]
-
   return (
-    <div className="p-8 bg-pp-paper-50 min-h-screen">
-      <div className="max-w-4xl mx-auto space-y-8">
-        <h1 className="text-3xl font-bold text-pp-gray-900">
-          StaticTable Integration Test
+    <div className="space-y-8 p-6 bg-pp-paper-50 min-h-screen">
+      <div className="max-w-6xl mx-auto space-y-8">
+        <h1 className="text-3xl font-bold text-pp-gray-900 mb-8">
+          StaticTable Component Showcase
         </h1>
 
-        <section>
-          <h2 className="text-xl font-semibold mb-4">Basic Table</h2>
-          <StaticTable columns={sampleColumns} rows={sampleRows} />
+        {/* Basic Table */}
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold text-pp-gray-800">
+            Basic Table
+          </h2>
+          <p className="text-pp-gray-600">
+            A simple table with default styling and basic column configuration.
+          </p>
+          <StaticTable columns={basicColumns} rows={basicRows} />
         </section>
 
-        <section>
-          <h2 className="text-xl font-semibold mb-4">Striped Table</h2>
-          <StaticTable columns={sampleColumns} rows={sampleRows} striped />
+        {/* Striped Table */}
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold text-pp-gray-800">
+            Striped Table
+          </h2>
+          <p className="text-pp-gray-600">
+            Table with alternating row backgrounds for better readability.
+          </p>
+          <StaticTable columns={basicColumns} rows={basicRows} striped />
         </section>
 
-        <section>
-          <h2 className="text-xl font-semibold mb-4">Complete Showcase</h2>
-          <StaticTableComponentShowcase />
+        {/* Different Sizes */}
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold text-pp-gray-800">
+            Table Sizes
+          </h2>
+          <p className="text-pp-gray-600">
+            Tables in different sizes: small, medium, and large.
+          </p>
+
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-lg font-medium mb-2">Small Size</h3>
+              <StaticTable
+                columns={basicColumns}
+                rows={basicRows.slice(0, 2)}
+                size="sm"
+              />
+            </div>
+
+            <div>
+              <h3 className="text-lg font-medium mb-2">
+                Medium Size (Default)
+              </h3>
+              <StaticTable
+                columns={basicColumns}
+                rows={basicRows.slice(0, 2)}
+                size="md"
+              />
+            </div>
+
+            <div>
+              <h3 className="text-lg font-medium mb-2">Large Size</h3>
+              <StaticTable
+                columns={basicColumns}
+                rows={basicRows.slice(0, 2)}
+                size="lg"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Color Variants */}
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold text-pp-gray-800">
+            Color Variants
+          </h2>
+          <p className="text-pp-gray-600">
+            Tables with color-coded columns and rows. Row colors override column
+            colors when both are specified.
+          </p>
+          <StaticTable columns={colorVariantColumns} rows={colorVariantRows} />
+        </section>
+
+        {/* Custom Render Functions */}
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold text-pp-gray-800">
+            Custom Render Functions
+          </h2>
+          <p className="text-pp-gray-600">
+            Custom rendering for complex content like avatars, links, progress
+            bars, and action buttons.
+          </p>
+          <StaticTable columns={customRenderColumns} rows={customRenderRows} />
+        </section>
+
+        {/* Bordered and Compact Variants */}
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold text-pp-gray-800">
+            Table Variants
+          </h2>
+          <p className="text-pp-gray-600">
+            Different visual styles for various use cases.
+          </p>
+
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-lg font-medium mb-2">Bordered</h3>
+              <StaticTable
+                columns={basicColumns}
+                rows={basicRows.slice(0, 3)}
+                variant="bordered"
+              />
+            </div>
+
+            <div>
+              <h3 className="text-lg font-medium mb-2">Compact</h3>
+              <StaticTable
+                columns={basicColumns}
+                rows={basicRows.slice(0, 3)}
+                variant="compact"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Loading State */}
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold text-pp-gray-800">
+            Loading State
+          </h2>
+          <p className="text-pp-gray-600">
+            Table showing loading spinner when data is being fetched.
+          </p>
+          <StaticTable columns={basicColumns} rows={basicRows} loading />
+        </section>
+
+        {/* Empty State */}
+        <section className="space-y-4">
+          <h2 className="text-xl font-semibold text-pp-gray-800">
+            Empty State
+          </h2>
+          <p className="text-pp-gray-600">
+            Default and custom empty states when no data is available.
+          </p>
+
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-lg font-medium mb-2">Default Empty State</h3>
+              <StaticTable columns={basicColumns} rows={[]} />
+            </div>
+
+            <div>
+              <h3 className="text-lg font-medium mb-2">Custom Empty State</h3>
+              <StaticTable
+                columns={basicColumns}
+                rows={[]}
+                emptyState={
+                  <div className="text-center py-8">
+                    <svg
+                      className="w-16 h-16 mx-auto text-pp-gray-300 mb-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1}
+                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      />
+                    </svg>
+                    <h3 className="text-lg font-medium text-pp-gray-900 mb-2">
+                      No users found
+                    </h3>
+                    <p className="text-pp-gray-500">
+                      Try adjusting your search criteria or add some users.
+                    </p>
+                    <Button className="mt-4" color="primary">
+                      Add User
+                    </Button>
+                  </div>
+                }
+              />
+            </div>
+          </div>
         </section>
       </div>
     </div>

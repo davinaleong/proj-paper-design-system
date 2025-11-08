@@ -1,10 +1,10 @@
 import { Paper, Typography } from "../../components/core"
 import { StaticTable } from "../../components/data-display/StaticTable"
 import { Table } from "../../components/data-display/Table"
-import { DescriptionListShowcase } from "../../components/data-display/DescriptionList"
-import { TagShowcase } from "../../components/data-display/Tag"
-import { TooltipShowcase } from "../../components/data-display/Tooltip"
-import { DotIndicatorShowcase } from "../../components/system-utilities/DotIndicator"
+import { DescriptionListShowcase } from "../data-display/DescriptionListShowcase"
+import { TagShowcase } from "../data-display/TagShowcase"
+import { TooltipShowcase } from "../data-display/TooltipShowcase"
+import { DotIndicatorShowcase } from "../system-utilities/DotIndicatorShowcase"
 
 // Sample data for tables
 const sampleData = [

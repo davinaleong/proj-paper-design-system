@@ -1,58 +1,94 @@
-// Export all showcases - flattened import structure
+// Export all showcases - organized by category structure
+// Core Foundation
 export {
   CoreComponentsShowcase,
   TypographyShowcase,
+  LuminanceShowcase,
+} from "./core-foundation"
+
+// Layout Structure
+export {
   LayoutShowcase,
   UIPrimitivesShowcase,
+} from "./layout-structure"
+
+// Form Controls
+export {
   FormFieldShowcase,
-  TabsShowcase,
-  PaginationShowcase,
-  StepperShowcase,
-  ProseShowcase,
-  AlertShowcase,
-  ToastShowcase,
-  ModalShowcase,
-  ConfirmationDialogShowcase,
-  LoadingSpinnerShowcase,
-  LuminanceShowcase,
-  ContextMenuShowcase,
-  DropdownMenuShowcase,
-  DrawerShowcase,
-  BackdropShowcase,
-  LightboxShowcase,
-  LoaderShowcase,
-  SkeletonShowcase,
-  PopoverShowcase,
-  ProgressCircleShowcase,
+  DateTimePickerShowcase,
+} from "./form-controls"
+
+// Data Display
+export {
+  StaticTableShowcase,
+  DescriptionListShowcase,
   ProgressBarShowcase,
-  EmptyStateShowcase,
-  StatisticShowcase,
+  ProgressCircleShowcase,
   KPIShowcase,
+  StatisticShowcase,
+  EmptyStateShowcase,
   TimelineShowcase,
-  AdditionalProgressShowcase,
+  TagShowcase,
+  TooltipShowcase,
+} from "./data-display"
+
+// Navigation
+export {
+  BreadcrumbsShowcase,
+  BreadcrumbHeaderShowcase,
   NavbarShowcase,
   FloatingNavbarShowcase,
   SidebarShowcase,
-  BreadcrumbsShowcase,
-  BreadcrumbHeaderShowcase,
-  ThemeToggleShowcase,
-  DotIndicatorShowcase,
+  PaginationShowcase,
+  StepperShowcase,
+  TabsShowcase,
   CommandPaletteShowcase,
+} from "./navigation"
+
+// Feedback & Alerts
+export {
+  AlertShowcase,
+  ToastShowcase,
+  LoaderShowcase,
+  LoadingSpinnerShowcase,
+  SkeletonShowcase,
+} from "./feedback-alerts"
+
+// Overlays & Interactive
+export {
+  ModalShowcase,
+  DrawerShowcase,
+  PopoverShowcase,
+  DropdownMenuShowcase,
+  ContextMenuShowcase,
   MenuShowcase,
-  TreeViewShowcase,
-  QuickActionsShowcase,
+  ConfirmationDialogShowcase,
+  BackdropShowcase,
+  LightboxShowcase,
+} from "./overlays-interactive"
+
+// Utilities Special
+export {
   SearchBarShowcase,
   FilterMenuShowcase,
-  DateTimePickerShowcase,
-} from "./component-showcases"
+  QuickActionsShowcase,
+  TreeViewShowcase,
+  AdditionalProgressShowcase,
+  ProseShowcase,
+} from "./utilities-special"
 
+// System Utilities
+export {
+  DotIndicatorShowcase,
+  ThemeToggleShowcase,
+  ScrollAreaShowcase,
+} from "./system-utilities"
+
+// Feature Showcases (composite showcases)
 export {
   FormControlsShowcase,
   DataDisplayShowcase,
 } from "./feature-showcases"
-
-// Export individual showcase files
-export { StaticTableShowcase } from "./component-showcases/StaticTableShowcase"
 
 // Export utility components
 export { PaginationScrollTest } from "./PaginationScrollTest"

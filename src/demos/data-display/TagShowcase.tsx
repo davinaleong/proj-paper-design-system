@@ -1,4 +1,4 @@
-import { Tag } from "./Tag"
+import { Tag } from "../../components/data-display/Tag/Tag"
 import {
   User,
   Settings,

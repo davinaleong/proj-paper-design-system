@@ -6,3 +6,6 @@ export { ProgressCircleShowcase } from './ProgressCircleShowcase';
 export { KPIShowcase } from './KPIShowcase';
 export { StatisticShowcase } from './StatisticShowcase';
 export { EmptyStateShowcase } from './EmptyStateShowcase';
+export { TimelineShowcase } from './TimelineShowcase';
+export { TagShowcase } from './TagShowcase';
+export { TooltipShowcase } from './TooltipShowcase';
