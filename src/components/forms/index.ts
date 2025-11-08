@@ -4,6 +4,7 @@ export * from "./IconButton"
 export * from "./Input"
 export * from "./SearchBar"
 export * from "./FilterMenu"
+export * from "./DateTimePicker"
 export * from "./Textarea"
 
 // Shared form types

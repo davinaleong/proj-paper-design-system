@@ -45,6 +45,7 @@ import {
   DataDisplayShowcase,
   SearchBarShowcase,
   FilterMenuShowcase,
+  DateTimePickerShowcase,
 } from "./demos"
 import "./App.css"
 
@@ -92,6 +93,7 @@ function AppContent() {
       children: [
         { id: "searchbar", label: "SearchBar", href: "#searchbar" },
         { id: "filtermenu", label: "FilterMenu", href: "#filtermenu" },
+        { id: "datetimepicker", label: "DateTimePicker", href: "#datetimepicker" },
       ]
     },
     // Data Display Group
@@ -257,6 +259,10 @@ function AppContent() {
 
         <section id="filtermenu">
           <FilterMenuShowcase />
+        </section>
+
+        <section id="datetimepicker">
+          <DateTimePickerShowcase />
         </section>
 
         {/* Data Display */}

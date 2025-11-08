@@ -293,8 +293,8 @@ Create a complete design system that feels **organic, readable, and professional
 #### 8.1 Specialized Inputs
 
 - [x] **SearchBar** - Search functionality
-- [x] **FilterBar/SortMenu** - Data filtering
-- [ ] **DatePicker** - Date selection
+- [x] **FilterMenu** - Data filtering and sorting
+- [x] **DateTimePicker** - Date and time selection
 - [ ] **BreadcrumbHeader** - Combined navigation
 
 #### 8.2 System Utilities

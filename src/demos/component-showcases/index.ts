@@ -23,6 +23,7 @@ export { DrawerShowcase } from "./DrawerShowcase"
 export { LightboxShowcase } from "./LightboxShowcase"
 export { SearchBarShowcase } from "./SearchBarShowcase"
 export { FilterMenuShowcase } from "./FilterMenuShowcase"
+export { default as DateTimePickerShowcase } from "./DateTimePickerShowcase"
 
 // New split progress and status showcases
 export { ProgressCircleShowcase } from "./ProgressCircleShowcase"

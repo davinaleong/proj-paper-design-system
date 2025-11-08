@@ -40,6 +40,7 @@ export {
   QuickActionsShowcase,
   SearchBarShowcase,
   FilterMenuShowcase,
+  DateTimePickerShowcase,
 } from "./component-showcases"
 
 export {
