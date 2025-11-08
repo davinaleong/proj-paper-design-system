@@ -26,6 +26,7 @@ import {
   FloatingNavbarShowcase,
   SidebarShowcase,
   BreadcrumbsShowcase,
+  BreadcrumbHeaderShowcase,
   TabsShowcase,
   PaginationShowcase,
   StepperShowcase,
@@ -94,6 +95,7 @@ function AppContent() {
         { id: "searchbar", label: "SearchBar", href: "#searchbar" },
         { id: "filtermenu", label: "FilterMenu", href: "#filtermenu" },
         { id: "datetimepicker", label: "DateTimePicker", href: "#datetimepicker" },
+        { id: "breadcrumb-header", label: "Breadcrumb Header", href: "#breadcrumb-header" },
       ]
     },
     // Data Display Group
@@ -285,6 +287,10 @@ function AppContent() {
 
         <section id="breadcrumbs">
           <BreadcrumbsShowcase />
+        </section>
+
+        <section id="breadcrumb-header">
+          <BreadcrumbHeaderShowcase />
         </section>
 
         <section id="tabs">

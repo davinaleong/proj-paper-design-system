@@ -34,6 +34,7 @@ export {
   FloatingNavbarShowcase,
   SidebarShowcase,
   BreadcrumbsShowcase,
+  BreadcrumbHeaderShowcase,
   CommandPaletteShowcase,
   MenuShowcase,
   TreeViewShowcase,
