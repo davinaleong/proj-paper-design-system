@@ -83,6 +83,7 @@ export {
   ThemeToggleShowcase,
   ScrollAreaShowcase,
   ErrorBoundaryShowcase,
+  ClipboardButtonShowcase,
 } from "./system-utilities"
 
 // Feature Showcases (composite showcases)

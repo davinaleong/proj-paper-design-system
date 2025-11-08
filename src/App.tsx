@@ -51,6 +51,7 @@ import {
   DotIndicatorShowcase,
   ScrollAreaShowcase,
   ErrorBoundaryShowcase,
+  ClipboardButtonShowcase,
 } from "./demos"
 import "./App.css"
 
@@ -112,6 +113,7 @@ function AppContent() {
         { id: "dot-indicator", label: "Dot Indicator", href: "#dot-indicator" },
         { id: "scroll-area", label: "Scroll Area", href: "#scroll-area" },
         { id: "error-boundary", label: "Error Boundary", href: "#error-boundary" },
+        { id: "clipboard-button", label: "Clipboard Button", href: "#clipboard-button" },
       ]
     },
     // Data Display Group
@@ -324,6 +326,10 @@ function AppContent() {
 
         <section id="error-boundary">
           <ErrorBoundaryShowcase />
+        </section>
+
+        <section id="clipboard-button">
+          <ClipboardButtonShowcase />
         </section>
 
         <section id="tabs">
