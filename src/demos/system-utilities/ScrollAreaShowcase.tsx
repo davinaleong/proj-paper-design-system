@@ -17,7 +17,7 @@ export function ScrollAreaShowcase() {
   };
 
   const longContent = Array.from({ length: 50 }, (_, i) => (
-    <div key={i} className="p-4 border-b border-paper-border">
+    <div key={i} className="p-4">
       <Typography variant="body">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
         Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris. Item #{i + 1}
@@ -41,7 +41,7 @@ export function ScrollAreaShowcase() {
   return (
     <div className="space-y-8">
       <Section>
-        <Typography variant="h4" className="mb-4">ScrollArea Component</Typography>
+        <Typography variant="h4" className="mb-4">Scroll Area Component</Typography>
         <Typography variant="body" className="text-neutral-600 mb-6">
           A customizable scroll area component with styled scrollbars, smooth scrolling, and scroll event callbacks.
         </Typography>
@@ -51,7 +51,7 @@ export function ScrollAreaShowcase() {
       <Section>
         <Typography variant="h5" className="mb-4">Basic Vertical Scrolling</Typography>
         <Paper className="p-4">
-          <ScrollArea height={300} className="border rounded-lg">
+          <ScrollArea height={300} className="rounded-sm">
             {longContent}
           </ScrollArea>
         </Paper>
@@ -61,7 +61,7 @@ export function ScrollAreaShowcase() {
       <Section>
         <Typography variant="h5" className="mb-4">Horizontal Scrolling</Typography>
         <Paper className="p-4">
-          <ScrollArea height={200} scrollX="auto" scrollY="hidden" className="border rounded-lg">
+          <ScrollArea height={200} scrollX="auto" scrollY="hidden" className="rounded-sm">
             {wideContent}
           </ScrollArea>
         </Paper>
@@ -71,7 +71,7 @@ export function ScrollAreaShowcase() {
       <Section>
         <Typography variant="h5" className="mb-4">Both Directions</Typography>
         <Paper className="p-4">
-          <ScrollArea height={200} width={400} className="border rounded-lg">
+          <ScrollArea height={200} width={400} className="rounded-sm">
             <div style={{ minWidth: '800px', minHeight: '600px' }} className="p-4">
               <Typography variant="h6" className="mb-4">Large Content Area</Typography>
               <div className="grid grid-cols-4 gap-4">
@@ -122,7 +122,7 @@ export function ScrollAreaShowcase() {
             height={200} 
             hideScrollbars={hideScrollbars}
             thumbColor={thumbColor}
-            className="border rounded-lg"
+            className="rounded-sm"
           >
             {longContent.slice(0, 20)}
           </ScrollArea>
@@ -140,7 +140,7 @@ export function ScrollAreaShowcase() {
                 onScroll={() => addScrollEvent('Scrolled')}
                 onScrollTop={() => addScrollEvent('Reached top')}
                 onScrollBottom={() => addScrollEvent('Reached bottom')}
-                className="border rounded-lg"
+                className="rounded-sm"
               >
                 {longContent.slice(0, 15)}
               </ScrollArea>
@@ -187,21 +187,21 @@ export function ScrollAreaShowcase() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <div>
             <Typography variant="h6" className="mb-2">Small (150px)</Typography>
-            <ScrollArea height={150} scrollbarSize={8} className="border rounded-lg">
+            <ScrollArea height={150} scrollbarSize={8} className="rounded-sm">
               {longContent.slice(0, 10)}
             </ScrollArea>
           </div>
           
           <div>
             <Typography variant="h6" className="mb-2">Medium (200px)</Typography>
-            <ScrollArea height={200} scrollbarSize={12} className="border rounded-lg">
+            <ScrollArea height={200} scrollbarSize={12} className="rounded-sm">
               {longContent.slice(0, 15)}
             </ScrollArea>
           </div>
           
           <div>
             <Typography variant="h6" className="mb-2">Large (250px)</Typography>
-            <ScrollArea height={250} scrollbarSize={16} className="border rounded-lg">
+            <ScrollArea height={250} scrollbarSize={16} className="rounded-sm">
               {longContent.slice(0, 20)}
             </ScrollArea>
           </div>
@@ -210,7 +210,7 @@ export function ScrollAreaShowcase() {
 
       {/* Focusable ScrollArea */}
       <Section>
-        <Typography variant="h5" className="mb-4">Focusable ScrollArea</Typography>
+        <Typography variant="h5" className="mb-4">Focusable Scroll Area</Typography>
         <Typography variant="body" className="text-neutral-600 mb-4">
           This scroll area can receive keyboard focus and can be navigated with arrow keys.
         </Typography>
@@ -218,7 +218,7 @@ export function ScrollAreaShowcase() {
           <ScrollArea 
             height={200}
             focusable={true}
-            className="border rounded-lg"
+            className="rounded-sm"
           >
             {longContent.slice(0, 15)}
           </ScrollArea>
@@ -235,7 +235,7 @@ export function ScrollAreaShowcase() {
           This scroll area grows with content but has a maximum height limit.
         </Typography>
         <Paper className="p-4">
-          <ScrollArea maxHeight={300} className="border rounded-lg">
+          <ScrollArea maxHeight={300} className="rounded-sm">
             <div className="p-4">
               <Typography variant="h6" className="mb-4">Dynamic Content</Typography>
               <Typography variant="body" className="mb-4">

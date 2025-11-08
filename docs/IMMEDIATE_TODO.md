@@ -1,6 +1,6 @@
 # IMMEDIATE TODO
 
-[ ] Fix the Scroll Area
+[x] Fix the ScrollArea
 [ ] Check on Dark Mode version
 [ ] Tidy up Showcase page
 [ ] HTML Documentation
