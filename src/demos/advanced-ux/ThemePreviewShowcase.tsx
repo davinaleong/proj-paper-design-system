@@ -182,7 +182,7 @@ export function ThemePreviewShowcase() {
   
   const filteredThemes = sampleThemes.filter(theme => {
     if (filterMode === 'all') return true
-    if (filterMode === 'premium') return theme.premium
+    if (filterMode === 'premium') return !!theme.premium
     return theme.mode === filterMode
   })
   

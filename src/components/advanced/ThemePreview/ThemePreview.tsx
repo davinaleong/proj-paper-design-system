@@ -150,9 +150,20 @@ export function ThemePreview({
   const variantClass = variantClasses[variant]
   
   // Calculate grid columns based on props or size
-  const gridCols = columns 
-    ? `grid-cols-${Math.min(columns, 4)}` 
-    : classes.grid
+  const getGridCols = () => {
+    if (columns) {
+      switch (Math.min(columns, 4)) {
+        case 1: return 'grid-cols-1'
+        case 2: return 'grid-cols-1 md:grid-cols-2'
+        case 3: return 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+        case 4: return 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
+        default: return classes.grid
+      }
+    }
+    return classes.grid
+  }
+  
+  const gridCols = getGridCols()
   
   const handleThemeClick = (theme: ThemeDefinition) => {
     onThemeSelect?.(theme)
