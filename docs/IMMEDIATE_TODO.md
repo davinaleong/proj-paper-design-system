@@ -6,3 +6,4 @@
 [ ] Next friendly
 [ ] Code preview
 [ ] Fix Theme Provider bug
+[ ] Generate Themes
