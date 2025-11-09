@@ -1,3 +1,5 @@
+"use client"
+
 import React, { 
   useState, 
   useRef, 
@@ -37,6 +39,7 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
 }) => {
   // Internal state for uncontrolled mode
   const [uncontrolledIsOpen, setUncontrolledIsOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   
   // Use controlled state if provided, otherwise use internal state
   const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : uncontrolledIsOpen;
@@ -46,6 +49,11 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
     }
     onOpenChange?.(open);
   }, [controlledIsOpen, onOpenChange]);
+
+  // Mount state effect for SSR
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Refs for positioning
   const triggerRef = useRef<HTMLDivElement>(null);
@@ -59,7 +67,7 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
 
   // Calculate position based on cursor position and placement
   const calculatePosition = useCallback((cursorX: number, cursorY: number): ContextMenuPosition => {
-    if (!menuRef.current) {
+    if (!menuRef.current || typeof window === 'undefined') {
       return { top: cursorY, left: cursorX };
     }
 
@@ -152,7 +160,7 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
 
   // Update position when open
   useEffect(() => {
-    if (isOpen && cursorPosition.x !== 0 && cursorPosition.y !== 0) {
+    if (isOpen && cursorPosition.x !== 0 && cursorPosition.y !== 0 && typeof window !== 'undefined') {
       const updatePosition = () => {
         setPosition(calculatePosition(cursorPosition.x, cursorPosition.y));
       };
@@ -238,7 +246,7 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
 
   // Handle outside click
   useEffect(() => {
-    if (!isOpen || !dismissible.clickOutside) return;
+    if (!isOpen || !dismissible.clickOutside || typeof document === 'undefined') return;
 
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Node;
@@ -259,7 +267,7 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
 
   // Handle escape key
   useEffect(() => {
-    if (!isOpen || !dismissible.escapeKey) return;
+    if (!isOpen || !dismissible.escapeKey || typeof document === 'undefined') return;
 
     const handleEscapeKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -365,7 +373,7 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
   return (
     <>
       {triggerElement}
-      {isOpen && (
+      {isOpen && mounted && (
         portal 
           ? createPortal(menuContent, document.body)
           : menuContent

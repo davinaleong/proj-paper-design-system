@@ -1,3 +1,5 @@
+"use client"
+
 import { useState, useEffect, useRef, useCallback } from "react"
 import { createPortal } from "react-dom"
 import { cn } from "../../../utils/cn"
@@ -58,10 +60,16 @@ export const Modal = ({
 }: ModalProps) => {
   const [internalState, setInternalState] = useState<ModalState>("closed")
   const [isMaximized, setIsMaximized] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const dialogRef = useRef<HTMLDialogElement>(null)
 
   // Use controlled state if provided, otherwise use internal state
   const currentState = controlledState ?? (open ? (internalState === "minimized" ? "minimized" : "open") : "closed")
+
+  // Mount state effect for SSR
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   // Update internal state when open prop changes
   useEffect(() => {
@@ -280,7 +288,7 @@ export const Modal = ({
   }
 
   // Render minimized taskbar item
-  if (currentState === "minimized") {
+  if (currentState === "minimized" && mounted) {
     return createPortal(
       <ModalTaskbarItem
         title={title}

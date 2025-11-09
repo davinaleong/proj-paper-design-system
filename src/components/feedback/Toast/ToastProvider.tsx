@@ -1,4 +1,6 @@
-import { useState, useCallback, useRef } from "react"
+"use client"
+
+import { useState, useCallback, useRef, useEffect } from "react"
 import { createPortal } from "react-dom"
 import { Toast } from "./Toast"
 import { ToastContext } from "./context"
@@ -25,7 +27,13 @@ export function ToastProvider({
   offset = 16,
 }: ToastProviderProps) {
   const [toasts, setToasts] = useState<(ToastProps & { id: string })[]>([])
+  const [mounted, setMounted] = useState(false)
   const toastIdRef = useRef(0)
+
+  // Mount state effect for SSR
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   // Generate unique toast ID
   const generateId = useCallback(() => {
@@ -148,7 +156,7 @@ function ToastContainer({
     padding: `${offset}px`,
   }
 
-  return createPortal(
+  return mounted ? createPortal(
     <div className={containerClasses} style={containerStyle}>
       {toasts.map((toast) => (
         <div key={toast.id} className="pointer-events-auto">
@@ -157,5 +165,5 @@ function ToastContainer({
       ))}
     </div>,
     document.body
-  )
+  ) : null
 }

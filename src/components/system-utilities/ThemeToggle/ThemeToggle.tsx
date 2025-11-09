@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState } from "react"
 import { Sun, Moon, Palette, Monitor } from "lucide-react"
 import type { ThemeToggleProps, ThemeToggleOption, ThemeToggleMode } from "./types"

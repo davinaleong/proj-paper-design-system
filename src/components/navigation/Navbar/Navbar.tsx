@@ -1,3 +1,5 @@
+"use client"
+
 import { useState, useRef, useEffect } from "react"
 import { Menu, X, ChevronDown } from "lucide-react"
 import type { NavbarProps, NavbarItem } from "./types"

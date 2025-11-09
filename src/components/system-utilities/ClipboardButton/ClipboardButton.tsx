@@ -1,3 +1,5 @@
+"use client"
+
 import { useState, useCallback } from 'react'
 import { Copy, Check, X } from 'lucide-react'
 import { Button } from '../../forms/Button'
@@ -19,6 +21,11 @@ function useClipboard(
 
   const copyToClipboard = useCallback(async () => {
     try {
+      // Check if we're in a browser environment
+      if (typeof window === 'undefined' || typeof document === 'undefined') {
+        throw new Error('Clipboard API not available in server environment')
+      }
+
       if (navigator.clipboard && window.isSecureContext) {
         // Use modern Clipboard API
         await navigator.clipboard.writeText(text)

@@ -1,3 +1,5 @@
+"use client"
+
 import React, { 
   useState, 
   useRef, 
@@ -36,6 +38,7 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
 }) => {
   // Internal state for uncontrolled mode
   const [uncontrolledIsOpen, setUncontrolledIsOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   
   // Use controlled state if provided, otherwise use internal state
   const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : uncontrolledIsOpen;
@@ -46,6 +49,11 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
     onOpenChange?.(open);
   }, [controlledIsOpen, onOpenChange]);
 
+  // Mount state effect for SSR
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   // Refs for positioning
   const triggerRef = useRef<HTMLElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -53,7 +61,7 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
 
   // Calculate position based on trigger and placement
   const calculatePosition = useCallback((): DropdownMenuPosition => {
-    if (!triggerRef.current || !menuRef.current) {
+    if (!triggerRef.current || !menuRef.current || typeof window === 'undefined') {
       return { top: 0, left: 0 };
     }
 
@@ -147,7 +155,7 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
 
   // Update position when open
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && typeof window !== 'undefined') {
       const updatePosition = () => {
         setPosition(calculatePosition());
       };
@@ -245,7 +253,7 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
 
   // Handle outside click
   useEffect(() => {
-    if (!isOpen || !dismissible.clickOutside) return;
+    if (!isOpen || !dismissible.clickOutside || typeof document === 'undefined') return;
 
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Node;
@@ -266,7 +274,7 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
 
   // Handle escape key
   useEffect(() => {
-    if (!isOpen || !dismissible.escapeKey) return;
+    if (!isOpen || !dismissible.escapeKey || typeof document === 'undefined') return;
 
     const handleEscapeKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -490,7 +498,7 @@ export const DropdownMenu: React.FC<DropdownMenuProps> = ({
   return (
     <>
       {triggerElement}
-      {isOpen && (
+      {isOpen && mounted && (
         portal 
           ? createPortal(menuContent, document.body)
           : menuContent

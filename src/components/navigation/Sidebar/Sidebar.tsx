@@ -1,3 +1,5 @@
+"use client"
+
 import { useState, useRef, useEffect } from "react"
 import { ChevronLeft, ChevronRight, ChevronDown, X } from "lucide-react"
 import type { SidebarProps, SidebarItem } from "./types"
@@ -60,7 +62,7 @@ export const Sidebar = ({
 
   // Handle outside click to close sidebar on mobile
   useEffect(() => {
-    if (position === "fixed" && open) {
+    if (position === "fixed" && open && typeof document !== 'undefined') {
       const handleClickOutside = (event: MouseEvent) => {
         if (sidebarRef.current && !sidebarRef.current.contains(event.target as Node)) {
           onClose?.()
@@ -95,6 +97,8 @@ export const Sidebar = ({
     }
 
     const handleScroll = () => {
+      if (typeof window === 'undefined' || typeof document === 'undefined') return
+      
       const allItems = getAllNavigationItems(items)
       const scrollTop = window.pageYOffset
       
@@ -148,12 +152,14 @@ export const Sidebar = ({
     handleScroll()
 
     // Add scroll listener
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    window.addEventListener("resize", handleScroll, { passive: true })
+    if (typeof window !== 'undefined') {
+      window.addEventListener("scroll", handleScroll, { passive: true })
+      window.addEventListener("resize", handleScroll, { passive: true })
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll)
-      window.removeEventListener("resize", handleScroll)
+      return () => {
+        window.removeEventListener("scroll", handleScroll)
+        window.removeEventListener("resize", handleScroll)
+      }
     }
   }, [spy, items, spyOffset, activeSpyId, onSpyChange])
 
@@ -339,7 +345,7 @@ export const Sidebar = ({
     )
   }
 
-  if (position === "fixed" && !open && window.innerWidth < 768) {
+  if (position === "fixed" && !open && typeof window !== 'undefined' && window.innerWidth < 768) {
     return null
   }
 

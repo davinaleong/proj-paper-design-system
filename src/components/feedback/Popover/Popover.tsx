@@ -1,3 +1,5 @@
+"use client"
+
 import React, { 
   useState, 
   useRef, 
@@ -29,6 +31,7 @@ export const Popover: React.FC<PopoverProps> = ({
 }) => {
   // Internal state for uncontrolled mode
   const [uncontrolledIsOpen, setUncontrolledIsOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
   
   // Use controlled state if provided, otherwise use internal state
   const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : uncontrolledIsOpen;
@@ -39,6 +42,11 @@ export const Popover: React.FC<PopoverProps> = ({
     onOpenChange?.(open);
   }, [controlledIsOpen, onOpenChange]);
 
+  // Mount state effect for SSR
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   // Refs for positioning
   const triggerRef = useRef<HTMLElement>(null);
   const popoverRef = useRef<HTMLDivElement>(null);
@@ -46,7 +54,7 @@ export const Popover: React.FC<PopoverProps> = ({
 
   // Calculate position based on trigger and placement
   const calculatePosition = useCallback((): PopoverPosition => {
-    if (!triggerRef.current || !popoverRef.current) {
+    if (!triggerRef.current || !popoverRef.current || typeof window === 'undefined') {
       return { top: 0, left: 0 };
     }
 
@@ -140,7 +148,7 @@ export const Popover: React.FC<PopoverProps> = ({
 
   // Update position when open
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && typeof window !== 'undefined') {
       const updatePosition = () => {
         setPosition(calculatePosition());
       };
@@ -195,7 +203,7 @@ export const Popover: React.FC<PopoverProps> = ({
 
   // Handle outside click
   useEffect(() => {
-    if (!isOpen || !dismissible.clickOutside) return;
+    if (!isOpen || !dismissible.clickOutside || typeof document === 'undefined') return;
 
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Node;
@@ -216,7 +224,7 @@ export const Popover: React.FC<PopoverProps> = ({
 
   // Handle escape key
   useEffect(() => {
-    if (!isOpen || !dismissible.escapeKey) return;
+    if (!isOpen || !dismissible.escapeKey || typeof document === 'undefined') return;
 
     const handleEscapeKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -284,7 +292,7 @@ export const Popover: React.FC<PopoverProps> = ({
   return (
     <>
       {triggerElement}
-      {isOpen && (
+      {isOpen && mounted && (
         portal 
           ? createPortal(popoverContent, document.body)
           : popoverContent
