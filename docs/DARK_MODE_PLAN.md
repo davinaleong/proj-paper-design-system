@@ -14,18 +14,18 @@ Create a comprehensive dark mode implementation across the entire Paper Design S
 ## 📋 **Current Status Overview**
 
 ### ✅ **Completed Components**
-- [x] **ThemeProvider** - Context-based theme management
-- [x] **Paper Component** - Dark backgrounds and borders
-- [x] **Typography System** - Context-aware text colors
-- [x] **IconButton Component** - Full dark mode support
-- [x] **ThemeToggle Component** - Dark theme button states
-- [x] **AppHeader Component** - Theme-aware navigation
-- [x] **Toast Component** - All variants updated
-- [x] **StaticTable Component** - Header and text colors
-- [x] **ActivityFeed Component** - Title colors
-- [x] **CodeSnippet Component** - Text and button colors
-- [x] **Tabs Component** - Inactive tab states
-- [x] **Core Foundation Showcase** - Demo implementation
+- [ ] **ThemeProvider** - Context-based theme management
+- [ ] **Paper Component** - Dark backgrounds and borders
+- [ ] **Typography System** - Context-aware text colors
+- [ ] **IconButton Component** - Full dark mode support
+- [ ] **ThemeToggle Component** - Dark theme button states
+- [ ] **AppHeader Component** - Theme-aware navigation
+- [ ] **Toast Component** - All variants updated
+- [ ] **StaticTable Component** - Header and text colors
+- [ ] **ActivityFeed Component** - Title colors
+- [ ] **CodeSnippet Component** - Text and button colors
+- [ ] **Tabs Component** - Inactive tab states
+- [ ] **Core Foundation Showcase** - Demo implementation
 
 ### 🔄 **In Progress Components**
 - [ ] **Form Controls** (Buttons, Inputs, Selects, etc.)
@@ -51,13 +51,14 @@ Create a comprehensive dark mode implementation across the entire Paper Design S
    - **Semantic Colors**: Proper contrast maintained for success, danger, warning, info
 
 2. **Background Approach**:
-   - **Paper Components**: `bg-white dark:bg-gray-900`
+   - **Base Backgrounds**: `bg-gray-50 dark:bg-gray-950`
+   - **Panel Components**: `bg-gray-100 dark:bg-gray-900`
    - **Elevated Surfaces**: Proper contrast with shadow adaptations
    - **Transparent Elements**: Theme-aware hover states
 
 3. **Border System**:
-   - **Default Borders**: `border-stone-200/60 dark:border-gray-700/60`
-   - **Outlined Components**: Theme-appropriate border colors
+   - **Light Borders**: `border-gray-200 dark:border-gray-700`
+   - **Panel Borders**: `border-gray-300 dark:border-gray-600`
    - **Interactive States**: Hover/focus states for all themes
 
 ### **Implementation Layers**
@@ -75,53 +76,75 @@ Create a comprehensive dark mode implementation across the entire Paper Design S
 
 #### **Light Theme**
 ```css
---theme-bg: #ffffff
---theme-text: #1f2937
+--theme-bg: #f9fafb      /* gray-50 */
+--theme-text: #111827    /* gray-900 */
+--theme-panel-bg: #f3f4f6 /* gray-100 */
+--theme-panel-border: #d1d5db /* gray-300 */
 ```
-- **Paper Backgrounds**: `bg-white`
+- **Base Background**: `bg-gray-50`
+- **Panel Backgrounds**: `bg-gray-100`
 - **Default Text**: `text-gray-900`
-- **Muted Text**: `text-gray-300`
-- **Borders**: `border-stone-200/60`
+- **Muted Text**: `text-gray-600`
+- **Light Borders**: `border-gray-200`
+- **Panel Borders**: `border-gray-300`
 
 #### **Dark Theme**
 ```css
---theme-bg: #111827
---theme-text: #f9fafb
+--theme-bg: #030712      /* gray-950 */
+--theme-text: #f9fafb    /* gray-50 */
+--theme-panel-bg: #111827 /* gray-900 */
+--theme-panel-border: #4b5563 /* gray-600 */
 ```
-- **Paper Backgrounds**: `bg-gray-900`
-- **Default Text**: `text-gray-100`
-- **Muted Text**: `text-gray-100`
-- **Borders**: `border-gray-700/60`
+- **Base Background**: `bg-gray-950`
+- **Panel Backgrounds**: `bg-gray-900`
+- **Default Text**: `text-gray-50`
+- **Muted Text**: `text-gray-400`
+- **Light Borders**: `border-gray-700`
+- **Panel Borders**: `border-gray-600`
 
-#### **Paper Theme**
+#### **Paper Theme** (Warm Variant)
 ```css
---theme-bg: #faf9f6
---theme-text: #44403c
+--theme-bg: #faf9f6      /* Custom warm */
+--theme-text: #44403c    /* stone-700 */
+--theme-panel-bg: #f5f5f4 /* stone-100 */
+--theme-panel-border: #d6d3d1 /* stone-300 */
 ```
-- **Paper Backgrounds**: `bg-[#faf9f6]`
-- **Default Text**: `text-gray-900`
-- **Muted Text**: `text-gray-300`
-- **Borders**: `border-stone-200/60`
+- **Base Background**: `bg-[#faf9f6]`
+- **Panel Backgrounds**: `bg-stone-100`
+- **Default Text**: `text-stone-700`
+- **Muted Text**: `text-stone-500`
+- **Light Borders**: `border-stone-200`
+- **Panel Borders**: `border-stone-300`
 
 ### **Color Utility Mappings**
 
 #### **Default Color Scheme** (Context-Aware)
 ```typescript
 default: {
-  subtle: "text-gray-500 dark:text-gray-400",
-  soft: "text-gray-600 dark:text-gray-300",
-  bold: "text-gray-900 dark:text-gray-100",
+  subtle: "text-gray-500 dark:text-gray-500",
+  soft: "text-gray-600 dark:text-gray-400",
+  bold: "text-gray-900 dark:text-gray-50",
   strong: "text-gray-900 dark:text-gray-50",
 }
 ```
 
-#### **Muted Color Scheme** (Light Gray Aesthetic)
+#### **Background Color Scheme**
 ```typescript
-muted: {
-  subtle: "text-gray-400 dark:text-gray-500",
-  soft: "text-gray-300 dark:text-gray-400",
-  bold: "text-gray-300 dark:text-gray-300",
-  strong: "text-gray-200 dark:text-gray-100",
+backgrounds: {
+  base: "bg-gray-50 dark:bg-gray-950",
+  panel: "bg-gray-100 dark:bg-gray-900",
+  elevated: "bg-white dark:bg-gray-800",
+  hover: "hover:bg-gray-200 dark:hover:bg-gray-700",
+}
+```
+
+#### **Border Color Scheme**
+```typescript
+borders: {
+  light: "border-gray-200 dark:border-gray-700",
+  panel: "border-gray-300 dark:border-gray-600",
+  strong: "border-gray-400 dark:border-gray-500",
+  interactive: "border-gray-300 dark:border-gray-600 focus:border-blue-500",
 }
 ```
 
@@ -239,29 +262,44 @@ muted: {
 
 2. **Background Implementation**:
    ```tsx
-   // For paper-like components
-   className="bg-white dark:bg-gray-900"
+   // For base page backgrounds
+   className="bg-gray-50 dark:bg-gray-950"
+   
+   // For panel components
+   className="bg-gray-100 dark:bg-gray-900"
+   
+   // For elevated surfaces
+   className="bg-white dark:bg-gray-800"
    
    // For transparent components with hover
-   className="bg-transparent hover:bg-gray-100/50 dark:hover:bg-gray-800/50"
+   className="bg-transparent hover:bg-gray-200 dark:hover:bg-gray-700"
    ```
 
 3. **Text Color Implementation**:
    ```tsx
-   // For default text (context-aware)
-   <Typography color="default">Text</Typography>
+   // For primary text (high contrast)
+   <Typography className="text-gray-900 dark:text-gray-50">Primary Text</Typography>
    
-   // For muted text (light gray aesthetic)
-   <Typography color="muted">Secondary text</Typography>
+   // For secondary text (medium contrast)
+   <Typography className="text-gray-600 dark:text-gray-400">Secondary Text</Typography>
+   
+   // For subtle text (low contrast)
+   <Typography className="text-gray-500 dark:text-gray-500">Subtle Text</Typography>
    ```
 
 4. **Border Implementation**:
    ```tsx
-   // Standard borders
-   className="border border-stone-200/60 dark:border-gray-700/60"
+   // Light borders (subtle separation)
+   className="border border-gray-200 dark:border-gray-700"
+   
+   // Panel borders (medium separation)
+   className="border border-gray-300 dark:border-gray-600"
    
    // Interactive borders
-   className="border-2 border-gray-300 dark:border-gray-600 focus:border-blue-500"
+   className="border-2 border-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400"
+   
+   // Strong borders (emphasis)
+   className="border-2 border-gray-400 dark:border-gray-500"
    ```
 
 ### **Testing Checklist**
@@ -376,11 +414,13 @@ For each component, verify:
 - ✅ Implemented context-aware text colors
 - ✅ Updated color utility functions
 - ✅ Fixed Core Components Showcase
+- ✅ **Updated color scheme** to gray-50/gray-950 base with gray-100/gray-900 panels
 
 ### **Next Updates**
-- Form controls implementation
-- Navigation component updates
-- Data display component updates
+- Update existing components to use new color scheme
+- Form controls implementation with new colors
+- Navigation component updates with panel backgrounds
+- Data display component updates with proper contrast
 
 ---
 
