@@ -496,11 +496,44 @@ fontFamily: {
 }
 */
 
+/* ========================================
+   Global Styles and Theme Support
+   ======================================== */
+
+* {
+  transition: background-color 300ms ease, color 300ms ease, border-color 300ms ease;
+}
+
 body {
   background-color: white;
   color: rgb(17 24 39);
   font-family: "Montserrat", sans-serif;
   line-height: 1.6;
+}
+
+/* Light theme (default) */
+.light {
+  color-scheme: light;
+}
+
+/* Dark theme */
+.dark {
+  color-scheme: dark;
+}
+
+.dark body {
+  background-color: rgb(17 24 39);
+  color: rgb(243 244 246);
+}
+
+/* Paper theme (custom) */
+.paper {
+  color-scheme: light;
+}
+
+.paper body {
+  background-color: #faf9f6;
+  color: rgb(68 64 60);
 }
 
 :focus {
@@ -509,46 +542,66 @@ body {
   outline-color: rgb(59 130 246);
 }
 
-.flow > * + * {
-  margin-top: 1.5rem;
-
-  .wrapper {
-    max-width: var(--wrapper-width);
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: var(--spacing);
-    padding-right: var(--spacing);
-  }
-
-  .bg-diamond-grid {
-    background-color: var(--tw-color-gray-50);
-    background-image: linear-gradient(
-        to right,
-        var(--tw-color-gray-200) 1px,
-        transparent 1px
-      ),
-      linear-gradient(to bottom, var(--tw-color-gray-200) 1px, transparent 1px);
-    background-size: 20px 20px;
-  }
-
-  /* optional: keep the element content upright */
-  .bg-diamond-grid-wrapper {
-    position: relative;
-    overflow: hidden;
-  }
-  .bg-diamond-grid-wrapper::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: inherit;
-    transform: rotate(45deg);
-    transform-origin: center;
-    z-index: -1;
-  }
+.dark :focus {
+  outline-color: rgb(96 165 250);
 }
 
+.flow > * + * {
+  margin-top: 1.5rem;
+}
+
+.wrapper {
+  max-width: var(--wrapper-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--spacing);
+  padding-right: var(--spacing);
+}
+
+.bg-diamond-grid {
+  background-color: var(--tw-color-gray-50);
+  background-image: linear-gradient(
+      to right,
+      var(--tw-color-gray-200) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, var(--tw-color-gray-200) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.dark .bg-diamond-grid {
+  background-color: var(--tw-color-gray-800);
+  background-image: linear-gradient(
+      to right,
+      var(--tw-color-gray-700) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, var(--tw-color-gray-700) 1px, transparent 1px);
+}
+
+/* optional: keep the element content upright */
+.bg-diamond-grid-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.bg-diamond-grid-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  transform: rotate(45deg);
+  transform-origin: center;
+  z-index: -1;
+}
+
+/* Auto-adapt to system preference when no class is set */
 @media (prefers-color-scheme: dark) {
-  body {
+  :root:not(.light):not(.dark):not(.paper) {
+    color-scheme: dark;
+  }
+  
+  :root:not(.light):not(.dark):not(.paper) body {
     background-color: rgb(17 24 39);
     color: rgb(243 244 246);
   }

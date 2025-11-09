@@ -212,7 +212,7 @@ function AppContent() {
   ]
 
   return (
-  <div className="flex bg-[#faf9f6] dark:bg-gray-900 min-h-screen">
+  <div className="flex bg-[#faf9f6] dark:bg-gray-900 min-h-screen transition-colors duration-300">
     {/* Sidebar (fixed for md+) */}
     <Sidebar
       items={sidebarItems}

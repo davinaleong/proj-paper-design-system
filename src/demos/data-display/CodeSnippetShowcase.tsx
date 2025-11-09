@@ -169,13 +169,13 @@ export const CodeSnippetShowcase: React.FC = () => {
   return (
     <div className="space-y-8">
       <div>
-        <h2 className="text-2xl font-bold mb-4">Code Snippet</h2>
-        <p className="text-gray-600 mb-4">
+        <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Code Snippet</h2>
+        <p className="text-gray-600 dark:text-gray-300 mb-4">
           Display formatted code with syntax highlighting, copy functionality, and customizable styling.
         </p>
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-          <h3 className="text-sm font-semibold text-blue-800 mb-2">Real Project Examples</h3>
-          <p className="text-sm text-blue-700">
+        <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4 mb-6">
+          <h3 className="text-sm font-semibold text-blue-800 dark:text-blue-200 mb-2">Real Project Examples</h3>
+          <p className="text-sm text-blue-700 dark:text-blue-300">
             The code examples below are actual files from this design system project, demonstrating how the CodeSnippet component can load and display real code files with proper syntax highlighting and formatting.
           </p>
         </div>
@@ -183,7 +183,7 @@ export const CodeSnippetShowcase: React.FC = () => {
 
       {/* Basic Examples */}
       <section className="space-y-6">
-        <h3 className="text-xl font-semibold">Basic Examples</h3>
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Basic Examples</h3>
         
         <div className="grid gap-6">
           <div>
@@ -208,7 +208,7 @@ export const CodeSnippetShowcase: React.FC = () => {
 
       {/* Different Languages */}
       <section className="space-y-6">
-        <h3 className="text-xl font-semibold">Different Languages</h3>
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Different Languages</h3>
         
         <div className="grid gap-6">
           <div>
@@ -256,7 +256,7 @@ export const CodeSnippetShowcase: React.FC = () => {
 
       {/* Size Variants */}
       <section className="space-y-6">
-        <h3 className="text-xl font-semibold">Size Variants</h3>
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Size Variants</h3>
         
         <div className="grid gap-4">
           <div>
@@ -298,7 +298,7 @@ export const CodeSnippetShowcase: React.FC = () => {
 
       {/* Visual Variants */}
       <section className="space-y-6">
-        <h3 className="text-xl font-semibold">Visual Variants</h3>
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Visual Variants</h3>
         
         <div className="grid gap-4">
           <div>
@@ -333,7 +333,7 @@ export const CodeSnippetShowcase: React.FC = () => {
 
       {/* Advanced Features */}
       <section className="space-y-6">
-        <h3 className="text-xl font-semibold">Advanced Features</h3>
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Advanced Features</h3>
         
         <div className="grid gap-6">
           <div>
@@ -449,7 +449,7 @@ export const CodeSnippetShowcase: React.FC = () => {
 
       {/* Color Variants */}
       <section className="space-y-6">
-        <h3 className="text-xl font-semibold">Color Variants</h3>
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Color Variants</h3>
         
         <div className="grid gap-4">
           {[

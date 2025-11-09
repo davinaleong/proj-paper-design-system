@@ -8,6 +8,7 @@ import { Button } from "../../forms/Button"
 import { IconButton } from "../../forms/IconButton"
 import { Typography } from "../../core/Typography"
 import { Tooltip } from "../../data-display/Tooltip"
+import { useTheme } from "../../core/ThemeProvider"
 import { cn } from "../../../utils/cn"
 
 // Default theme options
@@ -72,14 +73,22 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
   containerClassName,
   buttonClassName,
 }) => {
+  const theme = useTheme()
   const [internalValue, setInternalValue] = useState<ThemeToggleMode>(defaultValue)
-  const currentValue = value ?? internalValue
+  
+  // Use theme context if available, otherwise fall back to internal state or prop
+  const currentValue = value ?? (theme ? theme.mode as ThemeToggleMode : internalValue)
 
   const handleChange = (mode: ThemeToggleMode) => {
     if (disabled) return
     
     if (onChange) {
       onChange(mode)
+    } else if (theme) {
+      // Update theme context
+      if (mode === "light" || mode === "dark" || mode === "paper") {
+        theme.setMode(mode)
+      }
     } else {
       setInternalValue(mode)
     }

@@ -51,11 +51,11 @@ const highlightSyntax = (code: string, language: string): string => {
   switch (language) {
     case "html":
     case "xml":
-      highlighted = highlighted.replace(syntaxPatterns.htmlTags, '<span class="text-blue-600">$&</span>')
+      highlighted = highlighted.replace(syntaxPatterns.htmlTags, '<span class="text-blue-600 dark:text-blue-400">$&</span>')
       break
     case "css":
     case "scss":
-      highlighted = highlighted.replace(syntaxPatterns.cssProperties, '<span class="text-purple-600">$1</span>:')
+      highlighted = highlighted.replace(syntaxPatterns.cssProperties, '<span class="text-purple-600 dark:text-purple-400">$1</span>:')
       break
     case "javascript":
     case "typescript":
@@ -66,16 +66,16 @@ const highlightSyntax = (code: string, language: string): string => {
     case "php":
     case "python":
       // Keywords
-      highlighted = highlighted.replace(syntaxPatterns.keywords, '<span class="text-purple-600 font-semibold">$&</span>')
+      highlighted = highlighted.replace(syntaxPatterns.keywords, '<span class="text-purple-600 dark:text-purple-400 font-semibold">$&</span>')
       // Functions
-      highlighted = highlighted.replace(syntaxPatterns.functions, '<span class="text-blue-600">$1</span>')
+      highlighted = highlighted.replace(syntaxPatterns.functions, '<span class="text-blue-600 dark:text-blue-400">$1</span>')
       break
   }
   
   // Common patterns for all languages
-  highlighted = highlighted.replace(syntaxPatterns.strings, '<span class="text-green-600">$&</span>')
-  highlighted = highlighted.replace(syntaxPatterns.comments, '<span class="text-gray-500 italic">$&</span>')
-  highlighted = highlighted.replace(syntaxPatterns.numbers, '<span class="text-orange-600">$&</span>')
+  highlighted = highlighted.replace(syntaxPatterns.strings, '<span class="text-green-600 dark:text-green-400">$&</span>')
+  highlighted = highlighted.replace(syntaxPatterns.comments, '<span class="text-gray-500 dark:text-gray-400 italic">$&</span>')
+  highlighted = highlighted.replace(syntaxPatterns.numbers, '<span class="text-orange-600 dark:text-orange-400">$&</span>')
   
   return highlighted
 }
@@ -174,11 +174,12 @@ export const CodeSnippet = React.forwardRef<HTMLDivElement, CodeSnippetProps>(
     // Build CSS classes
     const containerClasses = cn(
       "paper-code-snippet group relative rounded-lg font-mono",
-      "bg-white/50 backdrop-blur-sm",
+      "bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm",
+      "text-gray-900 dark:text-gray-100",
       sizeClasses[size],
       variantClasses[variant],
       colorClasses,
-      variant === "outline" && "border-stone-200",
+      variant === "outline" && "border-stone-200 dark:border-gray-600",
       className
     )
 
@@ -194,7 +195,7 @@ export const CodeSnippet = React.forwardRef<HTMLDivElement, CodeSnippetProps>(
     )
 
     const lineNumberClasses = cn(
-      "absolute left-0 top-0 select-none text-gray-400 text-right pr-2 pointer-events-none",
+      "absolute left-0 top-0 select-none text-gray-400 dark:text-gray-500 text-right pr-2 pointer-events-none",
       sizeClasses[size].includes("text-xs") ? "text-xs" : 
       sizeClasses[size].includes("text-sm") ? "text-sm" :
       sizeClasses[size].includes("text-base") ? "text-base" : "text-lg"
@@ -204,9 +205,9 @@ export const CodeSnippet = React.forwardRef<HTMLDivElement, CodeSnippetProps>(
       <div ref={ref} className={containerClasses} {...props}>
         {/* Header with filename and copy button */}
         {(filename || showCopyButton) && (
-          <div className="flex items-center justify-between mb-3 pb-3 border-b border-stone-200/50">
+          <div className="flex items-center justify-between mb-3 pb-3 border-b border-stone-200/50 dark:border-gray-600/50">
             {filename && (
-              <div className="flex items-center gap-2 text-stone-600">
+              <div className="flex items-center gap-2 text-stone-600 dark:text-gray-300">
                 <FileText className="w-4 h-4" />
                 <span className="text-sm font-medium">{filename}</span>
               </div>
@@ -218,8 +219,9 @@ export const CodeSnippet = React.forwardRef<HTMLDivElement, CodeSnippetProps>(
                 className={cn(
                   "flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium",
                   "bg-stone-100 hover:bg-stone-200 text-stone-700",
+                  "dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-200",
                   "transition-colors duration-200",
-                  "focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2"
+                  "focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2 dark:focus:ring-gray-500"
                 )}
                 disabled={!mounted}
                 aria-label={copied ? copiedButtonText : copyButtonText}
@@ -253,8 +255,8 @@ export const CodeSnippet = React.forwardRef<HTMLDivElement, CodeSnippetProps>(
                     key={lineNumber}
                     className={cn(
                       "block leading-relaxed",
-                      alternateLines && isEvenLine && "bg-stone-50/50",
-                      isHighlighted && "bg-yellow-200/30 text-yellow-800 font-semibold"
+                      alternateLines && isEvenLine && "bg-stone-50/50 dark:bg-gray-700/30",
+                      isHighlighted && "bg-yellow-200/30 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-200 font-semibold"
                     )}
                   >
                     {lineNumber}
@@ -279,8 +281,8 @@ export const CodeSnippet = React.forwardRef<HTMLDivElement, CodeSnippetProps>(
                     key={lineNumber}
                     className={cn(
                       "block leading-relaxed",
-                      alternateLines && isEvenLine && "bg-stone-50/50",
-                      isHighlighted && "bg-yellow-200/30 px-1 -mx-1 rounded"
+                      alternateLines && isEvenLine && "bg-stone-50/50 dark:bg-gray-700/30",
+                      isHighlighted && "bg-yellow-200/30 dark:bg-yellow-900/30 px-1 -mx-1 rounded"
                     )}
                   >
                     {line}
@@ -299,8 +301,8 @@ export const CodeSnippet = React.forwardRef<HTMLDivElement, CodeSnippetProps>(
                     key={lineNumber}
                     className={cn(
                       "block leading-relaxed",
-                      alternateLines && isEvenLine && "bg-stone-50/50",
-                      isHighlighted && "bg-yellow-200/30 px-1 -mx-1 rounded"
+                      alternateLines && isEvenLine && "bg-stone-50/50 dark:bg-gray-700/30",
+                      isHighlighted && "bg-yellow-200/30 dark:bg-yellow-900/30 px-1 -mx-1 rounded"
                     )}
                     dangerouslySetInnerHTML={{ __html: highlightedLine }}
                   />
@@ -318,17 +320,18 @@ export const CodeSnippet = React.forwardRef<HTMLDivElement, CodeSnippetProps>(
               "absolute top-3 right-3 opacity-0 group-hover:opacity-100",
               "flex items-center gap-1.5 px-2 py-1 rounded text-xs",
               "bg-white/80 hover:bg-white text-stone-600 hover:text-stone-800",
-              "border border-stone-200 shadow-sm",
+              "dark:bg-gray-800/80 dark:hover:bg-gray-700 dark:text-gray-300 dark:hover:text-gray-100",
+              "border border-stone-200 dark:border-gray-600 shadow-sm",
               "transition-all duration-200",
-              "focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-stone-400"
+              "focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-stone-400 dark:focus:ring-gray-500"
             )}
             disabled={!mounted}
             aria-label={copied ? copiedButtonText : copyButtonText}
           >
             {copied ? (
               <>
-                <Check className="w-3 h-3 text-green-600" />
-                <span className="text-green-600">{copiedButtonText}</span>
+                <Check className="w-3 h-3 text-green-600 dark:text-green-400" />
+                <span className="text-green-600 dark:text-green-400">{copiedButtonText}</span>
               </>
             ) : (
               <>
