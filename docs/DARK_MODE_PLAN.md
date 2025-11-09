@@ -45,20 +45,26 @@ Create a comprehensive dark mode implementation across the entire Paper Design S
 ## 🏗️ **Architecture & Design Principles**
 
 ### **Color Strategy**
-1. **Context-Aware Text Colors**:
-   - **Global/Default**: Dark text in light mode, light text in dark mode
-   - **Muted Colors**: Light gray aesthetic maintained across all themes
+1. **Warm Complementary Palette**:
+   - **Unified Stone Palette**: Both light and dark themes use stone color family
+   - **Light Theme**: Warm paper tones (`#faf9f6` base, stone-100 panels)
+   - **Dark Theme**: Deep warm tones (stone-950 base, stone-900 panels)
+   - **Consistent Warmth**: Maintains paper aesthetic across all themes
+
+2. **Context-Aware Text Colors**:
+   - **Global/Default**: Warm stone text in light mode, warm light text in dark mode
+   - **Paper Aesthetic**: Consistent stone tones provide natural, paper-like appearance
    - **Semantic Colors**: Proper contrast maintained for success, danger, warning, info
 
-2. **Background Approach**:
-   - **Base Backgrounds**: `bg-gray-50 dark:bg-gray-950`
-   - **Panel Components**: `bg-gray-100 dark:bg-gray-900`
+3. **Background Approach**:
+   - **Base Backgrounds**: `bg-[#faf9f6] dark:bg-stone-950` (Warm paper aesthetic)
+   - **Panel Components**: `bg-stone-100 dark:bg-stone-900`
    - **Elevated Surfaces**: Proper contrast with shadow adaptations
    - **Transparent Elements**: Theme-aware hover states
 
-3. **Border System**:
-   - **Light Borders**: `border-gray-200 dark:border-gray-700`
-   - **Panel Borders**: `border-gray-300 dark:border-gray-600`
+4. **Border System**:
+   - **Light Borders**: `border-stone-200 dark:border-stone-700`
+   - **Panel Borders**: `border-stone-300 dark:border-stone-600`
    - **Interactive States**: Hover/focus states for all themes
 
 ### **Implementation Layers**
@@ -74,7 +80,35 @@ Create a comprehensive dark mode implementation across the entire Paper Design S
 
 ### **Theme Color Palette**
 
-#### **Light Theme**
+#### **Light Theme** (Paper Aesthetic)
+```css
+--theme-bg: #faf9f6      /* Custom warm */
+--theme-text: #44403c    /* stone-700 */
+--theme-panel-bg: #f5f5f4 /* stone-100 */
+--theme-panel-border: #d6d3d1 /* stone-300 */
+```
+- **Base Background**: `bg-[#faf9f6]` (Custom warm tone)
+- **Panel Backgrounds**: `bg-stone-100`
+- **Default Text**: `text-stone-700`
+- **Muted Text**: `text-stone-500`
+- **Light Borders**: `border-stone-200`
+- **Panel Borders**: `border-stone-300`
+
+#### **Dark Theme** (Warm Complement)
+```css
+--theme-bg: #0c0a09      /* stone-950 */
+--theme-text: #fafaf9    /* stone-50 */
+--theme-panel-bg: #1c1917 /* stone-900 */
+--theme-panel-border: #57534e /* stone-600 */
+```
+- **Base Background**: `bg-stone-950`
+- **Panel Backgrounds**: `bg-stone-900`
+- **Default Text**: `text-stone-50`
+- **Muted Text**: `text-stone-400`
+- **Light Borders**: `border-stone-700`
+- **Panel Borders**: `border-stone-600`
+
+#### **Gray Theme** (Alternate Light)
 ```css
 --theme-bg: #f9fafb      /* gray-50 */
 --theme-text: #111827    /* gray-900 */
@@ -86,65 +120,50 @@ Create a comprehensive dark mode implementation across the entire Paper Design S
 - **Default Text**: `text-gray-900`
 - **Muted Text**: `text-gray-600`
 - **Light Borders**: `border-gray-200`
-- **Panel Borders**: `border-gray-300`
-
-#### **Dark Theme**
-```css
---theme-bg: #030712      /* gray-950 */
---theme-text: #f9fafb    /* gray-50 */
---theme-panel-bg: #111827 /* gray-900 */
---theme-panel-border: #4b5563 /* gray-600 */
-```
-- **Base Background**: `bg-gray-950`
-- **Panel Backgrounds**: `bg-gray-900`
-- **Default Text**: `text-gray-50`
-- **Muted Text**: `text-gray-400`
-- **Light Borders**: `border-gray-700`
-- **Panel Borders**: `border-gray-600`
-
-#### **Paper Theme** (Warm Variant)
-```css
---theme-bg: #faf9f6      /* Custom warm */
---theme-text: #44403c    /* stone-700 */
---theme-panel-bg: #f5f5f4 /* stone-100 */
---theme-panel-border: #d6d3d1 /* stone-300 */
-```
-- **Base Background**: `bg-[#faf9f6]`
-- **Panel Backgrounds**: `bg-stone-100`
-- **Default Text**: `text-stone-700`
-- **Muted Text**: `text-stone-500`
-- **Light Borders**: `border-stone-200`
 - **Panel Borders**: `border-stone-300`
+
+### **Warm Complementary Relationship**
+
+The light and dark themes create a harmonious pair using the stone color palette:
+
+| Element | Light Theme | Dark Theme | Relationship |
+|---------|-------------|------------|--------------|
+| **Base** | `#faf9f6` (Custom warm) | `#0c0a09` (stone-950) | Warm light ↔ Deep warm |
+| **Panels** | `#f5f5f4` (stone-100) | `#1c1917` (stone-900) | Light stone ↔ Dark stone |
+| **Text** | `#44403c` (stone-700) | `#fafaf9` (stone-50) | Medium dark ↔ Warm white |
+| **Borders** | `#d6d3d1` (stone-300) | `#57534e` (stone-600) | Light border ↔ Medium border |
+
+This creates a **consistent warm aesthetic** that feels natural in both light and dark environments, like moving from daylight to candlelight on paper.
 
 ### **Color Utility Mappings**
 
-#### **Default Color Scheme** (Context-Aware)
+#### **Default Color Scheme** (Warm Paper Aesthetic)
 ```typescript
 default: {
-  subtle: "text-gray-500 dark:text-gray-500",
-  soft: "text-gray-600 dark:text-gray-400",
-  bold: "text-gray-900 dark:text-gray-50",
-  strong: "text-gray-900 dark:text-gray-50",
+  subtle: "text-stone-400 dark:text-stone-500",
+  soft: "text-stone-500 dark:text-stone-400",
+  bold: "text-stone-700 dark:text-stone-50",
+  strong: "text-stone-800 dark:text-stone-50",
 }
 ```
 
 #### **Background Color Scheme**
 ```typescript
 backgrounds: {
-  base: "bg-gray-50 dark:bg-gray-950",
-  panel: "bg-gray-100 dark:bg-gray-900",
-  elevated: "bg-white dark:bg-gray-800",
-  hover: "hover:bg-gray-200 dark:hover:bg-gray-700",
+  base: "bg-[#faf9f6] dark:bg-stone-950",
+  panel: "bg-stone-100 dark:bg-stone-900",
+  elevated: "bg-stone-50 dark:bg-stone-800",
+  hover: "hover:bg-stone-200 dark:hover:bg-stone-700",
 }
 ```
 
 #### **Border Color Scheme**
 ```typescript
 borders: {
-  light: "border-gray-200 dark:border-gray-700",
-  panel: "border-gray-300 dark:border-gray-600",
-  strong: "border-gray-400 dark:border-gray-500",
-  interactive: "border-gray-300 dark:border-gray-600 focus:border-blue-500",
+  light: "border-stone-200 dark:border-stone-700",
+  panel: "border-stone-300 dark:border-stone-600",
+  strong: "border-stone-400 dark:border-stone-500",
+  interactive: "border-stone-300 dark:border-stone-600 focus:border-blue-500",
 }
 ```
 
@@ -262,52 +281,52 @@ borders: {
 
 2. **Background Implementation**:
    ```tsx
-   // For base page backgrounds
-   className="bg-gray-50 dark:bg-gray-950"
+   // For base page backgrounds (warm paper aesthetic)
+   className="bg-[#faf9f6] dark:bg-stone-950"
    
    // For panel components
-   className="bg-gray-100 dark:bg-gray-900"
+   className="bg-stone-100 dark:bg-stone-900"
    
    // For elevated surfaces
-   className="bg-white dark:bg-gray-800"
+   className="bg-stone-50 dark:bg-stone-800"
    
    // For transparent components with hover
-   className="bg-transparent hover:bg-gray-200 dark:hover:bg-gray-700"
+   className="bg-transparent hover:bg-stone-200 dark:hover:bg-stone-700"
    ```
 
 3. **Text Color Implementation**:
    ```tsx
-   // For primary text (high contrast)
-   <Typography className="text-gray-900 dark:text-gray-50">Primary Text</Typography>
+   // For primary text (high contrast, warm aesthetic)
+   <Typography className="text-stone-700 dark:text-stone-50">Primary Text</Typography>
    
    // For secondary text (medium contrast)
-   <Typography className="text-gray-600 dark:text-gray-400">Secondary Text</Typography>
+   <Typography className="text-stone-500 dark:text-stone-400">Secondary Text</Typography>
    
    // For subtle text (low contrast)
-   <Typography className="text-gray-500 dark:text-gray-500">Subtle Text</Typography>
+   <Typography className="text-stone-400 dark:text-stone-500">Subtle Text</Typography>
    ```
 
 4. **Border Implementation**:
    ```tsx
-   // Light borders (subtle separation)
-   className="border border-gray-200 dark:border-gray-700"
+   // Light borders (subtle separation, warm aesthetic)
+   className="border border-stone-200 dark:border-stone-700"
    
    // Panel borders (medium separation)
-   className="border border-gray-300 dark:border-gray-600"
+   className="border border-stone-300 dark:border-stone-600"
    
    // Interactive borders
-   className="border-2 border-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400"
+   className="border-2 border-stone-300 dark:border-stone-600 focus:border-blue-500 dark:focus:border-blue-400"
    
    // Strong borders (emphasis)
-   className="border-2 border-gray-400 dark:border-gray-500"
+   className="border-2 border-stone-400 dark:border-stone-500"
    ```
 
 ### **Testing Checklist**
 
 For each component, verify:
-- [ ] **Light Mode**: Proper contrast and readability
+- [ ] **Light Mode**: Paper aesthetic with warm stone colors and proper contrast
 - [ ] **Dark Mode**: Appropriate dark backgrounds and light text
-- [ ] **Paper Mode**: Warm colors and paper aesthetic maintained
+- [ ] **Gray Mode**: Clean gray alternative to paper aesthetic
 - [ ] **Interactive States**: Hover, focus, active states work in all themes
 - [ ] **Accessibility**: Contrast ratios meet WCAG standards
 - [ ] **Transitions**: Smooth theme switching animations
@@ -371,7 +390,7 @@ For each component, verify:
 ### **User Experience Metrics**
 - [ ] **Consistent Experience**: No jarring transitions
 - [ ] **Visual Hierarchy**: Maintained across all themes
-- [ ] **Brand Consistency**: Paper theme aesthetic preserved
+- [ ] **Brand Consistency**: Paper aesthetic as primary light theme maintained
 - [ ] **User Preference**: System preference detection working
 
 ---
@@ -414,13 +433,14 @@ For each component, verify:
 - ✅ Implemented context-aware text colors
 - ✅ Updated color utility functions
 - ✅ Fixed Core Components Showcase
-- ✅ **Updated color scheme** to gray-50/gray-950 base with gray-100/gray-900 panels
+- ✅ **Updated primary light theme** to paper aesthetic with warm stone colors
+- ✅ **Reorganized themes**: Paper aesthetic as primary light, gray as alternate, dark maintained
 
 ### **Next Updates**
-- Update existing components to use new color scheme
-- Form controls implementation with new colors
-- Navigation component updates with panel backgrounds
-- Data display component updates with proper contrast
+- Update existing components to use paper aesthetic as primary light theme
+- Form controls implementation with stone color palette
+- Navigation component updates with warm panel backgrounds
+- Data display component updates with paper aesthetic
 
 ---
 
