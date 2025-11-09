@@ -1,7 +1,7 @@
 # Dark Mode Implementation Plan
 ## Paper Design System
 
-*Last Updated: November 9, 2025*
+*Last Updated: 9 November 2025*
 
 ---
 
