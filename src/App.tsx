@@ -217,12 +217,12 @@ function AppContent() {
   const getThemeClasses = () => {
     switch (theme.mode) {
       case 'light':
-        return 'bg-white text-gray-200'
+        return 'bg-white text-gray-800'
       case 'dark':
         return 'bg-gray-900 text-gray-50'
       case 'paper':
       default:
-        return 'bg-[#faf9f6] text-gray-200'
+        return 'bg-[#faf9f6] text-stone-700'
     }
   }
 

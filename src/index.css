@@ -525,7 +525,7 @@ body {
 .light {
   color-scheme: light;
   --theme-bg: #ffffff;
-  --theme-text: #e5e7eb;
+  --theme-text: #1f2937;
 }
 
 /* Dark theme */
@@ -539,7 +539,7 @@ body {
 .paper {
   color-scheme: light;
   --theme-bg: #faf9f6;
-  --theme-text: #e5e7eb;
+  --theme-text: #44403c;
 }
 
 :focus {

@@ -17,7 +17,7 @@ export function AppHeader({ onMobileMenuClick }: AppHeaderProps) {
       case 'light':
         return {
           background: 'bg-white/80 border-gray-200',
-          text: 'text-gray-200'
+          text: 'text-gray-800'
         }
       case 'dark':
         return {
@@ -28,7 +28,7 @@ export function AppHeader({ onMobileMenuClick }: AppHeaderProps) {
       default:
         return {
           background: 'bg-[#faf9f6]/80 border-stone-200',
-          text: 'text-gray-200'
+          text: 'text-stone-700'
         }
     }
   }
@@ -47,6 +47,7 @@ export function AppHeader({ onMobileMenuClick }: AppHeaderProps) {
             onClick={onMobileMenuClick}
             icon={Menu}
             variant="ghost"
+            color="default"
             size="sm"
             className="md:hidden"
             aria-label="Open menu"

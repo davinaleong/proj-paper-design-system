@@ -80,15 +80,15 @@ const lightColorClasses: Record<ColorVariant, string> = {
     "bg-yellow-50 text-yellow-900 border-yellow-200 dark:bg-yellow-950 dark:text-yellow-100 dark:border-yellow-800",
   info: "bg-sky-50 text-sky-900 border-sky-200 dark:bg-sky-950 dark:text-sky-100 dark:border-sky-800",
   default:
-    "bg-white text-gray-900 border-gray-200 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700",
+    "bg-white text-gray-200 border-gray-200 dark:bg-gray-900 dark:text-gray-50 dark:border-gray-700",
   paper:
-    "bg-[#faf9f6] text-gray-900 border-[#e5e3df] dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700",
+    "bg-[#faf9f6] text-gray-200 border-[#e5e3df] dark:bg-gray-900 dark:text-gray-50 dark:border-gray-700",
   muted:
-    "bg-gray-100 text-gray-600 border-gray-300 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600",
+    "bg-gray-100 text-gray-300 border-gray-300 dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600",
   accent:
     "bg-teal-50 text-teal-900 border-teal-200 dark:bg-teal-950 dark:text-teal-100 dark:border-teal-800",
   transparent:
-    "bg-transparent text-gray-900 border-transparent dark:text-gray-100",
+    "bg-transparent text-gray-200 border-transparent dark:text-gray-50",
   custom: "",
   // Full Tailwind Color Spectrum
   slate:
@@ -202,15 +202,15 @@ const outlineColorClasses: Record<ColorVariant, string> = {
     "bg-transparent text-yellow-600 border-yellow-300 hover:bg-yellow-50 dark:text-yellow-400 dark:border-yellow-600 dark:hover:bg-yellow-950",
   info: "bg-transparent text-sky-600 border-sky-300 hover:bg-sky-50 dark:text-sky-400 dark:border-sky-600 dark:hover:bg-sky-950",
   default:
-    "bg-transparent text-gray-600 border-gray-300 hover:bg-gray-50 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-900",
+    "bg-transparent text-gray-200 border-gray-300 hover:bg-gray-50 dark:text-gray-50 dark:border-gray-600 dark:hover:bg-gray-900",
   paper:
     "bg-transparent text-[#0f766e] border-[#e5e3df] hover:bg-[#faf9f6] dark:text-teal-400 dark:border-gray-600 dark:hover:bg-gray-900",
   muted:
-    "bg-transparent text-gray-500 border-gray-300 hover:bg-gray-50 dark:text-gray-500 dark:border-gray-600 dark:hover:bg-gray-900",
+    "bg-transparent text-gray-300 border-gray-300 hover:bg-gray-50 dark:text-gray-100 dark:border-gray-600 dark:hover:bg-gray-900",
   accent:
     "bg-transparent text-teal-600 border-teal-300 hover:bg-teal-50 dark:text-teal-400 dark:border-teal-600 dark:hover:bg-teal-950",
   transparent:
-    "bg-transparent text-gray-600 border-transparent hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800",
+    "bg-transparent text-gray-200 border-transparent hover:bg-gray-100 dark:text-gray-50 dark:hover:bg-gray-800",
   custom: "",
   // Full Tailwind Color Spectrum
   slate:
@@ -263,15 +263,15 @@ const ghostColorClasses: Record<ColorVariant, string> = {
     "bg-transparent text-yellow-600 border-transparent hover:bg-yellow-50 dark:text-yellow-400 dark:hover:bg-yellow-950/50",
   info: "bg-transparent text-sky-600 border-transparent hover:bg-sky-50 dark:text-sky-400 dark:hover:bg-sky-950/50",
   default:
-    "bg-transparent text-gray-600 border-transparent hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-900/50",
+    "bg-transparent text-gray-200 border-transparent hover:bg-gray-50 dark:text-gray-50 dark:hover:bg-gray-900/50",
   paper:
     "bg-transparent text-[#0f766e] border-transparent hover:bg-[#faf9f6] dark:text-teal-400 dark:hover:bg-gray-900/50",
   muted:
-    "bg-transparent text-gray-500 border-transparent hover:bg-gray-50 dark:text-gray-500 dark:hover:bg-gray-900/50",
+    "bg-transparent text-gray-300 border-transparent hover:bg-gray-50 dark:text-gray-100 dark:hover:bg-gray-900/50",
   accent:
     "bg-transparent text-teal-600 border-transparent hover:bg-teal-50 dark:text-teal-400 dark:hover:bg-teal-950/50",
   transparent:
-    "bg-transparent text-gray-600 border-transparent hover:bg-gray-100/50 dark:text-gray-400 dark:hover:bg-gray-800/50",
+    "bg-transparent text-gray-200 border-transparent hover:bg-gray-100/50 dark:text-gray-50 dark:hover:bg-gray-800/50",
   custom: "",
   // Full Tailwind Color Spectrum
   slate:
@@ -394,10 +394,10 @@ export function getTextColorClasses(
       strong: "text-sky-700 dark:text-sky-300",
     },
     default: {
-      subtle: "text-gray-300 dark:text-gray-400",
-      soft: "text-gray-200 dark:text-gray-300",
-      bold: "text-gray-200 dark:text-gray-100",
-      strong: "text-gray-100 dark:text-gray-50",
+      subtle: "text-gray-500 dark:text-gray-400",
+      soft: "text-gray-600 dark:text-gray-300",
+      bold: "text-gray-900 dark:text-gray-100",
+      strong: "text-gray-900 dark:text-gray-50",
     },
     paper: {
       subtle: "text-gray-300 dark:text-gray-400",
@@ -418,10 +418,10 @@ export function getTextColorClasses(
       strong: "text-teal-700 dark:text-teal-300",
     },
     transparent: {
-      subtle: "text-gray-300 dark:text-gray-400",
-      soft: "text-gray-200 dark:text-gray-300",
-      bold: "text-gray-200 dark:text-gray-100",
-      strong: "text-gray-100 dark:text-gray-50",
+      subtle: "text-gray-500 dark:text-gray-400",
+      soft: "text-gray-600 dark:text-gray-300",
+      bold: "text-gray-900 dark:text-gray-100",
+      strong: "text-gray-900 dark:text-gray-50",
     },
     custom: {
       subtle: "",
@@ -623,8 +623,8 @@ export function getBackgroundColorClasses(
       strong: "bg-gray-600 dark:bg-gray-500",
     },
     paper: {
-      subtle: "bg-[#faf9f6] dark:bg-gray-950/30",
-      soft: "bg-white dark:bg-gray-900/50",
+      subtle: "bg-[#faf9f6] dark:bg-gray-900",
+      soft: "bg-white dark:bg-gray-800",
       bold: "bg-[#0f766e] dark:bg-teal-600",
       strong: "bg-[#0d5d56] dark:bg-teal-500",
     },

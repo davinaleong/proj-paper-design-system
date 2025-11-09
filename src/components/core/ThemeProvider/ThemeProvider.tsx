@@ -106,7 +106,7 @@ export function ThemeProvider({
     switch (theme.mode) {
       case "light":
         root.style.setProperty("--theme-bg", "#ffffff")
-        root.style.setProperty("--theme-text", "#e5e7eb")
+        root.style.setProperty("--theme-text", "#1f2937")
         break
       case "dark":
         root.style.setProperty("--theme-bg", "#111827")
@@ -114,7 +114,7 @@ export function ThemeProvider({
         break
       case "paper":
         root.style.setProperty("--theme-bg", "#faf9f6")
-        root.style.setProperty("--theme-text", "#e5e7eb")
+        root.style.setProperty("--theme-text", "#44403c")
         break
     }
 

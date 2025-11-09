@@ -5,8 +5,8 @@ export function CoreComponentsShowcase() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
       <Paper variant="elevated" padding="lg">
-        <Typography variant="h4" className="mb-4">
-          ThemeProvider
+        <Typography variant="h4" className="mb-4" color="default">
+          Theme Provider
         </Typography>
         <Typography variant="bodySmall" color="muted">
           ✅ Context-based theme management with light, dark, and paper modes
@@ -14,7 +14,7 @@ export function CoreComponentsShowcase() {
       </Paper>
 
       <Paper variant="outlined" padding="lg" withTexture>
-        <Typography variant="h4" className="mb-4">
+        <Typography variant="h4" className="mb-4" color="default">
           Paper
         </Typography>
         <Typography variant="bodySmall" color="muted">
@@ -34,7 +34,7 @@ export function CoreComponentsShowcase() {
       <Paper variant="elevated" padding="lg">
         <div className="flex items-center gap-3 mb-4">
           <Icon icon={Palette} size="lg" color="primary" />
-          <Typography variant="h4">Icon</Typography>
+          <Typography variant="h4" color="default">Icon</Typography>
         </div>
         <Typography variant="bodySmall" color="muted">
           ✅ Lucide React integration with consistent sizing and theming
@@ -42,7 +42,7 @@ export function CoreComponentsShowcase() {
       </Paper>
 
       <Paper variant="outlined" padding="lg">
-        <Typography variant="h4" className="mb-4">
+        <Typography variant="h4" className="mb-4" color="default">
           Container
         </Typography>
         <Typography variant="bodySmall" color="muted">
@@ -51,7 +51,7 @@ export function CoreComponentsShowcase() {
       </Paper>
 
       <Paper variant="elevated" padding="lg">
-        <Typography variant="h4" className="mb-4">
+        <Typography variant="h4" className="mb-4" color="default">
           Brand
         </Typography>
         <div className="space-y-4">

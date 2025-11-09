@@ -1,6 +1,5 @@
 import { forwardRef } from "react"
 import { cn } from "../../../utils/cn.js"
-import { useThemeUtils } from "../ThemeProvider/useThemeUtils"
 import {
   getBackgroundColorClasses,
   getBorderColorClasses,
@@ -16,22 +15,31 @@ const PADDING_CLASSES = {
   xl: "p-8",
 } as const
 
-// Paper theme elevation with tactile hover effects
+// Subtle elevation with dark-mode shadow variants
 const ELEVATION_CLASSES = {
   none: "shadow-none",
-  sm: "shadow-sm hover:shadow-md active:shadow-inner hover:-translate-y-[1px] transition-all duration-200",
-  md: "shadow-md hover:shadow-lg active:shadow-inner hover:-translate-y-[1px] transition-all duration-200",
-  lg: "shadow-lg hover:shadow-xl active:shadow-md hover:-translate-y-[1px] transition-all duration-200",
-  xl: "shadow-xl hover:shadow-2xl active:shadow-lg hover:-translate-y-[1px] transition-all duration-200",
+  sm: "shadow-sm hover:shadow-md dark:shadow-slate-900/40 active:shadow-inner hover:-translate-y-[1px] transition-all duration-200",
+  md: "shadow-md hover:shadow-lg dark:shadow-slate-950/50 active:shadow-inner hover:-translate-y-[1px] transition-all duration-200",
+  lg: "shadow-lg hover:shadow-xl dark:shadow-black/60 active:shadow-md hover:-translate-y-[1px] transition-all duration-200",
+  xl: "shadow-xl hover:shadow-2xl dark:shadow-black/70 active:shadow-lg hover:-translate-y-[1px] transition-all duration-200",
 } as const
 
-// Paper texture using CSS background pattern
+// Paper texture tuned for both themes
 const PAPER_TEXTURE = {
-  backgroundImage: `
-    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(120, 119, 198, 0.02) 0%, transparent 50%)
-  `,
+  light: {
+    backgroundImage: `
+      radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(120, 119, 198, 0.02) 0%, transparent 50%)
+    `,
+  },
+  dark: {
+    backgroundImage: `
+      radial-gradient(circle at 20% 80%, rgba(255,255,255,0.04) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(255,255,255,0.05) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(255,255,255,0.03) 0%, transparent 50%)
+    `,
+  },
 }
 
 export const Paper = forwardRef<HTMLElement, PaperProps>(
@@ -50,79 +58,49 @@ export const Paper = forwardRef<HTMLElement, PaperProps>(
     },
     ref
   ) => {
-    const { isPaper } = useThemeUtils()
-
-    // Determine elevation class based on variant with paper theme hover effects
     const getVariantElevation = () => {
-      if (elevation) {
-        return ELEVATION_CLASSES[elevation]
-      }
-
+      if (elevation) return ELEVATION_CLASSES[elevation]
       switch (variant) {
         case "elevated":
-          return ELEVATION_CLASSES.sm // Paper theme default elevation
-        case "outlined":
-        case "flat":
+          return ELEVATION_CLASSES.sm
         default:
           return ELEVATION_CLASSES.none
       }
     }
 
-    // Get background classes
     const backgroundClasses = () => {
-      if (variant === "outlined") {
-        return "bg-transparent"
-      }
-
-      if (background === "paper" && isPaper) {
-        return "bg-stone-50 dark:bg-gray-900"
-      }
-
+      if (variant === "outlined") return "bg-transparent"
+      if (background === "paper")
+        return "bg-white text-slate-900 dark:bg-slate-900 dark:text-slate-100"
       return getBackgroundColorClasses(background, "subtle")
     }
 
-    // Get border classes - using paper theme border
     const borderClasses = () => {
-      if (variant === "outlined") {
-        return cn("border-2", getBorderColorClasses(borderColor))
-      }
-      // Default paper theme always has a subtle border
-      return cn("border", "border-stone-200/60")
+      if (variant === "outlined")
+        return cn(
+          "border border-slate-300/60 dark:border-slate-700/60 backdrop-blur-sm"
+        )
+      return cn("border border-stone-200/50 dark:border-slate-800/60")
     }
 
-    // Combine all classes using paper theme
     const paperClasses = cn(
-      // Base styles
-      "relative",
-
-      // Container query context for responsive typography
-      "[container-type:inline-size]",
-
-      // Paper theme: always rounded-sm for consistency
-      "rounded-sm",
-
-      // Variant-specific styles
+      "relative rounded-sm [container-type:inline-size]",
       backgroundClasses(),
       borderClasses(),
-
-      // Layout styles
       PADDING_CLASSES[padding],
-
-      // Elevation with paper theme hover effects
       getVariantElevation(),
-
-      // Paper theme backdrop blur for depth
-      "backdrop-blur-sm",
-
-      // Paper texture overlay
+      "backdrop-blur-sm transition-colors duration-300",
       withTexture &&
-        "before:absolute before:inset-0 before:pointer-events-none before:opacity-20",
-
-      // Custom classes
+        "before:absolute before:inset-0 before:pointer-events-none before:opacity-20 dark:before:opacity-10 before:mix-blend-overlay",
       className
     )
 
-    const style = withTexture ? PAPER_TEXTURE : undefined
+    const style = withTexture
+      ? {
+          ...PAPER_TEXTURE.light,
+          ["@media (prefers-color-scheme: dark)"]: PAPER_TEXTURE.dark,
+        }
+      : undefined
 
     return (
       <Component ref={ref} className={paperClasses} style={style} {...props}>

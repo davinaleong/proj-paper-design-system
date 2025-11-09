@@ -61,9 +61,9 @@ const variantClasses = {
     "border",
     "border-transparent",
     "bg-transparent",
-    "hover:bg-stone-100/50",
-    "hover:border-stone-200/60",
-    "active:bg-stone-200/50",
+    "hover:bg-gray-100/50 dark:hover:bg-gray-800/50",
+    "hover:border-gray-200/60 dark:hover:border-gray-600/60",
+    "active:bg-gray-200/50 dark:active:bg-gray-700/50",
   ],
   plain: [
     "bg-transparent",
@@ -101,7 +101,7 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(({
     variant !== "plain" &&
       getColorClassesWithLuminance(
         color,
-        variant === "solid" ? "solid" : variant === "outline" ? "outline" : "soft",
+        variant === "solid" ? "solid" : variant === "outline" ? "outline" : variant === "ghost" ? "ghost" : "soft",
         true  // Enable automatic optimal text color calculation
       ),
     
