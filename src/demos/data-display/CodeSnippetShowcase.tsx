@@ -2,149 +2,183 @@ import React from "react"
 import { CodeSnippet } from "../../components/data-display"
 import type { ColorVariant } from "../../utils/colors"
 
-const jsCode = `function calculateFibonacci(n) {
-  if (n <= 1) return n;
-  return calculateFibonacci(n - 1) + calculateFibonacci(n - 2);
-}
+// Real code from the project - cn utility function
+const jsCode = `import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
 
-// Example usage
-const result = calculateFibonacci(10);
-console.log('Fibonacci of 10:', result);`
-
-const tsCode = `interface User {
-  id: number;
-  name: string;
-  email: string;
-  isActive: boolean;
-}
-
-const users: User[] = [
-  { id: 1, name: "John Doe", email: "john@example.com", isActive: true },
-  { id: 2, name: "Jane Smith", email: "jane@example.com", isActive: false }
-];
-
-function getUserById(id: number): User | undefined {
-  return users.find(user => user.id === id);
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
 }`
 
+// Real code from the project - Button component excerpt
+const tsCode = `import { Loader2 } from "lucide-react"
+import { forwardRef } from "react"
+import type { ButtonProps } from "./types"
+import { cn } from "../../../utils/cn.js"
+import { getColorClassesWithLuminance } from "../../../utils/colors"
+
+const sizeClasses = {
+  xs: \`px-2 py-1 \${containerResponsiveUI.button.sm} gap-1\`,
+  sm: \`px-3 py-1.5 \${containerResponsiveUI.button.sm} gap-1.5\`,
+  md: \`px-4 py-2 \${containerResponsiveUI.button.md} gap-2\`,
+  lg: \`px-6 py-2.5 \${containerResponsiveUI.button.lg} gap-2\`,
+  xl: \`px-8 py-3 \${containerResponsiveUI.button.lg} gap-2.5\`,
+}`
+
+// Real HTML from the project - index.html excerpt
 const htmlCode = `<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My App</title>
-</head>
-<body>
-  <header class="header">
-    <h1>Welcome to My App</h1>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-    </nav>
-  </header>
-  <main>
-    <p>This is the main content.</p>
-  </main>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React + TS</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>`
 
-const cssCode = `.button {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border: none;
-  border-radius: 8px;
-  color: white;
-  cursor: pointer;
-  font-size: 16px;
-  padding: 12px 24px;
-  transition: all 0.3s ease;
+// Real CSS from the project - App.css excerpt
+const cssCode = `@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
 }
 
-.button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
-
-.button:active {
-  transform: translateY(0);
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
 }`
 
+// Real JSON from the project - package.json excerpt
 const jsonCode = `{
-  "name": "my-awesome-app",
-  "version": "1.0.0",
-  "description": "An awesome application",
-  "main": "index.js",
+  "name": "davdevs-paper-design-system",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js",
-    "test": "jest",
-    "build": "webpack --mode production"
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "express": "^4.18.2",
-    "react": "^18.2.0",
-    "lodash": "^4.17.21"
-  },
-  "devDependencies": {
-    "jest": "^29.0.0",
-    "nodemon": "^2.0.20"
+    "@tailwindcss/vite": "^4.1.14",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.545.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "tailwind-merge": "^3.3.1"
   }
 }`
 
+// Example deployment script that could be loaded from a file
 const bashCode = `#!/bin/bash
 
-# Deploy script
-echo "Starting deployment..."
+# Build and deploy Paper Design System
+echo "Starting build process..."
 
-# Build the application
+# Install dependencies
+npm install
+
+# Run type checking
+npm run type-check
+
+# Build the project
 npm run build
 
-# Run tests
-npm test
-
 if [ $? -eq 0 ]; then
-  echo "Tests passed! Deploying..."
+  echo "Build successful! Ready for deployment."
   
-  # Deploy to production
-  rsync -avz ./dist/ user@server:/var/www/html/
+  # Deploy to staging
+  rsync -avz ./dist/ staging@server:/var/www/paper-ds/
   
-  echo "Deployment completed successfully!"
+  echo "Deployment to staging completed!"
 else
-  echo "Tests failed! Deployment aborted."
+  echo "Build failed! Check the logs."
   exit 1
 fi`
 
-// Example of loading code from a file (for demonstration)
-const loadedCodeExample = `// This could be loaded from a file using fetch, fs, or import
-import { readFileSync } from 'fs';
+// Real Vite config from the project
+const viteConfigCode = `import { defineConfig } from "vite"
+import react from "@vitejs/plugin-react"
+import tailwindcss from "@tailwindcss/vite"
 
-const loadCodeFromFile = (filePath: string): string => {
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react(), tailwindcss()],
+})`
+
+// Real ESLint config from the project
+const eslintConfigCode = `import js from '@eslint/js'
+import globals from 'globals'
+import reactHooks from 'eslint-plugin-react-hooks'
+import reactRefresh from 'eslint-plugin-react-refresh'
+import tseslint from 'typescript-eslint'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      js.configs.recommended,
+      tseslint.configs.recommended,
+      reactHooks.configs['recommended-latest'],
+      reactRefresh.configs.vite,
+    ],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.browser,
+    },
+  },
+])`
+
+// Example of loading code from project files
+const loadedCodeExample = `// Real implementation for loading code files
+const loadProjectFile = async (filePath: string): Promise<string> => {
   try {
-    return readFileSync(filePath, 'utf-8');
+    // In a real app, this could fetch from your API
+    const response = await fetch(\`/api/files\${filePath}\`);
+    if (!response.ok) throw new Error('File not found');
+    return await response.text();
   } catch (error) {
     console.error('Failed to load file:', error);
-    return '';
+    return '// Error loading file';
   }
 };
 
-// Usage with CodeSnippet component
-const fileContent = loadCodeFromFile('./example.js');
+// Usage examples with actual project files
+const utilsCode = await loadProjectFile('/src/utils/cn.ts');
+const buttonCode = await loadProjectFile('/src/components/forms/Button/Button.tsx');
+const configCode = await loadProjectFile('/vite.config.ts');
 
-// Method 1: Using children
-<CodeSnippet language="javascript">
-  {fileContent}
-</CodeSnippet>
-
-// Method 2: Using code prop  
-<CodeSnippet language="javascript" code={fileContent} />`
+// Display loaded code
+<CodeSnippet language="typescript" code={utilsCode} filename="cn.ts" />
+<CodeSnippet language="tsx" code={buttonCode} filename="Button.tsx" />
+<CodeSnippet language="typescript" code={configCode} filename="vite.config.ts" />`
 
 export const CodeSnippetShowcase: React.FC = () => {
   return (
     <div className="space-y-8">
       <div>
-        <h2 className="text-2xl font-bold mb-4">CodeSnippet Component</h2>
-        <p className="text-gray-600 mb-6">
-          Display formatted code with syntax highlighting, copy functionality, and more.
+        <h2 className="text-2xl font-bold mb-4">Code Snippet</h2>
+        <p className="text-gray-600 mb-4">
+          Display formatted code with syntax highlighting, copy functionality, and customizable styling.
         </p>
+        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+          <h3 className="text-sm font-semibold text-blue-800 mb-2">Real Project Examples</h3>
+          <p className="text-sm text-blue-700">
+            The code examples below are actual files from this design system project, demonstrating how the CodeSnippet component can load and display real code files with proper syntax highlighting and formatting.
+          </p>
+        </div>
       </div>
 
       {/* Basic Examples */}
@@ -153,17 +187,17 @@ export const CodeSnippetShowcase: React.FC = () => {
         
         <div className="grid gap-6">
           <div>
-            <h4 className="text-lg font-medium mb-3">JavaScript Code</h4>
-            <CodeSnippet language="javascript">
+            <h4 className="text-lg font-medium mb-3">Utility Function</h4>
+            <CodeSnippet language="typescript" filename="src/utils/cn.ts">
               {jsCode}
             </CodeSnippet>
           </div>
 
           <div>
-            <h4 className="text-lg font-medium mb-3">TypeScript with Filename</h4>
+            <h4 className="text-lg font-medium mb-3">React Component</h4>
             <CodeSnippet 
-              language="typescript" 
-              filename="user.ts"
+              language="tsx" 
+              filename="src/components/forms/Button/Button.tsx"
               showLineNumbers
             >
               {tsCode}
@@ -178,25 +212,25 @@ export const CodeSnippetShowcase: React.FC = () => {
         
         <div className="grid gap-6">
           <div>
-            <h4 className="text-lg font-medium mb-3">HTML</h4>
-            <CodeSnippet language="html" color="blue">
+            <h4 className="text-lg font-medium mb-3">HTML Document</h4>
+            <CodeSnippet language="html" color="blue" filename="index.html">
               {htmlCode}
             </CodeSnippet>
           </div>
 
           <div>
-            <h4 className="text-lg font-medium mb-3">CSS</h4>
+            <h4 className="text-lg font-medium mb-3">CSS Styles</h4>
             <CodeSnippet 
               language="css" 
               color="purple"
-              filename="styles.css"
+              filename="src/App.css"
             >
               {cssCode}
             </CodeSnippet>
           </div>
 
           <div>
-            <h4 className="text-lg font-medium mb-3">JSON</h4>
+            <h4 className="text-lg font-medium mb-3">Package Configuration</h4>
             <CodeSnippet 
               language="json" 
               color="green"
@@ -207,11 +241,11 @@ export const CodeSnippetShowcase: React.FC = () => {
           </div>
 
           <div>
-            <h4 className="text-lg font-medium mb-3">Bash Script</h4>
+            <h4 className="text-lg font-medium mb-3">Deployment Script</h4>
             <CodeSnippet 
               language="bash" 
               color="orange"
-              filename="deploy.sh"
+              filename="scripts/deploy.sh"
               showLineNumbers
             >
               {bashCode}
@@ -351,21 +385,41 @@ export const CodeSnippetShowcase: React.FC = () => {
           <div>
             <h4 className="text-lg font-medium mb-3">Alternating Line Colors</h4>
             <CodeSnippet 
-              language="javascript" 
+              language="tsx" 
               showLineNumbers
               alternateLines
-              filename="alternating.js"
+              filename="src/components/forms/Button/Button.tsx"
             >
-              {`function processData(items) {\n  const result = [];\n  \n  for (let i = 0; i < items.length; i++) {\n    const item = items[i];\n    \n    if (item.isValid) {\n      result.push(transform(item));\n    } else {\n      console.warn('Invalid item:', item.id);\n    }\n  }\n  \n  return result.sort((a, b) => a.priority - b.priority);\n}`}
+              {tsCode}
             </CodeSnippet>
           </div>
 
           <div>
             <h4 className="text-lg font-medium mb-3">Using Code Prop</h4>
             <CodeSnippet 
+              language="typescript" 
+              code={jsCode}
+              filename="src/utils/cn.ts"
+            />
+          </div>
+
+          <div>
+            <h4 className="text-lg font-medium mb-3">Vite Configuration</h4>
+            <CodeSnippet 
+              language="typescript" 
+              code={viteConfigCode}
+              filename="vite.config.ts"
+              showLineNumbers
+            />
+          </div>
+
+          <div>
+            <h4 className="text-lg font-medium mb-3">ESLint Configuration</h4>
+            <CodeSnippet 
               language="javascript" 
-              code={`// Using the code prop instead of children\nconst example = "This code is passed via the code prop";\nconsole.log(example);`}
-              filename="code-prop-example.js"
+              code={eslintConfigCode}
+              filename="eslint.config.js"
+              showLineNumbers
             />
           </div>
 
