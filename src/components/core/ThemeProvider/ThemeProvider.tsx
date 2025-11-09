@@ -66,10 +66,13 @@ export function ThemeProvider({
 
   // Apply theme to document root
   useEffect(() => {
+    if (typeof window === "undefined") return
+
     const root = document.documentElement
 
-    // Remove existing theme classes
+    // Remove existing theme classes and data attributes
     root.classList.remove("light", "dark", "paper")
+    root.removeAttribute("data-theme")
     Object.values(RADIUS_CLASSES).forEach((cls) => {
       root.classList.remove(cls)
     })
@@ -77,14 +80,43 @@ export function ThemeProvider({
       root.classList.remove(cls)
     })
 
-    // Apply current theme classes
+    // Apply current theme classes and data attributes
     root.classList.add(theme.mode)
+    root.setAttribute("data-theme", theme.mode)
+
+    // For Tailwind dark mode compatibility
+    if (theme.mode === "dark") {
+      root.classList.add("dark")
+    } else {
+      root.classList.remove("dark")
+    }
+
+    // Debug logging
+    console.log("Theme changed to:", theme.mode)
+    console.log("Document classes:", root.classList.toString())
+    console.log("Data theme attribute:", root.getAttribute("data-theme"))
 
     // Set CSS custom properties for theme values
     root.style.setProperty("--theme-mode", theme.mode)
     root.style.setProperty("--theme-accent", theme.accentColor)
     root.style.setProperty("--theme-radius", theme.radius)
     root.style.setProperty("--theme-elevation", theme.elevation)
+
+    // Set theme-specific background colors
+    switch (theme.mode) {
+      case "light":
+        root.style.setProperty("--theme-bg", "#ffffff")
+        root.style.setProperty("--theme-text", "#e5e7eb")
+        break
+      case "dark":
+        root.style.setProperty("--theme-bg", "#111827")
+        root.style.setProperty("--theme-text", "#f9fafb")
+        break
+      case "paper":
+        root.style.setProperty("--theme-bg", "#faf9f6")
+        root.style.setProperty("--theme-text", "#e5e7eb")
+        break
+    }
 
     // Add specific classes for radius and elevation if needed
     const radiusClass = RADIUS_CLASSES[theme.radius]

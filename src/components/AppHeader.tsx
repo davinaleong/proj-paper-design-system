@@ -2,18 +2,44 @@ import { Menu } from "lucide-react"
 import { Paper, Typography } from "../components/core"
 import { IconButton } from "../components/forms"
 import { ThemeToggle } from "../components/system-utilities"
+import { useTheme } from "../components/core/ThemeProvider/ThemeContext"
 
 interface AppHeaderProps {
   onMobileMenuClick?: () => void
 }
 
 export function AppHeader({ onMobileMenuClick }: AppHeaderProps) {
+  const theme = useTheme()
+
+  // Get theme-specific classes
+  const getThemeClasses = () => {
+    switch (theme.mode) {
+      case 'light':
+        return {
+          background: 'bg-white/80 border-gray-200',
+          text: 'text-gray-200'
+        }
+      case 'dark':
+        return {
+          background: 'bg-gray-900/80 border-gray-700',
+          text: 'text-gray-50'
+        }
+      case 'paper':
+      default:
+        return {
+          background: 'bg-[#faf9f6]/80 border-stone-200',
+          text: 'text-gray-200'
+        }
+    }
+  }
+
+  const themeClasses = getThemeClasses()
 
   return (
     <Paper
       variant="elevated"
       padding="md"
-      className="sticky top-0 z-50 backdrop-blur-md border-b border-stone-200 dark:border-gray-700 bg-[#faf9f6]/80 dark:bg-gray-800/80"
+      className={`sticky top-0 z-50 backdrop-blur-md border-b ${themeClasses.background}`}
     >
       <header className="flex items-center justify-between">
           {/* Mobile menu button */}
@@ -27,7 +53,7 @@ export function AppHeader({ onMobileMenuClick }: AppHeaderProps) {
           />
 
           <div className="flex-1 md:flex-initial">
-            <Typography variant="h4" className="text-stone-800 dark:text-gray-100">
+            <Typography variant="h4" className={themeClasses.text}>
               Component Documentation
             </Typography>
           </div>

@@ -500,40 +500,46 @@ fontFamily: {
    Global Styles and Theme Support
    ======================================== */
 
+:root {
+  /* Default theme values */
+  --theme-bg: #ffffff;
+  --theme-text: #e5e7eb;
+  --theme-mode: light;
+  --theme-accent: primary;
+  --theme-radius: md;
+  --theme-elevation: sm;
+}
+
 * {
   transition: background-color 300ms ease, color 300ms ease, border-color 300ms ease;
 }
 
 body {
-  background-color: white;
-  color: rgb(17 24 39);
+  background-color: var(--theme-bg);
+  color: var(--theme-text);
   font-family: "Montserrat", sans-serif;
   line-height: 1.6;
 }
 
-/* Light theme (default) */
+/* Light theme */
 .light {
   color-scheme: light;
+  --theme-bg: #ffffff;
+  --theme-text: #e5e7eb;
 }
 
 /* Dark theme */
 .dark {
   color-scheme: dark;
-}
-
-.dark body {
-  background-color: rgb(17 24 39);
-  color: rgb(243 244 246);
+  --theme-bg: #111827;
+  --theme-text: #f9fafb;
 }
 
 /* Paper theme (custom) */
 .paper {
   color-scheme: light;
-}
-
-.paper body {
-  background-color: #faf9f6;
-  color: rgb(68 64 60);
+  --theme-bg: #faf9f6;
+  --theme-text: #e5e7eb;
 }
 
 :focus {
@@ -595,14 +601,33 @@ body {
   z-index: -1;
 }
 
+/* Theme-specific component styles */
+.app-header-theme {
+  background-color: var(--theme-bg) !important;
+  opacity: 0.8;
+}
+
+.light .app-header-theme {
+  border-color: #e7e5e4;
+}
+
+.dark .app-header-theme {
+  border-color: #374151;
+}
+
+.paper .app-header-theme {
+  border-color: #d6cdb9;
+}
+
+.app-header-title {
+  color: var(--theme-text) !important;
+}
+
 /* Auto-adapt to system preference when no class is set */
 @media (prefers-color-scheme: dark) {
   :root:not(.light):not(.dark):not(.paper) {
     color-scheme: dark;
-  }
-  
-  :root:not(.light):not(.dark):not(.paper) body {
-    background-color: rgb(17 24 39);
-    color: rgb(243 244 246);
+    --theme-bg: #111827;
+    --theme-text: #f9fafb;
   }
 }

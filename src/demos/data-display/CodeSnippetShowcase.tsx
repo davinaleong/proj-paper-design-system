@@ -170,12 +170,12 @@ export const CodeSnippetShowcase: React.FC = () => {
     <div className="space-y-8">
       <div>
         <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Code Snippet</h2>
-        <p className="text-gray-600 dark:text-gray-300 mb-4">
+        <p className="text-gray-600 dark:text-gray-100 mb-4">
           Display formatted code with syntax highlighting, copy functionality, and customizable styling.
         </p>
         <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4 mb-6">
-          <h3 className="text-sm font-semibold text-blue-800 dark:text-blue-200 mb-2">Real Project Examples</h3>
-          <p className="text-sm text-blue-700 dark:text-blue-300">
+          <h3 className="text-sm font-semibold text-blue-800 dark:text-blue-100 mb-2">Real Project Examples</h3>
+          <p className="text-sm text-blue-700 dark:text-blue-100">
             The code examples below are actual files from this design system project, demonstrating how the CodeSnippet component can load and display real code files with proper syntax highlighting and formatting.
           </p>
         </div>

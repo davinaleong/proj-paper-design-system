@@ -91,7 +91,7 @@ const VARIANT_CLASSES: Record<TypographyVariant, string> = {
   abbr: `font-montserrat border-b border-dotted border-gray-400 dark:border-gray-500 cursor-help`,
   cite: `font-montserrat italic text-gray-700 dark:text-gray-300`,
   q: `font-montserrat before:content-['"'] after:content-['"'] text-gray-700 dark:text-gray-300`,
-  dfn: `font-montserrat italic font-medium text-gray-800 dark:text-gray-200`,
+  dfn: `font-montserrat italic font-medium text-gray-200 dark:text-gray-50`,
   
   // Code-related elements
   samp: `font-source-code-pro ${containerResponsiveFonts.sm} bg-gray-50 dark:bg-gray-900 px-1 py-0.5 rounded border`,
@@ -99,7 +99,7 @@ const VARIANT_CLASSES: Record<TypographyVariant, string> = {
   
   // Time and data
   time: `font-montserrat ${containerResponsiveFonts.sm} text-gray-600 dark:text-gray-400`,
-  data: `font-montserrat font-medium text-gray-800 dark:text-gray-200`,
+  data: `font-montserrat font-medium text-gray-200 dark:text-gray-50`,
 }
 
 const WEIGHT_CLASSES = {

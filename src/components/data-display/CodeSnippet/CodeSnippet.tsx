@@ -195,7 +195,7 @@ export const CodeSnippet = React.forwardRef<HTMLDivElement, CodeSnippetProps>(
     )
 
     const lineNumberClasses = cn(
-      "absolute left-0 top-0 select-none text-gray-400 dark:text-gray-500 text-right pr-2 pointer-events-none",
+      "absolute left-0 top-0 select-none text-gray-400 dark:text-gray-100 text-right pr-2 pointer-events-none",
       sizeClasses[size].includes("text-xs") ? "text-xs" : 
       sizeClasses[size].includes("text-sm") ? "text-sm" :
       sizeClasses[size].includes("text-base") ? "text-base" : "text-lg"
@@ -207,7 +207,7 @@ export const CodeSnippet = React.forwardRef<HTMLDivElement, CodeSnippetProps>(
         {(filename || showCopyButton) && (
           <div className="flex items-center justify-between mb-3 pb-3 border-b border-stone-200/50 dark:border-gray-600/50">
             {filename && (
-              <div className="flex items-center gap-2 text-stone-600 dark:text-gray-300">
+              <div className="flex items-center gap-2 text-gray-200 dark:text-gray-50">
                 <FileText className="w-4 h-4" />
                 <span className="text-sm font-medium">{filename}</span>
               </div>
@@ -219,7 +219,7 @@ export const CodeSnippet = React.forwardRef<HTMLDivElement, CodeSnippetProps>(
                 className={cn(
                   "flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium",
                   "bg-stone-100 hover:bg-stone-200 text-stone-700",
-                  "dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-200",
+                  "dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-100",
                   "transition-colors duration-200",
                   "focus:outline-none focus:ring-2 focus:ring-stone-400 focus:ring-offset-2 dark:focus:ring-gray-500"
                 )}
@@ -319,8 +319,8 @@ export const CodeSnippet = React.forwardRef<HTMLDivElement, CodeSnippetProps>(
             className={cn(
               "absolute top-3 right-3 opacity-0 group-hover:opacity-100",
               "flex items-center gap-1.5 px-2 py-1 rounded text-xs",
-              "bg-white/80 hover:bg-white text-stone-600 hover:text-stone-800",
-              "dark:bg-gray-800/80 dark:hover:bg-gray-700 dark:text-gray-300 dark:hover:text-gray-100",
+              "bg-white/80 hover:bg-white text-gray-200 hover:text-gray-100",
+              "dark:bg-gray-800/80 dark:hover:bg-gray-700 dark:text-gray-100 dark:hover:text-gray-100",
               "border border-stone-200 dark:border-gray-600 shadow-sm",
               "transition-all duration-200",
               "focus:opacity-100 focus:outline-none focus:ring-2 focus:ring-stone-400 dark:focus:ring-gray-500"

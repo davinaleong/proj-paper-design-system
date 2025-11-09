@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { ThemeProvider, Typography, Paper } from "./components/core"
+import { useTheme } from "./components/core/ThemeProvider/ThemeContext"
 import { AppHeader } from "./components/AppHeader"
 import { Sidebar } from "./components/navigation"
 import { Home, FileText, BarChart3, Navigation, TrendingUp, MessageCircle, Layers, Search, Settings } from "lucide-react"
@@ -72,6 +73,7 @@ function App() {
 
 function AppContent() {
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false)
+  const theme = useTheme()
 
   const sidebarItems = [
     // Core Components Group
@@ -211,8 +213,21 @@ function AppContent() {
     },
   ]
 
+  // Get theme-specific classes
+  const getThemeClasses = () => {
+    switch (theme.mode) {
+      case 'light':
+        return 'bg-white text-gray-200'
+      case 'dark':
+        return 'bg-gray-900 text-gray-50'
+      case 'paper':
+      default:
+        return 'bg-[#faf9f6] text-gray-200'
+    }
+  }
+
   return (
-  <div className="flex bg-[#faf9f6] dark:bg-gray-900 min-h-screen transition-colors duration-300">
+  <div className={`flex min-h-screen transition-colors duration-300 ${getThemeClasses()}`}>
     {/* Sidebar (fixed for md+) */}
     <Sidebar
       items={sidebarItems}

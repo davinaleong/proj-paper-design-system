@@ -43,7 +43,7 @@ const getTabButtonClasses = (
         "border-b-2 rounded-none",
         isActive
           ? `border-${color}-500 text-${color}-600 bg-paper`
-          : "border-transparent text-stone-600 hover:text-stone-900 hover:border-stone-300"
+          : "border-transparent text-gray-300 hover:text-gray-200 hover:border-stone-300"
       )
     case "pills":
       return cn(
@@ -51,7 +51,7 @@ const getTabButtonClasses = (
         "rounded-md",
         isActive
           ? `bg-${color}-500 text-white shadow-sm`
-          : "text-stone-600 hover:text-stone-900 hover:bg-white/50"
+          : "text-gray-300 hover:text-gray-200 hover:bg-white/50"
       )
     case "ghost":
       return cn(
@@ -59,7 +59,7 @@ const getTabButtonClasses = (
         "rounded-md",
         isActive
           ? `bg-${color}-50 text-${color}-600 border border-${color}-200`
-          : "text-stone-600 hover:text-stone-900 hover:bg-stone-50"
+          : "text-gray-300 hover:text-gray-200 hover:bg-stone-50"
       )
     case "links":
       return cn(
@@ -67,14 +67,14 @@ const getTabButtonClasses = (
         "underline-offset-4",
         isActive
           ? `text-${color}-600 underline`
-          : "text-stone-600 hover:text-stone-900 hover:underline"
+          : "text-gray-300 hover:text-gray-200 hover:underline"
       )
     case "plain":
       return cn(
         baseClasses,
         isActive
           ? `text-${color}-600`
-          : "text-stone-600 hover:text-stone-900"
+          : "text-gray-300 hover:text-gray-200"
       )
     default:
       return baseClasses
@@ -180,7 +180,7 @@ export const Tabs: React.FC<TabsProps> = ({
                       "inline-flex items-center justify-center px-2 py-0.5 text-xs font-medium rounded-full",
                       isActive
                         ? "bg-white/20 text-current"
-                        : "bg-stone-100 text-stone-600"
+                        : "bg-stone-100 text-gray-200"
                     )}
                   >
                     {item.badge}

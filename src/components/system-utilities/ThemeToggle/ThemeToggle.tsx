@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import { Sun, Moon, Palette, Monitor } from "lucide-react"
 import type { ThemeToggleProps, ThemeToggleOption, ThemeToggleMode } from "./types"
 import type { IconButtonVariant } from "../../forms/IconButton/types"
@@ -8,7 +8,7 @@ import { Button } from "../../forms/Button"
 import { IconButton } from "../../forms/IconButton"
 import { Typography } from "../../core/Typography"
 import { Tooltip } from "../../data-display/Tooltip"
-import { useTheme } from "../../core/ThemeProvider"
+import { ThemeContext } from "../../core/ThemeProvider/ThemeContext"
 import { cn } from "../../../utils/cn"
 
 // Default theme options
@@ -73,7 +73,9 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
   containerClassName,
   buttonClassName,
 }) => {
-  const theme = useTheme()
+  // Check if theme context is available
+  const theme = useContext(ThemeContext)
+  
   const [internalValue, setInternalValue] = useState<ThemeToggleMode>(defaultValue)
   
   // Use theme context if available, otherwise fall back to internal state or prop

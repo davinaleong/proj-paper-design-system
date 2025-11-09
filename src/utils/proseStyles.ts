@@ -79,9 +79,9 @@ export const proseStyles = `
  */
 export const proseDarkStyles = `
   dark:[&_h1]:text-gray-100 dark:[&_h2]:text-gray-100 dark:[&_h3]:text-gray-100 dark:[&_h4]:text-gray-100 dark:[&_h5]:text-gray-100 dark:[&_h6]:text-gray-100
-  dark:[&_p]:text-gray-300
+  dark:[&_p]:text-gray-100
   dark:[&_.lead]:text-gray-400
-  dark:[&_ul]:text-gray-300 dark:[&_ol]:text-gray-300
+  dark:[&_ul]:text-gray-100 dark:[&_ol]:text-gray-100
   
   dark:[&_a]:text-teal-400 dark:[&_a]:border-teal-800
   dark:[&_a:hover]:text-teal-300 dark:[&_a:hover]:border-teal-700
@@ -89,13 +89,13 @@ export const proseDarkStyles = `
   
   dark:[&_blockquote]:border-gray-600 dark:[&_blockquote]:bg-gray-800 dark:[&_blockquote]:text-gray-400
   
-  dark:[&_code]:bg-gray-800 dark:[&_code]:text-gray-200 dark:[&_code]:border-gray-600
+  dark:[&_code]:bg-gray-800 dark:[&_code]:text-gray-100 dark:[&_code]:border-gray-600
   dark:[&_pre]:bg-gray-950 dark:[&_pre]:border-gray-700
   
   dark:[&_table]:border-gray-600
   dark:[&_thead]:bg-gray-800
   dark:[&_th]:text-gray-100 dark:[&_th]:border-gray-600
-  dark:[&_td]:text-gray-300 dark:[&_td]:border-gray-700
+  dark:[&_td]:text-gray-100 dark:[&_td]:border-gray-700
   dark:[&_tbody_tr:hover]:bg-gray-800
   
   dark:[&_hr]:border-gray-600
@@ -103,11 +103,11 @@ export const proseDarkStyles = `
   dark:[&_figcaption]:text-gray-400
   
   dark:[&_strong]:text-gray-100
-  dark:[&_em]:text-gray-300
+  dark:[&_em]:text-gray-100
   dark:[&_small]:text-gray-400
   
   dark:[&_mark]:bg-yellow-900 dark:[&_mark]:text-yellow-100
-  dark:[&_kbd]:bg-gray-800 dark:[&_kbd]:border-gray-600 dark:[&_kbd]:text-gray-200
+  dark:[&_kbd]:bg-gray-800 dark:[&_kbd]:border-gray-600 dark:[&_kbd]:text-gray-100
   
   dark:[&_del]:text-gray-500
   dark:[&_ins]:text-green-400

@@ -108,7 +108,7 @@ function ActivityItemComponent({
       <div className="flex-1 min-w-0">
         <Typography
           variant="body"
-          className={cn("font-medium text-gray-900", styles.title)}
+          className={cn("font-medium text-gray-200 dark:text-gray-50", styles.title)}
         >
           {item.title}
         </Typography>
