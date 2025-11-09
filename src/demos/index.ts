@@ -30,6 +30,7 @@ export {
   TimelineShowcase,
   TagShowcase,
   TooltipShowcase,
+  CodeSnippetShowcase,
 } from "./data-display"
 
 // Navigation

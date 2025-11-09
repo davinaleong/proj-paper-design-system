@@ -1,0 +1,42 @@
+{
+  "id": "123e4567-e89b-12d3-a456-426614174000",
+  "name": "John Doe",
+  "email": "john.doe@example.com",
+  "isActive": true,
+  "age": 29,
+  "balance": 1543.75,
+  "roles": ["admin", "editor", "user"],
+  "address": {
+    "street": "123 Main Street",
+    "city": "Metropolis",
+    "postalCode": "54321",
+    "country": "USA"
+  },
+  "preferences": {
+    "theme": "dark",
+    "language": "en",
+    "notifications": {
+      "email": true,
+      "sms": false,
+      "push": true
+    }
+  },
+  "projects": [
+    {
+      "id": 1,
+      "title": "Website Redesign",
+      "status": "In Progress",
+      "budget": 5000,
+      "team": ["Alice", "Bob", "Charlie"]
+    },
+    {
+      "id": 2,
+      "title": "Mobile App",
+      "status": "Completed",
+      "budget": 10000,
+      "team": ["Dave", "Eve"]
+    }
+  ],
+  "createdAt": "2025-11-09T03:00:00Z",
+  "updatedAt": null
+}

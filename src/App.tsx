@@ -45,6 +45,7 @@ import {
   PopoverShowcase,
   FormControlsShowcase,
   DataDisplayShowcase,
+  CodeSnippetShowcase,
   SearchBarShowcase,
   FilterMenuShowcase,
   DateTimePickerShowcase,
@@ -144,6 +145,7 @@ function AppContent() {
       icon: BarChart3,
       children: [
         { id: "data-display", label: "Data Display", href: "#data-display" },
+        { id: "code-snippet", label: "Code Snippet", href: "#code-snippet" },
         { id: "statistic", label: "Statistics", href: "#statistic" },
         { id: "kpi", label: "KPI", href: "#kpi" },
         { id: "timeline", label: "Timeline", href: "#timeline" },
@@ -315,6 +317,12 @@ function AppContent() {
         
         <section id="data-display" className="mb-8">
           <DataDisplayShowcase />
+        </section>
+
+        <Divider className="my-8" />
+
+        <section id="code-snippet" className="mb-8">
+          <CodeSnippetShowcase />
         </section>
 
         <Divider className="my-12" />

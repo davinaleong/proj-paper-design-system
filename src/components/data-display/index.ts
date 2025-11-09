@@ -64,3 +64,10 @@ export { Sparkline } from "./Sparkline"
 export type { SparklineProps, SparklineData, SparklineVariant, SparklineSize } from "./Sparkline"
 export { ActivityFeed } from "./ActivityFeed"
 export type { ActivityFeedProps, ActivityItem, ActivityVariant, ActivitySize } from "./ActivityFeed"
+export { CodeSnippet } from "./CodeSnippet"
+export type { 
+  CodeSnippetProps, 
+  CodeSnippetSize, 
+  CodeSnippetVariant, 
+  CodeSnippetLanguage 
+} from "./CodeSnippet"

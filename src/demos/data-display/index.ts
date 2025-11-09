@@ -9,3 +9,4 @@ export { EmptyStateShowcase } from './EmptyStateShowcase';
 export { TimelineShowcase } from './TimelineShowcase';
 export { TagShowcase } from './TagShowcase';
 export { TooltipShowcase } from './TooltipShowcase';
+export { CodeSnippetShowcase } from './CodeSnippetShowcase';

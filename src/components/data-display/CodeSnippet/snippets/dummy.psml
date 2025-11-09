@@ -1,0 +1,11 @@
+# dummy_script.ps1
+# Simple PowerShell example for testing
+
+Write-Host "Starting dummy PowerShell script..." -ForegroundColor Cyan
+
+$users = @("Alice", "Bob", "Charlie")
+foreach ($user in $users) {
+    Write-Host "Hello, $user! This is a dummy PowerShell test."
+}
+
+Write-Host "Script complete." -ForegroundColor Green

@@ -1,0 +1,7 @@
+"Lorem Ipsum" variant (neutral filler text)
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ac ligula vel velit tempus congue. Suspendisse ac nunc in massa laoreet eleifend. Vivamus interdum lorem non ligula commodo, a tincidunt lorem commodo. Integer sed justo vitae lacus dignissim finibus.
+
+Alternative natural-sounding dummy text
+
+The quick brown fox dashed across the empty courtyard, leaving a trail of dust behind. Meanwhile, the old clock tower chimed noon, echoing through the quiet streets. It was just another ordinary day — until everything changed.
