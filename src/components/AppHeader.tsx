@@ -2,18 +2,23 @@ import { Menu } from "lucide-react"
 import { Paper, Typography } from "../components/core"
 import { IconButton } from "../components/forms"
 import { ThemeToggle } from "../components/system-utilities"
-import { useTheme } from "../components/core/ThemeProvider/ThemeContext"
+import { useThemeMode } from "../hooks/useThemeMode"
 
 interface AppHeaderProps {
   onMobileMenuClick?: () => void
 }
 
 export function AppHeader({ onMobileMenuClick }: AppHeaderProps) {
-  const theme = useTheme()
+  const { theme: themeMode } = useThemeMode()
+  
+  // Resolve actual theme
+  const actualTheme = themeMode === "system" 
+    ? (window.matchMedia?.("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+    : themeMode === "dark" ? "dark" : "light"
 
   // Get theme-specific classes based on DARK_MODE_PLAN.md
   const getThemeClasses = () => {
-    switch (theme.actualTheme) {
+    switch (actualTheme) {
       case 'dark':
         return {
           background: 'bg-stone-900/80 border-stone-600',

@@ -1,6 +1,6 @@
 import { useState } from "react"
-import { ThemeProvider, Typography, Paper } from "./components/core"
-import { useTheme } from "./components/core/ThemeProvider/ThemeContext"
+import { Typography, Paper } from "./components/core"
+import { useThemeMode } from "./hooks/useThemeMode"
 import { AppHeader } from "./components/AppHeader"
 import { Sidebar } from "./components/navigation"
 import { Home, FileText, BarChart3, Navigation, TrendingUp, MessageCircle, Layers, Search, Settings } from "lucide-react"
@@ -64,16 +64,11 @@ import {
 import "./App.css"
 
 function App() {
-  return (
-    <ThemeProvider defaultTheme={{ mode: "paper" }}>
-      <AppContent />
-    </ThemeProvider>
-  )
-}
-
-function AppContent() {
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false)
-  const theme = useTheme()
+  const { theme: themeMode } = useThemeMode()
+  
+  // Mock theme object for compatibility
+  const theme = { mode: themeMode }
 
   const sidebarItems = [
     // Core Components Group
@@ -220,14 +215,14 @@ function AppContent() {
         return 'bg-white text-gray-800'
       case 'dark':
         return 'bg-gray-900 text-gray-50'
-      case 'paper':
+      case 'system':
       default:
         return 'bg-[#faf9f6] text-stone-700'
     }
   }
 
   return (
-  <div className={`flex min-h-screen transition-colors duration-300 ${getThemeClasses()}`}>
+    <div className={`flex min-h-screen transition-colors duration-300 ${getThemeClasses()}`}>
     {/* Sidebar (fixed for md+) */}
     <Sidebar
       items={sidebarItems}
@@ -556,7 +551,7 @@ function AppContent() {
       </main>
     </div>
   </div>
-)
+  )
 }
 
 export default App

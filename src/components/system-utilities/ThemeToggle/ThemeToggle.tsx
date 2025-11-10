@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useContext } from "react"
+import React, { useState } from "react"
 import { Sun, Moon, Monitor } from "lucide-react"
 import type { ThemeToggleProps, ThemeToggleOption, ThemeToggleMode } from "./types"
 import type { IconButtonVariant } from "../../forms/IconButton/types"
@@ -8,7 +8,7 @@ import { Button } from "../../forms/Button"
 import { IconButton } from "../../forms/IconButton"
 import { Typography } from "../../core/Typography"
 import { Tooltip } from "../../data-display/Tooltip"
-import { ThemeContext } from "../../core/ThemeProvider/ThemeContext"
+import { useThemeMode } from "../../../hooks/useThemeMode"
 import { cn } from "../../../utils/cn"
 
 // Default theme options
@@ -28,9 +28,9 @@ const defaultThemeOptions: ThemeToggleOption[] = [
     description: "Dark theme with warm stone colors"
   },
   {
-    id: "auto",
-    mode: "auto",
-    label: "Auto",
+    id: "system",
+    mode: "system",
+    label: "System",
     icon: Monitor,
     description: "Follow system preference (light/dark)"
   }
@@ -47,7 +47,7 @@ const sizeClasses = {
 export const ThemeToggle: React.FC<ThemeToggleProps> = ({
   value,
   defaultValue = "light",
-  options = defaultThemeOptions, // Default to light, dark, auto
+  options = defaultThemeOptions, // Default to light, dark, system
   variant = "buttons",
   size = "sm",
   buttonVariant = "ghost",
@@ -66,35 +66,27 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
   containerClassName,
   buttonClassName,
 }) => {
-  // Check if theme context is available
-  const theme = useContext(ThemeContext)
+  // Use the useThemeMode hook
+  const { theme: themeMode, setTheme } = useThemeMode()
   
   const [internalValue, setInternalValue] = useState<ThemeToggleMode>(defaultValue)
   
-  // Use theme context if available, otherwise fall back to internal state or prop
-  const currentValue = value ?? (theme ? theme.mode as ThemeToggleMode : internalValue)
+  // Use prop value, then hook value, then internal state as fallback
+  const currentValue = value ?? themeMode ?? internalValue
 
   const handleChange = (mode: ThemeToggleMode) => {
     if (disabled) return
     
     if (onChange) {
+      // If onChange prop is provided, use it
       onChange(mode)
-    } else if (theme) {
-      // Update theme context using the new API
-      switch (mode) {
-        case "light":
-          theme.setLightTheme()
-          break
-        case "dark":
-          theme.setDarkTheme()
-          break
-        case "auto":
-          theme.setAutoTheme()
-          break
-      }
     } else {
-      setInternalValue(mode)
+      // Use the useThemeMode hook to update theme
+      setTheme(mode)
     }
+    
+    // Update internal state for fallback scenarios
+    setInternalValue(mode)
   }
 
   const renderButtonToggle = () => {

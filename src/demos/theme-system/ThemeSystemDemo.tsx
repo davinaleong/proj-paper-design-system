@@ -3,10 +3,21 @@ import { Monitor } from "lucide-react"
 import { Paper, Typography } from "../../components/core"
 import { Button } from "../../components/forms"
 import { ThemeToggle } from "../../components/system-utilities"
-import { useTheme } from "../../components/core/ThemeProvider/ThemeContext"
+import { useThemeMode } from "../../hooks/useThemeMode"
 
 export function ThemeSystemDemo() {
-  const theme = useTheme()
+  const { theme: themeMode, setTheme } = useThemeMode()
+  
+  // Mock theme object to match the interface expected by the demo
+  const theme = {
+    mode: themeMode,
+    actualTheme: themeMode === "system" 
+      ? (window.matchMedia?.("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+      : themeMode === "dark" ? "dark" : "light",
+    setLightTheme: () => setTheme("light"),
+    setDarkTheme: () => setTheme("dark"),
+    setSystemTheme: () => setTheme("system"),
+  }
 
   return (
     <div className="space-y-8">
@@ -50,13 +61,13 @@ export function ThemeSystemDemo() {
                   Dark Theme
                 </Button>
                 <Button
-                  onClick={theme.setAutoTheme}
-                  variant={theme.mode === "auto" ? "solid" : "outline"}
+                  onClick={theme.setSystemTheme}
+                  variant={theme.mode === "system" ? "solid" : "outline"}
                   color="primary"
                   size="sm"
                   icon={Monitor}
                 >
-                  Auto (System)
+                  System
                 </Button>
               </div>
             </div>
@@ -183,12 +194,12 @@ export function ThemeSystemDemo() {
       </div>
 
       {/* System Preference Note */}
-      {theme.mode === "auto" && (
+      {theme.mode === "system" && (
         <Paper variant="outlined" padding="md" className="bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800">
           <div className="flex items-center gap-3">
             <Monitor className="w-5 h-5 text-blue-600 dark:text-blue-400" />
             <Typography variant="body" className="text-blue-800 dark:text-blue-200">
-              Auto mode is active. Theme automatically switches based on your system preference.
+              System mode is active. Theme automatically switches based on your system preference.
               Current system preference: <strong>{theme.actualTheme}</strong>
             </Typography>
           </div>
