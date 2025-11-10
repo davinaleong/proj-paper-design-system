@@ -127,7 +127,7 @@ export function Divider({
               "writing-mode-vertical-rl text-orientation-mixed py-2 px-0"
           )}
         >
-          {icon && <span className="text-stone-400">{icon}</span>}
+          {icon && <span className="text-stone-400 dark:text-stone-500">{icon}</span>}
           {label && <span className="font-medium">{label}</span>}
         </div>
 

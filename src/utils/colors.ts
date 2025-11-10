@@ -66,65 +66,65 @@ export const paperColors = {
   accent2: "#7c3aed", // Purple accent (desaturated)
 } as const
 
-// Light mode color classes
+// Light mode color classes - using proper contrast based on Tw color mapping
 const lightColorClasses: Record<ColorVariant, string> = {
   primary:
-    "bg-blue-50 text-blue-900 border-blue-200 dark:bg-blue-950 dark:text-blue-100 dark:border-blue-800",
+    "bg-blue-50 text-black border-blue-200 dark:bg-blue-950 dark:text-white dark:border-blue-800",
   secondary:
-    "bg-slate-50 text-slate-900 border-slate-200 dark:bg-slate-900 dark:text-slate-100 dark:border-slate-700",
+    "bg-slate-50 text-black border-slate-200 dark:bg-slate-950 dark:text-white dark:border-slate-800",
   danger:
-    "bg-red-50 text-red-900 border-red-200 dark:bg-red-950 dark:text-red-100 dark:border-red-800",
+    "bg-red-50 text-black border-red-200 dark:bg-red-950 dark:text-white dark:border-red-800",
   success:
-    "bg-green-50 text-green-900 border-green-200 dark:bg-green-950 dark:text-green-100 dark:border-green-800",
+    "bg-green-50 text-black border-green-200 dark:bg-green-950 dark:text-white dark:border-green-800",
   warning:
-    "bg-yellow-50 text-yellow-900 border-yellow-200 dark:bg-yellow-950 dark:text-yellow-100 dark:border-yellow-800",
-  info: "bg-sky-50 text-sky-900 border-sky-200 dark:bg-sky-950 dark:text-sky-100 dark:border-sky-800",
+    "bg-yellow-50 text-black border-yellow-200 dark:bg-yellow-950 dark:text-white dark:border-yellow-800",
+  info: "bg-sky-50 text-black border-sky-200 dark:bg-sky-950 dark:text-white dark:border-sky-800",
   default:
-    "bg-white text-gray-900 border-gray-200 dark:bg-gray-900 dark:text-gray-50 dark:border-gray-700",
+    "bg-white text-black border-gray-200 dark:bg-gray-950 dark:text-white dark:border-gray-800",
   paper:
-    "bg-[#faf9f6] text-stone-700 border-[#e5e3df] dark:bg-stone-950 dark:text-stone-50 dark:border-stone-800",
+    "bg-[#faf9f6] text-black border-[#e5e3df] dark:bg-stone-950 dark:text-white dark:border-stone-800",
   muted:
-    "bg-gray-100 text-gray-700 border-gray-300 dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600",
+    "bg-gray-100 text-black border-gray-300 dark:bg-gray-800 dark:text-white dark:border-gray-600",
   accent:
-    "bg-teal-50 text-teal-900 border-teal-200 dark:bg-teal-950 dark:text-teal-100 dark:border-teal-800",
+    "bg-teal-50 text-black border-teal-200 dark:bg-teal-950 dark:text-white dark:border-teal-800",
   transparent:
-    "bg-transparent text-gray-900 border-transparent dark:text-gray-50",
+    "bg-transparent text-black border-transparent dark:text-white",
   custom: "",
-  // Full Tailwind Color Spectrum
+  // Full Tailwind Color Spectrum - using proper contrast based on TW color mapping
   slate:
-    "bg-slate-50 text-slate-900 border-slate-200 dark:bg-slate-950 dark:text-slate-100 dark:border-slate-800",
-  gray: "bg-gray-50 text-gray-900 border-gray-200 dark:bg-gray-950 dark:text-gray-100 dark:border-gray-800",
-  zinc: "bg-zinc-50 text-zinc-900 border-zinc-200 dark:bg-zinc-950 dark:text-zinc-100 dark:border-zinc-800",
+    "bg-slate-50 text-black border-slate-200 dark:bg-slate-950 dark:text-white dark:border-slate-800",
+  gray: "bg-gray-50 text-black border-gray-200 dark:bg-gray-950 dark:text-white dark:border-gray-800",
+  zinc: "bg-zinc-50 text-black border-zinc-200 dark:bg-zinc-950 dark:text-white dark:border-zinc-800",
   neutral:
-    "bg-neutral-50 text-neutral-900 border-neutral-200 dark:bg-neutral-950 dark:text-neutral-100 dark:border-neutral-800",
+    "bg-neutral-50 text-black border-neutral-200 dark:bg-neutral-950 dark:text-white dark:border-neutral-800",
   stone:
-    "bg-stone-50 text-stone-900 border-stone-200 dark:bg-stone-950 dark:text-stone-100 dark:border-stone-800",
-  red: "bg-red-50 text-red-900 border-red-200 dark:bg-red-950 dark:text-red-100 dark:border-red-800",
+    "bg-stone-50 text-black border-stone-200 dark:bg-stone-950 dark:text-white dark:border-stone-800",
+  red: "bg-red-50 text-black border-red-200 dark:bg-red-950 dark:text-white dark:border-red-800",
   orange:
-    "bg-orange-50 text-orange-900 border-orange-200 dark:bg-orange-950 dark:text-orange-100 dark:border-orange-800",
+    "bg-orange-50 text-black border-orange-200 dark:bg-orange-950 dark:text-white dark:border-orange-800",
   amber:
-    "bg-amber-50 text-amber-900 border-amber-200 dark:bg-amber-950 dark:text-amber-100 dark:border-amber-800",
+    "bg-amber-50 text-black border-amber-200 dark:bg-amber-950 dark:text-white dark:border-amber-800",
   yellow:
-    "bg-yellow-50 text-yellow-900 border-yellow-200 dark:bg-yellow-950 dark:text-yellow-100 dark:border-yellow-800",
-  lime: "bg-lime-50 text-lime-900 border-lime-200 dark:bg-lime-950 dark:text-lime-100 dark:border-lime-800",
+    "bg-yellow-50 text-black border-yellow-200 dark:bg-yellow-950 dark:text-white dark:border-yellow-800",
+  lime: "bg-lime-50 text-black border-lime-200 dark:bg-lime-950 dark:text-white dark:border-lime-800",
   green:
-    "bg-green-50 text-green-900 border-green-200 dark:bg-green-950 dark:text-green-100 dark:border-green-800",
+    "bg-green-50 text-black border-green-200 dark:bg-green-950 dark:text-white dark:border-green-800",
   emerald:
-    "bg-emerald-50 text-emerald-900 border-emerald-200 dark:bg-emerald-950 dark:text-emerald-100 dark:border-emerald-800",
-  teal: "bg-teal-50 text-teal-900 border-teal-200 dark:bg-teal-950 dark:text-teal-100 dark:border-teal-800",
-  cyan: "bg-cyan-50 text-cyan-900 border-cyan-200 dark:bg-cyan-950 dark:text-cyan-100 dark:border-cyan-800",
-  sky: "bg-sky-50 text-sky-900 border-sky-200 dark:bg-sky-950 dark:text-sky-100 dark:border-sky-800",
-  blue: "bg-blue-50 text-blue-900 border-blue-200 dark:bg-blue-950 dark:text-blue-100 dark:border-blue-800",
+    "bg-emerald-50 text-black border-emerald-200 dark:bg-emerald-950 dark:text-white dark:border-emerald-800",
+  teal: "bg-teal-50 text-black border-teal-200 dark:bg-teal-950 dark:text-white dark:border-teal-800",
+  cyan: "bg-cyan-50 text-black border-cyan-200 dark:bg-cyan-950 dark:text-white dark:border-cyan-800",
+  sky: "bg-sky-50 text-black border-sky-200 dark:bg-sky-950 dark:text-white dark:border-sky-800",
+  blue: "bg-blue-50 text-black border-blue-200 dark:bg-blue-950 dark:text-white dark:border-blue-800",
   indigo:
-    "bg-indigo-50 text-indigo-900 border-indigo-200 dark:bg-indigo-950 dark:text-indigo-100 dark:border-indigo-800",
+    "bg-indigo-50 text-black border-indigo-200 dark:bg-indigo-950 dark:text-white dark:border-indigo-800",
   violet:
-    "bg-violet-50 text-violet-900 border-violet-200 dark:bg-violet-950 dark:text-violet-100 dark:border-violet-800",
+    "bg-violet-50 text-black border-violet-200 dark:bg-violet-950 dark:text-white dark:border-violet-800",
   purple:
-    "bg-purple-50 text-purple-900 border-purple-200 dark:bg-purple-950 dark:text-purple-100 dark:border-purple-800",
+    "bg-purple-50 text-black border-purple-200 dark:bg-purple-950 dark:text-white dark:border-purple-800",
   fuchsia:
-    "bg-fuchsia-50 text-fuchsia-900 border-fuchsia-200 dark:bg-fuchsia-950 dark:text-fuchsia-100 dark:border-fuchsia-800",
-  pink: "bg-pink-50 text-pink-900 border-pink-200 dark:bg-pink-950 dark:text-pink-100 dark:border-pink-800",
-  rose: "bg-rose-50 text-rose-900 border-rose-200 dark:bg-rose-950 dark:text-rose-100 dark:border-rose-800",
+    "bg-fuchsia-50 text-black border-fuchsia-200 dark:bg-fuchsia-950 dark:text-white dark:border-fuchsia-800",
+  pink: "bg-pink-50 text-black border-pink-200 dark:bg-pink-950 dark:text-white dark:border-pink-800",
+  rose: "bg-rose-50 text-black border-rose-200 dark:bg-rose-950 dark:text-white dark:border-rose-800",
 }
 
 // Solid color variants (for buttons, badges, etc.)
@@ -202,15 +202,15 @@ const outlineColorClasses: Record<ColorVariant, string> = {
     "bg-transparent text-yellow-600 border-yellow-300 hover:bg-yellow-50 dark:text-yellow-400 dark:border-yellow-600 dark:hover:bg-yellow-950",
   info: "bg-transparent text-sky-600 border-sky-300 hover:bg-sky-50 dark:text-sky-400 dark:border-sky-600 dark:hover:bg-sky-950",
   default:
-    "bg-transparent text-gray-200 border-gray-300 hover:bg-gray-50 dark:text-gray-50 dark:border-gray-600 dark:hover:bg-gray-900",
+    "bg-transparent text-gray-600 border-gray-300 hover:bg-gray-50 dark:text-white dark:border-gray-600 dark:hover:bg-gray-900",
   paper:
-    "bg-transparent text-[#0f766e] border-[#e5e3df] hover:bg-[#faf9f6] dark:text-teal-400 dark:border-gray-600 dark:hover:bg-gray-900",
+    "bg-transparent text-stone-600 border-[#e5e3df] hover:bg-[#faf9f6] dark:text-stone-400 dark:border-stone-700 dark:hover:bg-stone-900",
   muted:
-    "bg-transparent text-gray-300 border-gray-300 hover:bg-gray-50 dark:text-gray-100 dark:border-gray-600 dark:hover:bg-gray-900",
+    "bg-transparent text-gray-600 border-gray-300 hover:bg-gray-50 dark:text-white dark:border-gray-600 dark:hover:bg-gray-900",
   accent:
     "bg-transparent text-teal-600 border-teal-300 hover:bg-teal-50 dark:text-teal-400 dark:border-teal-600 dark:hover:bg-teal-950",
   transparent:
-    "bg-transparent text-gray-900 border-transparent hover:bg-gray-100 dark:text-gray-50 dark:hover:bg-gray-800",
+    "bg-transparent text-gray-600 border-transparent hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800",
   custom: "",
   // Full Tailwind Color Spectrum
   slate:
@@ -263,15 +263,15 @@ const ghostColorClasses: Record<ColorVariant, string> = {
     "bg-transparent text-yellow-600 border-transparent hover:bg-yellow-50 dark:text-yellow-400 dark:hover:bg-yellow-950/50",
   info: "bg-transparent text-sky-600 border-transparent hover:bg-sky-50 dark:text-sky-400 dark:hover:bg-sky-950/50",
   default:
-    "bg-transparent text-gray-900 border-transparent hover:bg-gray-50 dark:text-gray-50 dark:hover:bg-gray-900/50",
+    "bg-transparent text-gray-600 border-transparent hover:bg-gray-50 dark:text-white dark:hover:bg-gray-900/50",
   paper:
-    "bg-transparent text-stone-700 border-transparent hover:bg-[#faf9f6] dark:text-stone-300 dark:hover:bg-stone-900/50",
+    "bg-transparent text-stone-600 border-transparent hover:bg-[#faf9f6] dark:text-stone-400 dark:hover:bg-stone-900/50",
   muted:
-    "bg-transparent text-gray-700 border-transparent hover:bg-gray-50 dark:text-gray-100 dark:hover:bg-gray-900/50",
+    "bg-transparent text-gray-600 border-transparent hover:bg-gray-50 dark:text-white dark:hover:bg-gray-900/50",
   accent:
     "bg-transparent text-teal-600 border-transparent hover:bg-teal-50 dark:text-teal-400 dark:hover:bg-teal-950/50",
   transparent:
-    "bg-transparent text-gray-900 border-transparent hover:bg-gray-100/50 dark:text-gray-50 dark:hover:bg-gray-800/50",
+    "bg-transparent text-gray-600 border-transparent hover:bg-gray-100/50 dark:text-gray-400 dark:hover:bg-gray-800/50",
   custom: "",
   // Full Tailwind Color Spectrum
   slate:
@@ -396,20 +396,20 @@ export function getTextColorClasses(
     default: {
       subtle: "text-gray-500 dark:text-gray-400",
       soft: "text-gray-600 dark:text-gray-300",
-      bold: "text-gray-900 dark:text-gray-100",
-      strong: "text-gray-900 dark:text-gray-50",
+      bold: "text-black dark:text-white",
+      strong: "text-black dark:text-white",
     },
     paper: {
-      subtle: "text-stone-600 dark:text-stone-400",
-      soft: "text-stone-700 dark:text-stone-300",
-      bold: "text-stone-800 dark:text-stone-100",
-      strong: "text-stone-900 dark:text-stone-50",
+      subtle: "text-stone-500 dark:text-stone-400",
+      soft: "text-stone-600 dark:text-stone-300",
+      bold: "text-black dark:text-white",
+      strong: "text-black dark:text-white",
     },
     muted: {
       subtle: "text-gray-400 dark:text-gray-500",
-      soft: "text-gray-600 dark:text-gray-400",
-      bold: "text-gray-700 dark:text-gray-300",
-      strong: "text-gray-800 dark:text-gray-100",
+      soft: "text-gray-500 dark:text-gray-400",
+      bold: "text-gray-600 dark:text-gray-300",
+      strong: "text-black dark:text-white",
     },
     accent: {
       subtle: "text-teal-400 dark:text-teal-500",
@@ -420,8 +420,8 @@ export function getTextColorClasses(
     transparent: {
       subtle: "text-gray-500 dark:text-gray-400",
       soft: "text-gray-600 dark:text-gray-300",
-      bold: "text-gray-900 dark:text-gray-100",
-      strong: "text-gray-900 dark:text-gray-50",
+      bold: "text-black dark:text-white",
+      strong: "text-black dark:text-white",
     },
     custom: {
       subtle: "",
@@ -625,8 +625,8 @@ export function getBackgroundColorClasses(
     paper: {
       subtle: "bg-[#faf9f6] dark:bg-stone-950",
       soft: "bg-stone-100 dark:bg-stone-900",
-      bold: "bg-stone-600 dark:bg-stone-600",
-      strong: "bg-stone-700 dark:bg-stone-500",
+      bold: "bg-stone-500 dark:bg-stone-600",
+      strong: "bg-stone-600 dark:bg-stone-500",
     },
     muted: {
       subtle: "bg-gray-100 dark:bg-gray-800/30",
@@ -842,6 +842,71 @@ export function getBorderColorClasses(
 }
 
 /**
+ * Tailwind CSS color contrast mapping based on official color palette
+ * Maps background colors to their optimal text colors (black/white)
+ */
+const tailwindContrastMap: Record<string, string> = {
+  // Gray scale
+  "#f9fafb": "#000000", // gray-50
+  "#f3f4f6": "#000000", // gray-100
+  "#e5e7eb": "#000000", // gray-200
+  "#d1d5db": "#000000", // gray-300
+  "#9ca3af": "#000000", // gray-400
+  "#6b7280": "#ffffff", // gray-500
+  "#4b5563": "#ffffff", // gray-600
+  "#374151": "#ffffff", // gray-700
+  "#1f2937": "#ffffff", // gray-800
+  "#111827": "#ffffff", // gray-900
+  "#030712": "#ffffff", // gray-950
+  
+  // Stone scale (for paper theme)
+  "#fafaf9": "#000000", // stone-50
+  "#f5f5f4": "#000000", // stone-100
+  "#e7e5e4": "#000000", // stone-200
+  "#d6d3d1": "#000000", // stone-300
+  "#a8a29e": "#000000", // stone-400
+  "#78716c": "#ffffff", // stone-500
+  "#57534e": "#ffffff", // stone-600
+  "#44403c": "#ffffff", // stone-700
+  "#292524": "#ffffff", // stone-800
+  "#1c1917": "#ffffff", // stone-900
+  "#0c0a09": "#ffffff", // stone-950
+  
+  // Blue scale
+  "#eff6ff": "#000000", // blue-50
+  "#dbeafe": "#000000", // blue-100
+  "#bfdbfe": "#000000", // blue-200
+  "#93c5fd": "#000000", // blue-300
+  "#60a5fa": "#000000", // blue-400
+  "#3b82f6": "#ffffff", // blue-500
+  "#2563eb": "#ffffff", // blue-600
+  "#1d4ed8": "#ffffff", // blue-700
+  "#1e40af": "#ffffff", // blue-800
+  "#1e3a8a": "#ffffff", // blue-900
+  "#172554": "#ffffff", // blue-950
+  
+  // Custom paper colors
+  "#faf9f6": "#000000", // paper base
+  "#ffffff": "#000000", // white
+  "#e5e3df": "#000000", // paper border
+  "#0f766e": "#ffffff", // paper accent (teal-700)
+}
+
+/**
+ * Get optimal text color using Tailwind contrast mapping
+ */
+function getOptimalTextFromMapping(bgColor: string): "black" | "white" | null {
+  const normalizedBg = bgColor.toLowerCase()
+  const textColor = tailwindContrastMap[normalizedBg]
+  
+  if (!textColor) {
+    return null // Color not found in mapping
+  }
+  
+  return textColor === "#ffffff" ? "white" : "black"
+}
+
+/**
  * Luminance calculation utilities for determining optimal text contrast
  */
 
@@ -934,6 +999,13 @@ export function getOptimalTextColor(
   backgroundColor: string,
   threshold: number = 0.5
 ): "black" | "white" {
+  // First try to use the Tailwind mapping for known colors
+  const fromMapping = getOptimalTextFromMapping(backgroundColor)
+  if (fromMapping !== null) {
+    return fromMapping
+  }
+  
+  // Fallback to luminance calculation for custom colors
   const rgb = hexToRgb(backgroundColor)
   
   if (!rgb) {
@@ -1091,42 +1163,43 @@ export function getColorClassesWithLuminance(
   
   // Extract background color for solid variants to calculate optimal text
   if (style === "solid") {
+    // Color values for solid variants (600 level) based on TW mapping
     const colorMap: Record<ColorVariant, string> = {
-      primary: "#3b82f6",
-      secondary: "#64748b", 
-      danger: "#ef4444",
-      success: "#10b981",
-      warning: "#f59e0b",
-      info: "#0ea5e9",
-      default: "#6b7280",
-      paper: "#0f766e",
-      muted: "#9ca3af",
-      accent: "#14b8a6",
+      primary: "#2563eb", // blue-600
+      secondary: "#475569", // slate-600
+      danger: "#dc2626", // red-600
+      success: "#16a34a", // green-600
+      warning: "#d97706", // amber-600
+      info: "#0284c7", // sky-600
+      default: "#4b5563", // gray-600
+      paper: "#57534e", // stone-600
+      muted: "#6b7280", // gray-500
+      accent: "#0d9488", // teal-600
       transparent: "transparent",
       custom: "",
-      // Tailwind color spectrum
-      slate: "#64748b",
-      gray: "#6b7280",
-      zinc: "#71717a",
-      neutral: "#737373",
-      stone: "#78716c",
-      red: "#ef4444",
-      orange: "#f97316",
-      amber: "#f59e0b",
-      yellow: "#eab308",
-      lime: "#84cc16",
-      green: "#22c55e",
-      emerald: "#10b981",
-      teal: "#14b8a6",
-      cyan: "#06b6d4",
-      sky: "#0ea5e9",
-      blue: "#3b82f6",
-      indigo: "#6366f1",
-      violet: "#8b5cf6",
-      purple: "#a855f7",
-      fuchsia: "#d946ef",
-      pink: "#ec4899",
-      rose: "#f43f5e",
+      // Tailwind color spectrum (600 level)
+      slate: "#475569",
+      gray: "#4b5563",
+      zinc: "#52525b",
+      neutral: "#525252",
+      stone: "#57534e",
+      red: "#dc2626",
+      orange: "#ea580c",
+      amber: "#d97706",
+      yellow: "#ca8a04",
+      lime: "#65a30d",
+      green: "#16a34a",
+      emerald: "#059669",
+      teal: "#0d9488",
+      cyan: "#0891b2",
+      sky: "#0284c7",
+      blue: "#2563eb",
+      indigo: "#4f46e5",
+      violet: "#7c3aed",
+      purple: "#9333ea",
+      fuchsia: "#c026d3",
+      pink: "#db2777",
+      rose: "#e11d48",
     }
     
     const bgColor = colorMap[color]

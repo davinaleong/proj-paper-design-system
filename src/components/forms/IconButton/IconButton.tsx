@@ -2,7 +2,7 @@ import { forwardRef } from "react"
 import { Loader2 } from "lucide-react"
 import type { IconButtonProps } from "./types"
 import { cn } from "../../../utils/cn.js"
-import { getColorClassesWithLuminance } from "../../../utils/colors"
+import { getColorClasses } from "../../../utils/colors"
 
 // Square icon button sizes following paper theme
 const sizeClasses = {
@@ -99,10 +99,9 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(({
     
     // Apply color classes for non-plain variants
     variant !== "plain" &&
-      getColorClassesWithLuminance(
+      getColorClasses(
         color,
-        variant === "solid" ? "solid" : variant === "outline" ? "outline" : variant === "ghost" ? "ghost" : "soft",
-        true  // Enable automatic optimal text color calculation
+        variant === "solid" ? "solid" : variant === "outline" ? "outline" : variant === "ghost" ? "ghost" : "soft"
       ),
     
     className

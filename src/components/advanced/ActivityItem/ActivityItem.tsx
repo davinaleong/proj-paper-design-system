@@ -229,7 +229,7 @@ export function ActivityItem({
                   icon={isCollapsed ? ChevronRight : ChevronDown}
                   variant="ghost"
                   size="sm"
-                  className={cn('text-stone-400 hover:text-stone-600', classes.iconAction)}
+                  className={cn('text-stone-400 hover:text-stone-600 dark:text-stone-500 dark:hover:text-stone-300', classes.iconAction)}
                   onClick={handleToggleCollapse}
                   aria-label={isCollapsed ? 'Expand details' : 'Collapse details'}
                 />
@@ -241,7 +241,7 @@ export function ActivityItem({
                   icon={MoreHorizontal}
                   variant="ghost"
                   size="sm"
-                  className={cn('text-stone-400 hover:text-stone-600', classes.iconAction)}
+                  className={cn('text-stone-400 hover:text-stone-600 dark:text-stone-500 dark:hover:text-stone-300', classes.iconAction)}
                   onClick={handleShowActions}
                   aria-label="Show actions"
                 />
