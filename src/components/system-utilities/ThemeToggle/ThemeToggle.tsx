@@ -206,10 +206,10 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
               isLast && "rounded-b-sm"
             ],
             isActive ? [
-              "bg-white text-gray-200 dark:bg-gray-800 dark:text-gray-50 shadow-sm",
-              "border border-stone-200 dark:border-gray-600"
+              "bg-white text-slate-900 shadow-sm",
+              "border border-stone-200"
             ] : [
-              "text-gray-300 hover:text-gray-200 dark:text-gray-400 dark:hover:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-800/50"
+              "text-slate-600 hover:text-slate-900 hover:bg-stone-50"
             ],
             (disabled || option.disabled) && "cursor-not-allowed opacity-50",
             compact && "px-2 py-1",
@@ -327,13 +327,13 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
     return (
       <div className={cn("flex flex-col gap-2", className)}>
         {label && (
-          <Typography variant="bodySmall" className="font-medium text-gray-200 dark:text-gray-50">
+          <Typography variant="bodySmall" className="font-medium text-slate-900">
             {label}
           </Typography>
         )}
         {renderToggle()}
         {helperText && (
-          <Typography variant="caption" className="text-gray-300 dark:text-gray-100">
+          <Typography variant="caption" className="text-slate-600">
             {helperText}
           </Typography>
         )}
