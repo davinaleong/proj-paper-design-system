@@ -10,7 +10,7 @@ import type {
 import type { ColorVariant } from "../../../utils/colors"
 
 const DEFAULT_THEME: ThemeConfig = {
-  mode: "paper",
+  mode: "light", // Default to light (paper aesthetic)
   accentColor: "primary",
   radius: "md",
   elevation: "sm",
@@ -53,6 +53,32 @@ export function ThemeProvider({
     return { ...DEFAULT_THEME, ...defaultTheme }
   })
 
+  // Track system preference
+  const [systemPrefersDark, setSystemPrefersDark] = useState(false)
+
+  // Listen for system preference changes
+  useEffect(() => {
+    if (typeof window === "undefined") return
+
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
+    setSystemPrefersDark(mediaQuery.matches)
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setSystemPrefersDark(e.matches)
+    }
+
+    mediaQuery.addEventListener("change", handleChange)
+    return () => mediaQuery.removeEventListener("change", handleChange)
+  }, [])
+
+  // Resolve actual theme based on mode and system preference
+  const actualTheme: "light" | "dark" = 
+    theme.mode === "auto" 
+      ? (systemPrefersDark ? "dark" : "light")
+      : theme.mode === "dark" 
+        ? "dark" 
+        : "light"
+
   // Persist theme changes to localStorage
   useEffect(() => {
     if (typeof window !== "undefined" && persistKey && persistKey !== null) {
@@ -71,7 +97,7 @@ export function ThemeProvider({
     const root = document.documentElement
 
     // Remove existing theme classes and data attributes
-    root.classList.remove("light", "dark", "paper")
+    root.classList.remove("light", "dark")
     root.removeAttribute("data-theme")
     Object.values(RADIUS_CLASSES).forEach((cls) => {
       root.classList.remove(cls)
@@ -80,42 +106,41 @@ export function ThemeProvider({
       root.classList.remove(cls)
     })
 
-    // Apply current theme classes and data attributes
-    root.classList.add(theme.mode)
-    root.setAttribute("data-theme", theme.mode)
+    // Apply actual theme classes and data attributes
+    root.classList.add(actualTheme)
+    root.setAttribute("data-theme", actualTheme)
 
     // For Tailwind dark mode compatibility
-    if (theme.mode === "dark") {
+    if (actualTheme === "dark") {
       root.classList.add("dark")
     } else {
       root.classList.remove("dark")
     }
 
     // Debug logging
-    console.log("Theme changed to:", theme.mode)
+    console.log("Theme mode:", theme.mode, "→ Actual theme:", actualTheme)
     console.log("Document classes:", root.classList.toString())
     console.log("Data theme attribute:", root.getAttribute("data-theme"))
 
     // Set CSS custom properties for theme values
-    root.style.setProperty("--theme-mode", theme.mode)
+    root.style.setProperty("--theme-mode", actualTheme)
     root.style.setProperty("--theme-accent", theme.accentColor)
     root.style.setProperty("--theme-radius", theme.radius)
     root.style.setProperty("--theme-elevation", theme.elevation)
 
-    // Set theme-specific background colors
-    switch (theme.mode) {
-      case "light":
-        root.style.setProperty("--theme-bg", "#ffffff")
-        root.style.setProperty("--theme-text", "#1f2937")
-        break
-      case "dark":
-        root.style.setProperty("--theme-bg", "#111827")
-        root.style.setProperty("--theme-text", "#f9fafb")
-        break
-      case "paper":
-        root.style.setProperty("--theme-bg", "#faf9f6")
-        root.style.setProperty("--theme-text", "#44403c")
-        break
+    // Set theme-specific colors based on DARK_MODE_PLAN.md
+    if (actualTheme === "dark") {
+      // Dark Theme (Warm Complement) - stone palette
+      root.style.setProperty("--theme-bg", "#0c0a09")      // stone-950
+      root.style.setProperty("--theme-text", "#fafaf9")    // stone-50
+      root.style.setProperty("--theme-panel-bg", "#1c1917") // stone-900
+      root.style.setProperty("--theme-panel-border", "#57534e") // stone-600
+    } else {
+      // Light Theme (Paper Aesthetic) - warm stone tones
+      root.style.setProperty("--theme-bg", "#faf9f6")      // Custom warm
+      root.style.setProperty("--theme-text", "#44403c")    // stone-700
+      root.style.setProperty("--theme-panel-bg", "#f5f5f4") // stone-100
+      root.style.setProperty("--theme-panel-border", "#d6d3d1") // stone-300
     }
 
     // Add specific classes for radius and elevation if needed
@@ -124,11 +149,23 @@ export function ThemeProvider({
 
     if (radiusClass) root.classList.add(`default-${radiusClass}`)
     if (elevationClass) root.classList.add(`default-${elevationClass}`)
-  }, [theme])
+  }, [theme, actualTheme])
 
   // Theme setters
   const setMode = useCallback((mode: ThemeMode) => {
     setTheme((prev) => ({ ...prev, mode }))
+  }, [])
+
+  const setLightTheme = useCallback(() => {
+    setTheme((prev) => ({ ...prev, mode: "light" }))
+  }, [])
+
+  const setDarkTheme = useCallback(() => {
+    setTheme((prev) => ({ ...prev, mode: "dark" }))
+  }, [])
+
+  const setAutoTheme = useCallback(() => {
+    setTheme((prev) => ({ ...prev, mode: "auto" }))
   }, [])
 
   const setAccentColor = useCallback((accentColor: ColorVariant) => {
@@ -149,7 +186,11 @@ export function ThemeProvider({
 
   const contextValue = {
     ...theme,
+    actualTheme,
     setMode,
+    setLightTheme,
+    setDarkTheme,
+    setAutoTheme,
     setAccentColor,
     setRadius,
     setElevation,

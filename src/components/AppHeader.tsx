@@ -11,20 +11,15 @@ interface AppHeaderProps {
 export function AppHeader({ onMobileMenuClick }: AppHeaderProps) {
   const theme = useTheme()
 
-  // Get theme-specific classes
+  // Get theme-specific classes based on DARK_MODE_PLAN.md
   const getThemeClasses = () => {
-    switch (theme.mode) {
-      case 'light':
-        return {
-          background: 'bg-white/80 border-gray-200',
-          text: 'text-gray-800'
-        }
+    switch (theme.actualTheme) {
       case 'dark':
         return {
-          background: 'bg-gray-900/80 border-gray-700',
-          text: 'text-gray-50'
+          background: 'bg-stone-900/80 border-stone-600',
+          text: 'text-stone-50'
         }
-      case 'paper':
+      case 'light':
       default:
         return {
           background: 'bg-[#faf9f6]/80 border-stone-200',

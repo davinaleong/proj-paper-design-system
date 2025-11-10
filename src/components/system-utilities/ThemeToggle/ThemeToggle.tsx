@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState, useContext } from "react"
-import { Sun, Moon, Palette, Monitor } from "lucide-react"
+import { Sun, Moon, Monitor } from "lucide-react"
 import type { ThemeToggleProps, ThemeToggleOption, ThemeToggleMode } from "./types"
 import type { IconButtonVariant } from "../../forms/IconButton/types"
 import { Button } from "../../forms/Button"
@@ -18,28 +18,21 @@ const defaultThemeOptions: ThemeToggleOption[] = [
     mode: "light",
     label: "Light",
     icon: Sun,
-    description: "Light theme with bright colors"
+    description: "Light theme with warm paper aesthetic"
   },
   {
     id: "dark", 
     mode: "dark",
     label: "Dark",
     icon: Moon,
-    description: "Dark theme with muted colors"
-  },
-  {
-    id: "paper",
-    mode: "paper", 
-    label: "Paper",
-    icon: Palette,
-    description: "Warm paper theme with cream background"
+    description: "Dark theme with warm stone colors"
   },
   {
     id: "auto",
     mode: "auto",
     label: "Auto",
     icon: Monitor,
-    description: "Follow system preference"
+    description: "Follow system preference (light/dark)"
   }
 ]
 
@@ -53,8 +46,8 @@ const sizeClasses = {
 
 export const ThemeToggle: React.FC<ThemeToggleProps> = ({
   value,
-  defaultValue = "paper",
-  options = defaultThemeOptions.slice(0, 3), // Default to light, dark, paper
+  defaultValue = "light",
+  options = defaultThemeOptions, // Default to light, dark, auto
   variant = "buttons",
   size = "sm",
   buttonVariant = "ghost",
@@ -87,9 +80,17 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({
     if (onChange) {
       onChange(mode)
     } else if (theme) {
-      // Update theme context
-      if (mode === "light" || mode === "dark" || mode === "paper") {
-        theme.setMode(mode)
+      // Update theme context using the new API
+      switch (mode) {
+        case "light":
+          theme.setLightTheme()
+          break
+        case "dark":
+          theme.setDarkTheme()
+          break
+        case "auto":
+          theme.setAutoTheme()
+          break
       }
     } else {
       setInternalValue(mode)

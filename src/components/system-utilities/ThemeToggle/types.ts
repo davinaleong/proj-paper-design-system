@@ -3,7 +3,7 @@ import type { LucideIcon } from "lucide-react"
 import type { ButtonVariant, ButtonSize } from "../../forms/Button/types"
 import type { ColorVariant } from "../../../utils/colors"
 
-export type ThemeToggleMode = "light" | "dark" | "paper" | "auto"
+export type ThemeToggleMode = "light" | "dark" | "auto"
 
 export type ThemeToggleVariant = "buttons" | "dropdown" | "segmented"
 
