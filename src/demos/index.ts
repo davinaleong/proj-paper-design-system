@@ -104,3 +104,4 @@ export {
 
 // Export utility components
 export { PaginationScrollTest } from "./PaginationScrollTest"
+export { default as PaperColorsTest } from "./PaperColorsTest"

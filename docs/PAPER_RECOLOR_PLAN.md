@@ -1,78 +1,142 @@
-# Dark Mode Implementation Plan
+# Paper Recolor Implementation Plan
 ## Paper Design System
 
-*Last Updated: 9 November 2025*
+*Last Updated: 10 November 2025*
 
 ---
 
 ## 🎯 **Objective**
 
-Create a comprehensive dark mode implementation across the entire Paper Design System that maintains visual consistency, proper contrast ratios, and the desired light gray aesthetic while ensuring excellent user experience across all theme modes.
+Implement a refined two-theme color system for the Paper Design System using the "Minimal Warm" light theme and a complementary "Black Paper" dark theme. Focus on clean, texture-free aesthetics that work perfectly with Tailwind colors and provide excellent readability across all components.
 
 ---
 
-## 📋 **Current Status Overview**
+## 🎨 **Chosen Color Themes**
 
-### ✅ **Completed Components**
-- [ ] **ThemeProvider** - Context-based theme management
-- [ ] **Paper Component** - Dark backgrounds and borders
-- [ ] **Typography System** - Context-aware text colors
-- [ ] **IconButton Component** - Full dark mode support
-- [ ] **ThemeToggle Component** - Dark theme button states
-- [ ] **AppHeader Component** - Theme-aware navigation
-- [ ] **Toast Component** - All variants updated
-- [ ] **StaticTable Component** - Header and text colors
-- [ ] **ActivityFeed Component** - Title colors
-- [ ] **CodeSnippet Component** - Text and button colors
-- [ ] **Tabs Component** - Inactive tab states
-- [ ] **Core Foundation Showcase** - Demo implementation
+### **Light Theme: "Minimal Warm"** ✅ *Selected*
+Based on the "Recommended: Minimal Warm" from the color test, this provides a soft, paper-like feel that's easy on the eyes.
 
-### 🔄 **In Progress Components**
-- [ ] **Form Controls** (Buttons, Inputs, Selects, etc.)
-- [ ] **Navigation Components** (Sidebar, Breadcrumbs, Menu)
-- [ ] **Data Display Components** (Tables, Lists, Cards)
-- [ ] **Layout Components** (Grid, Stack, Flex)
-- [ ] **Overlay Components** (Modals, Tooltips, Dropdowns)
+```css
+/* Light Theme - Minimal Warm */
+--light-bg-primary: #fcfbf9        /* Main background - soft paper white */
+--light-bg-secondary: #f8f7f4      /* Panel/card backgrounds */
+--light-bg-elevated: #f4f3f0       /* Hover states */
+--light-text-primary: #1a1917      /* Primary text - warm near-black */
+--light-text-secondary: #4a4945    /* Secondary text */
+--light-text-muted: #6b6a66        /* Muted text */
+--light-text-subtle: #9c9b96       /* Subtle text */
+--light-border-light: #f0efeb      /* Subtle borders */
+--light-border-medium: #e8e6e0     /* Panel borders */
+--light-border-strong: #d6d3d1     /* Emphasis borders */
+```
 
-### ❌ **Not Started**
-- [ ] **Feature Showcases** - All demo pages
-- [ ] **Advanced UX Components**
-- [ ] **System Utilities**
-- [ ] **Documentation Examples**
+### **Dark Theme: "Black Paper"** ✨ *New Design*
+A sophisticated black paper aesthetic with no texture - smooth, elegant, and perfectly complementary to the warm light theme.
+
+```css
+/* Dark Theme - Black Paper */
+--dark-bg-primary: #0a0a0a         /* Main background - smooth black paper */
+--dark-bg-secondary: #1a1a1a       /* Panel/card backgrounds */
+--dark-bg-elevated: #242424        /* Hover states */
+--dark-text-primary: #f8f8f8       /* Primary text - soft white */
+--dark-text-secondary: #d4d4d4     /* Secondary text - light gray */
+--dark-text-muted: #a8a8a8         /* Muted text - medium gray */
+--dark-text-subtle: #6b6b6b        /* Subtle text - darker gray */
+--dark-border-light: #2a2a2a       /* Subtle borders */
+--dark-border-medium: #383838      /* Panel borders */
+--dark-border-strong: #4a4a4a      /* Emphasis borders */
+```
 
 ---
 
-## 🏗️ **Architecture & Design Principles**
+## 🔄 **Theme Relationship & Harmony**
 
-### **Color Strategy**
-1. **Warm Complementary Palette**:
-   - **Unified Stone Palette**: Both light and dark themes use stone color family
-   - **Light Theme**: Warm paper tones (`#faf9f6` base, stone-100 panels)
-   - **Dark Theme**: Deep warm tones (stone-950 base, stone-900 panels)
-   - **Consistent Warmth**: Maintains paper aesthetic across all themes
+### **Complementary Design Philosophy**
+The two themes create a perfect contrast while maintaining visual consistency:
 
-2. **Context-Aware Text Colors**:
-   - **Global/Default**: Warm stone text in light mode, warm light text in dark mode
-   - **Paper Aesthetic**: Consistent stone tones provide natural, paper-like appearance
-   - **Semantic Colors**: Proper contrast maintained for success, danger, warning, info
+| Element | Light Theme (Minimal Warm) | Dark Theme (Black Paper) | Relationship |
+|---------|----------------------------|---------------------------|--------------|
+| **Base** | `#fcfbf9` (Soft paper white) | `#0a0a0a` (Smooth black) | Warm light ↔ Pure black |
+| **Panels** | `#f8f7f4` (Warm panel) | `#1a1a1a` (Dark panel) | Subtle warm ↔ Deep neutral |
+| **Text** | `#1a1917` (Warm near-black) | `#f8f8f8` (Soft white) | Near-black ↔ Near-white |
+| **Muted** | `#6b6a66` (Warm gray) | `#a8a8a8` (Cool gray) | Medium warm ↔ Medium cool |
 
-3. **Background Approach**:
-   - **Base Backgrounds**: `bg-[#faf9f6] dark:bg-stone-950` (Warm paper aesthetic)
-   - **Panel Components**: `bg-stone-100 dark:bg-stone-900`
-   - **Elevated Surfaces**: Proper contrast with shadow adaptations
-   - **Transparent Elements**: Theme-aware hover states
+### **Why This Pairing Works**
+1. **Visual Balance**: Light warmth balanced by cool darkness
+2. **Excellent Contrast**: Both themes provide WCAG AA+ compliance
+3. **Tailwind Harmony**: Both backgrounds work perfectly with TW color system
+4. **No Texture**: Clean, modern appearance focusing on content
+5. **Professional Feel**: Sophisticated for business applications
 
-4. **Border System**:
-   - **Light Borders**: `border-stone-200 dark:border-stone-700`
-   - **Panel Borders**: `border-stone-300 dark:border-stone-600`
-   - **Interactive States**: Hover/focus states for all themes
+## 🎨 **Color Specifications**
 
-### **Implementation Layers**
-1. **CSS Custom Properties** (`index.css`)
-2. **JavaScript Theme Management** (`ThemeProvider.tsx`)
-3. **Color Utility Functions** (`colors.ts`)
-4. **Component-Level Implementation**
-5. **Application-Level Styling** (`App.tsx`, `AppHeader.tsx`)
+### **Light Theme Implementation**
+```scss
+// Base backgrounds
+.light {
+  --theme-bg-primary: #fcfbf9;
+  --theme-bg-secondary: #f8f7f4;
+  --theme-bg-elevated: #f4f3f0;
+  
+  // Text colors
+  --theme-text-primary: #1a1917;
+  --theme-text-secondary: #4a4945;
+  --theme-text-muted: #6b6a66;
+  --theme-text-subtle: #9c9b96;
+  
+  // Borders
+  --theme-border-light: #f0efeb;
+  --theme-border-medium: #e8e6e0;
+  --theme-border-strong: #d6d3d1;
+}
+```
+
+#### **Tailwind Class Implementation**
+```tsx
+// Light theme classes
+className="bg-[#fcfbf9]"              // Main background
+className="bg-[#f8f7f4]"              // Panel background
+className="bg-[#f4f3f0]"              // Hover states
+className="text-[#1a1917]"            // Primary text
+className="text-[#4a4945]"            // Secondary text
+className="text-[#6b6a66]"            // Muted text
+className="border-[#e8e6e0]"          // Panel borders
+className="border-[#f0efeb]"          // Subtle borders
+```
+
+### **Dark Theme Implementation**
+```scss
+// Base backgrounds
+.dark {
+  --theme-bg-primary: #0a0a0a;
+  --theme-bg-secondary: #1a1a1a;
+  --theme-bg-elevated: #242424;
+  
+  // Text colors
+  --theme-text-primary: #f8f8f8;
+  --theme-text-secondary: #d4d4d4;
+  --theme-text-muted: #a8a8a8;
+  --theme-text-subtle: #6b6b6b;
+  
+  // Borders
+  --theme-border-light: #2a2a2a;
+  --theme-border-medium: #383838;
+  --theme-border-strong: #4a4a4a;
+}
+```
+
+#### **Tailwind Class Implementation**
+```tsx
+// Dark theme classes
+className="dark:bg-[#0a0a0a]"         // Main background
+className="dark:bg-[#1a1a1a]"         // Panel background
+className="dark:bg-[#242424]"         // Hover states
+className="dark:text-[#f8f8f8]"       // Primary text
+className="dark:text-[#d4d4d4]"       // Secondary text
+className="dark:text-[#a8a8a8]"       // Muted text
+className="dark:border-[#383838]"     // Panel borders
+className="dark:border-[#2a2a2a]"     // Subtle borders
+```
 
 ---
 

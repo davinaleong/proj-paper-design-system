@@ -78,6 +78,7 @@ function App() {
       icon: Home,
       children: [
         { id: "overview", label: "Overview", href: "#overview" },
+        { id: "paper-colors", label: "Paper Colors Test", href: "#paper-colors" },
         { id: "luminance", label: "Luminance-Based Text Colors", href: "#luminance" },
         { id: "typography", label: "Typography", href: "#typography" },
         { id: "layout", label: "Layout", href: "#layout" },
