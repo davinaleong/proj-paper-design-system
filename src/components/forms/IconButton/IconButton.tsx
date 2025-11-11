@@ -2,7 +2,7 @@ import { forwardRef } from "react"
 import { Loader2 } from "lucide-react"
 import type { IconButtonProps } from "./types"
 import { cn } from "../../../utils/cn.js"
-import { getColorClasses } from "../../../utils/colors"
+import { getColorClasses } from "../../../utils/color"
 
 // Square icon button sizes following paper theme
 const sizeClasses = {

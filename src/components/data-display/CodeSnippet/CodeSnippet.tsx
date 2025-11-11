@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react"
 import { Copy, Check, FileText } from "lucide-react"
 import { cn } from "../../../utils/cn"
-import { getColorClasses } from "../../../utils/colors"
+import { getColorClasses } from "../../../utils/color"
 import type { CodeSnippetProps, CodeSnippetSize, CodeSnippetVariant } from "./types"
 
 // Size classes

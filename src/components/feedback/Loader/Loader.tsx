@@ -1,6 +1,6 @@
 import { forwardRef } from "react"
 import { cn } from "../../../utils"
-import { getTextColorClasses } from "../../../utils/colors"
+import { getTextColorClasses } from "../../../utils/color"
 import type { LoaderProps } from "./types"
 import "./Loader.css"
 

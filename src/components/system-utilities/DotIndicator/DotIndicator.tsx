@@ -1,8 +1,8 @@
 import { forwardRef } from "react"
 import type { DotIndicatorProps } from "./types"
 import { cn } from "../../../utils/cn.js"
-import { getColorClasses } from "../../../utils/colors"
-import type { ColorStyle } from "../../../utils/colors"
+import { getColorClasses } from "../../../utils/color"
+import type { ColorStyle } from "../../../utils/color"
 
 const sizeClasses = {
   xs: "w-1 h-1",

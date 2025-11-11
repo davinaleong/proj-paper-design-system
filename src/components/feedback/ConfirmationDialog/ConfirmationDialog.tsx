@@ -1,6 +1,6 @@
 import { useEffect, useRef, useCallback } from "react"
 import { cn } from "../../../utils/cn"
-import { getColorClassesWithLuminance, getOptimalTextClasses, type ColorVariant } from "../../../utils/colors"
+import { getColorClassesWithLuminance, getOptimalTextClasses, type ColorVariant } from "../../../utils/color"
 import { Typography } from "../../core"
 import { Button } from "../../forms"
 import type { ConfirmationDialogProps, ConfirmationDialogAction } from "./types"

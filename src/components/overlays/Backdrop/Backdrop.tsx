@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { createPortal } from "react-dom"
 import { cn } from "../../../utils"
 import type { BackdropProps, BackdropVariant } from "./types"
-import type { ColorVariant } from "../../../utils/colors"
+import type { ColorVariant } from "../../../utils/color"
 
 const getPatternSvg = (pattern: string, intensity: string) => {
   const opacity = intensity === "subtle" ? "0.1" : intensity === "medium" ? "0.2" : "0.3"

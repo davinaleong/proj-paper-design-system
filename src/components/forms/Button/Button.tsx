@@ -2,7 +2,7 @@ import { Loader2 } from "lucide-react"
 import { forwardRef } from "react"
 import type { ButtonProps } from "./types"
 import { cn } from "../../../utils/cn.js"
-import { getColorClassesWithLuminance } from "../../../utils/colors"
+import { getColorClassesWithLuminance } from "../../../utils/color"
 import { containerResponsiveUI } from "../../../utils/containerFonts"
 
 const sizeClasses = {

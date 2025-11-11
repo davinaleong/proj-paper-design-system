@@ -2,7 +2,7 @@ import React, { useMemo, useCallback } from "react"
 import { ChevronLeft, ChevronRight, Calendar as CalendarIcon } from "lucide-react"
 import type { CalendarProps, CalendarCell, CalendarView } from "./types"
 import { cn } from "../../../utils/cn.js"
-import { getColorClassesWithLuminance } from "../../../utils/colors"
+import { getColorClassesWithLuminance } from "../../../utils/color"
 import { containerResponsiveUI } from "../../../utils/containerFonts"
 import { Button } from "../Button/Button"
 

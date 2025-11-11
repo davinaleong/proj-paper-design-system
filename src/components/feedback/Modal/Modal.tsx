@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react"
 import { createPortal } from "react-dom"
 import { cn } from "../../../utils/cn"
-import { getColorClassesWithLuminance, getOptimalTextClasses, type ColorVariant } from "../../../utils/colors"
+import { getColorClassesWithLuminance, getOptimalTextClasses, type ColorVariant } from "../../../utils/color"
 import type { ModalProps, ModalState } from "./types"
 import { ModalHeader } from "./ModalHeader"
 import { ModalBody } from "./ModalBody"

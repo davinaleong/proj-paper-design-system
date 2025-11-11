@@ -1,6 +1,6 @@
 import { Loader2, Loader, RefreshCw, RotateCcw, CircleDashed, X } from "lucide-react"
 import { cn } from "../../../utils/cn"
-import { getColorClassesWithLuminance, getOptimalTextClasses, type ColorVariant } from "../../../utils/colors"
+import { getColorClassesWithLuminance, getOptimalTextClasses, type ColorVariant } from "../../../utils/color"
 import { Typography } from "../../core"
 import { IconButton } from "../../forms"
 import type { LoadingSpinnerProps, LoadingSpinnerIcon, LoadingSpinnerTextPosition } from "./types"

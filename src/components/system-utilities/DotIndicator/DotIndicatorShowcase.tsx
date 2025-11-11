@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { DotIndicator } from "./DotIndicator"
 import type { DotIndicatorSize, DotIndicatorVariant } from "./types"
-import type { ColorVariant } from "../../../utils/colors"
+import type { ColorVariant } from "../../../utils/color"
 import { Stack } from "../../layout/Stack"
 import { Flex } from "../../layout/Flex"
 import { Typography } from "../../core/Typography"

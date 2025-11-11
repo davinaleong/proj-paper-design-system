@@ -1,6 +1,7 @@
-import type { ColorVariant } from "../../../utils/colors"
-import type { ThemeElevation } from "../ThemeProvider/types"
+import type { BackgroundLevel } from "../../../utils/color"
 import type { ElementType, ReactNode } from "react"
+
+export type ThemeElevation = "none" | "sm" | "md" | "lg" | "xl"
 
 export type PaperVariant = "flat" | "elevated" | "outlined"
 
@@ -25,12 +26,12 @@ export interface PaperProps {
   /**
    * Background color variant
    */
-  background?: ColorVariant
+  background?: BackgroundLevel | "paper"
 
   /**
    * Border color variant (for outlined variant)
    */
-  borderColor?: ColorVariant
+  borderColor?: BackgroundLevel
 
   /**
    * Whether to show subtle paper texture

@@ -1,6 +1,6 @@
 import type { BadgeProps } from "./types"
 import { cn } from "../../../utils/cn.js"
-import { getColorClasses } from "../../../utils/colors"
+import { getColorClasses } from "../../../utils/color"
 
 const sizeClasses = {
   xs: "px-1.5 py-0.5 text-xs",

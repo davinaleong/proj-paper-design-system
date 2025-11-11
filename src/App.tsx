@@ -16,7 +16,6 @@ import {
   ModalShowcase,
   ConfirmationDialogShowcase,
   LoadingSpinnerShowcase,
-  LuminanceShowcase,
   ProgressCircleShowcase,
   ProgressBarShowcase,
   EmptyStateShowcase,
@@ -60,8 +59,6 @@ import {
   NotificationCenterShowcase,
   UserMenuShowcase,
   ThemePreviewShowcase,
-  PaperColorsTest,
-  ColorUtilityTest,
 } from "./demos"
 import "./App.css"
 
@@ -256,10 +253,6 @@ function App() {
 
         <Divider className="my-12" />
 
-        <section id="luminance" className="mb-8">
-          <LuminanceShowcase />
-        </section>
-
         <section id="typography" className="mb-8">
           <TypographyShowcase />
         </section>
@@ -294,14 +287,6 @@ function App() {
 
         <section id="layout" className="mb-8">
           <LayoutShowcase />
-        </section>
-
-        <section id="paper-colors" className="mb-8">
-          <PaperColorsTest />
-        </section>
-
-        <section id="color-utils" className="mb-8">
-          <ColorUtilityTest />
         </section>
 
         <section id="ui-primitives" className="mb-8">

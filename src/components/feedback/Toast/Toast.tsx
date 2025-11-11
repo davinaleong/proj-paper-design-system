@@ -1,7 +1,7 @@
 import { forwardRef, useEffect, useState, useRef, useCallback } from "react"
 import { X, CheckCircle, AlertCircle, AlertTriangle, Info, Bell } from "lucide-react"
 import { cn } from "../../../utils/cn"
-import { getBackgroundColorClasses, getTextColorClasses, getBorderColorClasses } from "../../../utils/colors"
+import { getBackgroundColorClasses, getTextColorClasses, getBorderColorClasses } from "../../../utils/color"
 import { IconButton } from "../../forms/IconButton"
 import type { ToastProps, ToastColor } from "./types"
 

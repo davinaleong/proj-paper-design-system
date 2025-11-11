@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Loader } from "./Loader"
 import { Paper, Typography } from "../../core"
 import { Stack, Grid, Divider } from "../../layout"
-import type { ColorVariant } from "../../../utils/colors"
+import type { ColorVariant } from "../../../utils/color"
 import type { LoaderSize } from "./types"
 
 export function LoaderShowcase() {

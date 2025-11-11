@@ -1,6 +1,6 @@
 import { forwardRef } from "react"
 import { cn } from "../../../utils"
-import { getColorClasses } from "../../../utils/colors"
+import { getColorClasses } from "../../../utils/color"
 import type { SkeletonProps } from "./types"
 import "./Skeleton.css"
 

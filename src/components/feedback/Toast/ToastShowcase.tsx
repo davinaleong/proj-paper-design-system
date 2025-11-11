@@ -12,7 +12,7 @@ import { Grid } from "../../layout/Grid"
 import { Section } from "../../layout/Section"
 import { Bell, Heart, Star } from "lucide-react"
 import type { ToastVariant, ToastPosition } from "./types"
-import type { ColorVariant } from "../../../utils/colors"
+import type { ColorVariant } from "../../../utils/color"
 
 const variants: ToastVariant[] = ["solid", "outline", "ghost", "soft", "plain"]
 const positions: ToastPosition[] = [

@@ -335,3 +335,33 @@ export const COLOR_MAPPINGS = {
   /** #ffffff mapped to soft white */  
   WHITE_TO_SOFT_WHITE: paperThemeColors.dark.text.primary,   // "#f8f8f8"
 } as const
+
+// Legacy compatibility functions for existing components
+export type ColorVariant = BackgroundLevel
+
+export function getBackgroundColorClasses(variant: ColorVariant, theme: PaperThemeMode = "light"): string {
+  return getTailwindClass("bg", variant, theme)
+}
+
+export function getTextColorClasses(variant: TextLevel, theme: PaperThemeMode = "light"): string {
+  return getTailwindClass("text", variant, theme)
+}
+
+export function getBorderColorClasses(variant: BorderLevel, theme: PaperThemeMode = "light"): string {
+  return getTailwindClass("border", variant, theme)
+}
+
+export function getColorClasses(variant: ColorVariant, theme: PaperThemeMode = "light"): string {
+  return getBackgroundColorClasses(variant, theme)
+}
+
+export function getColorClassesWithLuminance(variant: ColorVariant, theme: PaperThemeMode = "light"): string {
+  const bgClass = getBackgroundColorClasses(variant, theme)
+  const textColor = getOptimalTextColorForBackground(getBackgroundColor(variant, theme), theme)
+  return `${bgClass} text-[${textColor}]`
+}
+
+export function getOptimalTextClasses(backgroundColor: string, theme: PaperThemeMode = "light"): string {
+  const textColor = getOptimalTextColorForBackground(backgroundColor, theme)
+  return `text-[${textColor}]`
+}

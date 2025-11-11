@@ -1,6 +1,6 @@
 import { forwardRef } from "react"
 import clsx from "clsx"
-import { getTextColorClasses } from "../../../utils/colors"
+import { getTextColorClasses } from "../../../utils/color"
 import type { IconProps } from "./types"
 
 const SIZE_CLASSES = {

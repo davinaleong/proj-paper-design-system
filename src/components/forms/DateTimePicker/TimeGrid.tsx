@@ -2,7 +2,7 @@ import React, { useMemo, useCallback } from "react"
 import { Clock } from "lucide-react"
 import type { TimeGridProps, TimeOption, HourFormat, TimeInterval } from "./types"
 import { cn } from "../../../utils/cn.js"
-import { getColorClassesWithLuminance } from "../../../utils/colors"
+import { getColorClassesWithLuminance } from "../../../utils/color"
 import { containerResponsiveUI } from "../../../utils/containerFonts"
 import { Button } from "../Button/Button"
 

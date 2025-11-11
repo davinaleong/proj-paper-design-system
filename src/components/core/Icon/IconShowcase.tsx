@@ -14,7 +14,7 @@ import { Icon } from "./Icon"
 import { Card } from "../../layout/Card"
 import { Stack } from "../../layout/Stack"
 import { Typography } from "../Typography"
-import type { ColorVariant } from "../../../utils/colors"
+import type { ColorVariant } from "../../../utils/color"
 
 const DEMO_ICONS = [
   { icon: Star, name: "Star" },

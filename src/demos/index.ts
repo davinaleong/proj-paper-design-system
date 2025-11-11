@@ -3,7 +3,6 @@
 export {
   CoreComponentsShowcase,
   TypographyShowcase,
-  LuminanceShowcase,
 } from "./core-foundation"
 
 // Layout Structure

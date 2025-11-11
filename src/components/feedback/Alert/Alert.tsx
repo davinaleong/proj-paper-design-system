@@ -1,7 +1,7 @@
 import { forwardRef } from "react"
 import { X, Info, CheckCircle, AlertTriangle, AlertCircle, Bell } from "lucide-react"
 import { cn } from "../../../utils/cn"
-import { getBackgroundColorClasses, getBorderColorClasses, getTextColorClasses } from "../../../utils/colors"
+import { getBackgroundColorClasses, getBorderColorClasses, getTextColorClasses } from "../../../utils/color"
 import { Typography } from "../../core/Typography"
 import { IconButton } from "../../forms/IconButton"
 import type { AlertProps, AlertColor } from "./types"

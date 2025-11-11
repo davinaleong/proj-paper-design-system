@@ -5,7 +5,7 @@ import { Calendar } from "./Calendar"
 import { TimeGrid } from "./TimeGrid"
 import { Button } from "../Button/Button"
 import { cn } from "../../../utils/cn.js"
-import { getColorClassesWithLuminance } from "../../../utils/colors"
+import { getColorClassesWithLuminance } from "../../../utils/color"
 import { containerResponsiveUI } from "../../../utils/containerFonts"
 
 const sizeClasses = {

@@ -1,8 +1,9 @@
 import { forwardRef } from "react"
 import { cn } from "../../../utils/cn.js"
 import {
-  getBackgroundColorClasses,
-} from "../../../utils/colors"
+  getTailwindClass,
+  type BackgroundLevel,
+} from "../../../utils/color"
 import type { PaperProps } from "./types"
 
 const PADDING_CLASSES = {
@@ -57,7 +58,7 @@ export const Paper = forwardRef<HTMLElement, PaperProps>(
     ref
   ) => {
     const getVariantElevation = () => {
-      if (elevation) return ELEVATION_CLASSES[elevation]
+      if (elevation) return ELEVATION_CLASSES[elevation as keyof typeof ELEVATION_CLASSES]
       switch (variant) {
         case "elevated":
           return ELEVATION_CLASSES.sm
@@ -70,7 +71,7 @@ export const Paper = forwardRef<HTMLElement, PaperProps>(
       if (variant === "outlined") return "bg-transparent"
       if (background === "paper")
         return "bg-white text-slate-900"
-      return getBackgroundColorClasses(background, "subtle")
+      return getTailwindClass("bg", background as BackgroundLevel, "light")
     }
 
     const borderClasses = () => {
