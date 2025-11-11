@@ -60,6 +60,8 @@ import {
   NotificationCenterShowcase,
   UserMenuShowcase,
   ThemePreviewShowcase,
+  PaperColorsTest,
+  ColorUtilityTest,
 } from "./demos"
 import "./App.css"
 
@@ -79,6 +81,7 @@ function App() {
       children: [
         { id: "overview", label: "Overview", href: "#overview" },
         { id: "paper-colors", label: "Paper Colors Test", href: "#paper-colors" },
+        { id: "color-utils", label: "Color Utilities Test", href: "#color-utils" },
         { id: "luminance", label: "Luminance-Based Text Colors", href: "#luminance" },
         { id: "typography", label: "Typography", href: "#typography" },
         { id: "layout", label: "Layout", href: "#layout" },
@@ -291,6 +294,14 @@ function App() {
 
         <section id="layout" className="mb-8">
           <LayoutShowcase />
+        </section>
+
+        <section id="paper-colors" className="mb-8">
+          <PaperColorsTest />
+        </section>
+
+        <section id="color-utils" className="mb-8">
+          <ColorUtilityTest />
         </section>
 
         <section id="ui-primitives" className="mb-8">

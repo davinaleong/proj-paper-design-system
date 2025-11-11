@@ -66,20 +66,6 @@ const VARIANT_STYLES = {
     actions: "[&_button]:border-white/40 [&_button:hover]:bg-white/20 [&_button:hover]:border-white/60 [&_button]:bg-transparent [&_button]:shadow-none",
   }),
   
-  solid: (color: ToastColor) => ({
-    container: cn(
-      "bg-white dark:bg-gray-900 border-2 border-stone-300 dark:border-gray-600",
-      getTextColorClasses(color, "bold")
-    ),
-    icon: getTextColorClasses(color, "bold"),
-    title: "text-gray-200 dark:text-gray-50",
-    description: "text-gray-300 dark:text-gray-100",
-    closeButton: "text-gray-300 hover:text-gray-200 dark:text-gray-200 dark:hover:text-gray-50",
-    progress: "bg-gray-200 dark:bg-gray-700",
-    progressBar: getBackgroundColorClasses(color, "bold"),
-    actions: "",
-  }),
-  
   ghost: (color: ToastColor) => ({
     container: cn(
       "bg-white/80 dark:bg-gray-900/80 border border-stone-200/60 dark:border-gray-700/60 backdrop-blur-md",
