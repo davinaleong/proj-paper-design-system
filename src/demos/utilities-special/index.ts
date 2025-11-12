@@ -1,4 +1,5 @@
 // Utilities Special Showcases
+export { DotIndicatorShowcase } from './DotIndicatorShowcase';
 export { SearchBarShowcase } from './SearchBarShowcase';
 export { FilterMenuShowcase } from './FilterMenuShowcase';
 export { QuickActionsShowcase } from './QuickActionsShowcase';

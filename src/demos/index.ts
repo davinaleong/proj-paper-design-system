@@ -5,6 +5,11 @@ export {
   TypographyShowcase,
 } from "./core-foundation"
 
+// Theme System
+export {
+  ThemeSystemDemo,
+} from "./theme-system"
+
 // Layout Structure
 export {
   LayoutShowcase,
@@ -14,11 +19,13 @@ export {
 // Form Controls
 export {
   FormFieldShowcase,
+  FormControlsShowcase,
   DateTimePickerShowcase,
 } from "./form-controls"
 
 // Data Display
 export {
+  DataDisplayShowcase,
   StaticTableShowcase,
   DescriptionListShowcase,
   ProgressBarShowcase,
@@ -69,6 +76,7 @@ export {
 
 // Utilities Special
 export {
+  DotIndicatorShowcase,
   SearchBarShowcase,
   FilterMenuShowcase,
   QuickActionsShowcase,
@@ -79,7 +87,6 @@ export {
 
 // System Utilities
 export {
-  DotIndicatorShowcase,
   ThemeToggleShowcase,
   ScrollAreaShowcase,
   ErrorBoundaryShowcase,
@@ -94,9 +101,3 @@ export {
   UserMenuShowcase,
   ThemePreviewShowcase,
 } from "./advanced-ux"
-
-// Feature Showcases (composite showcases)
-export {
-  FormControlsShowcase,
-  DataDisplayShowcase,
-} from "./feature-showcases"

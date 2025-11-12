@@ -1,4 +1,4 @@
-import type { ColorVariant } from "../../../utils/colors"
+import type { SemanticColorVariant } from "../../../utils/color"
 import type { ReactNode } from "react"
 
 export interface ToastProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -12,7 +12,7 @@ export interface ToastProps extends React.HTMLAttributes<HTMLDivElement> {
    * Color theme of the toast
    * @default "default"
    */
-  color?: ColorVariant
+  color?: SemanticColorVariant
   
   /**
    * Size variant for the toast

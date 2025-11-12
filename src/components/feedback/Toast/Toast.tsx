@@ -1,132 +1,25 @@
-import { forwardRef, useEffect, useState, useRef, useCallback } from "react"
+import { forwardRef, useEffect, useState, useCallback } from "react"
 import { X, CheckCircle, AlertCircle, AlertTriangle, Info, Bell } from "lucide-react"
 import { cn } from "../../../utils/cn"
-import { getBackgroundColorClasses, getTextColorClasses, getBorderColorClasses } from "../../../utils/color"
-import { IconButton } from "../../forms/IconButton"
+import { getSemanticColorClasses, type StyleVariant } from "../../../utils/color"
+import { IconButton } from "../../forms/IconButton/IconButton"
 import type { ToastProps, ToastColor } from "./types"
 
-// Size classes for toast components
-const SIZE_CLASSES = {
-  sm: {
-    container: "p-3 text-sm",
-    icon: "w-4 h-4",
-    title: "text-sm font-medium",
-    description: "text-xs",
-    closeButton: "w-4 h-4",
-    progress: "h-1",
-  },
-  md: {
-    container: "p-4 text-base",
-    icon: "w-5 h-5",
-    title: "text-base font-medium",
-    description: "text-sm",
-    closeButton: "w-5 h-5",
-    progress: "h-1",
-  },
-  lg: {
-    container: "p-6 text-lg",
-    icon: "w-6 h-6",
-    title: "text-lg font-medium",
-    description: "text-base",
-    closeButton: "w-6 h-6",
-    progress: "h-1.5",
-  },
-} as const
+/**
+ * Toast component for notifications and feedback
+ * 
+ * Features:
+ * - Semantic color system integration
+ * - Multiple visual variants (solid, soft, outline, ghost, plain)
+ * - Auto-dismiss functionality with progress bar
+ * - Dismissible with custom close button
+ * - Icon support with semantic defaults
+ * - Actions support
+ * - Accessibility compliant
+ * - Paper theme integration
+ */
 
-// Base classes for all toasts
-const baseClasses = [
-  "relative",
-  "flex",
-  "items-start",
-  "gap-3",
-  "rounded-sm", // Paper theme consistency
-  "border",
-  "shadow-lg",
-  "backdrop-blur-sm",
-  "max-w-md",
-  "w-full",
-  "transition-all",
-  "duration-300",
-  "ease-in-out",
-]
-
-// Visual variants following button variant patterns
-const VARIANT_STYLES = {
-  solid: (color: ToastColor) => ({
-    container: cn(
-      getBackgroundColorClasses(color, "bold"),
-      "border-transparent text-white shadow-lg"
-    ),
-    icon: "text-white",
-    title: "text-white font-medium",
-    description: "text-white/90",
-    closeButton: "text-white/80 hover:text-white",
-    progress: "bg-white/20",
-    progressBar: "bg-white/60",
-    actions: "[&_button]:border-white/40 [&_button:hover]:bg-white/20 [&_button:hover]:border-white/60 [&_button]:bg-transparent [&_button]:shadow-none",
-  }),
-  
-  ghost: (color: ToastColor) => ({
-    container: cn(
-      "bg-white/80 dark:bg-gray-900/80 border border-stone-200/60 dark:border-gray-700/60 backdrop-blur-md",
-      getTextColorClasses(color, "bold")
-    ),
-    icon: getTextColorClasses(color, "bold"),
-    title: "text-gray-200 dark:text-gray-50",
-    description: "text-gray-300 dark:text-gray-100",
-    closeButton: "text-gray-300 hover:text-gray-200 dark:text-gray-200 dark:hover:text-gray-50",
-    progress: "bg-gray-200/60 dark:bg-gray-700/60",
-    progressBar: getBackgroundColorClasses(color, "bold"),
-    actions: "",
-  }),
-  
-  soft: (color: ToastColor) => ({
-    container: cn(
-      getBackgroundColorClasses(color, "subtle"),
-      "border",
-      getBorderColorClasses(color, "soft"),
-      getTextColorClasses(color, "bold")
-    ),
-    icon: getTextColorClasses(color, "bold"),
-    title: "text-gray-200 dark:text-gray-50",
-    description: "text-gray-300 dark:text-gray-100",
-    closeButton: "text-gray-300 hover:text-gray-200 dark:text-gray-200 dark:hover:text-gray-50",
-    progress: "bg-gray-200 dark:bg-gray-700",
-    progressBar: getBackgroundColorClasses(color, "bold"),
-    actions: "",
-  }),
-  
-  plain: (color: ToastColor) => ({
-    container: cn(
-      "bg-white dark:bg-gray-900 border border-stone-200 dark:border-gray-700",
-      getTextColorClasses(color, "bold")
-    ),
-    icon: getTextColorClasses(color, "bold"),
-    title: "text-gray-200 dark:text-gray-50",
-    description: "text-gray-300 dark:text-gray-100",
-    closeButton: "text-gray-300 hover:text-gray-200 dark:text-gray-200 dark:hover:text-gray-50",
-    progress: "bg-gray-200 dark:bg-gray-700",
-    progressBar: getBackgroundColorClasses(color, "bold"),
-    actions: "",
-  }),
-  
-  outline: (color: ToastColor) => ({
-    container: cn(
-      "bg-white dark:bg-gray-900 border-2",
-      getBorderColorClasses(color),
-      getTextColorClasses(color, "bold")
-    ),
-    icon: getTextColorClasses(color, "bold"),
-    title: "text-gray-200 dark:text-gray-50",
-    description: "text-gray-300 dark:text-gray-100",
-    closeButton: "text-gray-300 hover:text-gray-200 dark:text-gray-200 dark:hover:text-gray-50",
-    progress: "bg-gray-200 dark:bg-gray-700",
-    progressBar: getBackgroundColorClasses(color, "bold"),
-    actions: "",
-  }),
-} as const
-
-// Default icons for different color variants
+// Default icons for semantic colors
 const DEFAULT_ICONS = {
   success: CheckCircle,
   danger: AlertCircle,
@@ -134,25 +27,115 @@ const DEFAULT_ICONS = {
   info: Info,
   primary: Bell,
   secondary: Bell,
+  accent: Bell,
+  neutral: Bell,
   default: Bell,
 } as const
 
-// Animation classes based on position
-const ANIMATION_CLASSES = {
-  // Entry animations
-  enter: {
-    up: "animate-in slide-in-from-bottom-2 fade-in",
-    down: "animate-in slide-in-from-top-2 fade-in",
-    left: "animate-in slide-in-from-right-2 fade-in",
-    right: "animate-in slide-in-from-left-2 fade-in",
+// Size variants
+const SIZE_CLASSES = {
+  sm: {
+    container: "px-3 py-2 gap-2",
+    icon: "w-4 h-4",
+    text: "text-sm",
+    title: "text-sm font-medium",
+    description: "text-xs",
+    closeButton: "w-6 h-6",
   },
-  // Exit animations
-  exit: {
-    up: "animate-out slide-out-to-bottom-2 fade-out",
-    down: "animate-out slide-out-to-top-2 fade-out",
-    left: "animate-out slide-out-to-right-2 fade-out",
-    right: "animate-out slide-out-to-left-2 fade-out",
+  md: {
+    container: "px-4 py-3 gap-3",
+    icon: "w-5 h-5", 
+    text: "text-sm",
+    title: "text-sm font-medium",
+    description: "text-sm",
+    closeButton: "w-6 h-6",
   },
+  lg: {
+    container: "px-5 py-4 gap-4",
+    icon: "w-6 h-6",
+    text: "text-base",
+    title: "text-base font-medium", 
+    description: "text-sm",
+    closeButton: "w-7 h-7",
+  },
+} as const
+
+// Visual variants using semantic color system
+const getVariantStyles = (color: ToastColor, variant: NonNullable<ToastProps["variant"]>) => {
+  const colorClasses = getSemanticColorClasses(color, variant as StyleVariant)
+  
+  switch (variant) {
+    case "solid":
+      return {
+        container: cn(
+          colorClasses.background,
+          colorClasses.text,
+          "border-transparent shadow-lg"
+        ),
+        content: "text-current",
+        icon: "text-current",
+        closeButton: "text-current/80 hover:text-current",
+        progress: "bg-current/20",
+        progressBar: "bg-current/60",
+      }
+      
+    case "soft":
+      return {
+        container: cn(
+          colorClasses.background,
+          colorClasses.text,
+          "border",
+          colorClasses.border
+        ),
+        content: "text-current",
+        icon: "text-current",
+        closeButton: "text-current/60 hover:text-current/80",
+        progress: "bg-current/10",
+        progressBar: "bg-current/40",
+      }
+      
+    case "outline":
+      return {
+        container: cn(
+          "bg-white dark:bg-gray-900 border-2",
+          colorClasses.border,
+          colorClasses.text
+        ),
+        content: "text-current",
+        icon: "text-current",
+        closeButton: "text-current/60 hover:text-current/80",
+        progress: "bg-current/10",
+        progressBar: "bg-current/40",
+      }
+      
+    case "ghost":
+      return {
+        container: cn(
+          "bg-white/80 dark:bg-gray-900/80 border backdrop-blur-md",
+          colorClasses.border,
+          colorClasses.text
+        ),
+        content: "text-current",
+        icon: "text-current",
+        closeButton: "text-current/60 hover:text-current/80",
+        progress: "bg-current/10",
+        progressBar: "bg-current/40",
+      }
+      
+    case "plain":
+    default:
+      return {
+        container: cn(
+          "bg-white dark:bg-gray-900 border border-stone-200 dark:border-gray-700",
+          colorClasses.text
+        ),
+        content: "text-current",
+        icon: "text-current",
+        closeButton: "text-current/60 hover:text-current/80",
+        progress: "bg-current/10",
+        progressBar: "bg-current/40",
+      }
+  }
 }
 
 export const Toast = forwardRef<HTMLDivElement, ToastProps>(
@@ -171,13 +154,10 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(
       showCloseButton = true,
       closeButton,
       duration = 5000,
-      position = "top-right",
       showProgress = true,
       pauseOnHover = true,
       animated = true,
-      animationDirection = "auto",
       visible = true,
-      onAnimationComplete,
       className,
       ...props
     },
@@ -186,100 +166,59 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(
     const [isVisible, setIsVisible] = useState(visible)
     const [isPaused, setIsPaused] = useState(false)
     const [progress, setProgress] = useState(100)
-    const progressRef = useRef<number>(100)
-    const animationRef = useRef<number | null>(null)
-
-    // Determine animation direction from position if auto
-    const getAnimationDirection = () => {
-      if (animationDirection !== "auto") return animationDirection
-      
-      switch (position) {
-        case "top-left":
-        case "top-center":
-        case "top-right":
-          return "down"
-        case "bottom-left":
-        case "bottom-center":
-        case "bottom-right":
-          return "up"
-        case "center":
-          return "up"
-        default:
-          return "right"
-      }
-    }
-
+    
+    const sizeClasses = SIZE_CLASSES[size]
+    const variantStyles = getVariantStyles(color, variant)
+    
     // Handle dismiss
     const handleDismiss = useCallback(() => {
-      if (animated) {
-        setIsVisible(false)
-        setTimeout(() => {
-          onDismiss?.()
-          onAnimationComplete?.()
-        }, 300) // Match animation duration
-      } else {
-        onDismiss?.()
-        onAnimationComplete?.()
-      }
-    }, [animated, onDismiss, onAnimationComplete])
-
-    // Handle auto-dismiss
+      setIsVisible(false)
+      onDismiss?.()
+    }, [onDismiss])
+    
+    // Auto-dismiss functionality
     useEffect(() => {
-      if (duration > 0 && isVisible && !isPaused) {
-        const startTime = Date.now()
-        const initialProgress = progressRef.current
-
-        const updateProgress = () => {
-          const elapsed = Date.now() - startTime
-          const remaining = Math.max(0, (duration * initialProgress / 100) - elapsed)
-          const newProgress = (remaining / duration) * 100
-          
-          progressRef.current = newProgress
-          setProgress(newProgress)
-
-          if (remaining > 0) {
-            animationRef.current = requestAnimationFrame(updateProgress)
-          } else {
-            handleDismiss()
-          }
-        }
-
-        animationRef.current = requestAnimationFrame(updateProgress)
-
-        return () => {
-          if (animationRef.current) {
-            cancelAnimationFrame(animationRef.current)
-          }
+      if (!visible || !duration || duration <= 0 || !dismissible) return
+      
+      const startTime = Date.now()
+      const remainingTime = duration
+      
+      const tick = () => {
+        if (isPaused) return
+        
+        const elapsed = Date.now() - startTime
+        const newProgress = Math.max(0, ((remainingTime - elapsed) / duration) * 100)
+        
+        setProgress(newProgress)
+        
+        if (newProgress <= 0) {
+          handleDismiss()
         }
       }
-    }, [duration, isVisible, isPaused, handleDismiss])
-
-    // Handle hover pause
+      
+      const interval = setInterval(tick, 16) // ~60fps
+      
+      return () => clearInterval(interval)
+    }, [visible, duration, dismissible, isPaused, handleDismiss])
+    
+    // Handle mouse events for pause functionality
     const handleMouseEnter = () => {
-      if (pauseOnHover && duration > 0) {
-        setIsPaused(true)
-      }
+      if (pauseOnHover) setIsPaused(true)
     }
-
+    
     const handleMouseLeave = () => {
-      if (pauseOnHover && duration > 0) {
-        setIsPaused(false)
-      }
+      if (pauseOnHover) setIsPaused(false)
     }
-
-    // Get styles for current variant and color
-    const styles = VARIANT_STYLES[variant](color)
-    const sizeClasses = SIZE_CLASSES[size]
-
-    // Get default icon if none provided
+    
+    // Get icon to display
     const getIcon = () => {
       if (icon) return icon
       if (!showDefaultIcon) return null
       
       const IconComponent = DEFAULT_ICONS[color as keyof typeof DEFAULT_ICONS] || DEFAULT_ICONS.default
-      return <IconComponent className={cn(sizeClasses.icon, styles.icon)} />
+      return <IconComponent className={cn(sizeClasses.icon, variantStyles.icon)} />
     }
-
+    
     // Get close button
     const getCloseButton = () => {
       if (!dismissible || !showCloseButton) return null
@@ -290,96 +229,97 @@ export const Toast = forwardRef<HTMLDivElement, ToastProps>(
         <IconButton
           icon={X}
           variant="ghost"
-          size={size === "lg" ? "md" : "sm"}
+          size="sm"
           onClick={handleDismiss}
-          className={cn("flex-shrink-0", styles.closeButton)}
+          className={cn("flex-shrink-0", variantStyles.closeButton)}
           aria-label="Close toast"
         />
       )
     }
-
-    // Don't render if not visible and not animating
-    if (!visible && !isVisible) return null
-
-    const direction = getAnimationDirection()
     
-    const toastClasses = cn(
-      baseClasses,
-      sizeClasses.container,
-      styles.container,
-      
-      // Animation classes
-      animated && isVisible && ANIMATION_CLASSES.enter[direction],
-      animated && !isVisible && ANIMATION_CLASSES.exit[direction],
-      
-      // Hover effect
-      "hover:shadow-xl hover:-translate-y-[1px]",
-      
-      className
-    )
-
+    if (!isVisible) return null
+    
     return (
       <div
         ref={ref}
-        className={toastClasses}
+        className={cn(
+          // Base styles
+          "relative flex items-start rounded-lg shadow-sm",
+          "transform transition-all duration-300 ease-out",
+          
+          // Size and spacing
+          sizeClasses.container,
+          
+          // Variant styles
+          variantStyles.container,
+          
+          // Animation
+          animated && visible && "animate-in slide-in-from-right-full",
+          animated && !visible && "animate-out slide-out-to-right-full",
+          
+          className
+        )}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         role="alert"
         aria-live="polite"
         {...props}
       >
-        {/* Progress bar */}
-        {showProgress && duration > 0 && (
-          <div className={cn(
-            "absolute bottom-0 left-0 right-0 overflow-hidden rounded-b-sm",
-            sizeClasses.progress,
-            styles.progress
-          )}>
-            <div 
-              className={cn(
-                "h-full transition-all duration-100 ease-linear rounded-b-sm",
-                styles.progressBar
-              )}
-              style={{ width: `${progress}%` }}
-            />
-          </div>
-        )}
-
         {/* Icon */}
         {getIcon() && (
-          <div className="flex-shrink-0 mt-0.5">
+          <div className="flex-shrink-0 pt-0.5">
             {getIcon()}
           </div>
         )}
-
+        
         {/* Content */}
         <div className="flex-1 min-w-0">
           {/* Title */}
           {title && (
-            <div className={cn(sizeClasses.title, styles.title, "mb-1")}>
+            <div className={cn(sizeClasses.title, variantStyles.content)}>
               {title}
             </div>
           )}
-
+          
           {/* Description */}
           {description && (
-            <div className={cn(sizeClasses.description, styles.description, title && "mt-1")}>
+            <div className={cn(
+              sizeClasses.description,
+              variantStyles.content,
+              "opacity-90",
+              title && "mt-1"
+            )}>
               {description}
             </div>
           )}
-
+          
           {/* Actions */}
           {actions && (
-            <div className={cn("mt-3 flex gap-2", styles.actions)}>
+            <div className="mt-3 flex gap-2">
               {actions}
             </div>
           )}
         </div>
-
+        
         {/* Close button */}
-        <div className="flex-shrink-0">
-          {getCloseButton()}
-        </div>
+        {getCloseButton() && (
+          <div className="flex-shrink-0">
+            {getCloseButton()}
+          </div>
+        )}
+        
+        {/* Progress bar */}
+        {showProgress && duration > 0 && dismissible && (
+          <div className={cn(
+            "absolute bottom-0 left-0 right-0 h-1 rounded-b-lg overflow-hidden",
+            variantStyles.progress
+          )}>
+            <div 
+              className={cn("h-full transition-all duration-75 ease-linear", variantStyles.progressBar)}
+              style={{ width: `${progress}%` }}
+            />
+          </div>
+        )}
       </div>
     )
   }

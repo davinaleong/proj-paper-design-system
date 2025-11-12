@@ -1,4 +1,5 @@
 // Data Display Showcases
+export { DataDisplayShowcase } from './DataDisplayShowcase';
 export { StaticTableShowcase } from './StaticTableShowcase';
 export { DescriptionListShowcase } from './DescriptionListShowcase';
 export { ProgressBarShowcase } from './ProgressBarShowcase';
