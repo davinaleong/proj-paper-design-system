@@ -16,37 +16,37 @@ export const paperThemeColors = {
   light: {
     // Minimal Warm Light Theme
     backgrounds: {
-      primary: "#fcfbf9",     // Warmest off-white (main page background)
-      secondary: "#f8f7f4",   // Secondary surfaces (cards, panels)
+      base: "#fcfbf9",        // Warmest off-white (main page background)
+      elevated: "#f8f7f4",    // Elevated surfaces (cards, panels)
       subtle: "#f4f3f0",      // Subtle surfaces (disabled states, very light accents)
     },
     text: {
-      primary: "#1a1917",     // Warm near-black (primary text) - replaces #000
-      secondary: "#4a4945",   // Medium-dark warm gray (secondary text)
+      strong: "#1a1917",      // Warm near-black (primary text) - replaces #000
+      medium: "#4a4945",      // Medium-dark warm gray (secondary text)
       muted: "#6b6a66",       // Medium warm gray (muted text)
       subtle: "#9c9b96",      // Light warm gray (subtle text, placeholders)
     },
     borders: {
-      primary: "#e5e3df",     // Warm light gray borders
-      secondary: "#d1cfc9",   // Slightly darker borders
+      light: "#e5e3df",       // Warm light gray borders
+      medium: "#d1cfc9",      // Slightly darker borders
     },
   },
   dark: {
     // Black Paper Dark Theme  
     backgrounds: {
-      primary: "#0a0a0a",     // True deep black (main background)
-      secondary: "#1a1a1a",   // Elevated black (cards, modals)
+      base: "#0a0a0a",        // True deep black (main background)
+      elevated: "#1a1a1a",    // Elevated black (cards, modals)
       subtle: "#242424",      // Subtle surfaces (hover states, disabled)
     },
     text: {
-      primary: "#f8f8f8",     // Soft white (primary text) - replaces #fff
-      secondary: "#d4d4d4",   // Light gray (secondary text)
+      strong: "#f8f8f8",      // Soft white (primary text) - replaces #fff
+      medium: "#d4d4d4",      // Light gray (secondary text)
       muted: "#a8a8a8",       // Medium gray (muted text)
       subtle: "#6b6b6b",      // Dark gray (subtle text, placeholders)
     },
     borders: {
-      primary: "#333333",     // Dark borders
-      secondary: "#404040",   // Slightly lighter borders
+      light: "#333333",       // Dark borders
+      medium: "#404040",      // Slightly lighter borders
     },
   },
 } as const
@@ -54,10 +54,10 @@ export const paperThemeColors = {
 // Paper theme mode type (avoiding conflict with colors.ts)
 export type PaperThemeMode = "light" | "dark"
 
-// Color category types
-export type BackgroundLevel = "primary" | "secondary" | "subtle"
-export type TextLevel = "primary" | "secondary" | "muted" | "subtle" 
-export type BorderLevel = "primary" | "secondary"
+// Color category types - using descriptive names that don't conflict with semantic variants
+export type BackgroundLevel = "base" | "elevated" | "subtle"
+export type TextLevel = "strong" | "medium" | "muted" | "subtle" 
+export type BorderLevel = "light" | "medium"
 
 /**
  * Core color mapping function that replaces #000 and #fff with theme-appropriate colors
@@ -79,15 +79,15 @@ export function mapTextColor(color: string, theme: PaperThemeMode = "light"): st
   // Handle different representations of black
   if (normalizedColor === "000000" || normalizedColor === "000" || color === "black") {
     return theme === "light" 
-      ? paperThemeColors.light.text.primary 
-      : paperThemeColors.dark.text.primary
+      ? paperThemeColors.light.text.strong 
+      : paperThemeColors.dark.text.strong
   }
   
   // Handle different representations of white  
   if (normalizedColor === "ffffff" || normalizedColor === "fff" || color === "white") {
     return theme === "light"
-      ? paperThemeColors.light.text.primary  // In light theme, white text becomes dark
-      : paperThemeColors.light.text.primary  // Keep the warm near-black for light theme usage
+      ? paperThemeColors.light.text.strong  // In light theme, white text becomes dark
+      : paperThemeColors.light.text.strong  // Keep the warm near-black for light theme usage
   }
   
   // Return original color if no mapping needed
@@ -103,8 +103,8 @@ export function mapTextColor(color: string, theme: PaperThemeMode = "light"): st
  * 
  * @example
  * ```typescript
- * getBackgroundColor("primary", "light")   // returns "#fcfbf9"
- * getBackgroundColor("secondary", "dark")  // returns "#1a1a1a"
+ * getBackgroundColor("base", "light")      // returns "#fcfbf9"
+ * getBackgroundColor("elevated", "dark")   // returns "#1a1a1a"
  * ```
  */
 export function getBackgroundColor(level: BackgroundLevel, theme: PaperThemeMode = "light"): string {
@@ -120,8 +120,8 @@ export function getBackgroundColor(level: BackgroundLevel, theme: PaperThemeMode
  * 
  * @example
  * ```typescript
- * getTextColor("primary", "light")    // returns "#1a1917"
- * getTextColor("secondary", "dark")   // returns "#d4d4d4"
+ * getTextColor("strong", "light")     // returns "#1a1917"
+ * getTextColor("medium", "dark")      // returns "#d4d4d4"
  * ```
  */
 export function getTextColor(level: TextLevel, theme: PaperThemeMode = "light"): string {
@@ -137,8 +137,8 @@ export function getTextColor(level: TextLevel, theme: PaperThemeMode = "light"):
  * 
  * @example
  * ```typescript
- * getBorderColor("primary", "light")   // returns "#e5e3df"
- * getBorderColor("secondary", "dark")  // returns "#404040"
+ * getBorderColor("light", "light")     // returns "#e5e3df"
+ * getBorderColor("medium", "dark")     // returns "#404040"
  * ```
  */
 export function getBorderColor(level: BorderLevel, theme: PaperThemeMode = "light"): string {
@@ -162,7 +162,7 @@ export function getBorderColor(level: BorderLevel, theme: PaperThemeMode = "ligh
 export function getOptimalTextColorForBackground(backgroundColor: string, theme: PaperThemeMode = "light"): string {
   // Simple luminance check - you could enhance this with the existing luminance utilities
   const rgb = hexToRgb(backgroundColor)
-  if (!rgb) return getTextColor("primary", theme)
+  if (!rgb) return getTextColor("strong", theme)
   
   const luminance = calculateLuminance(rgb.r, rgb.g, rgb.b)
   
@@ -170,12 +170,12 @@ export function getOptimalTextColorForBackground(backgroundColor: string, theme:
   // If background is dark (low luminance), use light text
   if (luminance > 0.5) {
     return theme === "light" 
-      ? paperThemeColors.light.text.primary   // Dark text on light background
-      : paperThemeColors.light.text.primary   // Still use dark text on light backgrounds
+      ? paperThemeColors.light.text.strong   // Dark text on light background
+      : paperThemeColors.light.text.strong   // Still use dark text on light backgrounds
   } else {
     return theme === "dark"
-      ? paperThemeColors.dark.text.primary    // Light text on dark background  
-      : paperThemeColors.dark.text.primary    // Use light text on dark backgrounds
+      ? paperThemeColors.dark.text.strong    // Light text on dark background  
+      : paperThemeColors.dark.text.strong    // Use light text on dark backgrounds
   }
 }
 
@@ -195,17 +195,17 @@ export function generateCSSVariables(theme: PaperThemeMode = "light"): string {
   const colors = paperThemeColors[theme]
   
   return `
-    --paper-bg-primary: ${colors.backgrounds.primary};
-    --paper-bg-secondary: ${colors.backgrounds.secondary};
+    --paper-bg-base: ${colors.backgrounds.base};
+    --paper-bg-elevated: ${colors.backgrounds.elevated};
     --paper-bg-subtle: ${colors.backgrounds.subtle};
     
-    --paper-text-primary: ${colors.text.primary};
-    --paper-text-secondary: ${colors.text.secondary};
+    --paper-text-strong: ${colors.text.strong};
+    --paper-text-medium: ${colors.text.medium};
     --paper-text-muted: ${colors.text.muted};
     --paper-text-subtle: ${colors.text.subtle};
     
-    --paper-border-primary: ${colors.borders.primary};
-    --paper-border-secondary: ${colors.borders.secondary};
+    --paper-border-light: ${colors.borders.light};
+    --paper-border-medium: ${colors.borders.medium};
   `.trim()
 }
 
@@ -235,8 +235,8 @@ export function getThemeColors(theme: PaperThemeMode = "light") {
  * 
  * @example
  * ```typescript
- * getTailwindClass("bg", "primary", "light")    // returns "bg-[#fcfbf9]"
- * getTailwindClass("text", "secondary", "dark") // returns "text-[#d4d4d4]"
+ * getTailwindClass("bg", "base", "light")       // returns "bg-[#fcfbf9]"
+ * getTailwindClass("text", "medium", "dark")    // returns "text-[#d4d4d4]"
  * ```
  */
 export function getTailwindClass(
@@ -331,10 +331,277 @@ export const DARK_THEME_COLORS = paperThemeColors.dark
 // Quick access to the specific color mappings requested
 export const COLOR_MAPPINGS = {
   /** #000000 mapped to warm near-black */
-  BLACK_TO_WARM_BLACK: paperThemeColors.light.text.primary,  // "#1a1917"
+  BLACK_TO_WARM_BLACK: paperThemeColors.light.text.strong,  // "#1a1917"
   /** #ffffff mapped to soft white */  
-  WHITE_TO_SOFT_WHITE: paperThemeColors.dark.text.primary,   // "#f8f8f8"
+  WHITE_TO_SOFT_WHITE: paperThemeColors.dark.text.strong,   // "#f8f8f8"
 } as const
+
+// Semantic color variants (used by components like Button, Badge, etc.)
+export type SemanticColorVariant = 
+  | "primary" 
+  | "secondary" 
+  | "accent"
+  | "success" 
+  | "warning" 
+  | "danger" 
+  | "info"
+  | "neutral"
+  | "default"
+
+// Visual style variants for components
+export type StyleVariant = "solid" | "soft" | "outline" | "ghost"
+
+/**
+ * Specific Tailwind color mappings for semantic variants
+ * These provide consistent, branded colors for components
+ */
+export const semanticTailwindColorMapping = {
+  primary: {
+    base: "bg-blue-500",
+    text: "text-white",
+    border: "border-blue-500",
+    hover: "hover:bg-blue-600",
+    focus: "focus:ring-blue-500",
+  },
+  secondary: {
+    base: "bg-slate-500", 
+    text: "text-white",
+    border: "border-slate-500",
+    hover: "hover:bg-slate-600",
+    focus: "focus:ring-slate-500",
+  },
+  accent: {
+    base: "bg-sky-500",
+    text: "text-black",
+    border: "border-sky-500", 
+    hover: "hover:bg-sky-600",
+    focus: "focus:ring-sky-500",
+  },
+  default: {
+    base: "bg-neutral-500",
+    text: "text-white",
+    border: "border-neutral-500",
+    hover: "hover:bg-neutral-600", 
+    focus: "focus:ring-neutral-500",
+  },
+  info: {
+    base: "bg-cyan-500",
+    text: "text-black",
+    border: "border-cyan-500",
+    hover: "hover:bg-cyan-600",
+    focus: "focus:ring-cyan-500", 
+  },
+  warning: {
+    base: "bg-yellow-500",
+    text: "text-black",
+    border: "border-yellow-500",
+    hover: "hover:bg-yellow-600",
+    focus: "focus:ring-yellow-500",
+  },
+  danger: {
+    base: "bg-red-500",
+    text: "text-white", 
+    border: "border-red-500",
+    hover: "hover:bg-red-600",
+    focus: "focus:ring-red-500",
+  },
+  success: {
+    base: "bg-green-500",
+    text: "text-black",
+    border: "border-green-500",
+    hover: "hover:bg-green-600",
+    focus: "focus:ring-green-500",
+  },
+  neutral: {
+    base: "bg-gray-500",
+    text: "text-white",
+    border: "border-gray-500",
+    hover: "hover:bg-gray-600",
+    focus: "focus:ring-gray-500",
+  },
+} as const satisfies Record<SemanticColorVariant, {
+  base: string;
+  text: string;
+  border: string;
+  hover: string;
+  focus: string;
+}>
+
+/**
+ * Map semantic color variants to appropriate paper theme levels
+ * This allows components to use semantic colors while leveraging the paper theme system
+ */
+export const semanticColorMapping = {
+  primary: { bg: "elevated", text: "strong", border: "medium" },
+  secondary: { bg: "subtle", text: "medium", border: "light" },
+  accent: { bg: "elevated", text: "strong", border: "medium" },
+  success: { bg: "subtle", text: "strong", border: "light" },
+  warning: { bg: "subtle", text: "strong", border: "light" },
+  danger: { bg: "subtle", text: "strong", border: "light" },
+  info: { bg: "subtle", text: "strong", border: "light" },
+  neutral: { bg: "subtle", text: "medium", border: "light" },
+  default: { bg: "base", text: "medium", border: "light" },
+} as const satisfies Record<SemanticColorVariant, { 
+  bg: BackgroundLevel; 
+  text: TextLevel; 
+  border: BorderLevel; 
+}>
+
+/**
+ * Get paper theme classes for semantic color variants
+ * This bridges semantic colors with the paper theme system
+ * 
+ * @param semanticColor - Semantic color variant
+ * @param style - Visual style variant
+ * @param theme - Paper theme mode
+ * @returns Object with background, text, and border classes
+ * 
+ * @example
+ * ```typescript
+ * const classes = getSemanticColorClasses("success", "soft", "light")
+ * // Returns: { background: "bg-[#f4f3f0]", text: "text-[#1a1917]", border: "border-[#e5e3df]" }
+ * ```
+ */
+export function getSemanticColorClasses(
+  semanticColor: SemanticColorVariant,
+  style: StyleVariant = "soft",
+  theme: PaperThemeMode = "light"
+) {
+  const mapping = semanticColorMapping[semanticColor]
+  
+  // For different styles, we might adjust the intensity
+  let bgLevel: BackgroundLevel = mapping.bg
+  let textLevel: TextLevel = mapping.text
+  let borderLevel: BorderLevel = mapping.border
+  
+  // Adjust levels based on style
+  switch (style) {
+    case "solid":
+      // Solid style uses stronger backgrounds and contrasting text
+      bgLevel = "elevated"
+      textLevel = "strong"
+      borderLevel = "medium"
+      break
+    case "soft": 
+      // Soft style uses subtle backgrounds with strong text
+      bgLevel = "subtle"
+      textLevel = "strong"
+      borderLevel = "light"
+      break
+    case "outline":
+      // Outline style uses transparent background with borders
+      bgLevel = "base"
+      textLevel = "strong" 
+      borderLevel = "medium"
+      break
+    case "ghost":
+      // Ghost style uses minimal styling
+      bgLevel = "base"
+      textLevel = "medium"
+      borderLevel = "light"
+      break
+  }
+  
+  return {
+    background: getBackgroundColorClasses(bgLevel, theme),
+    text: getTextColorClasses(textLevel, theme),
+    border: getBorderColorClasses(borderLevel, theme),
+    // Combined class string for convenience
+    combined: `${getBackgroundColorClasses(bgLevel, theme)} ${getTextColorClasses(textLevel, theme)} ${getBorderColorClasses(borderLevel, theme)}`,
+  }
+}
+
+/**
+ * Get Tailwind color classes for semantic color variants
+ * Uses specific branded colors (blue-500, red-500, etc.) instead of paper theme colors
+ * 
+ * @param semanticColor - Semantic color variant
+ * @param style - Visual style variant  
+ * @returns Object with Tailwind color classes
+ * 
+ * @example
+ * ```typescript
+ * const classes = getTailwindSemanticColorClasses("danger", "solid")
+ * // Returns: { background: "bg-red-500", text: "text-white", border: "border-red-500", hover: "hover:bg-red-600" }
+ * ```
+ */
+export function getTailwindSemanticColorClasses(
+  semanticColor: SemanticColorVariant,
+  style: StyleVariant = "solid"
+) {
+  const colorMap = semanticTailwindColorMapping[semanticColor]
+  
+  switch (style) {
+    case "solid":
+      return {
+        background: colorMap.base,
+        text: colorMap.text,
+        border: colorMap.border,
+        hover: colorMap.hover,
+        focus: colorMap.focus,
+        // Combined class string for convenience
+        combined: `${colorMap.base} ${colorMap.text} ${colorMap.border} ${colorMap.hover} ${colorMap.focus}`,
+      }
+      
+    case "soft": {
+      // Soft style uses lighter background with colored text
+      const softBg = colorMap.base.replace("-500", "-100").replace("bg-", "bg-")
+      const softText = colorMap.base.replace("bg-", "text-").replace("-500", "-700")
+      const softBorder = colorMap.border.replace("-500", "-200")
+      const softHover = colorMap.base.replace("-500", "-200").replace("bg-", "bg-")
+      
+      return {
+        background: softBg,
+        text: softText,
+        border: softBorder,
+        hover: softHover.replace("hover:", "hover:"),
+        focus: colorMap.focus,
+        combined: `${softBg} ${softText} ${softBorder} ${softHover.replace("hover:", "hover:")} ${colorMap.focus}`,
+      }
+    }
+      
+    case "outline": {
+      // Outline style uses transparent background with colored border and text
+      const outlineText = colorMap.base.replace("bg-", "text-")
+      const outlineBorder = colorMap.border
+      const outlineHover = colorMap.base.replace("-500", "-50").replace("bg-", "bg-")
+      
+      return {
+        background: "bg-transparent",
+        text: outlineText,
+        border: outlineBorder,
+        hover: outlineHover.replace("hover:", "hover:"),
+        focus: colorMap.focus,
+        combined: `bg-transparent ${outlineText} ${outlineBorder} ${outlineHover.replace("hover:", "hover:")} ${colorMap.focus}`,
+      }
+    }
+      
+    case "ghost": {
+      // Ghost style uses subtle coloring with hover effects
+      const ghostText = colorMap.base.replace("bg-", "text-")
+      const ghostHover = colorMap.base.replace("-500", "-50").replace("bg-", "bg-")
+      
+      return {
+        background: "bg-transparent",
+        text: ghostText,
+        border: "border-transparent",
+        hover: ghostHover.replace("hover:", "hover:"),
+        focus: colorMap.focus,
+        combined: `bg-transparent ${ghostText} border-transparent ${ghostHover.replace("hover:", "hover:")} ${colorMap.focus}`,
+      }
+    }
+      
+    default:
+      return {
+        background: colorMap.base,
+        text: colorMap.text,
+        border: colorMap.border,
+        hover: colorMap.hover,
+        focus: colorMap.focus,
+        combined: `${colorMap.base} ${colorMap.text} ${colorMap.border} ${colorMap.hover} ${colorMap.focus}`,
+      }
+  }
+}
 
 // Legacy compatibility functions for existing components
 export type ColorVariant = BackgroundLevel
