@@ -17,7 +17,7 @@ import { Tabs } from "../../components/navigation/Tabs"
 import { Paper } from "../../components/core/Paper"
 import { Typography } from "../../components/core/Typography"
 import type { TabItem, TabVariant } from "../../components/navigation/Tabs"
-import type { ColorVariant } from "../../utils/colors"
+import type { ColorVariant } from "../../utils/color"
 
 const basicTabItems: TabItem[] = [
   {

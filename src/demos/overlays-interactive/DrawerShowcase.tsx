@@ -6,7 +6,7 @@ import { IconButton } from "../../components/forms"
 import { Typography } from "../../components/core"
 import { Paper } from "../../components/core"
 import { Stack, Divider } from "../../components/layout"
-import type { ColorVariant } from "../../utils/colors"
+import type { ColorVariant } from "../../utils/color"
 
 export function DrawerShowcase() {
   const [basicOpen, setBasicOpen] = useState(false)

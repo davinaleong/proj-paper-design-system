@@ -17,7 +17,7 @@ import {
   getBackgroundColorClasses,
   getBorderColorClasses,
   type ColorVariant as UtilsColorVariant,
-} from "../../../utils/colors.js"
+} from "../../../utils/color.js"
 import { useTable } from "./useTable.js"
 import type { TableProps, TableColumn, TableRow } from "./types"
 
@@ -342,7 +342,7 @@ function ActionsColumn({
   )
 }
 
-// Helper functions for color classes using utils/colors.ts
+// Helper functions for color classes using utils/color.ts
 const getTableHeaderClasses = (variant: UtilsColorVariant = "default") => {
   return getColorClasses(variant, "soft", "font-medium")
 }

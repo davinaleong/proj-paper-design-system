@@ -1,4 +1,4 @@
-import type { ColorVariant, ColorIntensity } from "../../../utils/colors"
+import type { ColorVariant, ColorIntensity } from "../../../utils/color"
 import type { ElementType, ReactNode } from "react"
 
 export type TypographyVariant =

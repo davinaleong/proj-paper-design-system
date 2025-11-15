@@ -1,4 +1,4 @@
-import type { ColorVariant } from "../../../utils/colors"
+import type { ColorVariant } from "../../../utils/color"
 
 export type PaginationVariant = "solid" | "outline" | "ghost" | "link" | "plain"
 

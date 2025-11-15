@@ -1,5 +1,5 @@
 import type { ReactNode, HTMLAttributes } from "react"
-import type { ColorVariant } from "../../../utils/colors"
+import type { ColorVariant } from "../../../utils/color"
 
 export type BackdropVariant = "solid" | "blur" | "patterned"
 

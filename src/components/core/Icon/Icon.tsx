@@ -1,6 +1,7 @@
 import { forwardRef } from "react"
 import clsx from "clsx"
 import { getTextColorClasses } from "../../../utils/color"
+import type { ColorIntensity } from "../../../utils/color"
 import type { IconProps } from "./types"
 
 const SIZE_CLASSES = {
@@ -30,7 +31,7 @@ export const Icon = forwardRef<SVGSVGElement, IconProps>(
     ref
   ) => {
     // Get color classes
-    const colorClasses = getTextColorClasses(color, intensity)
+    const colorClasses = getTextColorClasses(color, intensity as ColorIntensity | "strong" | "bold" | "medium" | "muted")
 
     // Determine size
     const sizeClasses = customSize ? "" : SIZE_CLASSES[size]

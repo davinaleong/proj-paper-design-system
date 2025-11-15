@@ -1,5 +1,5 @@
 import type { ReactNode } from "react"
-import type { ColorVariant } from "../../../utils/colors.js"
+import type { ColorVariant } from "../../../utils/color.js"
 
 /**
  * Day of the week starting options

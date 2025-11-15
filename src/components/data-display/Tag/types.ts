@@ -1,5 +1,5 @@
 import type { ReactNode, HTMLAttributes, MouseEvent } from "react"
-import type { ColorVariant } from "../../../utils/colors.js"
+import type { ColorVariant } from "../../../utils/color.js"
 
 export type TagSize = "xs" | "sm" | "md" | "lg"
 export type TagVariant = "solid" | "soft" | "outline" | "ghost"

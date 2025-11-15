@@ -1,8 +1,8 @@
 import React, { forwardRef, cloneElement, isValidElement } from "react"
 import { X } from "lucide-react"
 import { cn } from "../../../utils/cn.js"
-import { getColorClasses } from "../../../utils/colors.js"
-import type { ColorVariant as UtilsColorVariant } from "../../../utils/colors.js"
+import { getColorClasses } from "../../../utils/color.js"
+import type { ColorVariant as UtilsColorVariant } from "../../../utils/color.js"
 import type { TagProps, TagSize, TagVariant } from "./types.js"
 
 /**

@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react"
-import type { ColorVariant, ColorIntensity } from "../../../utils/colors"
+import type { ColorVariant, ColorIntensity } from "../../../utils/color"
 
 export type IconSize = "xs" | "sm" | "md" | "lg" | "xl" | "2xl"
 

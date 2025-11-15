@@ -4,7 +4,7 @@ import { Paper, Typography } from "../../components/core"
 import { Button } from "../../components/forms"
 import { ConfirmationDialog } from "../../components/feedback"
 import type { ConfirmationDialogVariant, ConfirmationDialogAction } from "../../components/feedback/ConfirmationDialog/types"
-import type { ColorVariant } from "../../utils/colors"
+import type { ColorVariant } from "../../utils/color"
 
 export function ConfirmationDialogShowcase() {
   const [basicDialog, setBasicDialog] = useState(false)

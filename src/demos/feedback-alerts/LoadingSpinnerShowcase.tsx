@@ -4,7 +4,7 @@ import { Paper, Typography } from "../../components/core"
 import { Button } from "../../components/forms"
 import { LoadingSpinner } from "../../components/feedback"
 import type { LoadingSpinnerIcon, LoadingSpinnerSize, LoadingSpinnerTextPosition, LoadingSpinnerVariant } from "../../components/feedback/LoadingSpinner/types"
-import type { ColorVariant } from "../../utils/colors"
+import type { ColorVariant } from "../../utils/color"
 
 export function LoadingSpinnerShowcase() {
   const [activeSpinners, setActiveSpinners] = useState<Record<string, boolean>>({})

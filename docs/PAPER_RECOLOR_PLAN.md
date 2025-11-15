@@ -241,7 +241,7 @@ borders: {
 - [ ] Color utility functions
 - [ ] Base component dark mode support
 
-### **Phase 2: Form Controls** 🔄 *NEXT*
+### **Phase 2: Form Controls**
 **Priority: HIGH**
 - [ ] **Button Component**
   - [ ] All variants (solid, outline, ghost, plain)

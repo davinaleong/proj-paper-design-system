@@ -1,5 +1,5 @@
 import type { ReactNode } from "react"
-import type { ColorVariant } from "../../../utils/colors"
+import type { ColorVariant } from "../../../utils/color"
 
 export type SkeletonVariant = "text" | "image" | "avatar" | "button" | "card" | "custom"
 

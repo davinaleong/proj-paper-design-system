@@ -1,12 +1,12 @@
 import { useState } from "react"
-import { DotIndicator } from "./DotIndicator"
-import type { DotIndicatorSize, DotIndicatorVariant } from "./types"
-import type { ColorVariant } from "../../../utils/color"
-import { Stack } from "../../layout/Stack"
-import { Flex } from "../../layout/Flex"
-import { Typography } from "../../core/Typography"
-import { Paper } from "../../core/Paper"
-import { Button } from "../../forms/Button"
+import { DotIndicator } from "../../components/system-utilities/DotIndicator"
+import type { DotIndicatorSize, DotIndicatorVariant } from "../../components/system-utilities/DotIndicator/types"
+import type { ColorVariant } from "../../utils/color"
+import { Stack } from "../../components/layout/Stack"
+import { Flex } from "../../components/layout/Flex"
+import { Typography } from "../../components/core/Typography"
+import { Paper } from "../../components/core/Paper"
+import { Button } from "../../components/forms/Button"
 
 const colors: ColorVariant[] = [
   "primary",

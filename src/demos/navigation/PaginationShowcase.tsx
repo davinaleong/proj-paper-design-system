@@ -3,7 +3,7 @@ import { Pagination } from "../../components/navigation/Pagination"
 import { Paper } from "../../components/core/Paper"
 import { Typography } from "../../components/core/Typography"
 import type { PaginationVariant, PaginationFormat } from "../../components/navigation/Pagination"
-import type { ColorVariant } from "../../utils/colors"
+import type { ColorVariant } from "../../utils/color"
 
 const PaginationVariantDemo: React.FC<{
   variant: PaginationVariant

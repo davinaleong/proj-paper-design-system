@@ -1,4 +1,4 @@
-import type { ColorVariant } from "../../../utils/colors"
+import type { ColorVariant } from "../../../utils/color"
 import type { ReactNode } from "react"
 
 export interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {

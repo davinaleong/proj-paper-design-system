@@ -1,5 +1,5 @@
 import type { ReactNode, HTMLAttributes, MouseEvent } from "react"
-import type { ColorVariant } from "../../../utils/colors.js"
+import type { ColorVariant } from "../../../utils/color.js"
 
 export type TableAlign = "left" | "center" | "right"
 export type SortDirection = "asc" | "desc" | null
@@ -546,7 +546,7 @@ export interface TableCallbacks<T = unknown> {
   onEditCancel?: (rowId: string | number, rowData: T) => void
 }
 
-export type TableProps<T = unknown> = {
+export type TableProps<T = Record<string, unknown>> = {
   /**
    * Column definitions
    */

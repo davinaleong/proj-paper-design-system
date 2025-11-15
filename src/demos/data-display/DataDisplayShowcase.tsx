@@ -4,7 +4,7 @@ import { Table } from "../../components/data-display/Table"
 import { DescriptionListShowcase } from "../data-display/DescriptionListShowcase"
 import { TagShowcase } from "../data-display/TagShowcase"
 import { TooltipShowcase } from "../data-display/TooltipShowcase"
-import { DotIndicatorShowcase } from "../system-utilities/DotIndicatorShowcase"
+import { DotIndicatorShowcase } from "../utilities-special/DotIndicatorShowcase"
 
 // Sample data for tables
 const sampleData = [

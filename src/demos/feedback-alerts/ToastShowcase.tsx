@@ -8,7 +8,7 @@ import { Stack } from "../../components/layout/Stack"
 import { Grid } from "../../components/layout/Grid"
 import { Bell, Star } from "lucide-react"
 import type { ToastVariant, ToastPosition } from "../../components/feedback/Toast/types"
-import type { ColorVariant } from "../../utils/colors"
+
 
 const variants: ToastVariant[] = ["solid", "outline", "ghost", "soft", "plain"]
 const positions: ToastPosition[] = [
@@ -17,9 +17,11 @@ const positions: ToastPosition[] = [
   "center"
 ]
 
-const colors: ColorVariant[] = [
+import type { SemanticColorVariant } from "../../utils/color"
+
+const colors: SemanticColorVariant[] = [
   "primary", "secondary", "success", "danger", "warning", "info", 
-  "default", "paper", "accent"
+  "default", "accent", "neutral"
 ]
 
 function ToastDemoInner() {

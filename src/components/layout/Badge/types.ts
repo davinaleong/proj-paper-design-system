@@ -1,5 +1,5 @@
 import type { ReactNode } from "react"
-import type { ColorVariant } from "../../../utils/colors"
+import type { ColorVariant } from "../../../utils/color"
 
 export type BadgeSize = "xs" | "sm" | "md" | "lg"
 

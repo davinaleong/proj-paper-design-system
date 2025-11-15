@@ -3,7 +3,7 @@ import { Backdrop } from "../../components/overlays"
 import { Button } from "../../components/forms"
 import { Typography } from "../../components/core"
 import { Paper } from "../../components/core"
-import type { ColorVariant } from "../../utils/colors"
+import type { ColorVariant } from "../../utils/color"
 
 export function BackdropShowcase() {
   const [activeBackdrop, setActiveBackdrop] = useState<string | null>(null)

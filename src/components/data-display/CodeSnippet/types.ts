@@ -1,4 +1,4 @@
-import type { ColorVariant } from "../../../utils/colors"
+import type { ColorVariant } from "../../../utils/color"
 
 export type CodeSnippetSize = "xs" | "sm" | "md" | "lg" | "xl"
 export type CodeSnippetVariant = "solid" | "soft" | "outline" | "ghost"

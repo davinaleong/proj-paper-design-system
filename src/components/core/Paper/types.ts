@@ -1,4 +1,4 @@
-import type { BackgroundLevel } from "../../../utils/color"
+import type { BackgroundLevel, ColorVariant } from "../../../utils/color"
 import type { ElementType, ReactNode } from "react"
 
 export type ThemeElevation = "none" | "sm" | "md" | "lg" | "xl"
@@ -26,7 +26,7 @@ export interface PaperProps {
   /**
    * Background color variant
    */
-  background?: BackgroundLevel | "paper"
+  background?: BackgroundLevel | ColorVariant | "paper"
 
   /**
    * Border color variant (for outlined variant)

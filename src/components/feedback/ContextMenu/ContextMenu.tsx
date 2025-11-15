@@ -12,7 +12,7 @@ import { ContextMenuItem } from './ContextMenuItem';
 import { ContextMenuSeparator } from './ContextMenuSeparator';
 import { ContextMenuLabel } from './ContextMenuLabel';
 import { cn } from '../../../utils';
-import { getColorClassesWithLuminance } from '../../../utils/colors';
+import { getColorClassesWithLuminance } from '../../../utils/color';
 import './ContextMenu.css';
 
 export const ContextMenu: React.FC<ContextMenuProps> = ({

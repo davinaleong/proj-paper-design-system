@@ -1,7 +1,7 @@
 import { forwardRef } from "react"
 import { cn } from "../../../utils/cn.js"
 import { Tooltip } from "../Tooltip/Tooltip.jsx"
-import type { ColorVariant as UtilsColorVariant } from "../../../utils/colors.js"
+import type { ColorVariant as UtilsColorVariant } from "../../../utils/color.js"
 import type {
   StaticTableProps,
   StaticTableColumn,
@@ -22,6 +22,9 @@ const getTableRowClasses = (variant: ColorVariant = "default") => {
 
   // Create subtle row background with hover effect based on the variant
   const colorMapping: Record<UtilsColorVariant, string> = {
+    base: "bg-stone-50/30 hover:bg-stone-100/40",
+    elevated: "bg-white hover:bg-gray-50/40",
+    subtle: "bg-gray-50/20 hover:bg-gray-100/30",
     primary: "bg-blue-50/30 hover:bg-blue-100/40",
     secondary: "bg-slate-50/30 hover:bg-slate-100/40",
     danger: "bg-red-50/30 hover:bg-red-100/40",
@@ -71,6 +74,9 @@ const getTableCellClasses = (variant: ColorVariant = "default") => {
 
   // Create text color mapping based on color variants
   const colorMapping: Record<UtilsColorVariant, string> = {
+    base: "text-gray-200 dark:text-gray-50",
+    elevated: "text-gray-200 dark:text-gray-50",
+    subtle: "text-gray-300 dark:text-gray-100",
     primary: "text-gray-200 dark:text-gray-50",
     secondary: "text-gray-200 dark:text-gray-50",
     danger: "text-gray-200 dark:text-gray-50",
@@ -120,6 +126,9 @@ const getTableHeaderClasses = (variant: ColorVariant = "default") => {
 
   // Create header color mapping with background and text colors
   const colorMapping: Record<UtilsColorVariant, string> = {
+    base: "bg-stone-100 text-gray-200 dark:bg-stone-900/20 dark:text-gray-50 font-medium",
+    elevated: "bg-white text-gray-700 dark:bg-gray-800 dark:text-gray-50 font-medium",
+    subtle: "bg-gray-50 text-gray-600 dark:bg-gray-900/20 dark:text-gray-100 font-medium",
     primary: "bg-blue-100 text-gray-200 dark:bg-blue-900/20 dark:text-gray-50 font-medium",
     secondary: "bg-slate-100 text-gray-200 dark:bg-slate-900/20 dark:text-gray-50 font-medium",
     danger: "bg-red-100 text-gray-200 dark:bg-red-900/20 dark:text-gray-50 font-medium",
@@ -170,6 +179,9 @@ const getWholeTableClasses = (variant: ColorVariant = "default") => {
 
   // Create whole-table color mapping with paper-like styling
   const colorMapping: Record<UtilsColorVariant, string> = {
+    base: "border border-stone-200 bg-stone-50/90 backdrop-blur-sm rounded-lg",
+    elevated: "border border-gray-200 bg-white backdrop-blur-sm rounded-lg shadow-sm",
+    subtle: "border border-gray-100 bg-gray-50/50 backdrop-blur-sm rounded-lg",
     primary: "border border-blue-200 bg-blue-50/90 backdrop-blur-sm rounded-lg",
     secondary:
       "border border-slate-200 bg-slate-50/90 backdrop-blur-sm rounded-lg",

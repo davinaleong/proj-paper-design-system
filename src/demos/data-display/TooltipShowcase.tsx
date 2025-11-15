@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { Tooltip } from "../../components/data-display/Tooltip/Tooltip.jsx"
 import { Button } from "../../components/forms/Button/Button.jsx"
 import type { TooltipPosition, TooltipTrigger, TooltipSize } from "../../components/data-display/Tooltip/types.js"
-import type { ColorVariant } from "../../utils/colors.js"
+import type { ColorVariant } from "../../utils/color.js"
 
 /**
  * Comprehensive showcase for the Tooltip component

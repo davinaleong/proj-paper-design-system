@@ -1,6 +1,6 @@
 import type { ReactNode, HTMLAttributes, CSSProperties } from "react"
 import type { LucideIcon } from "lucide-react"
-import type { ColorVariant } from "../../../utils/colors"
+import type { ColorVariant } from "../../../utils/color"
 import type { ButtonVariant, ButtonSize } from "../../forms/Button/types"
 import type { IconButtonVariant, IconButtonSize } from "../../forms/IconButton/types"
 

@@ -5,7 +5,7 @@ import {
   getColorClasses,
   getTextColorClasses,
   type ColorVariant as UtilsColorVariant,
-} from "../../../utils/colors.js"
+} from "../../../utils/color.js"
 import type { DescriptionListProps, DescriptionListItem } from "./types"
 
 // Helper function to check if content should be truncated

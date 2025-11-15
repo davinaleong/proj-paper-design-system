@@ -107,8 +107,9 @@ export function mapTextColor(color: string, theme: PaperThemeMode = "light"): st
  * getBackgroundColor("elevated", "dark")   // returns "#1a1a1a"
  * ```
  */
-export function getBackgroundColor(level: BackgroundLevel, theme: PaperThemeMode = "light"): string {
-  return paperThemeColors[theme].backgrounds[level]
+export function getBackgroundColor(variant: ColorVariant, theme: PaperThemeMode = "light"): string {
+  const backgroundLevel = resolveColorVariantToBackgroundLevel(variant)
+  return paperThemeColors[theme].backgrounds[backgroundLevel]
 }
 
 /**
@@ -348,6 +349,15 @@ export type SemanticColorVariant =
   | "neutral"
   | "default"
 
+// Extended color palette including Tailwind colors used in demos
+export type TailwindColorVariant = 
+  | "slate" | "gray" | "zinc" | "neutral" | "stone"
+  | "red" | "orange" | "amber" | "yellow" | "lime" | "green" | "emerald" 
+  | "teal" | "cyan" | "sky" | "blue" | "indigo" | "violet" | "purple" 
+  | "fuchsia" | "pink" | "rose"
+  | "paper" // Special paper theme color
+  | "muted" // Text level colors sometimes used as color variants
+
 // Visual style variants for components
 export type StyleVariant = "solid" | "soft" | "outline" | "ghost"
 
@@ -428,6 +438,221 @@ export const semanticTailwindColorMapping = {
 }>
 
 /**
+ * Extended Tailwind color mappings for all color variants
+ * These provide direct Tailwind color classes for any color name
+ */
+export const extendedTailwindColorMapping = {
+  // Semantic colors (already defined above)
+  ...semanticTailwindColorMapping,
+  
+  // Background levels
+  base: {
+    base: "bg-stone-50",
+    text: "text-stone-900",
+    border: "border-stone-200",
+    hover: "hover:bg-stone-100",
+    focus: "focus:ring-stone-500",
+  },
+  elevated: {
+    base: "bg-white",
+    text: "text-stone-900",
+    border: "border-stone-300", 
+    hover: "hover:bg-stone-50",
+    focus: "focus:ring-stone-500",
+  },
+  subtle: {
+    base: "bg-stone-100",
+    text: "text-stone-800",
+    border: "border-stone-200",
+    hover: "hover:bg-stone-200",
+    focus: "focus:ring-stone-500",
+  },
+  
+  // Tailwind color palette
+  slate: {
+    base: "bg-slate-500",
+    text: "text-white",
+    border: "border-slate-500", 
+    hover: "hover:bg-slate-600",
+    focus: "focus:ring-slate-500",
+  },
+  gray: {
+    base: "bg-gray-500",
+    text: "text-white",
+    border: "border-gray-500",
+    hover: "hover:bg-gray-600", 
+    focus: "focus:ring-gray-500",
+  },
+  zinc: {
+    base: "bg-zinc-500",
+    text: "text-white",
+    border: "border-zinc-500",
+    hover: "hover:bg-zinc-600",
+    focus: "focus:ring-zinc-500",
+  },
+  stone: {
+    base: "bg-stone-500", 
+    text: "text-white",
+    border: "border-stone-500",
+    hover: "hover:bg-stone-600",
+    focus: "focus:ring-stone-500",
+  },
+  red: {
+    base: "bg-red-500",
+    text: "text-white",
+    border: "border-red-500",
+    hover: "hover:bg-red-600",
+    focus: "focus:ring-red-500",
+  },
+  orange: {
+    base: "bg-orange-500",
+    text: "text-black",
+    border: "border-orange-500",
+    hover: "hover:bg-orange-600",
+    focus: "focus:ring-orange-500",
+  },
+  amber: {
+    base: "bg-amber-500", 
+    text: "text-black",
+    border: "border-amber-500",
+    hover: "hover:bg-amber-600",
+    focus: "focus:ring-amber-500",
+  },
+  yellow: {
+    base: "bg-yellow-500",
+    text: "text-black", 
+    border: "border-yellow-500",
+    hover: "hover:bg-yellow-600",
+    focus: "focus:ring-yellow-500",
+  },
+  lime: {
+    base: "bg-lime-500",
+    text: "text-black",
+    border: "border-lime-500",
+    hover: "hover:bg-lime-600",
+    focus: "focus:ring-lime-500",
+  },
+  green: {
+    base: "bg-green-500",
+    text: "text-black",
+    border: "border-green-500", 
+    hover: "hover:bg-green-600",
+    focus: "focus:ring-green-500",
+  },
+  emerald: {
+    base: "bg-emerald-500",
+    text: "text-black",
+    border: "border-emerald-500",
+    hover: "hover:bg-emerald-600",
+    focus: "focus:ring-emerald-500",
+  },
+  teal: {
+    base: "bg-teal-500",
+    text: "text-black",
+    border: "border-teal-500",
+    hover: "hover:bg-teal-600", 
+    focus: "focus:ring-teal-500",
+  },
+  cyan: {
+    base: "bg-cyan-500",
+    text: "text-black",
+    border: "border-cyan-500",
+    hover: "hover:bg-cyan-600",
+    focus: "focus:ring-cyan-500",
+  },
+  sky: {
+    base: "bg-sky-500",
+    text: "text-black", 
+    border: "border-sky-500",
+    hover: "hover:bg-sky-600",
+    focus: "focus:ring-sky-500",
+  },
+  blue: {
+    base: "bg-blue-500",
+    text: "text-white",
+    border: "border-blue-500",
+    hover: "hover:bg-blue-600",
+    focus: "focus:ring-blue-500",
+  },
+  indigo: {
+    base: "bg-indigo-500",
+    text: "text-white",
+    border: "border-indigo-500",
+    hover: "hover:bg-indigo-600",
+    focus: "focus:ring-indigo-500",
+  },
+  violet: {
+    base: "bg-violet-500", 
+    text: "text-white",
+    border: "border-violet-500",
+    hover: "hover:bg-violet-600",
+    focus: "focus:ring-violet-500",
+  },
+  purple: {
+    base: "bg-purple-500",
+    text: "text-white",
+    border: "border-purple-500",
+    hover: "hover:bg-purple-600",
+    focus: "focus:ring-purple-500",
+  },
+  fuchsia: {
+    base: "bg-fuchsia-500",
+    text: "text-white",
+    border: "border-fuchsia-500",
+    hover: "hover:bg-fuchsia-600",
+    focus: "focus:ring-fuchsia-500",
+  },
+  pink: {
+    base: "bg-pink-500",
+    text: "text-black",
+    border: "border-pink-500",
+    hover: "hover:bg-pink-600",
+    focus: "focus:ring-pink-500",
+  },
+  rose: {
+    base: "bg-rose-500",
+    text: "text-white",
+    border: "border-rose-500",
+    hover: "hover:bg-rose-600",
+    focus: "focus:ring-rose-500",
+  },
+  paper: {
+    base: "bg-stone-200",
+    text: "text-stone-800",
+    border: "border-stone-300",
+    hover: "hover:bg-stone-300",
+    focus: "focus:ring-stone-500",
+  },
+  muted: {
+    base: "bg-gray-200",
+    text: "text-gray-700",
+    border: "border-gray-300",
+    hover: "hover:bg-gray-300",
+    focus: "focus:ring-gray-500",
+  },
+  transparent: {
+    base: "bg-transparent",
+    text: "text-current",
+    border: "border-transparent",
+    hover: "hover:bg-black/5",
+    focus: "focus:ring-gray-500",
+  },
+  custom: {
+    base: "bg-gray-500",
+    text: "text-white",
+    border: "border-gray-500",
+    hover: "hover:bg-gray-600",
+    focus: "focus:ring-gray-500",
+  },
+} as const satisfies Record<ColorVariant, {
+  base: string;
+  text: string;
+  border: string;
+  hover: string;
+  focus: string;
+}>
+
+/**
  * Map semantic color variants to appropriate paper theme levels
  * This allows components to use semantic colors while leveraging the paper theme system
  */
@@ -446,6 +671,78 @@ export const semanticColorMapping = {
   text: TextLevel; 
   border: BorderLevel; 
 }>
+
+// Legacy compatibility - ColorVariant includes background levels, semantic colors, Tailwind colors, and special values
+export type ColorVariant = BackgroundLevel | SemanticColorVariant | TailwindColorVariant | "transparent" | "custom"
+
+// Legacy exports for backward compatibility
+export type ColorStyle = StyleVariant
+export type ColorIntensity = "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900" | "soft"
+
+/**
+ * Helper function to resolve ColorVariant to BackgroundLevel
+ * Converts semantic colors and Tailwind colors to their corresponding background levels
+ */
+export function resolveColorVariantToBackgroundLevel(variant: ColorVariant): BackgroundLevel {
+  // If it's already a BackgroundLevel, return as is
+  if (variant === "base" || variant === "elevated" || variant === "subtle") {
+    return variant as BackgroundLevel
+  }
+  
+  // If it's a semantic color, map to background level
+  if (variant in semanticColorMapping) {
+    return semanticColorMapping[variant as SemanticColorVariant]?.bg || "base"
+  }
+  
+  // Map Tailwind colors to semantic colors and then to background levels
+  const tailwindToSemantic: Record<string, SemanticColorVariant> = {
+    // Red family -> danger
+    "red": "danger",
+    "rose": "danger",
+    
+    // Orange/Yellow family -> warning  
+    "orange": "warning",
+    "amber": "warning",
+    "yellow": "warning",
+    
+    // Green family -> success
+    "green": "success",
+    "emerald": "success",
+    "lime": "success",
+    
+    // Blue family -> primary
+    "blue": "primary",
+    "sky": "primary",
+    "cyan": "primary",
+    "teal": "primary",
+    
+    // Purple family -> secondary
+    "purple": "secondary",
+    "violet": "secondary",
+    "indigo": "secondary",
+    "fuchsia": "secondary",
+    "pink": "secondary",
+    
+    // Neutral family -> neutral
+    "gray": "neutral",
+    "slate": "neutral", 
+    "zinc": "neutral",
+    "stone": "neutral",
+    "neutral": "neutral",
+    
+    // Special mappings
+    "paper": "default",
+    "muted": "neutral",
+  }
+  
+  const semanticEquivalent = tailwindToSemantic[variant as string]
+  if (semanticEquivalent) {
+    return semanticColorMapping[semanticEquivalent]?.bg || "base"
+  }
+  
+  // Default fallback
+  return "base"
+}
 
 /**
  * Get paper theme classes for semantic color variants
@@ -526,10 +823,10 @@ export function getSemanticColorClasses(
  * ```
  */
 export function getTailwindSemanticColorClasses(
-  semanticColor: SemanticColorVariant,
+  color: ColorVariant,
   style: StyleVariant = "solid"
 ) {
-  const colorMap = semanticTailwindColorMapping[semanticColor]
+  const colorMap = extendedTailwindColorMapping[color]
   
   switch (style) {
     case "solid":
@@ -603,29 +900,170 @@ export function getTailwindSemanticColorClasses(
   }
 }
 
-// Legacy compatibility functions for existing components
-export type ColorVariant = BackgroundLevel
-
-export function getBackgroundColorClasses(variant: ColorVariant, theme: PaperThemeMode = "light"): string {
-  return getTailwindClass("bg", variant, theme)
+// Overloaded function signatures for getBackgroundColorClasses  
+export function getBackgroundColorClasses(variant: ColorVariant, theme?: PaperThemeMode): string;
+export function getBackgroundColorClasses(variant: ColorVariant, styleVariant: 'solid' | 'soft' | 'outline' | 'ghost' | 'subtle' | 'bold'): string;
+export function getBackgroundColorClasses(variant: ColorVariant, themeOrStyle?: PaperThemeMode | 'solid' | 'soft' | 'outline' | 'ghost' | 'subtle' | 'bold'): string {
+  // If second parameter is a theme mode or undefined, use original logic
+  if (!themeOrStyle || themeOrStyle === "light" || themeOrStyle === "dark") {
+    const backgroundLevel = resolveColorVariantToBackgroundLevel(variant)
+    return getTailwindClass("bg", backgroundLevel, themeOrStyle as PaperThemeMode || "light")
+  }
+  
+  // Handle style variants - use extended tailwind color mapping
+  const colorMapping = extendedTailwindColorMapping[variant]
+  if (colorMapping) {
+    // Map style variants to appropriate classes
+    switch (themeOrStyle) {
+      case 'subtle':
+        return colorMapping.base.replace('bg-', 'bg-').replace('-500', '-100/50')
+      case 'bold':
+        return colorMapping.base.replace('bg-', 'bg-').replace('-500', '-700')
+      case 'solid':
+        return colorMapping.base
+      case 'soft':
+        return colorMapping.base.replace('bg-', 'bg-').replace('-500', '-200')
+      case 'outline':
+        return 'bg-transparent'
+      case 'ghost':
+        return 'bg-transparent hover:' + colorMapping.base.replace('bg-', 'bg-').replace('-500', '-100')
+      default:
+        return colorMapping.base
+    }
+  }
+  
+  return ""
 }
 
-export function getTextColorClasses(variant: TextLevel, theme: PaperThemeMode = "light"): string {
-  return getTailwindClass("text", variant, theme)
+// Overloaded function signatures for getTextColorClasses
+export function getTextColorClasses(variant: TextLevel, theme?: PaperThemeMode): string;
+export function getTextColorClasses(color: ColorVariant, intensity: ColorIntensity | "strong" | "bold" | "medium" | "muted"): string;
+
+export function getTextColorClasses(
+  variantOrColor: TextLevel | ColorVariant,
+  themeOrIntensity?: PaperThemeMode | ColorIntensity | "strong" | "bold" | "medium" | "muted"
+): string {
+  // If first parameter is a TextLevel, use the original signature
+  if (["strong", "medium", "muted", "subtle"].includes(variantOrColor as string)) {
+    return getTailwindClass("text", variantOrColor as TextLevel, themeOrIntensity as PaperThemeMode || "light")
+  }
+
+  // If second parameter is a theme, use original signature
+  if (["light", "dark"].includes(themeOrIntensity as string)) {
+    return getTailwindClass("text", variantOrColor as TextLevel, themeOrIntensity as PaperThemeMode)
+  }
+
+  // New signature: color, intensity, theme
+  const color = variantOrColor as ColorVariant
+  const intensity = themeOrIntensity as ColorIntensity | "strong" | "bold" | "medium" | "muted"
+  
+  // Map intensity to ColorIntensity if it's a string
+  let colorIntensity: ColorIntensity
+  if (intensity === "strong" || intensity === "bold") {
+    colorIntensity = "700"
+  } else if (intensity === "medium") {
+    colorIntensity = "500" 
+  } else if (intensity === "muted") {
+    colorIntensity = "400"
+  } else if (intensity === "soft") {
+    colorIntensity = "300"
+  } else {
+    colorIntensity = intensity as ColorIntensity
+  }
+
+  // Generate text color class
+  return `text-${color}-${colorIntensity}`
 }
 
-export function getBorderColorClasses(variant: BorderLevel, theme: PaperThemeMode = "light"): string {
-  return getTailwindClass("border", variant, theme)
+// Overloaded function signatures for getBorderColorClasses
+export function getBorderColorClasses(variant: BorderLevel, theme?: PaperThemeMode): string;
+export function getBorderColorClasses(variant: ColorVariant, theme?: PaperThemeMode): string;
+export function getBorderColorClasses(variant: BorderLevel | ColorVariant, theme: PaperThemeMode = "light"): string {
+  // If it's a ColorVariant, use the extended tailwind mapping
+  if (typeof variant === "string" && variant in extendedTailwindColorMapping) {
+    const colorMapping = extendedTailwindColorMapping[variant as ColorVariant]
+    return colorMapping.border
+  }
+  
+  // Otherwise use original logic for BorderLevel
+  return getTailwindClass("border", variant as BorderLevel, theme)
 }
 
-export function getColorClasses(variant: ColorVariant, theme: PaperThemeMode = "light"): string {
-  return getBackgroundColorClasses(variant, theme)
+// Overloaded function signatures for getColorClasses
+export function getColorClasses(variant: ColorVariant, theme?: PaperThemeMode): string;
+export function getColorClasses(color: ColorVariant, styleVariant: 'solid' | 'soft' | 'outline' | 'ghost', extraClass?: string): string;
+
+export function getColorClasses(
+  colorOrVariant: ColorVariant,
+  themeOrStyleVariant?: PaperThemeMode | 'solid' | 'soft' | 'outline' | 'ghost',
+  extraClass?: string
+): string {
+  // If second parameter is a theme mode or undefined, use the original signature
+  if (!themeOrStyleVariant || themeOrStyleVariant === "light" || themeOrStyleVariant === "dark") {
+    return getBackgroundColorClasses(colorOrVariant, themeOrStyleVariant as PaperThemeMode || "light")
+  }
+
+  // New signature: color, styleVariant, extraClass
+  const styleVariant = themeOrStyleVariant as 'solid' | 'soft' | 'outline' | 'ghost'
+  
+  // Get background classes based on style variant
+  let bgClass = ''
+  if (styleVariant === 'solid') {
+    bgClass = getBackgroundColorClasses(colorOrVariant, "light")
+  } else if (styleVariant === 'soft') {
+    // For soft variant, use a lighter version
+    bgClass = getBackgroundColorClasses(colorOrVariant, "light").replace(/-(500|600|700|800|900)/, '-100').replace(/-(400|300|200|100)/, '-50')
+  } else if (styleVariant === 'outline') {
+    // For outline variant, use border classes
+    bgClass = `border border-${colorOrVariant}-500 bg-transparent`
+  } else if (styleVariant === 'ghost') {
+    // For ghost variant, use transparent background with hover effect
+    bgClass = `bg-transparent hover:bg-${colorOrVariant}-50`
+  }
+
+  return extraClass ? `${bgClass} ${extraClass}` : bgClass
 }
 
-export function getColorClassesWithLuminance(variant: ColorVariant, theme: PaperThemeMode = "light"): string {
-  const bgClass = getBackgroundColorClasses(variant, theme)
-  const textColor = getOptimalTextColorForBackground(getBackgroundColor(variant, theme), theme)
-  return `${bgClass} text-[${textColor}]`
+// Overloaded function signatures
+export function getColorClassesWithLuminance(variant: ColorVariant, theme?: PaperThemeMode): string;
+export function getColorClassesWithLuminance(color: ColorVariant, styleVariant: 'solid' | 'soft' | 'outline', enableOptimalTextColor?: boolean, theme?: PaperThemeMode): string;
+
+export function getColorClassesWithLuminance(
+  colorOrVariant: ColorVariant, 
+  themeOrStyleVariant?: PaperThemeMode | 'solid' | 'soft' | 'outline',
+  enableOptimalTextColor?: boolean,
+  theme: PaperThemeMode = "light"
+): string {
+  // If second parameter is a theme mode, use the original signature
+  if (!themeOrStyleVariant || themeOrStyleVariant === "light" || themeOrStyleVariant === "dark") {
+    const bgClass = getBackgroundColorClasses(colorOrVariant, themeOrStyleVariant as PaperThemeMode || "light")
+    const textColor = getOptimalTextColorForBackground(getBackgroundColor(colorOrVariant, themeOrStyleVariant as PaperThemeMode || "light"), themeOrStyleVariant as PaperThemeMode || "light")
+    return `${bgClass} text-[${textColor}]`
+  }
+
+  // New signature: color, styleVariant, enableOptimalTextColor, theme
+  const styleVariant = themeOrStyleVariant as 'solid' | 'soft' | 'outline'
+  const currentTheme = theme
+  
+  // Get background classes based on style variant
+  let bgClass = ''
+  if (styleVariant === 'solid') {
+    bgClass = getBackgroundColorClasses(colorOrVariant, currentTheme)
+  } else if (styleVariant === 'soft') {
+    // For soft variant, use a lighter version
+    bgClass = getBackgroundColorClasses(colorOrVariant, currentTheme).replace(/-(500|600|700|800|900)/, '-100').replace(/-(400|300|200|100)/, '-50')
+  } else if (styleVariant === 'outline') {
+    // For outline variant, use border classes
+    bgClass = `border border-${colorOrVariant}-500 bg-transparent`
+  }
+
+  if (enableOptimalTextColor) {
+    const backgroundColor = getBackgroundColor(colorOrVariant, currentTheme)
+    const textColor = getOptimalTextColorForBackground(backgroundColor, currentTheme)
+    return `${bgClass} text-[${textColor}]`
+  } else {
+    return bgClass
+  }
 }
 
 export function getOptimalTextClasses(backgroundColor: string, theme: PaperThemeMode = "light"): string {

@@ -10,11 +10,11 @@ import { Badge } from "../../components/layout/Badge"
 import { Card } from "../../components/layout/Card"
 
 export const ThemeToggleShowcase: React.FC = () => {
-  const [buttonsTheme, setButtonsTheme] = useState<ThemeToggleMode>("paper")
+  const [buttonsTheme, setButtonsTheme] = useState<ThemeToggleMode>("light")
   const [segmentedTheme, setSegmentedTheme] = useState<ThemeToggleMode>("light")
   const [dropdownTheme, setDropdownTheme] = useState<ThemeToggleMode>("dark")
-  const [compactTheme, setCompactTheme] = useState<ThemeToggleMode>("paper")
-  const [demoTheme, setDemoTheme] = useState<ThemeToggleMode>("paper")
+  const [compactTheme, setCompactTheme] = useState<ThemeToggleMode>("system")
+  const [demoTheme, setDemoTheme] = useState<ThemeToggleMode>("light")
 
   // Theme-specific styles
   const getThemeStyles = (theme: ThemeToggleMode) => {
@@ -33,7 +33,7 @@ export const ThemeToggleShowcase: React.FC = () => {
           text: "text-white",
           muted: "text-gray-300"
         }
-      case "paper":
+      case "system":
       default:
         return {
           container: "bg-paper-50 border-stone-200 text-stone-900",

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback } from "react"
 import { cn } from "../../../utils/cn.js"
-import { getColorClasses } from "../../../utils/colors.js"
-import type { ColorVariant as UtilsColorVariant } from "../../../utils/colors.js"
+import { getColorClasses, getSemanticColorClasses } from "../../../utils/color.js"
+import type { ColorVariant, SemanticColorVariant } from "../../../utils/color.js"
 import type { TooltipProps, TooltipPosition, TooltipSize } from "./types.js"
 
 /**
@@ -305,6 +305,27 @@ export const Tooltip: React.FC<TooltipProps> = ({
     }
   }, [])
 
+  // Map ColorVariant to SemanticColorVariant for tooltips
+  const getTooltipColorClasses = (variant: ColorVariant): string => {
+    // Map specific variants to semantic colors
+    const semanticMap: Record<string, SemanticColorVariant> = {
+      success: "success",
+      warning: "warning", 
+      danger: "danger",
+      error: "danger",
+      info: "info",
+    }
+
+    const semanticVariant = semanticMap[variant]
+    if (semanticVariant) {
+      const result = getSemanticColorClasses(semanticVariant, "soft")
+      return result.combined
+    }
+
+    // Fallback to regular color classes for non-semantic variants
+    return getColorClasses(variant)
+  }
+
   // Tooltip content classes
   const tooltipClasses = cn(
     // Base styling
@@ -318,7 +339,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
     sizeClasses[size].padding,
 
     // Color variant
-    getColorClasses(colorVariant as UtilsColorVariant, "soft"),
+    getTooltipColorClasses(colorVariant),
     "border-current border-opacity-20",
 
     // Animation

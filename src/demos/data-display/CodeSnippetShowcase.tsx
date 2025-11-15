@@ -1,6 +1,6 @@
 import React from "react"
 import { CodeSnippet } from "../../components/data-display"
-import type { ColorVariant } from "../../utils/colors"
+import type { ColorVariant } from "../../utils/color"
 
 // Real code from the project - cn utility function
 const jsCode = `import { clsx, type ClassValue } from "clsx"
@@ -15,7 +15,7 @@ const tsCode = `import { Loader2 } from "lucide-react"
 import { forwardRef } from "react"
 import type { ButtonProps } from "./types"
 import { cn } from "../../../utils/cn.js"
-import { getColorClassesWithLuminance } from "../../../utils/colors"
+import { getColorClassesWithLuminance } from "../../../utils/color"
 
 const sizeClasses = {
   xs: \`px-2 py-1 \${containerResponsiveUI.button.sm} gap-1\`,

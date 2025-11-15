@@ -2,7 +2,9 @@ import { forwardRef } from "react"
 import { cn } from "../../../utils/cn.js"
 import {
   getTailwindClass,
+  getBackgroundColorClasses,
   type BackgroundLevel,
+  type ColorVariant,
 } from "../../../utils/color"
 import type { PaperProps } from "./types"
 
@@ -71,7 +73,13 @@ export const Paper = forwardRef<HTMLElement, PaperProps>(
       if (variant === "outlined") return "bg-transparent"
       if (background === "paper")
         return "bg-white text-slate-900"
-      return getTailwindClass("bg", background as BackgroundLevel, "light")
+      
+      // Try to use as ColorVariant first, fall back to BackgroundLevel
+      try {
+        return getBackgroundColorClasses(background as ColorVariant, "light")
+      } catch {
+        return getTailwindClass("bg", background as BackgroundLevel, "light")
+      }
     }
 
     const borderClasses = () => {

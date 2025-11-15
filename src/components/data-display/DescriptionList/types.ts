@@ -1,5 +1,5 @@
 import type { ReactNode, HTMLAttributes } from "react"
-import type { ColorVariant } from "../../../utils/colors.js"
+import type { ColorVariant } from "../../../utils/color.js"
 
 export type DescriptionListLayout = "horizontal" | "vertical"
 export type DescriptionListSize = "sm" | "md" | "lg"

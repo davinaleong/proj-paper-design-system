@@ -8,6 +8,9 @@ import type { AlertProps, AlertColor } from "./types"
 
 // Default icons for different alert colors
 const DEFAULT_ICONS = {
+  base: Info,
+  elevated: Info,
+  subtle: Info,
   default: Info,
   primary: Info,
   secondary: Info,

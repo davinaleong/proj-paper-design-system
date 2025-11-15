@@ -1,7 +1,7 @@
 import React from 'react';
 import type { ContextMenuItemProps } from './types';
 import { cn } from '../../../utils';
-import { getColorClassesWithLuminance } from '../../../utils/colors';
+import { getColorClassesWithLuminance } from '../../../utils/color';
 
 export const ContextMenuItem: React.FC<ContextMenuItemProps> = ({
   children,

@@ -1,5 +1,5 @@
 import type { ReactNode } from "react"
-import type { ColorVariant } from "../../../utils/colors"
+import type { ColorVariant } from "../../../utils/color"
 import type { LucideIcon } from "lucide-react"
 
 export type LoadingSpinnerIcon = "loader2" | "loader" | "refresh-cw" | "rotate-3d" | "circle-dashed"

@@ -1,6 +1,7 @@
 import { forwardRef } from "react"
 import clsx from "clsx"
 import { getTextColorClasses } from "../../../utils/color"
+import type { ColorIntensity } from "../../../utils/color"
 import {
   containerResponsiveHeadings,
   containerResponsiveBody,
@@ -147,7 +148,7 @@ export const Typography = forwardRef<HTMLElement, TypographyProps>(
     const variantClasses = VARIANT_CLASSES[variant]
 
     // Get text color classes
-    const colorClasses = getTextColorClasses(color, intensity)
+    const colorClasses = getTextColorClasses(color, intensity as ColorIntensity | "strong" | "bold" | "medium" | "muted")
 
     // Build classes
     const typographyClasses = clsx(

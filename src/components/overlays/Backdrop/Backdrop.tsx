@@ -25,6 +25,9 @@ const getPatternSvg = (pattern: string, intensity: string) => {
 
 const getColorOverlayClasses = (color: ColorVariant): string => {
   const colorMap: Record<ColorVariant, string> = {
+    base: "bg-stone-600/30",
+    elevated: "bg-gray-700/20",
+    subtle: "bg-gray-500/15",
     primary: "bg-blue-600/30",
     secondary: "bg-slate-600/30",
     success: "bg-green-600/30",
@@ -68,6 +71,9 @@ const getColorOverlayClasses = (color: ColorVariant): string => {
 const getSolidColorClasses = (color: ColorVariant, opacity: number): string => {
   const opacityValue = Math.round(opacity * 100)
   const colorMap: Record<ColorVariant, string> = {
+    base: `bg-stone-600/${opacityValue}`,
+    elevated: `bg-gray-700/${opacityValue}`,
+    subtle: `bg-gray-500/${opacityValue}`,
     primary: `bg-blue-600/${opacityValue}`,
     secondary: `bg-slate-600/${opacityValue}`,
     success: `bg-green-600/${opacityValue}`,

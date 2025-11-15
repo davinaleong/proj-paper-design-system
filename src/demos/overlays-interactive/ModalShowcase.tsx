@@ -4,7 +4,7 @@ import { Typography } from "../../components/core"
 import { Button } from "../../components/forms"
 import { Modal } from "../../components/feedback"
 import type { ModalState, ModalVariant } from "../../components/feedback/Modal/types"
-import type { ColorVariant } from "../../utils/colors"
+import type { ColorVariant } from "../../utils/color"
 
 export function ModalShowcase() {
   const [basicModal, setBasicModal] = useState(false)

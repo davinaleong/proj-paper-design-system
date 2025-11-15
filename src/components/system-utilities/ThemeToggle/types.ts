@@ -1,7 +1,7 @@
 import type { ReactNode } from "react"
 import type { LucideIcon } from "lucide-react"
 import type { ButtonVariant, ButtonSize } from "../../forms/Button/types"
-import type { ColorVariant } from "../../../utils/colors"
+import type { ColorVariant } from "../../../utils/color"
 import type { ThemeMode } from "../../../hooks/useThemeMode"
 
 export type ThemeToggleMode = ThemeMode
