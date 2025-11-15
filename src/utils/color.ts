@@ -766,6 +766,12 @@ export function getSemanticColorClasses(
 ) {
   const mapping = semanticColorMapping[semanticColor]
   
+  // Safety check - if mapping doesn't exist, return default classes
+  if (!mapping) {
+    console.warn(`Invalid semantic color variant: "${semanticColor}". Using default.`)
+    return getSemanticColorClasses("default", style, theme)
+  }
+  
   // For different styles, we might adjust the intensity
   let bgLevel: BackgroundLevel = mapping.bg
   let textLevel: TextLevel = mapping.text
@@ -943,22 +949,40 @@ export function getTextColorClasses(
   variantOrColor: TextLevel | ColorVariant,
   themeOrIntensity?: PaperThemeMode | ColorIntensity | "strong" | "bold" | "medium" | "muted"
 ): string {
-  // If first parameter is a TextLevel, use the original signature
-  if (["strong", "medium", "muted", "subtle"].includes(variantOrColor as string)) {
+  // Check if it's a TextLevel (original signature)
+  const isTextLevel = ["strong", "medium", "muted", "subtle"].includes(variantOrColor as string)
+  const isTheme = ["light", "dark"].includes(themeOrIntensity as string)
+  
+  // If first param is TextLevel and second is theme or undefined, use original signature
+  if (isTextLevel && (isTheme || !themeOrIntensity)) {
     return getTailwindClass("text", variantOrColor as TextLevel, themeOrIntensity as PaperThemeMode || "light")
   }
-
-  // If second parameter is a theme, use original signature
-  if (["light", "dark"].includes(themeOrIntensity as string)) {
-    return getTailwindClass("text", variantOrColor as TextLevel, themeOrIntensity as PaperThemeMode)
-  }
-
-  // New signature: color, intensity, theme
+  
+  // Otherwise, treat as ColorVariant with intensity
   const color = variantOrColor as ColorVariant
   const intensity = themeOrIntensity as ColorIntensity | "strong" | "bold" | "medium" | "muted"
   
+  // Handle special color variants that don't have intensities
+  if (color === "transparent") {
+    return "text-transparent"
+  }
+  
+  if (color === "custom") {
+    return "text-current"
+  }
+  
+  // Handle BackgroundLevel colors (map to appropriate text colors)
+  if (["base", "elevated", "subtle"].includes(color as string)) {
+    const textLevelMap = {
+      "base": "medium",
+      "elevated": "strong", 
+      "subtle": "muted"
+    }
+    return getTailwindClass("text", textLevelMap[color as keyof typeof textLevelMap] as TextLevel, "light")
+  }
+  
   // Map intensity to ColorIntensity if it's a string
-  let colorIntensity: ColorIntensity
+  let colorIntensity: ColorIntensity = "500" // default
   if (intensity === "strong" || intensity === "bold") {
     colorIntensity = "700"
   } else if (intensity === "medium") {
@@ -967,11 +991,11 @@ export function getTextColorClasses(
     colorIntensity = "400"
   } else if (intensity === "soft") {
     colorIntensity = "300"
-  } else {
+  } else if (intensity) {
     colorIntensity = intensity as ColorIntensity
   }
 
-  // Generate text color class
+  // Generate text color class for semantic and Tailwind colors
   return `text-${color}-${colorIntensity}`
 }
 
