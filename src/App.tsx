@@ -83,7 +83,7 @@ import "./App.css"
 
 function App() {
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false)
-  const { theme: themeMode } = useThemeMode()
+  const { theme: themeMode, isLoading } = useThemeMode()
   
   // Mock theme object for compatibility
   const theme = { mode: themeMode }
@@ -240,6 +240,18 @@ function App() {
 
   return (
     <div className={`flex min-h-screen transition-colors duration-300 ${getThemeClasses()}`}>
+      {/* Theme Loading Overlay */}
+      {isLoading && (
+        <div className="fixed inset-0 bg-black/20 dark:bg-white/10 backdrop-blur-sm z-50 flex items-center justify-center">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 flex items-center space-x-3">
+            <div className="w-5 h-5 border-2 border-blue-600 dark:border-blue-400 border-t-transparent rounded-full animate-spin"></div>
+            <Typography variant="body" className="text-gray-700 dark:text-gray-300">
+              Applying theme...
+            </Typography>
+          </div>
+        </div>
+      )}
+
     {/* Sidebar (fixed for md+) */}
     <Sidebar
       items={sidebarItems}
