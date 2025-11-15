@@ -11,7 +11,7 @@ A warm, tactile React component library built with TypeScript and Tailwind CSS, 
 - 🎯 **TypeScript**: Full type safety and excellent developer experience
 - 🎨 **Tailwind CSS v4**: Modern utility-first styling with custom design tokens
 - ♿ **Accessible**: WCAG compliant components with proper ARIA support
-- 🎭 **Themeable**: Light, dark, and paper theme variants
+- 🎭 **Advanced Theming**: Light, dark, and paper modes with semantic color system
 - 📦 **Modular**: Import only what you need
 - 🎯 **Advanced UX**: Premium components for complex interfaces
 - 🚀 **Modern React**: Built with React 19+ and latest patterns
@@ -198,9 +198,12 @@ function App() {
 ## 🎨 Design System Features
 
 ### Advanced Color System
+- **Semantic Color System** with 9 semantic variants (primary, success, danger, etc.)
+- **Full Dark Mode Support** with theme-aware color classes and automatic switching
+- **4 Style Variants** per color (solid, soft, outline, ghost) across light and dark themes
+- **Theme-Aware Utilities** with automatic light/dark mode handling
 - **42+ Color Variants** across 22 color families with paper theme integration
 - **Intelligent Contrast** with automatic text color selection based on luminance
-- **Theme Modes** supporting light, dark, and signature paper themes
 - **Color Combinations** with over 1,600 tested color pairings
 
 ### Typography Hierarchy

@@ -22,11 +22,12 @@ export function CoreComponentsShowcase() {
         </Typography>
       </Paper>
 
+      {/* TODO: Still showing light bg in dark mode */}
       <Paper variant="flat" padding="lg" background="accent">
-        <Typography variant="h4" className="mb-4" color="paper">
+        <Typography variant="h4" className="mb-4" color="neutral" intensity="strong">
           Typography
         </Typography>
-        <Typography variant="bodySmall" color="paper" intensity="soft">
+        <Typography variant="bodySmall" color="neutral" intensity="soft">
           ✅ Complete text hierarchy with three beautiful font families
         </Typography>
       </Paper>
@@ -98,11 +99,12 @@ export function CoreComponentsShowcase() {
         </div>
       </Paper>
 
+      {/* TODO: Still showing light bg in dark mode */}
       <Paper variant="elevated" padding="lg" background="success">
-        <Typography variant="h4" className="mb-4" color="paper">
+        <Typography variant="h4" className="mb-4" color="neutral" intensity="strong">
           Phase 1.1 Complete!
         </Typography>
-        <Typography variant="bodySmall" color="paper" intensity="soft">
+        <Typography variant="bodySmall" color="neutral" intensity="soft">
           🎉 All core foundation components are ready for use
         </Typography>
       </Paper>

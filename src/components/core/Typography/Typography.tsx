@@ -55,52 +55,52 @@ const VARIANT_CLASSES: Record<TypographyVariant, string> = {
   h5: `font-playfair ${containerResponsiveHeadings.h5} font-medium`,
   h6: `font-playfair ${containerResponsiveHeadings.h6} font-medium`,
 
-  // Semantic variants (Montserrat) - now container-responsive
+  // Semantic variants (Montserrat) - now container-responsive with paper theme colors
   title: `font-montserrat ${containerResponsiveHeadings.h2} font-bold tracking-tight`,
-  subtitle: `font-montserrat ${containerResponsiveHeadings.h4} font-semibold text-gray-600 dark:text-gray-400`,
+  subtitle: `font-montserrat ${containerResponsiveHeadings.h4} font-semibold text-[#4a4945] dark:text-[#d4d4d4]`,
 
-  // Body text (Montserrat) - now container-responsive
+  // Body text (Montserrat) - now container-responsive with paper theme colors
   body: `font-montserrat ${containerResponsiveBody.regular}`,
   bodyLarge: `font-montserrat ${containerResponsiveBody.large}`,
   bodySmall: `font-montserrat ${containerResponsiveBody.small}`,
 
-  // Utility text (Montserrat) - now container-responsive
-  caption: `font-montserrat ${containerResponsiveBody.caption} text-gray-500 dark:text-gray-400`,
-  overline: `font-montserrat ${containerResponsiveFonts.xs} font-medium uppercase tracking-wider leading-normal text-gray-500 dark:text-gray-400`,
+  // Utility text (Montserrat) - now container-responsive with paper theme colors
+  caption: `font-montserrat ${containerResponsiveBody.caption} text-[#6b6a66] dark:text-[#a8a8a8]`,
+  overline: `font-montserrat ${containerResponsiveFonts.xs} font-medium uppercase tracking-wider leading-normal text-[#6b6a66] dark:text-[#a8a8a8]`,
 
-  // Code text (Source Code Pro) - container-responsive
-  code: `font-source-code-pro ${containerResponsiveFonts.sm} bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded-sm`,
-  pre: `font-source-code-pro ${containerResponsiveFonts.sm} bg-gray-100 dark:bg-gray-800 p-4 rounded-lg overflow-x-auto`,
+  // Code text (Source Code Pro) - container-responsive with paper theme colors
+  code: `font-source-code-pro ${containerResponsiveFonts.sm} bg-[#f8f7f4] dark:bg-[#1a1a1a] px-1.5 py-0.5 rounded-sm`,
+  pre: `font-source-code-pro ${containerResponsiveFonts.sm} bg-[#f8f7f4] dark:bg-[#1a1a1a] p-4 rounded-lg overflow-x-auto`,
 
-  // Semantic text elements
-  strong: `font-montserrat font-bold`,
-  em: `font-montserrat italic`,
-  small: `font-montserrat ${containerResponsiveFonts.xs} text-gray-600 dark:text-gray-400`,
+  // Semantic text elements with paper theme colors
+  strong: `font-montserrat font-bold text-[#1a1917] dark:text-[#f8f8f8]`,
+  em: `font-montserrat italic text-[#1a1917] dark:text-[#f8f8f8]`,
+  small: `font-montserrat ${containerResponsiveFonts.xs} text-[#9c9b96] dark:text-[#6b6b6b]`,
   
-  // Keyboard input styling
-  kbd: `font-source-code-pro ${containerResponsiveFonts.xs} font-medium bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded px-1.5 py-0.5 shadow-sm`,
+  // Keyboard input styling with paper theme colors
+  kbd: `font-source-code-pro ${containerResponsiveFonts.xs} font-medium bg-[#f8f7f4] dark:bg-[#1a1a1a] border border-[#e8e6e0] dark:border-[#383838] rounded px-1.5 py-0.5 shadow-sm`,
   
-  // Text modifications
-  del: `font-montserrat line-through text-gray-500 dark:text-gray-400`,
+  // Text modifications with paper theme colors
+  del: `font-montserrat line-through text-[#9c9b96] dark:text-[#6b6b6b]`,
   ins: `font-montserrat underline decoration-green-500 text-green-700 dark:text-green-400`,
   
-  // Subscript and superscript
-  sub: `font-montserrat ${containerResponsiveFonts.xs} align-sub`,
-  sup: `font-montserrat ${containerResponsiveFonts.xs} align-super`,
+  // Subscript and superscript with paper theme colors
+  sub: `font-montserrat ${containerResponsiveFonts.xs} align-sub text-[#4a4945] dark:text-[#d4d4d4]`,
+  sup: `font-montserrat ${containerResponsiveFonts.xs} align-super text-[#4a4945] dark:text-[#d4d4d4]`,
   
-  // Semantic elements
-  abbr: `font-montserrat border-b border-dotted border-gray-400 dark:border-gray-500 cursor-help`,
-  cite: `font-montserrat italic text-gray-700 dark:text-gray-300`,
-  q: `font-montserrat before:content-['"'] after:content-['"'] text-gray-700 dark:text-gray-300`,
-  dfn: `font-montserrat italic font-medium text-gray-200 dark:text-gray-50`,
+  // Semantic elements with paper theme colors
+  abbr: `font-montserrat border-b border-dotted border-[#9c9b96] dark:border-[#6b6b6b] cursor-help`,
+  cite: `font-montserrat italic text-[#4a4945] dark:text-[#d4d4d4]`,
+  q: `font-montserrat before:content-['"'] after:content-['"'] text-[#4a4945] dark:text-[#d4d4d4]`,
+  dfn: `font-montserrat italic font-medium text-[#1a1917] dark:text-[#f8f8f8]`,
   
-  // Code-related elements
-  samp: `font-source-code-pro ${containerResponsiveFonts.sm} bg-gray-50 dark:bg-gray-900 px-1 py-0.5 rounded border`,
+  // Code-related elements with paper theme colors
+  samp: `font-source-code-pro ${containerResponsiveFonts.sm} bg-[#f4f3f0] dark:bg-[#242424] px-1 py-0.5 rounded border border-[#e8e6e0] dark:border-[#383838]`,
   var: `font-source-code-pro ${containerResponsiveFonts.sm} italic font-medium text-purple-600 dark:text-purple-400`,
   
-  // Time and data
-  time: `font-montserrat ${containerResponsiveFonts.sm} text-gray-600 dark:text-gray-400`,
-  data: `font-montserrat font-medium text-gray-200 dark:text-gray-50`,
+  // Time and data with paper theme colors  
+  time: `font-montserrat ${containerResponsiveFonts.sm} text-[#6b6a66] dark:text-[#a8a8a8]`,
+  data: `font-montserrat font-medium text-[#1a1917] dark:text-[#f8f8f8]`,
 }
 
 const WEIGHT_CLASSES = {

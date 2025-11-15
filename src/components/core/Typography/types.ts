@@ -59,7 +59,7 @@ export interface TypographyProps {
   /**
    * Color intensity
    */
-  intensity?: ColorIntensity
+  intensity?: ColorIntensity | "strong" | "bold" | "medium" | "muted"
 
   /**
    * Font weight

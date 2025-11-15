@@ -9,6 +9,7 @@ import {
   // Core Foundation (Phase 1)
   CoreComponentsShowcase,
   TypographyShowcase,
+  SemanticColorsShowcase,
   
   // Layout Structure (Phase 2)
   LayoutShowcase,
@@ -98,6 +99,7 @@ function App() {
         { id: "overview", label: "Core Components", href: "#overview" },
         { id: "typography", label: "Typography", href: "#typography" },
         { id: "semantic-typography", label: "Semantic Typography", href: "#semantic-typography" },
+        { id: "semantic-colors", label: "Semantic Colors", href: "#semantic-colors" },
       ]
     },
     // Phase 2: Layout & Structure
@@ -229,12 +231,15 @@ function App() {
   const getThemeClasses = () => {
     switch (theme.mode) {
       case 'light':
-        return 'bg-white text-gray-800'
+        // Minimal Warm theme from Paper Recolor Plan
+        return 'paper-bg-primary paper-text-primary'
       case 'dark':
-        return 'bg-gray-900 text-gray-50'
+        // Black Paper theme from Paper Recolor Plan  
+        return 'paper-bg-primary paper-text-primary'
       case 'system':
       default:
-        return 'bg-[#faf9f6] text-stone-700'
+        // Paper theme as default - CSS custom properties handle theme switching
+        return 'paper-bg-primary paper-text-primary'
     }
   }
 
@@ -309,6 +314,10 @@ function App() {
               <div>Value: <Typography variant="data" value="42">42</Typography></div>
             </div>
           </Paper>
+        </section>
+
+        <section id="semantic-colors" className="mb-8">
+          <SemanticColorsShowcase />
         </section>
         
         <Divider className="my-12" />

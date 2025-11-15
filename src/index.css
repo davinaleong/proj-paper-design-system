@@ -508,6 +508,73 @@ fontFamily: {
   --theme-accent: primary;
   --theme-radius: md;
   --theme-elevation: sm;
+  
+  /* Paper Recolor Plan - Light Theme (Minimal Warm) */
+  --paper-bg-primary: #fcfbf9;
+  --paper-bg-secondary: #f8f7f4;
+  --paper-bg-elevated: #f4f3f0;
+  --paper-text-primary: #1a1917;
+  --paper-text-secondary: #4a4945;
+  --paper-text-muted: #6b6a66;
+  --paper-text-subtle: #9c9b96;
+  --paper-border-light: #f0efeb;
+  --paper-border-medium: #e8e6e0;
+  --paper-border-strong: #d6d3d1;
+}
+
+.dark {
+  /* Paper Recolor Plan - Dark Theme (Black Paper) */
+  --paper-bg-primary: #0a0a0a;
+  --paper-bg-secondary: #1a1a1a;
+  --paper-bg-elevated: #242424;
+  --paper-text-primary: #f8f8f8;
+  --paper-text-secondary: #d4d4d4;
+  --paper-text-muted: #a8a8a8;
+  --paper-text-subtle: #6b6b6b;
+  --paper-border-light: #2a2a2a;
+  --paper-border-medium: #383838;
+  --paper-border-strong: #4a4a4a;
+}
+
+/* Paper Theme Utility Classes */
+.paper-bg-primary {
+  background-color: var(--paper-bg-primary);
+}
+
+.paper-bg-secondary {
+  background-color: var(--paper-bg-secondary);
+}
+
+.paper-bg-elevated {
+  background-color: var(--paper-bg-elevated);
+}
+
+.paper-text-primary {
+  color: var(--paper-text-primary);
+}
+
+.paper-text-secondary {
+  color: var(--paper-text-secondary);
+}
+
+.paper-text-muted {
+  color: var(--paper-text-muted);
+}
+
+.paper-text-subtle {
+  color: var(--paper-text-subtle);
+}
+
+.paper-border-light {
+  border-color: var(--paper-border-light);
+}
+
+.paper-border-medium {
+  border-color: var(--paper-border-medium);
+}
+
+.paper-border-strong {
+  border-color: var(--paper-border-strong);
 }
 
 * {

@@ -3,6 +3,7 @@
 export {
   CoreComponentsShowcase,
   TypographyShowcase,
+  SemanticColorsShowcase,
 } from "./core-foundation"
 
 // Theme System

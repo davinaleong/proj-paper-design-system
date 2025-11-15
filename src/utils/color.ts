@@ -362,11 +362,26 @@ export type TailwindColorVariant =
 export type StyleVariant = "solid" | "soft" | "outline" | "ghost"
 
 /**
- * Specific Tailwind color mappings for semantic variants
- * These provide consistent, branded colors for components
+ * Specific Tailwind color mappings for semantic variants with dark mode support
+ * These provide consistent, branded colors for components across light and dark themes
  */
 export const semanticTailwindColorMapping = {
   primary: {
+    light: {
+      base: "bg-blue-500",
+      text: "text-white",
+      border: "border-blue-500",
+      hover: "hover:bg-blue-600",
+      focus: "focus:ring-blue-500",
+    },
+    dark: {
+      base: "bg-blue-400",
+      text: "text-blue-950",
+      border: "border-blue-400",
+      hover: "hover:bg-blue-300",
+      focus: "focus:ring-blue-400",
+    },
+    // Legacy support - defaults to light theme
     base: "bg-blue-500",
     text: "text-white",
     border: "border-blue-500",
@@ -374,6 +389,21 @@ export const semanticTailwindColorMapping = {
     focus: "focus:ring-blue-500",
   },
   secondary: {
+    light: {
+      base: "bg-slate-500", 
+      text: "text-white",
+      border: "border-slate-500",
+      hover: "hover:bg-slate-600",
+      focus: "focus:ring-slate-500",
+    },
+    dark: {
+      base: "bg-slate-400",
+      text: "text-slate-950",
+      border: "border-slate-400",
+      hover: "hover:bg-slate-300",
+      focus: "focus:ring-slate-400",
+    },
+    // Legacy support
     base: "bg-slate-500", 
     text: "text-white",
     border: "border-slate-500",
@@ -381,6 +411,21 @@ export const semanticTailwindColorMapping = {
     focus: "focus:ring-slate-500",
   },
   accent: {
+    light: {
+      base: "bg-sky-500",
+      text: "text-sky-950",
+      border: "border-sky-500", 
+      hover: "hover:bg-sky-600",
+      focus: "focus:ring-sky-500",
+    },
+    dark: {
+      base: "bg-sky-400",
+      text: "text-sky-950",
+      border: "border-sky-400",
+      hover: "hover:bg-sky-300",
+      focus: "focus:ring-sky-400",
+    },
+    // Legacy support
     base: "bg-sky-500",
     text: "text-black",
     border: "border-sky-500", 
@@ -388,6 +433,21 @@ export const semanticTailwindColorMapping = {
     focus: "focus:ring-sky-500",
   },
   default: {
+    light: {
+      base: "bg-neutral-500",
+      text: "text-white",
+      border: "border-neutral-500",
+      hover: "hover:bg-neutral-600", 
+      focus: "focus:ring-neutral-500",
+    },
+    dark: {
+      base: "bg-neutral-400",
+      text: "text-neutral-950",
+      border: "border-neutral-400",
+      hover: "hover:bg-neutral-300",
+      focus: "focus:ring-neutral-400",
+    },
+    // Legacy support
     base: "bg-neutral-500",
     text: "text-white",
     border: "border-neutral-500",
@@ -395,6 +455,21 @@ export const semanticTailwindColorMapping = {
     focus: "focus:ring-neutral-500",
   },
   info: {
+    light: {
+      base: "bg-cyan-500",
+      text: "text-cyan-950",
+      border: "border-cyan-500",
+      hover: "hover:bg-cyan-600",
+      focus: "focus:ring-cyan-500", 
+    },
+    dark: {
+      base: "bg-cyan-400",
+      text: "text-cyan-950",
+      border: "border-cyan-400",
+      hover: "hover:bg-cyan-300",
+      focus: "focus:ring-cyan-400",
+    },
+    // Legacy support
     base: "bg-cyan-500",
     text: "text-black",
     border: "border-cyan-500",
@@ -402,6 +477,21 @@ export const semanticTailwindColorMapping = {
     focus: "focus:ring-cyan-500", 
   },
   warning: {
+    light: {
+      base: "bg-yellow-500",
+      text: "text-yellow-950",
+      border: "border-yellow-500",
+      hover: "hover:bg-yellow-600",
+      focus: "focus:ring-yellow-500",
+    },
+    dark: {
+      base: "bg-yellow-400",
+      text: "text-yellow-950",
+      border: "border-yellow-400",
+      hover: "hover:bg-yellow-300",
+      focus: "focus:ring-yellow-400",
+    },
+    // Legacy support
     base: "bg-yellow-500",
     text: "text-black",
     border: "border-yellow-500",
@@ -409,6 +499,21 @@ export const semanticTailwindColorMapping = {
     focus: "focus:ring-yellow-500",
   },
   danger: {
+    light: {
+      base: "bg-red-500",
+      text: "text-white", 
+      border: "border-red-500",
+      hover: "hover:bg-red-600",
+      focus: "focus:ring-red-500",
+    },
+    dark: {
+      base: "bg-red-400",
+      text: "text-red-950",
+      border: "border-red-400",
+      hover: "hover:bg-red-300",
+      focus: "focus:ring-red-400",
+    },
+    // Legacy support
     base: "bg-red-500",
     text: "text-white", 
     border: "border-red-500",
@@ -416,6 +521,21 @@ export const semanticTailwindColorMapping = {
     focus: "focus:ring-red-500",
   },
   success: {
+    light: {
+      base: "bg-green-500",
+      text: "text-green-950",
+      border: "border-green-500",
+      hover: "hover:bg-green-600",
+      focus: "focus:ring-green-500",
+    },
+    dark: {
+      base: "bg-green-400",
+      text: "text-green-950",
+      border: "border-green-400",
+      hover: "hover:bg-green-300",
+      focus: "focus:ring-green-400",
+    },
+    // Legacy support
     base: "bg-green-500",
     text: "text-black",
     border: "border-green-500",
@@ -423,6 +543,21 @@ export const semanticTailwindColorMapping = {
     focus: "focus:ring-green-500",
   },
   neutral: {
+    light: {
+      base: "bg-gray-500",
+      text: "text-white",
+      border: "border-gray-500",
+      hover: "hover:bg-gray-600",
+      focus: "focus:ring-gray-500",
+    },
+    dark: {
+      base: "bg-gray-400",
+      text: "text-gray-950",
+      border: "border-gray-400",
+      hover: "hover:bg-gray-300",
+      focus: "focus:ring-gray-400",
+    },
+    // Legacy support
     base: "bg-gray-500",
     text: "text-white",
     border: "border-gray-500",
@@ -430,6 +565,21 @@ export const semanticTailwindColorMapping = {
     focus: "focus:ring-gray-500",
   },
 } as const satisfies Record<SemanticColorVariant, {
+  light: {
+    base: string;
+    text: string;
+    border: string;
+    hover: string;
+    focus: string;
+  };
+  dark: {
+    base: string;
+    text: string;
+    border: string;
+    hover: string;
+    focus: string;
+  };
+  // Legacy support
   base: string;
   text: string;
   border: string;
@@ -745,6 +895,32 @@ export function resolveColorVariantToBackgroundLevel(variant: ColorVariant): Bac
 }
 
 /**
+ * Get semantic color classes with full dark mode support
+ * Uses Tailwind semantic colors (blue-500, red-500, etc.) with theme-appropriate adjustments
+ * 
+ * @param semanticColor - Semantic color variant
+ * @param style - Visual style variant
+ * @param theme - Paper theme mode
+ * @returns Object with Tailwind semantic color classes for light and dark themes
+ * 
+ * @example
+ * ```typescript
+ * const classes = getSemanticColorClassesWithDarkMode("success", "soft", "light")
+ * // Returns: { background: "bg-green-100", text: "text-green-700", border: "border-green-200", hover: "hover:bg-green-200" }
+ * 
+ * const darkClasses = getSemanticColorClassesWithDarkMode("success", "soft", "dark")
+ * // Returns: { background: "bg-green-900/20", text: "text-green-400", border: "border-green-800", hover: "hover:bg-green-800/30" }
+ * ```
+ */
+export function getSemanticColorClassesWithDarkMode(
+  semanticColor: SemanticColorVariant,
+  style: StyleVariant = "soft", 
+  theme: PaperThemeMode = "light"
+) {
+  return getTailwindSemanticColorClasses(semanticColor, style, theme)
+}
+
+/**
  * Get paper theme classes for semantic color variants
  * This bridges semantic colors with the paper theme system
  * 
@@ -815,93 +991,225 @@ export function getSemanticColorClasses(
 }
 
 /**
- * Get Tailwind color classes for semantic color variants
- * Uses specific branded colors (blue-500, red-500, etc.) instead of paper theme colors
+ * Get Tailwind color classes for semantic color variants with dark mode support
+ * Uses specific branded colors (blue-500, red-500, etc.) with theme-appropriate variations
  * 
  * @param semanticColor - Semantic color variant
  * @param style - Visual style variant  
+ * @param theme - Theme mode ("light" or "dark")
  * @returns Object with Tailwind color classes
  * 
  * @example
  * ```typescript
- * const classes = getTailwindSemanticColorClasses("danger", "solid")
+ * const classes = getTailwindSemanticColorClasses("danger", "solid", "light")
  * // Returns: { background: "bg-red-500", text: "text-white", border: "border-red-500", hover: "hover:bg-red-600" }
+ * 
+ * const darkClasses = getTailwindSemanticColorClasses("danger", "solid", "dark") 
+ * // Returns: { background: "bg-red-400", text: "text-red-950", border: "border-red-400", hover: "hover:bg-red-300" }
  * ```
  */
 export function getTailwindSemanticColorClasses(
   color: ColorVariant,
-  style: StyleVariant = "solid"
+  style: StyleVariant = "solid",
+  theme: PaperThemeMode = "light"
 ) {
+  // Check if it's a semantic color with theme support
+  const semanticColor = color as SemanticColorVariant
+  if (semanticColor in semanticTailwindColorMapping) {
+    const colorMap = semanticTailwindColorMapping[semanticColor][theme]
+    
+    switch (style) {
+      case "solid":
+        return {
+          background: colorMap.base,
+          text: colorMap.text,
+          border: colorMap.border,
+          hover: colorMap.hover,
+          focus: colorMap.focus,
+          // Combined class string for convenience
+          combined: `${colorMap.base} ${colorMap.text} ${colorMap.border} ${colorMap.hover} ${colorMap.focus}`,
+        }
+        
+      case "soft": {
+        // Soft style uses lighter background with colored text
+        const baseColor = colorMap.base.match(/(bg-\w+)-(\d+)/)?.[1] || 'bg-gray'
+        const textColor = colorMap.text.match(/(text-\w+)-(\d+)/)?.[1] || 'text-gray'
+        
+        const softBg = theme === "light" ? `${baseColor}-100` : `${baseColor}-900/20`
+        const softText = theme === "light" ? `${textColor}-700` : colorMap.text
+        const softBorder = theme === "light" ? `border${baseColor.replace('bg', '')}-200` : `border${baseColor.replace('bg', '')}-800`
+        const softHover = theme === "light" ? `hover:${baseColor}-200` : `hover:${baseColor}-800/30`
+        
+        return {
+          background: softBg,
+          text: softText,
+          border: softBorder,
+          hover: softHover,
+          focus: colorMap.focus,
+          combined: `${softBg} ${softText} ${softBorder} ${softHover} ${colorMap.focus}`,
+        }
+      }
+        
+      case "outline": {
+        // Outline style uses transparent background with colored border and text
+        const baseColor = colorMap.base.match(/(bg-\w+)-(\d+)/)?.[1]?.replace('bg-', '') || 'gray'
+        const outlineText = theme === "light" ? `text-${baseColor}-600` : `text-${baseColor}-400`
+        const outlineBorder = theme === "light" ? `border-${baseColor}-500` : `border-${baseColor}-400`
+        const outlineHover = theme === "light" ? `hover:bg-${baseColor}-50` : `hover:bg-${baseColor}-950/10`
+        
+        return {
+          background: "bg-transparent",
+          text: outlineText,
+          border: outlineBorder,
+          hover: outlineHover,
+          focus: colorMap.focus,
+          combined: `bg-transparent ${outlineText} ${outlineBorder} ${outlineHover} ${colorMap.focus}`,
+        }
+      }
+        
+      case "ghost": {
+        // Ghost style uses subtle coloring with hover effects
+        const baseColor = colorMap.base.match(/(bg-\w+)-(\d+)/)?.[1]?.replace('bg-', '') || 'gray'
+        const ghostText = theme === "light" ? `text-${baseColor}-600` : `text-${baseColor}-400`
+        const ghostHover = theme === "light" ? `hover:bg-${baseColor}-50` : `hover:bg-${baseColor}-950/10`
+        
+        return {
+          background: "bg-transparent",
+          text: ghostText,
+          border: "border-transparent",
+          hover: ghostHover,
+          focus: colorMap.focus,
+          combined: `bg-transparent ${ghostText} border-transparent ${ghostHover} ${colorMap.focus}`,
+        }
+      }
+        
+      default:
+        return {
+          background: colorMap.base,
+          text: colorMap.text,
+          border: colorMap.border,
+          hover: colorMap.hover,
+          focus: colorMap.focus,
+          combined: `${colorMap.base} ${colorMap.text} ${colorMap.border} ${colorMap.hover} ${colorMap.focus}`,
+        }
+    }
+  }
+  
+  // Fallback to extended mapping for non-semantic colors
   const colorMap = extendedTailwindColorMapping[color]
+  if (!colorMap) {
+    console.warn(`Invalid color variant: "${color}". Using neutral default.`)
+    return getTailwindSemanticColorClasses("neutral", style, theme)
+  }
+  
+  // Apply theme-aware adjustments to non-semantic colors
+  const adjustColorForTheme = (colorClass: string, adjustment: 'lighter' | 'darker' | 'contrast') => {
+    if (theme === "dark") {
+      switch (adjustment) {
+        case 'lighter':
+          return colorClass.replace(/-(\d+)/, (_, intensity) => {
+            const num = parseInt(intensity)
+            return `-${Math.max(100, num - 200)}`
+          })
+        case 'darker':
+          return colorClass.replace(/-(\d+)/, (_, intensity) => {
+            const num = parseInt(intensity)
+            return `-${Math.min(900, num + 200)}`
+          })
+        case 'contrast':
+          // For dark theme, use lighter colors for better contrast on dark backgrounds
+          return colorClass.replace(/-(\d+)/, '-400')
+        default:
+          return colorClass
+      }
+    }
+    return colorClass
+  }
   
   switch (style) {
     case "solid":
       return {
-        background: colorMap.base,
-        text: colorMap.text,
-        border: colorMap.border,
-        hover: colorMap.hover,
-        focus: colorMap.focus,
+        background: adjustColorForTheme(colorMap.base, 'contrast'),
+        text: theme === "dark" ? "text-gray-950" : colorMap.text,
+        border: adjustColorForTheme(colorMap.border, 'contrast'),
+        hover: adjustColorForTheme(colorMap.hover, 'contrast'),
+        focus: adjustColorForTheme(colorMap.focus, 'contrast'),
         // Combined class string for convenience
-        combined: `${colorMap.base} ${colorMap.text} ${colorMap.border} ${colorMap.hover} ${colorMap.focus}`,
+        combined: `${adjustColorForTheme(colorMap.base, 'contrast')} ${theme === "dark" ? "text-gray-950" : colorMap.text} ${adjustColorForTheme(colorMap.border, 'contrast')} ${adjustColorForTheme(colorMap.hover, 'contrast')} ${adjustColorForTheme(colorMap.focus, 'contrast')}`,
       }
       
     case "soft": {
       // Soft style uses lighter background with colored text
-      const softBg = colorMap.base.replace("-500", "-100").replace("bg-", "bg-")
-      const softText = colorMap.base.replace("bg-", "text-").replace("-500", "-700")
-      const softBorder = colorMap.border.replace("-500", "-200")
-      const softHover = colorMap.base.replace("-500", "-200").replace("bg-", "bg-")
+      const softBg = theme === "dark" 
+        ? adjustColorForTheme(colorMap.base, 'darker').replace("bg-", "bg-").replace("-500", "-900/20")
+        : colorMap.base.replace("-500", "-100").replace("bg-", "bg-")
+      const softText = theme === "dark"
+        ? adjustColorForTheme(colorMap.base.replace("bg-", "text-"), 'contrast')
+        : colorMap.base.replace("bg-", "text-").replace("-500", "-700")
+      const softBorder = theme === "dark"
+        ? adjustColorForTheme(colorMap.border, 'darker').replace("-500", "-800")
+        : colorMap.border.replace("-500", "-200")
+      const softHover = theme === "dark"
+        ? adjustColorForTheme(colorMap.base, 'darker').replace("bg-", "bg-").replace("-500", "-800/30")
+        : colorMap.base.replace("-500", "-200").replace("bg-", "bg-")
       
       return {
         background: softBg,
         text: softText,
         border: softBorder,
         hover: softHover.replace("hover:", "hover:"),
-        focus: colorMap.focus,
-        combined: `${softBg} ${softText} ${softBorder} ${softHover.replace("hover:", "hover:")} ${colorMap.focus}`,
+        focus: adjustColorForTheme(colorMap.focus, 'contrast'),
+        combined: `${softBg} ${softText} ${softBorder} ${softHover.replace("hover:", "hover:")} ${adjustColorForTheme(colorMap.focus, 'contrast')}`,
       }
     }
       
     case "outline": {
       // Outline style uses transparent background with colored border and text
-      const outlineText = colorMap.base.replace("bg-", "text-")
-      const outlineBorder = colorMap.border
-      const outlineHover = colorMap.base.replace("-500", "-50").replace("bg-", "bg-")
+      const outlineText = theme === "dark"
+        ? adjustColorForTheme(colorMap.base.replace("bg-", "text-"), 'contrast')
+        : colorMap.base.replace("bg-", "text-")
+      const outlineBorder = adjustColorForTheme(colorMap.border, 'contrast')
+      const outlineHover = theme === "dark"
+        ? adjustColorForTheme(colorMap.base, 'darker').replace("bg-", "bg-").replace("-500", "-950/10")
+        : colorMap.base.replace("-500", "-50").replace("bg-", "bg-")
       
       return {
         background: "bg-transparent",
         text: outlineText,
         border: outlineBorder,
         hover: outlineHover.replace("hover:", "hover:"),
-        focus: colorMap.focus,
-        combined: `bg-transparent ${outlineText} ${outlineBorder} ${outlineHover.replace("hover:", "hover:")} ${colorMap.focus}`,
+        focus: adjustColorForTheme(colorMap.focus, 'contrast'),
+        combined: `bg-transparent ${outlineText} ${outlineBorder} ${outlineHover.replace("hover:", "hover:")} ${adjustColorForTheme(colorMap.focus, 'contrast')}`,
       }
     }
       
     case "ghost": {
       // Ghost style uses subtle coloring with hover effects
-      const ghostText = colorMap.base.replace("bg-", "text-")
-      const ghostHover = colorMap.base.replace("-500", "-50").replace("bg-", "bg-")
+      const ghostText = theme === "dark"
+        ? adjustColorForTheme(colorMap.base.replace("bg-", "text-"), 'contrast')
+        : colorMap.base.replace("bg-", "text-")
+      const ghostHover = theme === "dark"
+        ? adjustColorForTheme(colorMap.base, 'darker').replace("bg-", "bg-").replace("-500", "-950/10")
+        : colorMap.base.replace("-500", "-50").replace("bg-", "bg-")
       
       return {
         background: "bg-transparent",
         text: ghostText,
         border: "border-transparent",
         hover: ghostHover.replace("hover:", "hover:"),
-        focus: colorMap.focus,
-        combined: `bg-transparent ${ghostText} border-transparent ${ghostHover.replace("hover:", "hover:")} ${colorMap.focus}`,
+        focus: adjustColorForTheme(colorMap.focus, 'contrast'),
+        combined: `bg-transparent ${ghostText} border-transparent ${ghostHover.replace("hover:", "hover:")} ${adjustColorForTheme(colorMap.focus, 'contrast')}`,
       }
     }
       
     default:
       return {
-        background: colorMap.base,
-        text: colorMap.text,
-        border: colorMap.border,
-        hover: colorMap.hover,
-        focus: colorMap.focus,
-        combined: `${colorMap.base} ${colorMap.text} ${colorMap.border} ${colorMap.hover} ${colorMap.focus}`,
+        background: adjustColorForTheme(colorMap.base, 'contrast'),
+        text: theme === "dark" ? "text-gray-950" : colorMap.text,
+        border: adjustColorForTheme(colorMap.border, 'contrast'),
+        hover: adjustColorForTheme(colorMap.hover, 'contrast'),
+        focus: adjustColorForTheme(colorMap.focus, 'contrast'),
+        combined: `${adjustColorForTheme(colorMap.base, 'contrast')} ${theme === "dark" ? "text-gray-950" : colorMap.text} ${adjustColorForTheme(colorMap.border, 'contrast')} ${adjustColorForTheme(colorMap.hover, 'contrast')} ${adjustColorForTheme(colorMap.focus, 'contrast')}`,
       }
   }
 }
@@ -1093,4 +1401,97 @@ export function getColorClassesWithLuminance(
 export function getOptimalTextClasses(backgroundColor: string, theme: PaperThemeMode = "light"): string {
   const textColor = getOptimalTextColorForBackground(backgroundColor, theme)
   return `text-[${textColor}]`
+}
+
+/**
+ * Generate theme-aware CSS classes that automatically switch between light and dark modes
+ * Uses Tailwind's dark: modifier to create responsive semantic color classes
+ * 
+ * @param semanticColor - Semantic color variant
+ * @param style - Visual style variant
+ * @returns Object with combined light/dark classes using Tailwind's dark: modifier
+ * 
+ * @example
+ * ```typescript
+ * const classes = getThemeAwareSemanticClasses("success", "soft")
+ * // Returns: { 
+ * //   background: "bg-green-100 dark:bg-green-900/20",
+ * //   text: "text-green-700 dark:text-green-400", 
+ * //   combined: "bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-400 ..."
+ * // }
+ * ```
+ */
+export function getThemeAwareSemanticClasses(
+  semanticColor: SemanticColorVariant,
+  style: StyleVariant = "soft"
+) {
+  const lightClasses = getTailwindSemanticColorClasses(semanticColor, style, "light")
+  const darkClasses = getTailwindSemanticColorClasses(semanticColor, style, "dark")
+  
+  return {
+    background: `${lightClasses.background} dark:${darkClasses.background}`,
+    text: `${lightClasses.text} dark:${darkClasses.text}`,
+    border: `${lightClasses.border} dark:${darkClasses.border}`,
+    hover: `${lightClasses.hover} dark:${darkClasses.hover}`,
+    focus: `${lightClasses.focus} dark:${darkClasses.focus}`,
+    combined: `${lightClasses.background} dark:${darkClasses.background} ${lightClasses.text} dark:${darkClasses.text} ${lightClasses.border} dark:${darkClasses.border} ${lightClasses.hover} dark:${darkClasses.hover} ${lightClasses.focus} dark:${darkClasses.focus}`,
+  }
+}
+
+/**
+ * Generate semantic color palette for a specific color variant across all themes and styles
+ * Useful for generating comprehensive color palettes for components
+ * 
+ * @param semanticColor - Semantic color variant
+ * @returns Complete palette with all style and theme combinations
+ * 
+ * @example
+ * ```typescript
+ * const palette = getSemanticColorPalette("primary")
+ * // Returns object with light/dark themes and solid/soft/outline/ghost styles
+ * ```
+ */
+export function getSemanticColorPalette(semanticColor: SemanticColorVariant) {
+  const styles: StyleVariant[] = ["solid", "soft", "outline", "ghost"]
+  const themes: PaperThemeMode[] = ["light", "dark"]
+  
+  const palette: Record<PaperThemeMode, Record<StyleVariant, ReturnType<typeof getTailwindSemanticColorClasses>>> = {
+    light: {} as Record<StyleVariant, ReturnType<typeof getTailwindSemanticColorClasses>>,
+    dark: {} as Record<StyleVariant, ReturnType<typeof getTailwindSemanticColorClasses>>,
+  }
+  
+  themes.forEach(theme => {
+    styles.forEach(style => {
+      palette[theme][style] = getTailwindSemanticColorClasses(semanticColor, style, theme)
+    })
+  })
+  
+  return palette
+}
+
+/**
+ * Batch generate theme-aware classes for multiple semantic colors
+ * Useful for creating consistent color schemes across components
+ * 
+ * @param colors - Array of semantic color variants
+ * @param style - Visual style variant to apply to all colors
+ * @returns Object mapping each color to its theme-aware classes
+ * 
+ * @example
+ * ```typescript
+ * const colorScheme = getBatchThemeAwareClasses(["primary", "success", "danger"], "soft")
+ * // Returns object with theme-aware classes for each color
+ * ```
+ */
+export function getBatchThemeAwareClasses(
+  colors: SemanticColorVariant[],
+  style: StyleVariant = "soft"
+) {
+  const result: Partial<Record<SemanticColorVariant, ReturnType<typeof getThemeAwareSemanticClasses>>> = {}
+  
+  colors.forEach(color => {
+    result[color] = getThemeAwareSemanticClasses(color, style)
+  })
+  
+  return result
 }
